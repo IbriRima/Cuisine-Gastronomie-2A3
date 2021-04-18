@@ -3,10 +3,14 @@
 <?PHP
 
 	include "../Controller/ReclamationC.php";
+	include "../Controller/TypeReclamationC.php";
 $id="123";
 
 	$ReclamationC=new ReclamationC();
-	$listeReclamationClient =$ReclamationC->getReclamationById_Client($id) 
+	$listeReclamationClient =$ReclamationC->getReclamationById_Client($id) ;
+	$TypeReclamationC=new TypeReclamationC();
+	$listeType =$TypeReclamationC->TypeReclamation();
+
 ?>
 
 
@@ -114,18 +118,33 @@ $id="123";
 							<label for="Id_client" class="sr-only">Votre identifiant</label>
 							<input  name="Id_client" id="Id_client" class="form-control" placeholder="Identifiant" type="text">
 						</div>
-
-			
 						<div class="form-group ">
 							<label for="Type" class="sr-only">Type</label>
 							<select  name="Type" id="Type"  class="form-control" >
 							<option>Choisissez un type de réclamation</option>
-							  <option>T1</option>
-							  <option>T2</option>
-							  <option>T3</option>
+						<?php
+
+                             $array = [];
+							  foreach($listeType  as $TypeReclamation)
+							  {
+							
+                              ?>
+					
+							 <option>	
+							  
+							  <?php 
+						  
+						  echo $TypeReclamation["Libelle"];
+						 ?>
+						 </option>
+						 <?php
+							  }
+                                ?>
+
                               </select>
+							
 						</div>
-				
+					
 						<div class="form-group ">
 							<label for="Note" class="sr-only">Note</label>
 							<input name="Note" id="Note"  class="form-control" placeholder="Note" type="number" min=0 max=10>

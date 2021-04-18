@@ -35,19 +35,19 @@
             }
         }
 
-        function updateTypeReclamation($TypeReclamation, $id){
+        function updateTypeReclamation($Duree, $id){
 			try {
 				$pdo = getConnexion();
 				$sql="UPDATE TypeReclamation SET 
-				libelle = :libelle, 
+			
 				Duree_traitement_max = :duree
 				
 			WHERE id_type = :id";
 				$query = $pdo->prepare($sql);
 
 				$query->bindValue(':id',$id);
-				$query->bindValue(':libelle',$TypeReclamation->getLibelle());
-				$query->bindValue(':duree',$TypeReclamation->getDuree_Max());
+		
+				$query->bindValue(':duree',$Duree);
 				$query->execute();
 	
 				echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -102,6 +102,22 @@
 			}
 		}
 		
+
+
+
+        public function TypeReclamation() 
+        {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT Libelle FROM TypeReclamation'
+                );
+                $query->execute();
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+    }
 
 
 

@@ -7,23 +7,23 @@
 
    
             if (
-              isset($_POST["Libelle"]) && 
+             
               isset($_POST['duree']) 
           ){
           if (
-                  !empty($_POST["Libelle"]) && 
+               
                   !empty($_POST['duree']) 
               ) {
-                $TypeReclamation = new TypeReclamation(
-                  $_POST["Libelle"],
-                  (int)$_POST['duree']
-          );
+   
+                  $Duree= (int)$_POST['duree'];
+   
                   
-          $TypeReclamationC->updateTypeReclamation($TypeReclamation,(int)$_POST["Id_type"]);
+          $TypeReclamationC->updateTypeReclamation($Duree,(int)$_POST["Id_type"]);
   
               }
               else
                   $error = "Missing information";
+                  echo"$error ";
         }
 	
 
@@ -60,7 +60,7 @@
 	<?php
 			if (isset($_POST["Id_type"])){
         $id=$_POST["Id_type"];
-        $libelle=$_POST["Libelle"];
+       
         $duree=$_POST["duree"];
        
 				$TypeReclamation= $TypeReclamationC->recupererTypeReclamation($_POST["Id_type"]);
@@ -161,7 +161,7 @@
               </div>
               <div class="card-body">
             
-    <form action="ModifierTypeReclamation.php" method="POST"> 
+    
       <div class="content">
 
 
@@ -175,15 +175,15 @@
                 <div class="form-group"></div>
               </div>
               
-              <div class="col-md-4 pl-1">
-     
-                  <label for="Id_type"> Identifiant </label>
-                  <input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" >
-                </div>
+          
          
             </div>
 
-                  <div class="row">
+     
+
+                <form action="ModifierTypeReclamation.php" method="POST"> 
+
+   <div class="row">
                   <div class="col-md-3 px-1">
                       <div class="form-group"></div>
                     </div>
@@ -191,14 +191,13 @@
                       <div class="form-group">
                
                       
-                  <label for="Libelle"> Libelle </label>
-                  <input  type="text" name="Libelle" id="Libelle" class="form-control" value = "<?php echo $libelle; ?>" >
+                      <label for="Id_type"> Identifiant </label>
+
+<input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" >
                   
                     </div>
                   </div>
                 </div>
-
-
 
                   <div class="row">    
                   <div class="col-md-3 px-1">
