@@ -1,7 +1,7 @@
 <?php
 	include "../Controller/ReclamationC.php";
 	include_once '../Model/Reclamation.php';
-
+	include "../Controller/TypeReclamationC.php";
 	$ReclamationC = new ReclamationC();
 
 
@@ -34,7 +34,7 @@
                   
           $ReclamationC->updateReclamation($Reclamation,(int)$_POST["Id_Recl"]);
                
-				 header('Location:ReclamationClient.php');
+		
 
               }
               else
@@ -42,6 +42,9 @@
               
 
         }
+
+		$TypeReclamationC=new TypeReclamationC();
+		$listeType =$TypeReclamationC->TypeReclamation();
       
 ?>
 
@@ -70,7 +73,7 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="../assets/img/favicon.png">
 
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
 	
@@ -118,13 +121,12 @@
 			<div class="fh5co-main-nav">
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
-					<a href="#" data-nav-section="about"></a>
-						<a href="#" data-nav-section="Produits"></a>
+					<link class="text-left">Bienvenue Ibri Rima  </link>
 						<a href="#" data-nav-section="reclamation">Vos réclamations</a>
 					
 					</div>
 					<div class="fh5co-logo">
-						<a href="Main.php">Point BIO</a>
+						<a href="Main.php">PointBIO</a>
 					</div>
 					<div class="fh5co-menu-2">
 						
@@ -141,8 +143,18 @@
 
 
 	</div>
+
+	
+
+
+	<div id="fh5co-events" data-section="events" style="background-image: url(../assets/img/food2.jpg);" data-stellar-background-ratio="0.5">
+
+
+			<div class="container">
+				
+
+			<form action="ModifierReclamation.php" method="POST">
 		
-	<form action="ModifierReclamation.php" method="POST">
 		<div id="fh5co-contact" data-section="reclamation">
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
@@ -163,7 +175,38 @@
 
             <div class="form-group ">
 							<label for="Type" class="sr-only">Type</label>
-							<input name="Type" id="Type"  class="form-control" placeholder="Type" type="text"  value = "<?php echo $Type; ?>">
+
+
+							<div class="form-group ">
+							<label for="Type" class="sr-only">Type</label>
+							<select  name="Type" id="Type"  class="form-control" >
+							<option><?php echo $Type; ?></option>
+						<?php
+
+                             $array = [];
+							  foreach($listeType  as $TypeReclamation)
+							  {
+							
+                              ?>
+					
+							 <option>	
+							  
+							  <?php 
+						  
+						  echo $TypeReclamation["Libelle"];
+						 ?>
+						 </option>
+						 <?php
+							  }
+                                ?>
+
+                              </select>
+							
+						</div>
+
+
+
+
 						</div>
        
 						<div class="form-group ">
@@ -188,7 +231,7 @@
 						<div class="form-group ">
 						
 						
-							<input class="btn btn-primary" type="submit" value="Ajouter" name = "submit">
+							<input class="btn btn-primary" type="submit" value="Enregistrer" name = "submit">
 							<input class="btn btn-primary" type="reset" value="Annuler" name = "annuler">
 						
 						</div>
@@ -199,41 +242,41 @@
 
 
 	</form>
+	
 
-
-
-		<div id="fh5co-contact" data-section="reclamation">
-			<div class="container">
-				<div class="row text-center fh5co-heading row-padded">
-					<div class="col-md-8 col-md-offset-2">
-						
+				</div>
+				<div class="fh5co-logo">
+	<a href="ReclamationClient.php"> Retour </a> 
 					</div>
-				</div>
-				</div>
-				</div>
+			</div>
 
-				  <div id="fh5co-footer">
-		<div class="container">
-			<div class="row row-padded">
-				<div class="col-md-12 text-center">
-					<p class="to-animate">PointBIO <br> Designed by <a href="" target="_blank">InnovationTeam</a> 
-					</p>
-					<p class="text-center to-animate"><a href="#" class="js-gotop">Go To Top</a></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<ul class="fh5co-social">
-						<li class="to-animate-2"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="to-animate-2"><a href="#"><i class="icon-twitter"></i></a></li>
-						<li class="to-animate-2"><a href="#"><i class="icon-instagram"></i></a></li>
-					</ul>
-				</div>
-			</div>
+
+
+
+
 		</div>
-	</div>
 
-  </div>
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
         <?php
 		}
 		?>

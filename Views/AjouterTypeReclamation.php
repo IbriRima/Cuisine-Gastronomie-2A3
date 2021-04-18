@@ -69,7 +69,7 @@
 </li>
 <li>
 <a href="./AfficherReclamation.php">
-    <i class="now-ui-icons files_single-copy-04"></i>
+    <i class="now-ui-icons ui-1_email-85"></i>
     <p>réclamation</p>
   </a>
 </li>

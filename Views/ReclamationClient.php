@@ -39,7 +39,7 @@ $id="123";
 	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="../assets/img/favicon.png">
 
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
 	
@@ -77,13 +77,15 @@ $id="123";
 			<div class="fh5co-main-nav">
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
-					<a href="#" data-nav-section="about"></a>
-						<a href="#" data-nav-section="Produits"></a>
+					
+					<link class="text-left">Bienvenue Ibri Rima  </link>
+					
+					<a href="#" ></a>
 						<a href="#" data-nav-section="reclamation">Vos réclamations</a>
 					
 					</div>
 					<div class="fh5co-logo">
-						<a href="Main.php">Point BIO</a>
+						<a href="Main.php">PointBIO</a>
 					</div>
 					<div class="fh5co-menu-2">
 						
@@ -100,19 +102,51 @@ $id="123";
 
 
 	</div>
+
+
+
+
+	<div id="fh5co-events" data-section="reclamation" style="background-image: url(../assets/img/food5.jpg);" data-stellar-background-ratio="0.5">
+	
+	<div class="container">
+	<h2 class="heading to-animate"></h2>
+	<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2">
+	<h4 class="heading to-animate">Réclamation</h4>
+
+		</div>
+		</div>
+		</div>
+
+		<div class="container">
+		<h2 class="heading to-animate"></h2>
+		<h4 class="heading to-animate"></h4>
+       </div>
+	   
+<div class="container">
+<h2 class="heading to-animate"></h2>
+<h4 class="heading to-animate"></h4>
+
+</div>
+	</div>
+
+
 		
 	<form action="AjouterReclamation.php" method="POST">
 		<div id="fh5co-contact" data-section="reclamation">
+		
 			<div class="container">
+			
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
-						<h2 class="heading to-animate">Réclamation</h2>
-						<p class="sub-heading to-animate">Si vous avez eu n'importe quel problème vous pouvez nous informer si dessous</p>
+					
+					
 					</div>
 				</div>
+
 		
 					<div class="col-md-6 to-animate-2">
-						<h3>Réclamation</h3>
+						<h3>Ajouter une réclamation</h3>
 				
 						<div class="form-group ">
 							<label for="Id_client" class="sr-only">Votre identifiant</label>
@@ -219,7 +253,7 @@ $id="123";
 
 					<td>
 					<form method="POST" action="SupprimerReclClient.php">
-                    <input  type="image" src="../assets/img/delete1.png"  type="submit" width="25" heigth="8"/>
+                    <input  type="image" src="../assets/img/delete1.png"  type="submit" width="25" heigth="8" />
                     <input   type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
                     </form>
 					</td>

@@ -304,7 +304,7 @@
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
-						<h2 class="heading to-animate">Food Menu</h2>
+						<h2 class="heading to-animate">Notre Menu</h2>
 						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 					</div>
 				</div>
@@ -564,7 +564,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
-						<p><a href="#" class="btn btn-primary btn-outline">More Food Menu</a></p>
+						<p><a href="#" class="btn btn-primary btn-outline"></a></p>
 					</div>
 				</div>
 			</div>
@@ -575,7 +575,7 @@
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2 to-animate">
-						<h2 class="heading">Upcoming Events</h2>
+						<h2 class="heading"> </h2>
 						<p class="sub-heading">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 					</div>
 				</div>
