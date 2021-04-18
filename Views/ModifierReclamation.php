@@ -33,7 +33,9 @@
           );
                   
           $ReclamationC->updateReclamation($Reclamation,(int)$_POST["Id_Recl"]);
-                 header('ReclamationClient.php');
+               
+				 header('Location:ReclamationClient.php');
+
               }
               else
               $error = "Missing information";

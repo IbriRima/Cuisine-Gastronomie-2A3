@@ -52,6 +52,7 @@
 	
 				echo $query->rowCount() . " records UPDATED successfully <br>";
 			
+			
 			} catch (PDOException $e) {
 			
 				die('Erreur: '.$e->getMessage());

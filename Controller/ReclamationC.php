@@ -70,6 +70,26 @@
                 $e->getMessage();
             }
         }
+
+
+        public function updateEtatReclamation($Etat_traitement, $id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE Reclamation SET  Etat_traitement=:Etat_traitement WHERE id_Recl = :id'
+                );
+                $query->execute([
+             
+                    'Etat_traitement' => $Etat_traitement,
+                    'id' => $id
+                ]);
+             
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
+
         function recupererReclamation($id){
 			$sql="SELECT * from Reclamation where Id_Recl= $id";
 			$pdo = getConnexion();

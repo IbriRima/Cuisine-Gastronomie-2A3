@@ -20,7 +20,7 @@
           );
                   
           $TypeReclamationC->updateTypeReclamation($TypeReclamation,(int)$_POST["Id_type"]);
-                  //header('Location:afficherUtilisateurs.php');
+  
               }
               else
                   $error = "Missing information";
