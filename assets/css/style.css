@@ -5,6 +5,88 @@
   font-weight: normal;
   font-style: normal;
 }
+
+
+
+.rating {
+  position: absolute;
+  top: 19%;
+  left:150%; 
+  transform: translate(-50%, -50%) ;
+  display: flex;
+  color: rgb(35, 121, 1);
+}
+
+
+.rating label
+{
+
+display: block;
+cursor: pointer;
+width: 40px;
+
+
+}
+.rating label:before
+
+{
+
+content: '\f005';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 40px;
+position: relative;
+
+display: block;
+color: #fb6e14;
+}
+
+.rating label:after
+
+{
+
+content: '\f005';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 40px;
+position: absolute;
+display: block;
+opacity:0 ;
+color: rgb(12, 12, 10);
+top: 0;
+
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+.rating label:hover::after,
+.rating label:hover ~ label::after,
+.rating input:checked ~ label::after
+{
+opacity: 1;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .left { float:left; margin:0 10px 0 40px; }
 body {
   font-family: "Merriweather", serif;

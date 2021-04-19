@@ -20,6 +20,7 @@ $id="123";
 <!DOCTYPE html>
  <html class="no-js"> 
 	<head>
+	<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PointBIO</title>
@@ -62,6 +63,7 @@ $id="123";
 	<!-- Modernizr JS -->
 	<script src="../assets/js/modernizr-2.6.2.min.js"></script>
 	<script src="../assets/js/Notification.js"></script>
+	
 
 	</head>
 
@@ -179,10 +181,7 @@ $id="123";
 							
 						</div>
 					
-						<div class="form-group ">
-							<label for="Note" class="sr-only">Note</label>
-							<input name="Note" id="Note"  class="form-control" placeholder="Note" type="number" min=0 max=10>
-						</div>
+					
 							
 						<div class="form-group ">
 							<label for="Description" class="sr-only">Description du problème</label>
@@ -195,14 +194,43 @@ $id="123";
 							<label for="Proposition" class="sr-only">Votre proposition</label>
 							<textarea name="Proposition" id="Proposition" cols="30" rows="5" class="form-control" placeholder="Votre proposition"></textarea>
 						</div>
+				
+					
+						
+						<div class="row">
+
+						<div class="rating">  
+
+      <label for="star1"></label>
+      <input  type="radio"  name="Note" value="1">
+      <label for="star2"></label>
+      <input type="radio"  name="Note" value="2">  
+      
+      <label for="star3"></label>
+      <input  type="radio" name="Note"  value="3">
+
+      <label for="star4"></label>
+      <input  type="radio"  name="Note" value="4">
+
+      <label for="star5"></label>
+      <input  type="radio"  name="Note" value="5">  
+
+      <label for="star6"></label>
+      <input  type="radio" name="Note"  value="6">
+ 
+
+             </div>
+			 </div>
+			
 
 						<div class="form-group ">
-						
-						
-							<input class="btn btn-primary" type="submit" value="Ajouter" name = "submit">
+			
+							<input class="btn btn-primary" type="submit" value="Ajouter" name = "submit" >
 							<input class="btn btn-primary" type="reset" value="Annuler" name = "annuler">
 						
 						</div>
+
+
 						</div>
 				</div>
 			</div>
