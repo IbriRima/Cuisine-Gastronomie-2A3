@@ -47,12 +47,15 @@
 	<!-- Modernizr JS -->
 	<script src="../assets/js/modernizr-2.6.2.min.js"></script>
 
+	
 
 	</head>
 
 
 	<body>
 
+
+	
 	<div id="fh5co-container">
 	<div >
 			<a  href="ReclamationClient.php">Se connecter</a>

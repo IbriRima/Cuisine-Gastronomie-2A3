@@ -51,7 +51,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           </li>
           <li >
           <a href="./AfficherReclamation.php">
-              <i class="now-ui-icons ui-1_email-85"></i>
+              <i class="now-ui-icons ui-1_email-85  "></i>
               <p>réclamation</p>
             </a>
           </li>
@@ -266,6 +266,9 @@ $listeReclamation =$ReclamationC->afficherReclamation();
                         Type
                       </th>
                       <th class="text-center">
+                        Identifiant du client
+                      </th>
+                      <th class="text-center">
                         Etat de traitement
                       </th>
                  
@@ -288,6 +291,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 					<td class="text-center"><?PHP echo $Reclamation['Proposition']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Type']; ?></td>
+          <td class="text-center"><?PHP echo $Reclamation['Id_client']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
     
           

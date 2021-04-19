@@ -61,7 +61,7 @@ $id="123";
 
 	<!-- Modernizr JS -->
 	<script src="../assets/js/modernizr-2.6.2.min.js"></script>
-
+	<script src="../assets/js/Notification.js"></script>
 
 	</head>
 
