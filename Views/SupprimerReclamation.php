@@ -9,7 +9,12 @@
 			$ReclamationC->deleteReclamation($_POST["Id_Recl"]);
 			header('Location:AfficherReclamation.php');
 		}
+		else 
+		{
+			header('Location:AfficherReclamation.php');
+		}
 	
 	}
+
 
 ?>

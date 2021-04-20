@@ -3,6 +3,7 @@
 <?PHP
 
 	include "../Controller/ReclamationC.php";
+
 	include "../Controller/TypeReclamationC.php";
 $id="123";
 

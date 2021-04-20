@@ -8,16 +8,24 @@
      
     if (isset($_POST["libelle"])&& isset($_POST["duree"]) )
      {
-        $Libelle=$_POST['libelle'];
-        $Duree=(int)$_POST['duree'];
-       
+      if (
+        !empty($_POST["libelle"]) && 
+        !empty($_POST["duree"]) 
+    )
+    {
+
+      $Libelle=$_POST['libelle'];
+      $Duree=(int)$_POST['duree'];
      
-		$TypeReclamation = new TypeReclamation($Libelle,$Duree);
-		$TypeReclamationC = new TypeReclamationC();
-		$TypeReclamationC->addTypeReclamation($TypeReclamation);
+   
+  $TypeReclamation = new TypeReclamation($Libelle,$Duree);
+  $TypeReclamationC = new TypeReclamationC();
+  $TypeReclamationC->addTypeReclamation($TypeReclamation);
     }
     else
-        $error = "Missing information";
+    $error = "Missing information";
+    }
+
 
 
         $TypeReclamationC = new TypeReclamationC();
@@ -30,6 +38,7 @@
 <html lang="en">
 
 <head>
+<script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -44,10 +53,14 @@
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
-
+ 
 </head>
 
 <body class="user-profile">
+
+
+
+
 
 <div class="wrapper ">
     <div class="sidebar" data-color="yellow">
@@ -140,7 +153,7 @@
  
  
    
-      <form action="AjouterTypeReclamation.php" method="POST"> 
+      <form action="AjouterTypeReclamation.php" method="POST" id="form"> 
         
       <div class="panel-header panel-header-sm"></div>
       <div class="content">
@@ -156,7 +169,7 @@
 
 
               <div class="card-body">
-           
+        
                 <div class="row">
                  
                     <div class="col-md-3 px-1">
@@ -169,10 +182,13 @@
                         <input  type="text" name="libelle" id="libelle" class="form-control" placeholder="Libellé">
                       </div>
                     </div>
-                  </div>
+                    </div>
+                    <div class="controle" id="verifLibelle">
+              </div>
 
+                
 
-
+               
                   <div class="row">    
                   <div class="col-md-3 px-1">
                       <div class="form-group"></div>
@@ -184,21 +200,20 @@
                       </div>
                     </div>
                     </div>
-
-
+                    </div>
+                    <div class="controle" id="verifDuree">
+</div>
 
 
                   <div class="row">
                     <div class="col-md-12 pl">
-                    <input type="submit" value="Ajouter" name = "submit">
+                    <input type="submit" value="Ajouter" name = "submit" onclick = " AjoutReclamation();" >
                     <input type="reset" value="Annuler" name = "annuler">
                     </div>
                     </div>
              
                   
 </form>
-
-</div>
 
 </div> 
 
@@ -283,14 +298,6 @@
 
 
 
- 
-
-
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
   <!-- Chart JS -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>

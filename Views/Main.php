@@ -5,6 +5,8 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PointBIO</title>
@@ -71,7 +73,7 @@
 					<div class="container">
 						<div class="row">
 							<h1 class="to-animate">PointBIO</h1>
-							<h2 class="to-animate" id="slogan">We don't change anything <span>but</span> it changes EVERYTHING</a></h2>
+							<h2 class="to-animate" id="slogan">On ne change RIEN <span>et</span> ça change TOUT</a></h2>
 						</div>
 					
 					</div>
