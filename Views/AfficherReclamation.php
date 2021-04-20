@@ -13,7 +13,9 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8" />
+  <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
  
@@ -147,16 +149,29 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
+
+
+          <!-- RECHERCHE  -->
+          
+            <form action="Recherche.php" method="POST">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="text" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
+
+
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <i class="now-ui-icons ui-1_zoom-bold"></i>
                   </div>
                 </div>
               </div>
+
             </form>
+
+
+
+
+
+
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -202,6 +217,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"> Liste des réclamations</h4>
+                <div class="controle" id="verifEtat"> </div>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -220,8 +236,8 @@ $listeReclamation =$ReclamationC->afficherReclamation();
         <th class="text-center">Etat de traitement</th>
 
 				<th class="text-center">Supprimer
-        <br>
-         (Seulement les réclamations traitées)</th>
+       
+       </th>
 				<th class="text-center">Modifier</th>
 			
 	
@@ -243,16 +259,16 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           <td class="text-center"><?PHP echo $Reclamation['Id_client']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
               <td>
-					<form method="POST" action="SupprimerReclamation.php">
-            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10"/>
+					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin">
+            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" onclick="DeleteAdmin();"/>
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
             </form>
 					</td>
      
           <td>
-					<form method="POST" action="ModifierReclAdmin.php">
-            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10"/>
+					<form method="POST" action="ModifierReclAdmin.php" >
+            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
             </form>

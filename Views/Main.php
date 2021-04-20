@@ -60,8 +60,9 @@
 	
 	<div id="fh5co-container">
 	<div >
-			<a  href="ReclamationClient.php">Se connecter</a>
-				</div >
+			<a  href="ReclamationClient.php" >Se connecter</a>
+	</div >
+
 		<div id="fh5co-home" class="js-fullheight" data-section="home">
 
 			<div class="flexslider">
@@ -170,6 +171,7 @@
 				</div>
 				<div class="row">
 					<div class="fh5co-grid">
+						
 						<div class="fh5co-v-half to-animate-2">
 							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_1.jpg)"></div>
 							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
@@ -178,6 +180,10 @@
 								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 							</div>
 						</div>
+
+
+					
+
 						<div class="fh5co-v-half">
 							<div class="fh5co-h-row-2 to-animate-2">
 								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_2.jpg)"></div>

@@ -35,6 +35,7 @@
 <html lang="en">
 
 <head>
+<script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -68,16 +69,20 @@
 		?>
 
 <div class="wrapper ">
-    <div class="sidebar" data-color="yellow">
 
-      <div class="logo">
-        
-      </div>
-      <div class="sidebar-wrapper" id="sidebar-wrapper">
+  <div class="sidebar" data-color="yellow">
+
+    <div class="logo">
+      
+    </div>
+
+<div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
-          
-        <li class="active ">
+
+         
+         
+          <li class="active ">
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -142,10 +147,20 @@
               <p>Liste des tables</p>
             </a>
           </li>
-
+         
+  
+          <li >
+            <a href="./Main.php">
+              <i class="now-ui-icons gestures_tap-01"></i>
+              <p>www.PointBio.com</p>
+            </a>
+          </li>
         </ul>
+
+        
       </div>
     </div>
+
     <div class="main-panel" id="main-panel">
 
   
@@ -181,15 +196,16 @@
 
      
 
-                <form action="ModifierTypeReclamation.php" method="POST"> 
+                <form action="ModifierTypeReclamation.php" method="POST" id="formA"> 
 
+            
    <div class="row">
                   <div class="col-md-3 px-1">
                       <div class="form-group"></div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
-               
+              
                       
                       <label for="Id_type"> Identifiant </label>
 
@@ -207,28 +223,21 @@
                       <div class="form-group">
                   
                         <label for="duree"> Durée maximale pour le traitement</label>
-                        <input  type="number" name="duree" id="duree" class="form-control" value = "<?php echo $duree; ?>"  >
+                        <input  type="number" name="duree" id="duree" class="form-control" placeholder="Duree maximale en jours" value = "<?php echo $duree; ?>"  >
                     
-                    </div>
-                    </div>
-                  </div>
 
-<div class="row">    
-                    <div class="col-md-12">
+                    </div>
+                    </div>
+          
+                  </div>
              
+                  <div class="controle" id="verifDureeAd"> </div>
+                
          
-          <input type="submit" value="Enregistrer" name = "submit">
+          <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
           <input type="reset" value="Annuler" name = "annuler">
-          </div>
-          </div>
-
-
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </form>  
+ 
+        </form> 
 
           </div>
 
@@ -247,7 +256,10 @@
       </div>
       
     </div>
-        <?php
+  </div>
+</div>
+ 
+    <?php
 		}
 		?>
           

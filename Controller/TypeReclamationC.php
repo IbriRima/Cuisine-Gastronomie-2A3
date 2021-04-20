@@ -50,7 +50,7 @@
 				$query->bindValue(':duree',$Duree);
 				$query->execute();
 	
-				echo $query->rowCount() . " records UPDATED successfully <br>";
+			
 			
 			
 			} catch (PDOException $e) {

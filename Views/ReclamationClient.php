@@ -21,6 +21,9 @@ $id="123";
 <!DOCTYPE html>
  <html class="no-js"> 
 	<head>
+	<script type = "text/javascript"  src="../assets/js/Notification.js"></script>  
+	<script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
+
 	<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,7 +66,7 @@ $id="123";
 
 	<!-- Modernizr JS -->
 	<script src="../assets/js/modernizr-2.6.2.min.js"></script>
-	<script src="../assets/js/Notification.js"></script>
+
 	
 
 	</head>
@@ -135,7 +138,8 @@ $id="123";
 
 
 		
-	<form action="AjouterReclamation.php" method="POST">
+	<form action="AjouterReclamation.php" method="POST" id="formR">
+
 		<div id="fh5co-contact" data-section="reclamation">
 		
 			<div class="container">
@@ -146,15 +150,22 @@ $id="123";
 					
 					</div>
 				</div>
-
+				<div class="controleN" id="verifNote">
+                         </div>
 		
 					<div class="col-md-6 to-animate-2">
+				
 						<h3>Ajouter une réclamation</h3>
+					
 				
 						<div class="form-group ">
+					
 							<label for="Id_client" class="sr-only">Votre identifiant</label>
 							<input  name="Id_client" id="Id_client" class="form-control" placeholder="Identifiant" type="text">
+						
 						</div>
+
+						
 						<div class="form-group ">
 							<label for="Type" class="sr-only">Type</label>
 							<select  name="Type" id="Type"  class="form-control" >
@@ -181,6 +192,8 @@ $id="123";
                               </select>
 							
 						</div>
+						<div class="controle" id="verifType">
+                        </div>
 					
 					
 							
@@ -188,13 +201,16 @@ $id="123";
 							<label for="Description" class="sr-only">Description du problème</label>
 							<textarea name="Description" id="Description" cols="30" rows="5" class="form-control" placeholder="Description du problème"></textarea>
 						</div>
-
+						<div class="controle" id="verifDesc">
+                       </div>
 						
 
 						<div class="form-group ">
 							<label for="Proposition" class="sr-only">Votre proposition</label>
 							<textarea name="Proposition" id="Proposition" cols="30" rows="5" class="form-control" placeholder="Votre proposition"></textarea>
 						</div>
+						<div class="controle" id="verifPropo">
+                       </div>
 				
 					
 						
@@ -222,11 +238,11 @@ $id="123";
 
              </div>
 			 </div>
-			
+		
 
 						<div class="form-group ">
 			
-							<input class="btn btn-primary" type="submit" value="Ajouter" name = "submit" >
+							<input class="btn btn-primary" type="submit" value="Ajouter" name = "submit" onclick = "AjoutReclamation();" >
 							<input class="btn btn-primary" type="reset" value="Annuler" name = "annuler">
 						
 						</div>
@@ -235,8 +251,10 @@ $id="123";
 						</div>
 				</div>
 			</div>
-		</div>
-
+	
+	
+	
+			
 
 	</form>
 
@@ -278,7 +296,7 @@ $id="123";
                     <td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Type']; ?></td>
    
-					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
+					<td class="text-center" ><?PHP echo $Reclamation['Etat_traitement']; ?></td>
 
 					<td>
 					<form method="POST" action="SupprimerReclClient.php">

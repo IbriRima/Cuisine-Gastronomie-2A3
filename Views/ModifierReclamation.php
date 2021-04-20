@@ -54,6 +54,8 @@
 <!DOCTYPE html>
  <html class="no-js"> 
 	<head>
+	<script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PointBIO</title>
@@ -150,10 +152,10 @@
 	<div id="fh5co-events" data-section="events" style="background-image: url(../assets/img/food2.jpg);" data-stellar-background-ratio="0.5">
 
 
-			<div class="container">
+		
 				
 
-			<form action="ModifierReclamation.php" method="POST">
+			<form action="ModifierReclamation.php" method="POST" id="formMR">
 		
 		<div id="fh5co-contact" data-section="reclamation">
 			<div class="container">
@@ -172,7 +174,7 @@
 							<label for="Id_Recl" class="sr-only">Type</label>
 							<input name="Id_Recl" id="Id_Recl"  class="form-control" placeholder="Id_Recl" type="text"  value = "<?php echo $id; ?>">
 						</div>
-
+					
             <div class="form-group ">
 							<label for="Type" class="sr-only">Type</label>
 
@@ -203,42 +205,51 @@
                               </select>
 							
 						</div>
-
-
-
-
 						</div>
        
+						<div class="controle" id="verifTypeModif">
+                        </div>
+
 						<div class="form-group ">
 							<label for="Note" class="sr-only">Note</label>
-							<input name="Note" id="Note"  class="form-control" placeholder="Note" type="number" min=0 max=10  value = "<?php echo $Note; ?>">
+							<input name="Note" id="Note"  class="form-control" placeholder="Note" type="number" min=0 max=6  value = "<?php echo $Note; ?>">
 						</div>
+
+						<div class="controle" id="verifNoteModif">
+                        </div>
 							
 		
+
+
+
 
 						<div class="form-group ">
 							<label for="Description" class="sr-only">Description</label>
 							<input name="Description" id="Description"  class="form-control" placeholder="Description" type="text"  value = "<?php echo $Description; ?>">
 						</div>
+
+						<div class="controle" id="verifDescModif">
+                        </div>
 						
             <div class="form-group ">
 							<label for="Proposition" class="sr-only">Proposition</label>
 							<input name="Proposition" id="Proposition"  class="form-control" placeholder="Proposition" type="text"  value = "<?php echo $Proposition; ?>">
 						</div>
 						
-
+						<div class="controle" id="verifPropoModif">
+                        </div>
 					
 						<div class="form-group ">
 						
 						
-							<input class="btn btn-primary" type="submit" value="Enregistrer" name = "submit">
+							<input class="btn btn-primary" type="submit" value="Enregistrer" name = "submit" onclick = "ModifReclamation();" >
 							<input class="btn btn-primary" type="reset" value="Annuler" name = "annuler">
 						
 						</div>
 						</div>
 				</div>
 			</div>
-		</div>
+	
 
 
 	</form>
@@ -255,22 +266,6 @@
 
 
 		</div>
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
 
 
 

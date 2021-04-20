@@ -28,9 +28,11 @@
     	header('Location:ReclamationClient.php');
     }
     else
-    echo "Missing information";
+    {  header('Location:ReclamationClient.php');}
+ 
 }
-
+else
+{  header('Location:ReclamationClient.php');}
  
 
 ?>

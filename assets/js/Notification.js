@@ -3,6 +3,8 @@
 	function showNotification()
 
 	{
+	
+	
      const notification= new Notification("Alert de PointBIO!",
 	  {
 		  body: "Votre réclamation a été traitée",

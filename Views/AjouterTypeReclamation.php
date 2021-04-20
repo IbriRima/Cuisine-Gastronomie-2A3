@@ -202,12 +202,12 @@
                     </div>
                     </div>
                     <div class="controle" id="verifDuree">
-</div>
+                    </div>
 
 
                   <div class="row">
                     <div class="col-md-12 pl">
-                    <input type="submit" value="Ajouter" name = "submit" onclick = " AjoutReclamation();" >
+                    <input type="submit" value="Ajouter" name = "submit" onclick = " AjoutType();" >
                     <input type="reset" value="Annuler" name = "annuler">
                     </div>
                     </div>
@@ -266,7 +266,7 @@
 
 
           <td>
-          <form method="POST" action="ModifierTypeReclamation.php">
+          <form method="POST" action="ModifierTypeReclamation.php" >
           <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $TypeReclamation['Id_type']; ?> name="Id_type" id="Id_type">
             <input type="hidden" value=<?PHP echo $TypeReclamation['Libelle']; ?> name="Libelle" id="Libelle">
