@@ -168,7 +168,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
                 </div>
               </div>
 
-            </form>
+</form>
 
 
 
@@ -209,6 +209,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           </div>
         </div>
       </nav>
+      
       <!-- End Navbar -->
 
 

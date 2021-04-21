@@ -13,7 +13,6 @@
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +20,7 @@
 
   <meta charset="utf-8" />
   <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
+  <script type = "text/javascript"  src="../assets/js/test.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
  
@@ -170,7 +170,7 @@
                 </div>
               </div>
 
-            </form>
+</form>
 
 
 
@@ -193,14 +193,11 @@
                     <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" >Identifiant</a>
-                  <a class="dropdown-item">Type</a>
-                  <a class="dropdown-item" >Etat de traitement</a>
-                  <select  name="Type" id="Type"  class="form-control" >
-							<option>Choisissez un type de réclamation</option>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
+                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
+                  <a class="dropdown-item"  name="TypeRech">Type</a>
+                  <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
                 </div>
-       
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -214,6 +211,7 @@
           </div>
         </div>
       </nav>
+      
       <!-- End Navbar -->
 
 
@@ -231,6 +229,7 @@
                 <div class="table-responsive">
 
 
+
                   <table class="table">
                     <thead class=" text-primary">
                     <tr>
@@ -239,8 +238,12 @@
 				<th class="text-center">Proposition</th>
 				<th class="text-center">Note</th>
 				<th class="text-center">Type</th>
+				<th class="text-center">Identifiant du client</th>
         <th class="text-center">Etat de traitement</th>
-				<th class="text-center">Supprimer</th>
+
+				<th class="text-center">Supprimer
+       
+       </th>
 				<th class="text-center">Modifier</th>
 			
 	
@@ -250,36 +253,31 @@
      
                     <tbody>
                     <?PHP
-				foreach($listeReclamationClient  as $Reclamation)
+				foreach($listeReclamationClient as $Reclamation)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $Reclamation['Id_Recl']; ?></td>
+					<td class="text-center"><?PHP echo $Reclamation["Id_Recl"] ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Description']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Proposition']; ?></td>
-                    <td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
+          <td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Type']; ?></td>
    
-					<td class="text-center" ><?PHP echo $Reclamation['Etat_traitement']; ?></td>
-
-					<td>
-					<form method="POST" action="SupprimerReclClient.php">
-                    <input  type="image" src="../assets/img/delete.png"  type="submit" width="25" heigth="8" />
-                    <input   type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
-                    </form>
+					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
+              <td>
+					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin">
+            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" onclick="DeleteAdmin();"/>
+            <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
+            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
+            </form>
 					</td>
-
-					<td>
-                    <form method="POST" action="ModifierReclamation.php">
-					<input  type="image" src="../assets/img/update3.png" type="submit" width="25" heigth="8"/>
-					<input   type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
-					<input   type="hidden" value=<?PHP echo $Reclamation['Description']; ?> name="Description" id="Description">
-					<input   type="hidden" value=<?PHP echo $Reclamation['Proposition']; ?> name="Proposition" id="Proposition">
-					<input   type="hidden" value=<?PHP echo $Reclamation['Note']; ?> name="Note" id="Note">
-					<input   type="hidden" value=<?PHP echo $Reclamation['Type']; ?> name="Type" id="Type">
-			
-                 
-                    </form>
+     
+          <td>
+					<form method="POST" action="ModifierReclAdmin.php" >
+            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
+            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
+            </form>
 					</td>
 
 				</tr>
@@ -289,7 +287,6 @@
 
                     <tbody>              
                   </table>
-
                 </div>
               </div>
             </div>
