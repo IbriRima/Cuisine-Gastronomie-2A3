@@ -172,7 +172,7 @@ $id="123";
 							<option>Choisissez un type de réclamation</option>
 						<?php
 
-                             $array = [];
+                           
 							  foreach($listeType  as $TypeReclamation)
 							  {
 							
