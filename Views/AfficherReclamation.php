@@ -18,6 +18,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 
   <meta charset="utf-8" />
   <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
+  <script type = "text/javascript"  src="../assets/js/test.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
  
@@ -190,10 +191,10 @@ $listeReclamation =$ReclamationC->afficherReclamation();
                     <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" >Identifiant</a>
-                  <a class="dropdown-item">Type</a>
-                  <a class="dropdown-item" >Etat de traitement</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
+                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
+                  <a class="dropdown-item"  name="TypeRech">Type</a>
+                  <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
                 </div>
               </li>
               <li class="nav-item">

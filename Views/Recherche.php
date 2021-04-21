@@ -197,7 +197,10 @@
                   <a class="dropdown-item" >Identifiant</a>
                   <a class="dropdown-item">Type</a>
                   <a class="dropdown-item" >Etat de traitement</a>
+                  <select  name="Type" id="Type"  class="form-control" >
+							<option>Choisissez un type de réclamation</option>
                 </div>
+       
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
