@@ -1,29 +1,34 @@
+
+
 function AjoutType()
 {    
+  
 var div_Libelle = document.getElementById('verifLibelle');
 var div_Duree = document.getElementById('verifDuree');
+
 
 const form=document.getElementById("form");
 form.addEventListener("submit", function(evenement) { 
     if (document.getElementById('libelle').value == "") {
         evenement.preventDefault();
-        div_Libelle.innerHTML ="- Vous devez entrer un libellé!";
+        div_Libelle.innerHTML="- Vous devez entrer un libellé";
         document.getElementById("libelle").focus();
     }
     else  div_Libelle.innerHTML ="";
-   if (document.getElementById('duree').value== '') {
+
+    if (document.getElementById('duree').value == "0") {
         evenement.preventDefault();
-        div_Duree.innerHTML = "- Vous devez entrer la duree maximale de traitement!";
+        div_Duree.innerHTML="- Vous devez entrer une duree!";
         document.getElementById("duree").focus();
     }
-    else div_Duree.innerHTML="";
+    else  div_Duree.innerHTML ="";
 });
 
 }
 
-
 function AjoutReclamation()
-{    
+{   
+   
 var div_Desc = document.getElementById('verifDesc');
 var div_Propo = document.getElementById('verifPropo');
 var div_Type=document.getElementById('verifType');
@@ -145,7 +150,7 @@ form.addEventListener("submit", function(evenement) {
    
    if (document.getElementById('duree').value== '') {
         evenement.preventDefault();
-        div_Duree.innerHTML = "- Vous devez entrer la duree maximale de traitement!";
+        div_Duree.innerHTML = "- Vous devez entrer la duree maximale de traitement !";
         document.getElementById("duree").focus();
     }
     else div_Duree.innerHTML="";
