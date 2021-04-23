@@ -1,6 +1,6 @@
 <?PHP
-	include "../controller/TypeReclamationC.php";
-	include "../controller/ReclamationC.php";
+	include "../Controller/TypeReclamationC.php";
+	include "../Controller/ReclamationC.php";
 
 
 $ReclamationC=new ReclamationC();
@@ -160,7 +160,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           
             <form action="Recherche.php" method="POST">
               <div class="input-group no-border">
-                <input type="search" size="45" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher réclamations par identifiant du client">
+                <input type="search" size="45" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher les réclamations par identifiant du client ...">
 
 
                 <div class="input-group-append">
@@ -279,6 +279,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
+            <input type="hidden" value=<?PHP echo $Reclamation['Id_client']; ?> name="Id_client" id="Id_client">
             </form>
 					</td>
 

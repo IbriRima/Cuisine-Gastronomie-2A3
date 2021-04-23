@@ -205,19 +205,7 @@
 
 
 
-        public function getEmailClient($id) 
-        {
-            try {
-                $pdo = getConnexion();
-                $query = $pdo->prepare(
-                    'SELECT email FROM usre WHERE numero= :id'
-                );
-                $query->execute([
-                    'id' => $id
-                ]);
-                return $query->fetchAll();
-            } catch (PDOException $e) {
-                $e->getMessage();
-            }
-    }
+   
+
+
     }

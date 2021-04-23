@@ -1,6 +1,6 @@
 <?php
     require_once '../config.php';
-    require_once '../Model/TypeReclamation.php';
+
     class TypeReclamationC {
         public function afficherTypeReclamation() {
             try {

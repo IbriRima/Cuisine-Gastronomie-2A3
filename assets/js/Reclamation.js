@@ -5,7 +5,7 @@ function AjoutType()
   
 var div_Libelle = document.getElementById('verifLibelle');
 var div_Duree = document.getElementById('verifDuree');
-
+var numbers = /^[0-9]+$/;
 
 const form=document.getElementById("form");
 form.addEventListener("submit", function(evenement) { 
@@ -27,6 +27,12 @@ form.addEventListener("submit", function(evenement) {
     {
         evenement.preventDefault();
         div_Duree.innerHTML="- Vous devez entrer une duree!";
+        document.getElementById("duree").focus();
+    }
+    else   if (document.getElementById('duree').value < "0") 
+    {
+        evenement.preventDefault();
+        div_Duree.innerHTML="- La duree ne peut pas etre une valeur négative!";
         document.getElementById("duree").focus();
     }
     else  div_Duree.innerHTML ="";
@@ -159,6 +165,11 @@ form.addEventListener("submit", function(evenement) {
    if (document.getElementById('duree').value== '') {
         evenement.preventDefault();
         div_Duree.innerHTML = "- Vous devez entrer la duree maximale de traitement !";
+        document.getElementById("duree").focus();
+    }    else   if (document.getElementById('duree').value < "0") 
+    {
+        evenement.preventDefault();
+        div_Duree.innerHTML="- La duree ne peut pas etre une valeur négative!";
         document.getElementById("duree").focus();
     }
     else div_Duree.innerHTML="";
