@@ -7,7 +7,7 @@
 	
      const notification= new Notification("Alert de PointBIO!",
 	  {
-		  body: "Votre réclamation a été traitée",
+		  body: "Raapel: si votre réclamation a été traitée vous aurez une notification dans votre boite mail. Merci de la vérifier! Bonne journée!",
 		  icon:"../assets/img/favicon.png"
 		 
 	 
@@ -19,24 +19,26 @@
 		  }
 	 
 
-	}
 
+
+	}
 
 	console.log(Notification.permission);
-	if (Notification.permission==="granted")
-	{ 
-		showNotification();
-	}
-	else if (Notification.permission !== "denied")
-
-	{
-		Notification.requestPermission().then(permission=> {
-			
-			
-			if (permission==="granted")
-	{
-		showNotification();
-	}
-
-		});
-	}
+		if (Notification.permission==="granted")
+		{ 
+			showNotification();
+		}
+		else if (Notification.permission !== "denied")
+	
+		{
+			Notification.requestPermission().then(permission=> {
+				
+				
+				if (permission==="granted")
+		{
+			showNotification();
+		}
+	
+			});
+		}
+	

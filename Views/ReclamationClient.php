@@ -5,7 +5,7 @@
 	include "../Controller/ReclamationC.php";
 
 	include "../Controller/TypeReclamationC.php";
-$id="123";
+$id="1";
 
 	$ReclamationC=new ReclamationC();
 	$listeReclamationClient =$ReclamationC->getReclamationById_Client($id) ;
@@ -77,7 +77,9 @@ $id="123";
 	
 
 	<div id="fh5co-container">
-		
+	<div >
+			<a  href="Main.php" >Page d'acceuil</a>
+	</div >
 		
 		<div class="js-sticky">
 			<div class="fh5co-main-nav">

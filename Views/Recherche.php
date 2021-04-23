@@ -238,7 +238,7 @@
 				<th class="text-center">Proposition</th>
 				<th class="text-center">Note</th>
 				<th class="text-center">Type</th>
-				<th class="text-center">Identifiant du client</th>
+		
         <th class="text-center">Etat de traitement</th>
 
 				<th class="text-center">Supprimer
