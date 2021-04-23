@@ -160,7 +160,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           
             <form action="Recherche.php" method="POST">
               <div class="input-group no-border">
-                <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
+                <input type="search" size="45" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher réclamations par identifiant du client">
 
 
                 <div class="input-group-append">
@@ -193,6 +193,8 @@ $listeReclamation =$ReclamationC->afficherReclamation();
                     <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
+
+          
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
                   <a class="dropdown-item" name="TypeRech">Identifiant</a>
                   <a class="dropdown-item"  name="TypeRech">Type</a>

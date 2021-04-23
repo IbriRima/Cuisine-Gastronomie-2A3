@@ -14,9 +14,17 @@ form.addEventListener("submit", function(evenement) {
         div_Libelle.innerHTML="- Vous devez entrer un libellé";
         document.getElementById("libelle").focus();
     }
+    else if (document.getElementById('libelle').value.charAt(0) < 'A' ||document.getElementById('libelle').value.charAt(0) > 'Z')
+    {
+
+        evenement.preventDefault();
+        div_Libelle.innerHTML="- Le libellé doit commencer par une lettre Majuscule !";
+        document.getElementById("libelle").focus();
+    }
     else  div_Libelle.innerHTML ="";
 
-    if (document.getElementById('duree').value == "0") {
+    if (document.getElementById('duree').value == "0") 
+    {
         evenement.preventDefault();
         div_Duree.innerHTML="- Vous devez entrer une duree!";
         document.getElementById("duree").focus();
