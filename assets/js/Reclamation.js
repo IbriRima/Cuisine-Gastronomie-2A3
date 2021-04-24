@@ -184,6 +184,7 @@ form.addEventListener("submit", function(evenement) {
 
 function DeleteAdmin()
 {    
+
 test=document.getElementById('Etat_traitement').value; 
 console.log(test); 
 const form=document.getElementById("formDAdmin");
@@ -196,6 +197,16 @@ form.addEventListener("submit", function(evenement) {
     }
   
 });
+
+
+$.ajax({
+    method: "POST",
+    url: "SupprimerReclamation.php",
+    data: { text: $("p.unbroken").text() }
+  })
+    .done(function( response ) {
+      $("p.broken").html(response);
+    });
 }
 
 

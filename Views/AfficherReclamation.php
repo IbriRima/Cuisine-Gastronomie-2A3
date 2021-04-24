@@ -266,7 +266,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
               <td>
 					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin">
-            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" onclick="DeleteAdmin();"/>
+            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
             </form>
@@ -274,7 +274,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
      
           <td>
 					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin">
-            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" onclick="Mail();" />
+            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10"  />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
             <input type="hidden" value=<?PHP echo $Reclamation['Id_client']; ?> name="Id_client" id="Id_client">

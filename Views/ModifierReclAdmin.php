@@ -51,14 +51,14 @@ else if ($_POST['Etat_traitement']=="Non")
     }
 
 }
-    echo("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm: $Etat");              
+         
 $ReclamationC->updateEtatReclamation($Etat,(int)$_POST["Id_Recl"]);     
            
               }
               else
               $error = "Missing information";
 
-              
+              header('Location:AfficherReclamation.php'); 
 		
         }
       

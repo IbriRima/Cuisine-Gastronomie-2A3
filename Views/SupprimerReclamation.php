@@ -1,4 +1,5 @@
 <?PHP
+
 	include "../Controller/ReclamationC.php";
 
 	$ReclamationC=new ReclamationC();
@@ -9,12 +10,22 @@
 			$ReclamationC->deleteReclamation($_POST["Id_Recl"]);
 			header('Location:AfficherReclamation.php');
 		}
+
 		else 
 		{
-			header('Location:AfficherReclamation.php');
+			?>
+			<script language="Javascript">
+	
+	alert("test");
+	
+	</script>
+	<?PHP
+				header('Location:AfficherReclamation.php');
+		
 		}
 	
 	}
+
 
 
 ?>
