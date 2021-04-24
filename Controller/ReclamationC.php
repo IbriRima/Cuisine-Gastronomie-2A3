@@ -157,8 +157,41 @@
             }
     }
 
+    public function NonTraitee()
+    {
+        try {
+            $pdo = getConnexion();
+            $query = $pdo->prepare(
+                '  SELECT Etat_traitement
+                FROM reclamation
+                WHERE Etat_traitement="Non traitee"
+            '
+            );
+            $query->execute();
+           return $query->rowCount();
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
 
+    }
 
+    public function Traitee()
+    {
+        try {
+            $pdo = getConnexion();
+            $query = $pdo->prepare(
+                '  SELECT Etat_traitement
+                FROM reclamation
+                WHERE Etat_traitement="Traitee"
+            '
+            );
+            $query->execute();
+           return $query->rowCount();
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
 
+    }
+  
     
     }

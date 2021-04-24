@@ -6,7 +6,17 @@
 $ReclamationC=new ReclamationC();
 $listeReclamation =$ReclamationC->afficherReclamation();
 
+$nb_NonTraitee=$ReclamationC->NonTraitee();
 
+
+$nb_Traitee=$ReclamationC->Traitee();
+
+$array=array("Non Traitée"=>$nb_NonTraitee,"Traitée"=>$nb_Traitee);
+
+$N=$array["Non Traitée"];
+$T=$array["Traitée"];
+$datay=array($N,$T,"0");
+$datax= array_keys($array);
 
 
 
@@ -160,7 +170,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           
             <form action="Recherche.php" method="POST">
               <div class="input-group no-border">
-                <input type="search" size="45" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher les réclamations par identifiant du client ...">
+                <input type="search" size="50" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher les réclamations par identifiant du client ...">
 
 
                 <div class="input-group-append">
@@ -179,36 +189,15 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
+                <a class="nav-link" href="#stat">
                   <i class="now-ui-icons media-2_sound-wave"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Stats</span>
                   </p>
                 </a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-
+            
           
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
-                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
-                  <a class="dropdown-item"  name="TypeRech">Type</a>
-                  <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -264,13 +253,16 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           <td class="text-center"><?PHP echo $Reclamation['Id_client']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
               <td>
-					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin" onsubmit="DeleteAdmin();">
+					<form method="POST" action="SupprimerReclamation.php" id="Admin"  onsubmit="DeleteAdmin();" >
           <div class="controle" id="verifDelete"> </div>
               </div>
-            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10"  />
+              <!--   -->
+            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement" class="Etat">
-          
+     
+   
+     
             </form>
 					</td>
      
@@ -295,12 +287,72 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             </div>
           </div>
 
+          <div class="row" id="stat" >
+          <h4> Statistiques des réclamations selon l'état de traitement  </h4>
+          </div>
+          <div class="row">
+          <h4> </h4>
+          </div>
+        <div style="width:60%;hieght:20%;text-align:center">
+         
+            <canvas  id="chartjs_bar"></canvas> 
+        </div>    
+
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script type="text/javascript">
+
+      var ctx = document.getElementById("chartjs_bar").getContext('2d');
+      gradientFill = ctx.createLinearGradient(0, 170, 20, 50);
+    gradientFill.addColorStop(0, "rgba(127, 182, 245, 0)");
+    gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
+
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:<?php echo json_encode($datax); ?>,
+                        datasets: [{
+          
+         backgroundColor: gradientFill,
+          borderColor: "rgba(255, 128,68, 0.9)",
+     
+     
+          pointBorderWidth: 2,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 1,
+          pointRadius: 4,
+          fill: true,
+          borderWidth: 1,
+          label: "Etat de traitement",
+          data: <?php echo json_encode($datay); ?>
+        }]
+                       
+                    
+                    },
+                    options: {
+                           legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: '#71748d',
+                            fontFamily: 'Circular Std Book',
+                            fontSize: 16,
+                        }
+                    },
+ 
+ 
+                }
+                });
+
+                
+    </script>
 
 
 
 
 
-    
+     
+        </div>
 
 
     </div>
