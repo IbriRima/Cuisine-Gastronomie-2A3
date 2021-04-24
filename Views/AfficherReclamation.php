@@ -243,9 +243,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 				<th class="text-center">Identifiant du client</th>
         <th class="text-center">Etat de traitement</th>
 
-				<th class="text-center">Supprimer
-       
-       </th>
+				<th class="text-center">Supprimer</th>
 				<th class="text-center">Modifier</th>
 			
 	
@@ -275,8 +273,8 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 					</td>
      
           <td>
-					<form method="POST" action="ModifierReclAdmin.php" >
-            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
+					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin">
+            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" onclick="Mail();" />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
             <input type="hidden" value=<?PHP echo $Reclamation['Id_client']; ?> name="Id_client" id="Id_client">
@@ -288,7 +286,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 				}
 			?>
 
-                    <tbody>              
+      </tbody>              
                   </table>
                 </div>
               </div>

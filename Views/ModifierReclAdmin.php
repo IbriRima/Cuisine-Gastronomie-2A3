@@ -1,20 +1,17 @@
 
-
-
 <?php
 	include "../Controller/ReclamationC.php";
 	include "../Model/Reclamation.php";
 	include "../Controller/ClientC.php";
 	$ReclamationC = new ReclamationC();
    
-
             if (
               isset($_POST['Id_Recl']) && 
               isset($_POST['Etat_traitement']) &&
               isset($_POST['Id_client'])
           ){
           if (
-                  
+           
                   !empty($_POST['Id_Recl']) && 
                   !empty($_POST['Etat_traitement']) &&
                   !empty($_POST['Id_client'])
@@ -25,7 +22,7 @@ if ($_POST['Etat_traitement']=="Traitee")
 {
 	$Etat="Non traitee";
 }
-else
+else if ($_POST['Etat_traitement']=="Non")
 {
 	$Etat="Traitee";
     $id=$_POST['Id_client'];
@@ -54,16 +51,18 @@ else
     }
 
 }
-                  
-          $ReclamationC->updateEtatReclamation($Etat,(int)$_POST["Id_Recl"]);
+    echo("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm: $Etat");              
+$ReclamationC->updateEtatReclamation($Etat,(int)$_POST["Id_Recl"]);     
            
               }
               else
               $error = "Missing information";
-              header('Location:AfficherReclamation.php');		
+
+              
 		
         }
       
 ?>
+
 
 

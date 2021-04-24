@@ -51,6 +51,8 @@
             }
         }
 
+        
+
         public function updateReclamation($Reclamation, $id) {
             try {
                 $pdo = getConnexion();
@@ -76,11 +78,11 @@
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'UPDATE Reclamation SET  Etat_traitement=:Etat_traitement WHERE id_Recl = :id'
+                    'UPDATE Reclamation SET  Etat_traitement=:Etat WHERE id_Recl = :id'
                 );
                 $query->execute([
              
-                    'Etat_traitement' => $Etat_traitement,
+                    'Etat' => $Etat_traitement,
                     'id' => $id
                 ]);
              
@@ -155,4 +157,8 @@
             }
     }
 
+
+
+
+    
     }

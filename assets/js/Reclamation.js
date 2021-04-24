@@ -5,7 +5,6 @@ function AjoutType()
   
 var div_Libelle = document.getElementById('verifLibelle');
 var div_Duree = document.getElementById('verifDuree');
-var numbers = /^[0-9]+$/;
 
 const form=document.getElementById("form");
 form.addEventListener("submit", function(evenement) { 
@@ -147,6 +146,12 @@ form.addEventListener("submit", function(evenement) {
         div_Note.innerHTML = "Vous devez nous attribuer une note!";
         document.getElementById("Note").focus();
     }
+    else   if (document.getElementById('duree').value < "0") 
+    {
+        evenement.preventDefault();
+        div_Duree.innerHTML="- La duree ne peut pas etre une valeur négative!";
+        document.getElementById("duree").focus();
+    }
     else div_Note.innerHTML="";
 
  
@@ -179,18 +184,42 @@ form.addEventListener("submit", function(evenement) {
 
 function DeleteAdmin()
 {    
-var div_Etat = document.getElementById('verifEtat');
-etat=document.getElementById('Etat_traitement').value;
-
+test=document.getElementById('Etat_traitement').value; 
+console.log(test); 
 const form=document.getElementById("formDAdmin");
 form.addEventListener("submit", function(evenement) { 
-   
+    evenement.preventDefault();
    if (document.getElementById('Etat_traitement').value== 'Non') {
-        evenement.preventDefault();
+     
         alert("Vous pouvez supprimer Seulement les réclamations Traitées !");
-        document.getElementById("Etat_traitement").focus();
+       
     }
-    else div_Etat.innerHTML="";
+  
 });
+}
+
+
+function Mail()
+{  
+
+    test=document.getElementById('Etat_traitement').value;
+    console.log(test);
+  
+
+
+    const form=document.getElementById("formDAdmin");
+    form.addEventListener("submit", function(evenement) { 
+        evenement.preventDefault();
+
+       if (document.getElementById('Etat_traitement').value== 'Non') {
+         
+            alert("Vous pouvez supprimer Seulement les réclamations Traitées !");
+           
+        }
+      
+    });
+  
+  
+
 
 }

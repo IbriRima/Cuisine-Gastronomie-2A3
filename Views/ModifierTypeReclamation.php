@@ -235,6 +235,7 @@
                 
          
           <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
+  
           <input type="reset" value="Annuler" name = "annuler">
  
         </form> 
