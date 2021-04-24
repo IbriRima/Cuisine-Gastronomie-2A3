@@ -118,7 +118,7 @@
           </li>
 
           <li>
-            <a href="">
+            <a href="AjouterOffres">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
@@ -253,7 +253,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4> Liste des Produits</h4>
+      <h5> <p style="color:orange">liste des offres</p> </h5>
         <div class="controle" id="verifEtat"> </div>
       </div>
       <div class="card-body">

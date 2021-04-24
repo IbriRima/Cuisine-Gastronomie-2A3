@@ -108,7 +108,7 @@
           </li>
 
           <li>
-            <a href="">
+            <a href="AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>

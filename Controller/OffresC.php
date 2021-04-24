@@ -17,7 +17,7 @@
         }
 
 
-        public function addOffres($Offres) {
+        public function addOffres($offres) {
             try {
                
                 $pdo = getConnexion();
@@ -27,7 +27,7 @@
                 );
                 $query->execute([
 
-                    'Valeur' => $Offres->getValeur()
+                    'Valeur' => $offres->getValeur()
                     
                 ]);
             } catch (PDOException $e) {
@@ -38,7 +38,7 @@
         function updateOffres($Offres, $id){
 			try {
 				$pdo = getConnexion();
-				$sql="UPDATE Offres SET 
+				$sql="UPDATE offres SET 
 				Valeur= :Valeur,
 				
 			WHERE Id_offres = :id";
@@ -60,8 +60,8 @@
 	
 
 
-		function deleteOffres($id){
-			$sql="DELETE FROM Offres WHERE Id_offres= :id";
+		function deleteProduit($id){
+			$sql="DELETE FROM Produit WHERE Id_offres= :id";
 			$pdo = getConnexion();
 			$req=$pdo->prepare($sql);
 			$req->bindValue(':id',$id);

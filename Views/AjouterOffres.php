@@ -1,6 +1,6 @@
 <?php
      require_once '../Controller/OffresC.php';
-	 include_once '../Model/Offres.php';
+	 require_once '../Model/offres.php';
 
     $error = "";
 
@@ -14,9 +14,9 @@
     {
 
       $Valeur=(int)$_POST['Valeur'];
-      $Offres = new Offres($Valeur);
+      $offres = new offres($Valeur);
       $OffresC = new OffresC();
-      $OffresC->addOffres($Offres);
+      $OffresC->addOffres($offres);
     
    
     }
@@ -27,7 +27,7 @@
 
 
 
-        $OffresC = new OffresC();
+      $OffresC = new OffresC();
       $listeOffres =$OffresC->afficherOffres();
       
     
@@ -248,7 +248,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4> Liste des Offres</h4>
+      <h5> <p style="color:orange">liste des offres</p> </h5>
         <div class="controle" id="verifEtat"> </div>
       </div>
       <div class="card-body">
@@ -276,16 +276,20 @@
                 </div>
 
 
+
                 <div class="controle" id="verifValeur">
       </div>
    
 
-   
 
-   
-        
-            
-        
+
+
+
+
+
+
+
+
 
 
       <input type="submit" value="Ajouter" name = "submit">
@@ -316,7 +320,7 @@
                 <table class="table">
                     <thead class=" text-primary">
                     <tr>
-				<th class="text-center">Identifiant</th>
+				<th class="text-center">Identifiant offre</th>
 				<th class="text-center">Valeur</th>
 
 			
@@ -329,17 +333,17 @@
                   
                     <tbody>
                     <?PHP
-				foreach($listeOffres as $Offres)
+				foreach($listeOffres as $Offre)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $Offres["Id_offres "] ?></td>
-					<td class="text-center"><?PHP echo $Offres['Valeur']; ?></td>
+					<td class="text-center"><?PHP echo $Offre['Id_offres'] ?></td>
+					<td class="text-center"><?PHP echo $Offre['Valeur']; ?></td>
 
           <td>
 					<form method="POST" action="SupprimerOffres.php">
             <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $Offres['Id_offres']; ?> name="Id_offres" id="Id_offres">
+            <input type="hidden" value=<?PHP echo $Offre['Id_offres']; ?> name="Id_offres " id="Id_offres ">
             </form>
 					</td>
 
@@ -347,8 +351,8 @@
           <td>
           <form method="POST" action="ModifierOffres.php" >
           <input class="left" type="image" src="../assets/img/update1.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $Offres['Id_offres']; ?> name="Id_offres" id="Id_offres">
-            <input type="hidden" value=<?PHP echo $Offres['Valeur']; ?> name="Valeur" id="Valeur">
+            <input type="hidden" value=<?PHP echo $Offre['Id_offres']; ?> name="Id_offres" id="Id_offres">
+            <input type="hidden" value=<?PHP echo $Offre['Valeur']; ?> name="Valeur" id="Valeur">
 
             </form>
 					</td>
