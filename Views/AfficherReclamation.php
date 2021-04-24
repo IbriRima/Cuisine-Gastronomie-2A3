@@ -23,7 +23,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
   <script type = "text/javascript"  src="../assets/js/test.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
- 
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     PointBIO
@@ -225,8 +225,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"> Liste des réclamations</h4>
-                <div class="controle" id="verifEtat"> </div>
-              </div>
+          
               <div class="card-body">
                 <div class="table-responsive">
 
@@ -265,15 +264,18 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           <td class="text-center"><?PHP echo $Reclamation['Id_client']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
               <td>
-					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin">
-            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
+					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin" onsubmit="DeleteAdmin();">
+          <div class="controle" id="verifDelete"> </div>
+              </div>
+            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10"  />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
-            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
+            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement" class="Etat">
+          
             </form>
 					</td>
      
           <td>
-					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin">
+					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin" onsubmit="Mail();" >
             <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10"  />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">

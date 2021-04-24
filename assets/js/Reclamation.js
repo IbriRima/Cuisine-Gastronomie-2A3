@@ -171,7 +171,8 @@ form.addEventListener("submit", function(evenement) {
         evenement.preventDefault();
         div_Duree.innerHTML = "- Vous devez entrer la duree maximale de traitement !";
         document.getElementById("duree").focus();
-    }    else   if (document.getElementById('duree').value < "0") 
+    }   
+     else   if (document.getElementById('duree').value < "0") 
     {
         evenement.preventDefault();
         div_Duree.innerHTML="- La duree ne peut pas etre une valeur négative!";
@@ -183,54 +184,37 @@ form.addEventListener("submit", function(evenement) {
 }
 
 function DeleteAdmin()
-{    
+{   
 
-test=document.getElementById('Etat_traitement').value; 
-console.log(test); 
-const form=document.getElementById("formDAdmin");
-form.addEventListener("submit", function(evenement) { 
-    evenement.preventDefault();
-   if (document.getElementById('Etat_traitement').value== 'Non') {
-     
-        alert("Vous pouvez supprimer Seulement les réclamations Traitées !");
+
+      
+test=document.querySelector(".Etat");
+
+
+    if (test.value== 'Non')
+    {
+     console.log(test.value);
+     alert("Vous pouvez supprimer Seulement les réclamations Traitées !");
        
     }
-  
-});
 
-
-$.ajax({
-    method: "POST",
-    url: "SupprimerReclamation.php",
-    data: { text: $("p.unbroken").text() }
-  })
-    .done(function( response ) {
-      $("p.broken").html(response);
-    });
 }
 
 
 function Mail()
 {  
 
-    test=document.getElementById('Etat_traitement').value;
-    console.log(test);
-  
+    test=document.querySelector(".Etat");
 
 
-    const form=document.getElementById("formDAdmin");
-    form.addEventListener("submit", function(evenement) { 
-        evenement.preventDefault();
+    if (test.value== 'Non')
+    {
+     console.log(test.value);
+     alert("L'email d'alerte a bien été envoyé au client");
+       
+    }
 
-       if (document.getElementById('Etat_traitement').value== 'Non') {
-         
-            alert("Vous pouvez supprimer Seulement les réclamations Traitées !");
-           
-        }
-      
-    });
-  
-  
+
 
 
 }

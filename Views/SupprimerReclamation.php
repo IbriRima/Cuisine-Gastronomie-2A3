@@ -13,18 +13,14 @@
 
 		else 
 		{
-			?>
-			<script language="Javascript">
 	
-	alert("test");
-	
-	</script>
-	<?PHP
-				header('Location:AfficherReclamation.php');
+			header('Location:AfficherReclamation.php');
+          
 		
 		}
 	
 	}
+
 
 
 
