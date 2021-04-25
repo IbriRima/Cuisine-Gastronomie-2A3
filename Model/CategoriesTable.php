@@ -1,74 +1,54 @@
 <?php
     class Reclamation {
-        private ?int $IdRecl = null;
-        private string $Proposition;
-        private string $Description;
-        private string $Type;
-        private string $Etat_traitement;
-        private float $Note;
-        private int $Id_client;
+        private ?int $ID = null;
+        private int $NB_places;
+        private string $Forme;
+        private string $Espace;
+       
 
-        public function __construct($Proposition, $Description, $Type,$Etat_traitement,$Note,$Id_client)
+        public function __construct($ID, $NB_places, $Forme,$Espace)
         
         { 
-            $this->Proposition = $Proposition;
-            $this->Description= $Description;
-            $this->Type = $Type;
-            $this->Etat_traitement = $Etat_traitement;
-            $this->Note = $Note;
-            $this->Id_client = $Id_client;
+            $this->ID = $ID;
+            $this->NB_places= $NB_places;
+            $this->Forme = $Forme;
+            $this->Espace = $Espace;
+           
         }
 
-        public function getIdRecl () {
-            return $this->IdRecl;
+        public function getID () {
+            return $this->ID;
         }
 
-        public function getProposition(){
-            return $this->Proposition ;
+        public function getNB_places(){
+            return $this->NB_places ;
         }
 
-        public function getDescription(){
-            return $this->Description;
+        public function getForme(){
+            return $this->Forme;
         }
  
-        public function getType (){
-            return $this->Type ;
+        public function getEspace (){
+            return $this->Espace ;
         }
-        public function getEtat_traitement (){
-            return $this->Etat_traitement ;
-        }
-      
-        public function getNote(){
-            return $this->Note ;
-        }
-
-        public function getId_client(){
-            return $this->Id_client ;
-        }
+        
 
 
 
-
-        public function setProposition($Proposition){
-            $this->Proposition= $Proposition;
+        public function setID($ID){
+            $this->ID= $ID;
         }
 
-        public function setDescription($Description){
-            $this->Description = $Description;
+        public function setNB_places($NB_places){
+            $this->NB_places = $NB_places;
         }
 
-        public function setType ($Type){
-            $this->Type = $Type;
+        public function setForme ($Forme){
+            $this->Forme = $Forme;
         }
 
-        public function setEtat_traitement ($Etat_traitement){
-            $this->Etat_traitement= $Etat_traitement;
+        public function setEspace ($Espace){
+            $this->Espace= $Espace;
         }
 
-        public function setNote ($Note){
-            $this->Note = $Note;
-        }
-        public function setId_client ($Id_client){
-            $this->Id_client= $Id_client;
-        }
     }
