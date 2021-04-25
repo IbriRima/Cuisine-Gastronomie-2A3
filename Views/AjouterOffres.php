@@ -292,8 +292,8 @@
                 </div>
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
-                    <label for="Valeur">  Valeur de l'offre</label>
-                    <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="Valeur de l'offre" value='0'>
+                    <label for="Valeur">  Nouveau prix</label>
+                    <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="nouveau prix" value='0'>
  
                   </div>
                 </div>

@@ -23,14 +23,14 @@
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
                     'INSERT INTO Offres (Valeur,id_produit) 
-                VALUES (:Valeur,:id_produit)'
+                VALUES (:val,:idproduit)'
                 
                 );
               //  echo $offres->getIdproduit();
                 $query->execute([
 
-                    'Valeur' => $offres->getValeur(),
-                    'id_produit' => $offres->getIdproduit()
+                    'val' => $offres->getValeur(),
+                    'idproduit' => $offres->getIdproduit()
 
 
                     
@@ -44,15 +44,15 @@
 			try {
 				$pdo = getConnexion();
 				$sql="UPDATE offres SET 
-				Valeur= :Valeur,
-                id_produit= :id_produit,
+				Valeur= :val,
+                id_produit= :idproduit
 
 			WHERE Id_offres = :id";
 				$query = $pdo->prepare($sql);
 
 				$query->bindValue(':id',$id);
-				$query->bindValue(':Valeur',$Offres->getValeur());
-                $query->bindValue(':id_produit',$Offres->getIdproduit());
+				$query->bindValue(':val',$Offres->getValeur());
+                $query->bindValue(':idproduit',$Offres->getIdproduit());
 
 				$query->execute();
 	
@@ -69,7 +69,7 @@
 
 
 		function deleteProduit($id){
-			$sql="DELETE FROM Produit WHERE Id_offres= :id";
+			$sql="DELETE FROM offres WHERE id_offres= :id";
 			$pdo = getConnexion();
 			$req=$pdo->prepare($sql);
 			$req->bindValue(':id',$id);

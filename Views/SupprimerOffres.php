@@ -5,8 +5,8 @@
 
 
 	
-if (isset($_POST["Id_offres"])){
-	$OffresC->deleteOffres($_POST["Id_offres"]);
+if (isset($_POST["id_offres"])){
+	$OffresC->deleteOffres($_POST["id_offres"]);
 	header('Location:AjouterOffres.php');
 }
 
