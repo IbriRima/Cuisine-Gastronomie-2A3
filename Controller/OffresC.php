@@ -26,7 +26,7 @@
                 VALUES (:val,:idproduit)'
                 
                 );
-              //  echo $offres->getIdproduit();
+               echo $offres->getIdproduit();
                 $query->execute([
 
                     'val' => $offres->getValeur(),
@@ -40,19 +40,21 @@
             }
         }
 
-        function updateOffres($Offres, $id){
+        
+
+        function updateOffres($offres, $id){
 			try {
 				$pdo = getConnexion();
 				$sql="UPDATE offres SET 
-				Valeur= :val,
-                id_produit= :idproduit
-
+				Valeur= :Valeur,
+                id_produit= :id_produit
+				
 			WHERE Id_offres = :id";
 				$query = $pdo->prepare($sql);
 
 				$query->bindValue(':id',$id);
-				$query->bindValue(':val',$Offres->getValeur());
-                $query->bindValue(':idproduit',$Offres->getIdproduit());
+				$query->bindValue(':Valeur',$offres->getValeur());
+				$query->bindValue(':id_produit',$offres->getIdproduit());
 
 				$query->execute();
 	
@@ -64,6 +66,7 @@
 			}
 			
 		}
+
 
 	
 

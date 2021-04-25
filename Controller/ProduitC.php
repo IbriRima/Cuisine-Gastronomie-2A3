@@ -92,17 +92,15 @@
 
 
 
-
-
-     /*   function recupererTypeReclamation($id){
-			$sql="SELECT * from TypeReclamation where id_type= $id";
+      function recupererProduit($id){
+			$sql="SELECT * from Produit where Id_produit= $id";
 			$pdo = getConnexion();
 			try{
 				$query=$pdo->prepare($sql);
 				$query->execute();
 				
-				$TypeReclamation = $query->fetch(PDO::FETCH_OBJ);
-				return $TypeReclamation;
+				$Produit = $query->fetch(PDO::FETCH_OBJ);
+				return $Produit;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
@@ -110,7 +108,7 @@
 		}
 		
 
-
+/*
 
         public function TypeReclamation() 
         {

@@ -1,6 +1,6 @@
 <?php
-     require_once '../Controller/ProduitC.php';
-	 require_once '../Model/Produit.php';
+     include '../Controller/ProduitC.php';
+	   include '../Model/Produit.php';
 
     $error = "";
 
@@ -185,9 +185,11 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
 
+
+
           <!-- RECHERCHE  -->
           
-           <!--  <form action="Recherche.php" method="POST">
+             <form action="recherche.php" method="POST">
               <div class="input-group no-border">
                 <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
 
@@ -223,7 +225,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
-                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
+                  <a class="dropdown-item" name="TypeRech">Identifiant produit</a>
                   <a class="dropdown-item"  name="TypeRech">Type</a>
                   <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
                 </div>
@@ -239,23 +241,38 @@
             </ul>
           </div>
         </div>
-      </nav>   -->
+      </nav>   
       
       <!-- End Navbar -->
-
+      <script type="text/javascript">
+    function controleSaisie() {
+       if (document.formulaire.Nom_produit.value == "") {
+        alert("Veuillez saisir votre nom de produit !");
+      }
+      if (document.formulaire.Quantité_dans_le_stock.value == "") {
+        alert("Veuillez saisir la quantité dans le stock !");
+      }
+      if (document.formulaire.Prix_de_vente.value == "") {
+        alert("Veuillez saisir prix de vente !");
+      }
+      if (document.formulaire.nom_image.value == "") {
+        alert("Veuillez saisir le nom de l'image !");
+      }
+    } 
+  </script> 
 
       <div class="panel-header panel-header-sm">
       </div>
  
       <div class="content">
 
-      <form action="AjouterIngredient.php" method="POST" id="form"> 
+      <form name="formulaire" action="AjouterIngredient.php" method="POST" id="form"  OnSubmit="return controleSaisie()"> 
 
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-      <h5> <p style="color:orange">liste des Produits</p> </h5>
+      <h5> <p style="color:orange">Ajouter un produit</p> </h5>
         <div class="controle" id="verifEtat"> </div>
       </div>
       <div class="card-body">
@@ -294,7 +311,7 @@
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
                     <label for="Quantité_dans_le_stock">  Quantité dans le stock</label>
-                    <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="Quantité dans le stock" value='0'>
+                    <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="Quantité dans le stock" >
  
                   </div>
                 </div>
@@ -312,7 +329,7 @@
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
                     <label for="Prix_de_vente">  Prix_de_vente</label>
-                    <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="Prix de vente" value='0'>
+                    <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="Prix de vente" >
  
                   </div>
                 </div>
@@ -430,6 +447,55 @@
 				}
 			?>
 
+
+										<!-- 
+	content of this area will be the content of your PDF file 
+	-->
+	<div id="HTMLtoPDF">
+
+	
+
+	</div>
+
+	<!-- here we call the function that makes PDF -->
+	<!--	<a href="#" onclick="HTMLtoPDF()">Download PDF</a> -->
+
+	<!-- these js files are used for making PDF -->
+	<script src="js/jspdf.js"></script>
+	<script src="js/jquery-2.1.3.js"></script>
+	<script src="js/pdfFromHTML.js"></script>
+	
+	<div class="imprimer">
+        <input id="impression" name="impression" class="btn btn-primary" type="submit" onclick="imprimer_page()" value="Imprimer la Page" />
+      </div>
+ 
+       <script type="text/javascript">
+            function imprimer_page(){
+            window.print();
+             }
+        </script>
+
+<br><br><br>
+									
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+
+
                     <tbody>              
                   </table>
                 </div>
@@ -460,6 +526,13 @@
   
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+  <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+    </script>
+
 
 </body>
 

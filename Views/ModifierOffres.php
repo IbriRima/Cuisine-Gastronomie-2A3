@@ -1,6 +1,6 @@
 <?php
   require_once '../Controller/OffresC.php';
-  require_once '../Model/Offres.php';
+  require_once '../Model/offres.php';
 
   $OffresC = new OffresC() ;
   $error = "";
@@ -195,7 +195,7 @@
                       
                       <label for="Id_offres"> Identifiant </label>
 
-<input  type="number" name="Id_offres" id="Id_offres" class="form-control" value = "<?php echo $id; ?>" >
+<input  type="number" name="Id_offres" id="Id_offres" class="form-control" placeholder="entrez l'id de l'offre" >
                   
                     </div>
                   </div>
@@ -210,7 +210,7 @@
                       <div class="form-group">
                   
                         <label for="Valeur"> changer le Valeur de l'offre</label>
-                        <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="changer le valeur de l'offre" value = "<?php echo $Valeur; ?>"  >
+                        <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="changer le valeur de l'offre"   >
                     
 
                     </div>
@@ -225,7 +225,7 @@
                   <div class="controle" id="verifValeur"> </div>
                 
          
-          <input type="submit" value="Enregistrer" name = "submit" >
+                  <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
           <input type="reset" value="Annuler" name = "annuler">
  
         </form> 

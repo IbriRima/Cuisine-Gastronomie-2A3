@@ -211,7 +211,7 @@
                       <div class="form-group">
                   
                         <label for="Nom_produit"> nom de produit</label>
-                        <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="changer le nom " value = "<?php echo $Nom_produit; ?>"  >
+                        <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="changer le nom "  >
                     
 
                     </div>
@@ -228,7 +228,7 @@
                       <div class="form-group">
                   
                         <label for="Quantité_dans_le_stock"> Quantité_dans_le_stock</label>
-                        <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="changer la quantité dans le stock" value = "<?php echo $Quantité_dans_le_stock; ?>"  >
+                        <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="changer la quantité dans le stock"   >
                     
 
                     </div>
@@ -247,7 +247,7 @@
                       <div class="form-group">
                   
                         <label for="Prix_de_vente"> Prix de vente</label>
-                        <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="changer le prix de vente" value = "<?php echo $Prix_de_vente; ?>"  >
+                        <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="changer le prix de vente"   > 
                     
 
                     </div>
@@ -263,7 +263,7 @@
                       <div class="form-group">
                   
                         <label for="nom_image"> nom de l'image</label>
-                        <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image " value = "<?php echo $nom_image; ?>"  >
+                        <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image "   >
                     
 
                     </div>
