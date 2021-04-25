@@ -202,5 +202,20 @@
     }
   
     
+
+    public function getNote() 
+    {
+        try {
+            $pdo = getConnexion();
+            $query = $pdo->prepare(
+                'SELECT Note, COUNT(*) as "Nombre" FROM reclamation GROUP BY Note'
+            );
+            $query->execute();
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+}
+
     }
     ?>

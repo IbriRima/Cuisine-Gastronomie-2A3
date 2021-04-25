@@ -19,7 +19,15 @@ $datay=array($N,$T,"0");
 $datax= array_keys($array);
 
 
+$arrayI=array("");
+$arrayV=array("");
+$listeNote =$ReclamationC->getNote();  
+foreach($listeNote as $Reclamation)
+{ 
+array_push($arrayI,$Reclamation['Note']);
+array_push($arrayV,$Reclamation['Nombre']);
 
+}
 ?>
 
 
@@ -349,6 +357,70 @@ $datax= array_keys($array);
 
 
 
+
+
+
+
+<div class="row" id="stat" >
+          <h4> Statistiques des Notations </h4>
+          </div>
+          <div class="row">
+          <h4> </h4>
+          </div>
+        <div style="width:60%;hieght:20%;text-align:center">
+         
+            <canvas  id="chartjs_bar2"></canvas> 
+        </div>    
+
+
+
+    <script type="text/javascript">
+
+var grp = document.getElementById("chartjs_bar2").getContext('2d');
+gradientFill = grp.createLinearGradient(0, 170, 50, 50);
+gradientFill.addColorStop(0, "rgba(127, 182, 245, 0)");
+gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
+
+          var myChart = new Chart(grp, {
+              type: 'bar',
+              data: {
+                  labels:<?php echo json_encode($arrayI); ?>,
+                  datasets: [{
+    
+   backgroundColor: gradientFill,
+    borderColor: "rgba(255, 128,68, 0.9)",
+
+
+    pointBorderWidth: 2,
+    pointHoverRadius: 4,
+    pointHoverBorderWidth: 1,
+    pointRadius: 4,
+    fill: true,
+    borderWidth: 1,
+    label: "Etat de traitement",
+   
+    data: <?php echo json_encode($arrayV); ?>
+  }]
+                 
+              
+              },
+              options: {
+                     legend: {
+                  display: true,
+                  position: 'bottom',
+                  labels: {
+                      fontColor: '#71748d',
+                      fontFamily: 'Circular Std Book',
+                      fontSize: 16,
+                  }
+              },
+
+
+          }
+          });
+
+          
+</script>
      
         </div>
 
