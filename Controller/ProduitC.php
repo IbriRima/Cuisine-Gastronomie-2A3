@@ -22,13 +22,15 @@
                
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO Produit (Nom_produit,Quantité_dans_le_stock,Prix_de_vente) 
-                VALUES (:Nom,:Quantite,:Prix)'
+                    'INSERT INTO Produit (Nom_produit,Quantité_dans_le_stock,Prix_de_vente,nom_image) 
+                VALUES (:Nom,:Quantite,:Prix,:nomImage)'
                 );
                 $query->execute([
                     'Nom' => $Produit->getNomproduit(),
                     'Quantite' => $Produit->getQuantitédanslestock(),
-                    'Prix' => $Produit->getPrixdevente()
+                    'Prix' => $Produit->getPrixdevente(),
+                    'nomImage' => $Produit->getnomImage()
+
 
                     
                 ]);
@@ -43,7 +45,8 @@
 				$sql="UPDATE Produit SET 
 				Nom_produit= :Nom,
                 Quantité_dans_le_stock= :Quantite,
-                Prix_de_vente= :Prix
+                Prix_de_vente= :Prix,
+                nom_image= :nomImage
 				
 			WHERE Id_produit = :id";
 				$query = $pdo->prepare($sql);
@@ -52,6 +55,8 @@
 				$query->bindValue(':Nom',$Produit->getNomproduit());
 				$query->bindValue(':Quantite',$Produit->getQuantitédanslestock());
                 $query->bindValue(':Prix',$Produit->getPrixdevente());
+                $query->bindValue(':nomImage',$Produit->getnomImage());
+
 				$query->execute();
 	
 				echo $query->rowCount() . " records UPDATED successfully <br>";

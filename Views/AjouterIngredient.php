@@ -6,22 +6,24 @@
 
 
      
-    if (isset($_POST["Nom_produit"])&& isset($_POST["Quantité_dans_le_stock"])&& isset($_POST["Prix_de_vente"]) )
+    if (isset($_POST["Nom_produit"])&& isset($_POST["Quantité_dans_le_stock"])&& isset($_POST["Prix_de_vente"]) && isset($_POST["nom_image"]) )
      {
       if (
         !empty($_POST["Nom_produit"]) && 
         !empty($_POST["Quantité_dans_le_stock"]) &&
-        !empty($_POST["Prix_de_vente"])
+        !empty($_POST["Prix_de_vente"]) &&
+        !empty($_POST["nom_image"]) 
+
     )
     {
 
       $Nom_produit=$_POST['Nom_produit'];
       $Quantité_dans_le_stock=(int)$_POST['Quantité_dans_le_stock'];
       $Prix_de_vente=(int)$_POST['Prix_de_vente'];
+      $nom_image=$_POST['nom_image'];
 
-     
-   
-  $Produit = new Produit($Nom_produit,$Quantité_dans_le_stock,$Prix_de_vente);
+
+  $Produit = new Produit($Nom_produit,$Quantité_dans_le_stock,$Prix_de_vente,$nom_image);
   $ProduitC = new ProduitC();
   $ProduitC->addProduit($Produit);
     }
@@ -156,7 +158,7 @@
         
       </div>
     </div>
-
+   
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -253,7 +255,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-      <h5> <p style="color:orange">liste des offres</p> </h5>
+      <h5> <p style="color:orange">liste des Produits</p> </h5>
         <div class="controle" id="verifEtat"> </div>
       </div>
       <div class="card-body">
@@ -319,6 +321,22 @@
 
                 <div class="controle" id="verifPrix_de_vente">
       </div>
+
+      <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="nom_image"> nom de l'image a saisir (.jpg) </label>
+                    <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="nom de l'image doit etre .jpg">
+
+                  </div>
+                </div>
+                </div>
+                <div class="controle" id="verifnom_image">
+      </div>
+
    
 
    
@@ -361,6 +379,8 @@
 				<th class="text-center">Nom produit</th>
 				<th class="text-center">quantite dans le stock</th>
         <th class="text-center">prix de vente</th>
+        <th class="text-center">nom de l'image</th>
+
 
 			
 				<th class="text-center">Supprimer</th>
@@ -380,6 +400,8 @@
 					<td class="text-center"><?PHP echo $Produit['Nom_produit']; ?></td>
 					<td class="text-center"><?PHP echo $Produit['Quantité_dans_le_stock']; ?></td>
           <td class="text-center"><?PHP echo $Produit['Prix_de_vente']; ?></td>
+          <td class="text-center"><?PHP echo $Produit['nom_image']; ?></td>
+
 
           <td>
 					<form method="POST" action="SupprimerIngredient.php">
@@ -396,6 +418,8 @@
             <input type="hidden" value=<?PHP echo $Produit['Nom_produit']; ?> name="Nom_produit" id="Nom_produit">
             <input type="hidden" value=<?PHP echo $Produit['Quantité_dans_le_stock']; ?> name="Quantité_dans_le_stock" id="Quantité_dans_le_stock">
             <input type="hidden" value=<?PHP echo $Produit['Prix_de_vente']; ?> name="Prix_de_vente" id="Prix_de_vente">
+            <input type="hidden" value=<?PHP echo $Produit['nom_image']; ?> name="nom_image" id="nom_image">
+
 
             </form>
 					</td>

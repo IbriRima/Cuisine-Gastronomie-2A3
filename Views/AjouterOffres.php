@@ -6,17 +6,23 @@
 
 
      
-    if (isset($_POST["Valeur"]))
+    if (isset($_POST["Valeur"])&& isset($_POST["id_produit"]))
      {
       if (
-        !empty($_POST["Valeur"]) 
+        !empty($_POST["Valeur"])&& 
+        !empty($_POST["id_produit"]) 
+
     )
     {
 
       $Valeur=(int)$_POST['Valeur'];
-      $offres = new offres($Valeur);
+      $id_produit=(int)$_POST['id_produit'];
+
+      $offres = new offres($Valeur,$id_produit);
       $OffresC = new OffresC();
       $OffresC->addOffres($offres);
+     // echo "hh $id_produit";
+
     
    
     }
@@ -258,7 +264,25 @@
         
   
               <div class="form-group"></div>
-          
+
+              <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="id_produit">  identifiant produit</label>
+                    <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="identifiant produit" >
+ 
+                  </div>
+                </div>
+                </div>
+
+
+
+                <div class="controle" id="verifValeur">
+      </div>
+    
             
         
             
@@ -324,8 +348,10 @@
 				<th class="text-center">Valeur</th>
 
 			
+				<th class="text-center">id produit</th>
 				<th class="text-center">Supprimer</th>
-				<th class="text-center">Modifier</th>
+                <th class="text-center">Modifier</th>
+
 			</tr>
                     </thead>
      
@@ -339,6 +365,11 @@
 				<tr>
 					<td class="text-center"><?PHP echo $Offre['Id_offres'] ?></td>
 					<td class="text-center"><?PHP echo $Offre['Valeur']; ?></td>
+                    <td class="text-center"><?PHP echo $Offre['id_produit']; ?></td>
+                    
+
+
+
 
           <td>
 					<form method="POST" action="SupprimerOffres.php">
@@ -353,6 +384,8 @@
           <input class="left" type="image" src="../assets/img/update1.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $Offre['Id_offres']; ?> name="Id_offres" id="Id_offres">
             <input type="hidden" value=<?PHP echo $Offre['Valeur']; ?> name="Valeur" id="Valeur">
+            <input type="hidden" value=<?PHP echo $Offre['id_produit']; ?> name="id_produit" id="id_produit">
+
 
             </form>
 					</td>

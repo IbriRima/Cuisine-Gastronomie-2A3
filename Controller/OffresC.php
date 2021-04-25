@@ -22,12 +22,17 @@
                
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO Offres (Valeur) 
-                VALUES (:Valeur)'
+                    'INSERT INTO Offres (Valeur,id_produit) 
+                VALUES (:Valeur,:id_produit)'
+                
                 );
+              //  echo $offres->getIdproduit();
                 $query->execute([
 
-                    'Valeur' => $offres->getValeur()
+                    'Valeur' => $offres->getValeur(),
+                    'id_produit' => $offres->getIdproduit()
+
+
                     
                 ]);
             } catch (PDOException $e) {
@@ -40,12 +45,15 @@
 				$pdo = getConnexion();
 				$sql="UPDATE offres SET 
 				Valeur= :Valeur,
-				
+                id_produit= :id_produit,
+
 			WHERE Id_offres = :id";
 				$query = $pdo->prepare($sql);
 
 				$query->bindValue(':id',$id);
 				$query->bindValue(':Valeur',$Offres->getValeur());
+                $query->bindValue(':id_produit',$Offres->getIdproduit());
+
 				$query->execute();
 	
 				echo $query->rowCount() . " records UPDATED successfully <br>";

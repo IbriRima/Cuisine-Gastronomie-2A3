@@ -4,15 +4,17 @@
 
   $OffresC = new OffresC() ;
   $error = "";
-
-  if (isset($_POST["Valeur"]))
+  
+  if (isset($_POST["Valeur"])&& isset($_POST["id_produit"]))
          {
             if (
-                !empty($_POST["Valeur"]) 
+                !empty($_POST["Valeur"]) &&
+                !empty($_POST["id_produit"]) 
+
                
             )
               {
-                $offres = new offres($_POST["Valeur"]);
+                $offres = new offres($_POST["Valeur"],$_POST["id_produit"]);
                   
           $OffresC->updateOffres($offres,$_POST["Id_offres"]);
               }

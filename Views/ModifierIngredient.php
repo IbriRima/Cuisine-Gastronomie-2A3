@@ -5,16 +5,17 @@
   $ProduitC = new ProduitC() ;
   $error = "";
 
-  if (isset($_POST["Nom_produit"])&& isset($_POST["Quantité_dans_le_stock"])&& isset($_POST["Prix_de_vente"]))
+  if (isset($_POST["Nom_produit"])&& isset($_POST["Quantité_dans_le_stock"])&& isset($_POST["Prix_de_vente"])&& isset($_POST["nom_image"]))
          {
             if (
                 !empty($_POST["Nom_produit"]) && 
                 !empty($_POST["Quantité_dans_le_stock"]) &&
-                !empty($_POST["Prix_de_vente"]) 
+                !empty($_POST["Prix_de_vente"]) &&
+                !empty($_POST["nom_image"]) 
                
             )
               {
-                $Produit = new Produit($_POST["Nom_produit"],$_POST["Quantité_dans_le_stock"],$_POST["Prix_de_vente"] );
+                $Produit = new Produit($_POST["Nom_produit"],$_POST["Quantité_dans_le_stock"],$_POST["Prix_de_vente"] ,$_POST["nom_image"]);
                   
           $ProduitC->updateProduit($Produit,$_POST["Id_produit"]);
               }
@@ -101,7 +102,7 @@
           </li>
 
           <li class="active ">
-            <a href="AjouterIngredient.php">
+            <a href="ModifierIngredients.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
@@ -253,6 +254,23 @@
                     </div>
           
                   </div>
+
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="nom_image"> nom de l'image</label>
+                        <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image " value = "<?php echo $nom_image; ?>"  >
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
+
 
              
                   <div class="controle" id="verifDureeAd"> </div>
