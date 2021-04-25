@@ -1,74 +1,72 @@
 <?php
-    class Reclamation {
-        private ?int $IdRecl = null;
-        private string $Proposition;
-        private string $Description;
-        private string $Type;
-        private string $Etat_traitement;
-        private float $Note;
-        private int $Id_client;
+    class Reservation {
+        private ?int $ID = null;
+        private string $Nom;
+        private string $Prenom;
+        private string $Email;
+        private string $Message;
+        private string $datetemps;
+      
 
-        public function __construct($Proposition, $Description, $Type,$Etat_traitement,$Note,$Id_client)
+        public function __construct($ID, $Nom, $Prenom,$Email,$Message,$datetemps)
         
         { 
-            $this->Proposition = $Proposition;
-            $this->Description= $Description;
-            $this->Type = $Type;
-            $this->Etat_traitement = $Etat_traitement;
-            $this->Note = $Note;
-            $this->Id_client = $Id_client;
+            $this->ID = $ID;
+            $this->Nom= $Nom;
+            $this->Prenom = $Prenom;
+            $this->Email = $Email;
+            $this->Message = $Message;
+            $this->datetemps = $datetemps;
         }
 
-        public function getIdRecl () {
-            return $this->IdRecl;
+        public function getID () {
+            return $this->ID;
         }
 
-        public function getProposition(){
-            return $this->Proposition ;
+        public function getNom(){
+            return $this->Nom ;
         }
 
-        public function getDescription(){
-            return $this->Description;
+        public function getPrenom(){
+            return $this->Prenom;
         }
  
-        public function getType (){
-            return $this->Type ;
+        public function getEmail (){
+            return $this->Email ;
         }
-        public function getEtat_traitement (){
-            return $this->Etat_traitement ;
+        public function getMessage (){
+            return $this->Message ;
         }
       
-        public function getNote(){
-            return $this->Note ;
+        public function getDatetemps(){
+            return $this->datetemps ;
         }
 
-        public function getId_client(){
-            return $this->Id_client ;
+     
+
+
+
+
+        public function setID($ID){
+            $this->ID= $ID;
         }
 
-
-
-
-        public function setProposition($Proposition){
-            $this->Proposition= $Proposition;
+        public function setNom($Nom){
+            $this->Nom = $Nom;
         }
 
-        public function setDescription($Description){
-            $this->Description = $Description;
+        public function setType ($Prenom){
+            $this->Prenom = $Prenom;
         }
 
-        public function setType ($Type){
-            $this->Type = $Type;
+        public function setEmail ($Email){
+            $this->Email= $Email;
         }
 
-        public function setEtat_traitement ($Etat_traitement){
-            $this->Etat_traitement= $Etat_traitement;
+        public function setMessage ($Message){
+            $this->Message = $Message;
         }
-
-        public function setNote ($Note){
-            $this->Note = $Note;
-        }
-        public function setId_client ($Id_client){
-            $this->Id_client= $Id_client;
+        public function setDatetemps ($datetemps){
+            $this->datetemps= $datetemps;
         }
     }
