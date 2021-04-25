@@ -1,5 +1,5 @@
 <?php
-    class Reclamation {
+    class CategoriesTable {
         private ?int $ID = null;
         private int $NB_places;
         private string $Forme;
