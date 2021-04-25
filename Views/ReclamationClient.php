@@ -74,7 +74,6 @@ $id="1";
 
 	<body>
 
-	
 
 	<div id="fh5co-container">
 	<div >
@@ -139,6 +138,7 @@ $id="1";
 	</div>
 
 
+	
 		
 	<form action="AjouterReclamation.php" method="POST" id="formR">
 

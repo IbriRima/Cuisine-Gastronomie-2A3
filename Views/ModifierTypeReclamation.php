@@ -19,13 +19,14 @@
    
                   
           $TypeReclamationC->updateTypeReclamation($Duree,(int)$_POST["Id_type"]);
-  
+         
+       
               }
               else
                   $error = "Missing information";
                   echo"$error ";
         }
-	
+ 
 
 ?>
 
@@ -65,7 +66,7 @@
         $duree=$_POST["duree"];
        
 				$TypeReclamation= $TypeReclamationC->recupererTypeReclamation($_POST["Id_type"]);
-    
+      
 		?>
 
 <div class="wrapper ">
@@ -172,8 +173,8 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier un type de réclamation</h5>
-              </div>
+                <h5 class="title">Modifier le type de réclamation d'identifiant <?php echo $id; ?></h5>
+         
               <div class="card-body">
             
     
@@ -207,9 +208,9 @@
                       <div class="form-group">
               
                       
-                      <label for="Id_type"> Identifiant </label>
+                      
 
-<input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" >
+<input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" hidden>
                   
                     </div>
                   </div>
@@ -230,14 +231,19 @@
                     </div>
           
                   </div>
-             
+                
+     
+
+
                   <div class="controle" id="verifDureeAd"> </div>
                 
          
           <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
   
           <input type="reset" value="Annuler" name = "annuler">
- 
+   
+       
+        
         </form> 
 
           </div>
@@ -261,7 +267,9 @@
 </div>
  
     <?php
+    
 		}
+  
 		?>
           
 

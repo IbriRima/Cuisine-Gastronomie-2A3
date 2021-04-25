@@ -38,7 +38,7 @@
                     'INSERT INTO Reclamation (Description,Proposition,Note,Type,Etat_traitement,Id_client) 
                 VALUES (:Description,:Proposition,:Note,:Type,:Etat_traitement, :Id_client)'
                 );
-                $query->execute([
+             $query->execute([
                     'Description' => $Reclamation->getDescription(),
                     'Proposition' => $Reclamation->getProposition(),
                     'Note' => $Reclamation->getNote(),
@@ -46,6 +46,7 @@
                     'Etat_traitement' => $Reclamation->getEtat_traitement(),
                     'Id_client' => $Reclamation->getId_client()
                 ]);
+             
             } catch (PDOException $e) {
                 $e->getMessage();
             }
@@ -59,7 +60,7 @@
                 $query = $pdo->prepare(
                     'UPDATE Reclamation SET Description = :Description, Proposition = :Proposition, Note = :Note, Type= :Type, Etat_traitement=:Etat_traitement WHERE id_Recl = :id'
                 );
-                $query->execute([
+             $query->execute([
                     'Description' => $Reclamation->getDescription(),       
                     'Proposition' => $Reclamation->getProposition(),
                     'Note' => $Reclamation->getNote(),
@@ -67,10 +68,13 @@
                     'Etat_traitement' => $Reclamation->getEtat_traitement(),
                     'id' => $id
                 ]);
-             
+           
+               
             } catch (PDOException $e) {
                 $e->getMessage();
             }
+         
+      
         }
 
 
@@ -85,7 +89,11 @@
                     'Etat' => $Etat_traitement,
                     'id' => $id
                 ]);
-             
+              
+              
+
+      
+        
             } catch (PDOException $e) {
                 $e->getMessage();
             }
@@ -195,3 +203,4 @@
   
     
     }
+    ?>

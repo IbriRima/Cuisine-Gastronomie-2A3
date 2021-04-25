@@ -27,14 +27,15 @@
                  $_POST['Type'],
                  "Non traitee",
                   (int)$_POST['Note'],
-                "123" 
+                "1" 
                 
 
           );
+	
                   
           $ReclamationC->updateReclamation($Reclamation,(int)$_POST["Id_Recl"]);
-               
 		
+	
 
               }
               else
@@ -149,30 +150,30 @@
 	
 
 
-	<div id="fh5co-events" data-section="events" style="background-image: url(../assets/img/food2.jpg);" data-stellar-background-ratio="0.5">
+	<div id="fh5co-events" data-section="events" style="background-image: url(../assets/img/food10.jpg);" data-stellar-background-ratio="0.5">
 
 
 		
 				
 
-			<form action="ModifierReclamation.php" method="POST" id="formMR">
+			<form action="ModifierReclamation.php" method="POST" id="formMR" >
 		
 		<div id="fh5co-contact" data-section="reclamation">
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
-						<h2 class="heading to-animate">Modifier une réclamation</h2>
-						<p class="sub-heading to-animate"></p>
+						<h2 class="heading to-animate" style="color:white;">Modifier la réclamation d'identifiant <?php echo $id; ?></h2>
+				
 					</div>
 				</div>
 		
 					<div class="col-md-6 to-animate-2">
-						<h3>Réclamation</h3>
+				
 				
 		
             <div class="form-group ">
-							<label for="Id_Recl" class="sr-only">Type</label>
-							<input name="Id_Recl" id="Id_Recl"  class="form-control" placeholder="Id_Recl" type="text"  value = "<?php echo $id; ?>">
+							<label for="Id_Recl" class="sr-only">Identifiant</label>
+							<input name="Id_Recl" id="Id_Recl"   placeholder="Id_Recl" type="text"  value = "<?php echo $id; ?>" hidden>
 						</div>
 					
             <div class="form-group ">
@@ -181,8 +182,8 @@
 
 							<div class="form-group ">
 							<label for="Type" class="sr-only">Type</label>
-							<select  name="Type" id="Type"  class="form-control" >
-							<option><?php echo $Type; ?></option>
+							<select  name="Type" id="Type"  class="form-control" style="color:white;" >
+							<option style="color:black;" ><?php echo $Type; ?></option>
 						<?php
 
                              $array = [];
@@ -191,7 +192,7 @@
 							
                               ?>
 					
-							 <option>	
+							 <option  style="color:black;" >	
 							  
 							  <?php 
 						  
@@ -212,7 +213,7 @@
 
 						<div class="form-group ">
 							<label for="Note" class="sr-only">Note</label>
-							<input name="Note" id="Note"  class="form-control" placeholder="Note" type="number" min=0 max=6  value = "<?php echo $Note; ?>">
+							<input name="Note" id="Note"  class="form-control" placeholder="Note" type="number" min=0 max=6  value = "<?php echo $Note; ?>" style="color:white;">
 						</div>
 
 						<div class="controle" id="verifNoteModif">
@@ -225,7 +226,7 @@
 
 						<div class="form-group ">
 							<label for="Description" class="sr-only">Description</label>
-							<input name="Description" id="Description"  class="form-control" placeholder="Description" type="text"  value = "<?php echo $Description; ?>">
+							<input name="Description" id="Description"  class="form-control" placeholder="Description" type="text"  value = "<?php echo $Description; ?>" style="color:white;">
 						</div>
 
 						<div class="controle" id="verifDescModif">
@@ -233,7 +234,7 @@
 						
             <div class="form-group ">
 							<label for="Proposition" class="sr-only">Proposition</label>
-							<input name="Proposition" id="Proposition"  class="form-control" placeholder="Proposition" type="text"  value = "<?php echo $Proposition; ?>">
+							<input name="Proposition" id="Proposition"  class="form-control" placeholder="Proposition" type="text"  value = "<?php echo $Proposition; ?>" style="color:white;">
 						</div>
 						
 						<div class="controle" id="verifPropoModif">
@@ -242,9 +243,12 @@
 						<div class="form-group ">
 						
 						
-							<input class="btn btn-primary" type="submit" value="Enregistrer" name = "submit" onclick = "ModifReclamation();" >
+							<input class="btn btn-primary" type="submit" value="Enregistrer" name = "submit" id="modif" onclick = "ModifReclamation();" >
 							<input class="btn btn-primary" type="reset" value="Annuler" name = "annuler">
 						
+						
+		 
+			
 						</div>
 						</div>
 				</div>
