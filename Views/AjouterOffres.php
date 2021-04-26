@@ -374,7 +374,7 @@
           <td>
 					<form method="POST" action="SupprimerOffres.php">
             <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $Offre['Id_offres']; ?> name="Id_offres " id="Id_offres ">
+            <input type="hidden" value=<?PHP echo $Offre['Id_offres']; ?> name="Id_offres" id="Id_offres">
             </form>
 					</td>
 

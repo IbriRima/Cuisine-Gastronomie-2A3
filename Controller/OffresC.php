@@ -71,7 +71,7 @@
 	
 
 
-		function deleteProduit($id){
+		function deleteOffres($id){
 			$sql="DELETE FROM offres WHERE id_offres= :id";
 			$pdo = getConnexion();
 			$req=$pdo->prepare($sql);
@@ -94,15 +94,15 @@
 
 
 
-     /*   function recupererTypeReclamation($id){
-			$sql="SELECT * from TypeReclamation where id_type= $id";
+   function recupererOffre($id){
+			$sql="SELECT * from offres where id_offres= $id";
 			$pdo = getConnexion();
 			try{
 				$query=$pdo->prepare($sql);
 				$query->execute();
 				
-				$TypeReclamation = $query->fetch(PDO::FETCH_OBJ);
-				return $TypeReclamation;
+				$offre = $query->fetch(PDO::FETCH_OBJ);
+				return $offre;
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
@@ -110,7 +110,7 @@
 		}
 		
 
-
+    /* 
 
         public function TypeReclamation() 
         {

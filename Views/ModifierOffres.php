@@ -53,7 +53,15 @@
 <div id="error">
             <?php echo $error; ?>
         </div>
-			
+				<?php
+			if (isset($_POST["Id_offres"])){
+        $Valeur=(int)$_POST["Valeur"];
+       
+        $Id_prod=(int)$_POST["id_produit"];
+       
+				$offre= $OffresC->recupererOffre($_POST["Id_offres"]);
+      
+		?>
 <div class="wrapper ">
 
   <div class="sidebar" data-color="yellow">
@@ -195,7 +203,7 @@
                       
                       <label for="Id_offres"> Identifiant </label>
 
-<input  type="number" name="Id_offres" id="Id_offres" class="form-control" placeholder="entrez l'id de l'offre" >
+<input  type="number" name="Id_offres" id="Id_offres" class="form-control" placeholder="entrez l'id de l'offre" value = "<?php echo $_POST["Id_offres"]; ?>" >
                   
                     </div>
                   </div>
@@ -210,10 +218,17 @@
                       <div class="form-group">
                   
                         <label for="Valeur"> changer le Valeur de l'offre</label>
-                        <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="changer le valeur de l'offre"   >
+                        <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="changer le valeur de l'offre"    value = <?php echo  (int)$_POST["Valeur"]; ?>>
                     
 
                     </div>
+                    <div class="form-group">
+                  
+                  <label for="id_produit"> changer l'identifiant du produit</label>
+                  <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="changer l'identifiant du produit"   value = <?php echo  (int)$_POST["id_produit"] ; ?> >
+              
+
+              </div>
                     </div>
           
                   </div>
@@ -249,8 +264,12 @@
     </div>
   </div>
 </div>
- 
-          
+  
+<?php
+    
+  }
+
+  ?>    
 
 
   
