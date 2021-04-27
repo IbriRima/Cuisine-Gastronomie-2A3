@@ -7,6 +7,9 @@ include "../Controller/Client.php";
 session_start();
 $numero = $_SESSION['numero'];
 
+if($numero=="")
+header('Location:../Views/Login.php');
+
 
 $client=new Client();
 $listeClient=$client->getClient($numero);

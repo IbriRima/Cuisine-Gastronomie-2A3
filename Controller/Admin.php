@@ -38,8 +38,13 @@
         {   
             $pdo = getConnexion();
 
-            $stmt=$pdo->prepare("SELECT COUNT(*) FROM admin");
-            $stmt->execute();
+            $stmt=$pdo->prepare("SELECT COUNT(*) FROM user WHERE typee=:typee");
+            $stmt->execute(
+                [
+                    'typee' => "admin",
+                ]
+              
+            );
 
             $row=$stmt->fetchColumn();
 
@@ -52,40 +57,22 @@
         public function admin() {
             
             try {
+                echo('update');
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO admin (numero,nom,prenom,email,adresse,mdp) 
-                    VALUES (:numero,:nom,:prenom,:email,:adresse,:mdp)'
+                    'UPDATE user SET 
+                    typee=:typee  WHERE numero = :numero'
                 );
                 $query->execute([
                     'numero' => $_POST['numero'],
-                    'nom' => $_POST['nom'],
-                    'prenom' => $_POST['prenom'],
-                    'email' => $_POST['email'],
-                    'adresse' => $_POST['adresse'],
-                    'mdp' => $_POST['mdp'],
+                    'typee' => "admin",
+                   
                 ]);
-
-            } catch (PDOException $e) {
-                $e->getMessage();
-                header('Location:../Views/Register.php');
-            }
-
-            try {
-                $pdo = getConnexion();
-                $query = $pdo->prepare(
-                    'DELETE FROM client WHERE numero= :numero'
-                );
-                $query->execute([
-                    'numero' => $_POST['numero']
-                ]);
-                header('Location:../Views/Login.php');
+                header('Location:../Views/AfficherClients.php');
             } catch (PDOException $e) {
                 $e->getMessage();
             }
 
-
-            header('Location:../Views/AfficherClients.php');
 
         }
 
@@ -95,10 +82,11 @@
                 $pdo = getConnexion();
             
                 $query = $pdo->prepare(
-                    'SELECT * FROM admin WHERE numero= :numero '
+                    'SELECT * FROM user WHERE numero= :numero and typee=:typee'
                 );
                 $query->execute([
                     'numero' => $numero,
+                    'typee' => "admin",
 
                 ]);
 
@@ -114,7 +102,7 @@
                 echo('update');
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'UPDATE admin SET 
+                    'UPDATE user SET 
                     nom = :nom, prenom = :prenom, adresse = :adresse, 
                     email= :email WHERE numero = :numero'
                 );
@@ -134,24 +122,43 @@
 
         public function deleteAdmin() {
             try {
-                echo('delete');
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'DELETE FROM admin WHERE numero= :numero'
+                    'DELETE FROM cartefid WHERE userID= :numero'
                 );
                 $query->execute([
                     'numero' => $_POST['numero']
                 ]);
+                echo('1');
+
+                try {
+                    $pdo = getConnexion();
+                    $query = $pdo->prepare(
+                        'DELETE FROM user WHERE numero= :numero'
+                    );
+                    $query->execute([
+                        'numero' => $_POST['numero']
+                    ]);
+                    echo('2');
+
+                } catch (PDOException $e) {
+                    $e->getMessage();
+                    echo($e);
+                }
+
+
                 header('Location:../Views/Login.php');
             } catch (PDOException $e) {
                 $e->getMessage();
+                echo($e);
+
             }
         }
 
         public function AfficherAdminsPaginer($page, $perPage)
         {
             $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
-            $sql = "SELECT * FROM admin LIMIT {$start},{$perPage}";
+            $sql = "SELECT * FROM user WHERE typee='admin' LIMIT {$start},{$perPage}";
             $db = getConnexion();
             try {
                 $liste = $db->prepare($sql);
@@ -165,7 +172,7 @@
     
         public function calcTotalRows($perPage)
         {
-            $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM admin";
+            $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM user WHERE typee='admin'";
             $db = getConnexion();
             try {
     

@@ -5,9 +5,6 @@
     
     if(isset($_POST['submit']))
     {
-        //  if($_POST['homme'])
-        // $sexe='homme';
-        //  else $sexe='femme';
         $client=new Client();
         $client->addClient();
        
@@ -29,26 +26,16 @@
     {
         $client=new Client();
         $client->connect();
-        // session_start();
-        // $_SESSION['search'] = "";               
-        // header('Location:../Views/AfficherClients.php'); 
+         
     }
 
     
-    if(isset($_POST['searchbutton']))
-    {
-        $client=new Client();
-        $client->Search();
-    }
-
+    
 
     
     
     class Client {
       
-       
-
-
 
         public function getClient($numero) 
         {
@@ -56,7 +43,7 @@
                 $pdo = getConnexion();
             
                 $query = $pdo->prepare(
-                    'SELECT * FROM client WHERE numero= :numero'
+                    'SELECT * FROM user WHERE numero= :numero'
                 );
                 $query->execute([
                     'numero' => $numero,
@@ -73,64 +60,53 @@
 
         public function addClient() {
 
-            $sql = "SELECT * from admin where numero=:numero "; 
-            $db = getConnexion();
             try {
-                $query = $db->prepare($sql);
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'INSERT INTO user (numero,nom,prenom,email,adresse,mdp,typee) 
+                    VALUES (:numero,:nom,:prenom,:email,:adresse,:mdp,:typee)'
+                );
                 $query->execute([
                     'numero' => $_POST['numero'],
-                ]); 
-                $result = $query->fetchAll(); 
-                echo('houni');
-                
-                if(!$result)
-                {
-                    echo('famech admin');
-                    try {
-                        $pdo = getConnexion();
-                        $query = $pdo->prepare(
-                            'INSERT INTO client (numero,nom,prenom,email,adresse,mdp) 
-                            VALUES (:numero,:nom,:prenom,:email,:adresse,:mdp)'
-                        );
-                        $query->execute([
-                            'numero' => $_POST['numero'],
-                            'nom' => $_POST['nom'],
-                            'prenom' => $_POST['prenom'],
-                            'email' => $_POST['email'],
-                            'adresse' => $_POST['adresse'],
-                            'mdp' => $_POST['mdp1'],
-                        ]);
-                        session_start();
-                        $_SESSION['numero'] = $_POST['numero'];               
-                         header('Location:../Views/ClientProfile.php');
-        
-                    } catch (PDOException $e) {
-                        $e->getMessage();
-                        header('Location:../Views/Register.php');
-                    }
+                    'nom' => $_POST['nom'],
+                    'prenom' => $_POST['prenom'],
+                    'email' => $_POST['email'],
+                    'adresse' => $_POST['adresse'],
+                    'mdp' => $_POST['mdp1'],
+                    'typee' => "client",
+                ]);
 
+                try {
+                    $pdo = getConnexion();
+                    $query = $pdo->prepare(
+                        'INSERT INTO cartefid (points,userID) 
+                        VALUES (:points,:userID)'
+                    );
+                    $query->execute([
+                        'points' => 0,
+                        'userID' => $_POST['numero'],
+                    ]);
+                   
+    
+                } catch (PDOException $e) {
+                    $e->getMessage();
                 }
-                else
-                {
-                    
-                    echo '<script>',
-                    'alert("test");',
-                    '</script>';        
-                    header('Location:../Views/Register.php');
 
-                }
-                
-            }
-            catch (PDOException $e) {
+                session_start();
+                $_SESSION['numero'] = $_POST['numero'];               
+                 header('Location:../Views/ClientProfile.php');
+
+            } catch (PDOException $e) {
                 $e->getMessage();
-            }          
+                header('Location:../Views/Register.php');
+            }  
         }
 
         public function updateClient() {
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'UPDATE client SET 
+                    'UPDATE user SET 
                     nom = :nom, prenom = :prenom, adresse = :adresse, 
                     email= :email WHERE numero = :numero'
                 );
@@ -151,27 +127,48 @@
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'DELETE FROM client WHERE numero= :numero'
+                    'DELETE FROM cartefid WHERE userID= :numero'
                 );
                 $query->execute([
                     'numero' => $_POST['numero']
                 ]);
+                echo('1');
+
+                try {
+                    $pdo = getConnexion();
+                    $query = $pdo->prepare(
+                        'DELETE FROM user WHERE numero= :numero'
+                    );
+                    $query->execute([
+                        'numero' => $_POST['numero']
+                    ]);
+                    echo('2');
+
+                } catch (PDOException $e) {
+                    $e->getMessage();
+                    echo($e);
+                }
+
+
                 header('Location:../Views/Login.php');
             } catch (PDOException $e) {
                 $e->getMessage();
+                echo($e);
+
             }
         }
 
        
         public function connect() 
         {            
-            $sql = "SELECT * from client where numero=:numero and mdp=:mdp"; 
+            $sql = "SELECT * from user where numero=:numero and mdp=:mdp and typee=:typee"; 
             $db = getConnexion();
             try {
                 $query = $db->prepare($sql);
                 $query->execute([
                     'numero' => $_POST['numero'],
-                    'mdp' => $_POST['mdp']
+                    'mdp' => $_POST['mdp'],
+                    'typee' => "client"
                 ]); 
                 $result = $query->fetchAll(); 
                 
@@ -185,13 +182,15 @@
                  else
                  {
 
-                $sql = "SELECT * from admin where numero=:numero and mdp=:mdp "; 
+                $sql = "SELECT * from user where numero=:numero and mdp=:mdp and typee=:typee"; 
                 $db = getConnexion();
                 try {
                 $query = $db->prepare($sql);
                 $query->execute([
                     'numero' => $_POST['numero'],
                     'mdp' => $_POST['mdp'],
+                    'typee' => "admin"
+
                 ]); 
                 $result = $query->fetchAll(); 
                 
@@ -230,8 +229,12 @@
         {
             $pdo = getConnexion();
 
-            $stmt=$pdo->prepare("SELECT COUNT(*) FROM client");
-            $stmt->execute();
+            $stmt=$pdo->prepare("SELECT COUNT(*) FROM user WHERE typee=:typee");
+            $stmt->execute(
+                [
+                    'typee' => "client"
+                ]
+            );
 
             $row=$stmt->fetchColumn();
 
@@ -239,50 +242,25 @@
 
         }
 
-        public function Search() {
-            
-            session_start();
-                $_SESSION['search'] = $_POST['search'];
-                header('Location:../Views/AfficherClients.php'); 
-        }
+       
         
-        public function afficherClients($keyword) {
+        public function afficherClients() {
             
-
-            if($keyword=="")
-            {
-                                
+                
                 try {
                     $pdo = getConnexion();
                     $query = $pdo->prepare(
-                        'SELECT * FROM client '
+                        'SELECT * FROM user WHERE typee=:typee '
                     );
                     $query->execute([
+                        'typee' => "client"
                     ]);
                     return $query->fetchAll();
                 } catch (PDOException $e) {
                     $e->getMessage();
                 }
-            }
-            else
-            {
-                               
-                try {
-                    $pdo = getConnexion();
-                    $query = $pdo->prepare(
-                        'SELECT * FROM client WHERE numero = :keyword OR prenom = :keyword OR nom = :keyword OR
-                        email = :keyword OR adresse = :keyword '
-                    );
-                    $query->execute([
-                        'keyword' => $keyword,
-                    ]);
-                    return $query->fetchAll();
-
-                } catch (PDOException $e) {
-                    $e->getMessage();
-                }
-
-            }
+            
+            
            
         }
 

@@ -6,6 +6,9 @@ include "../Controller/Admin.php";
 session_start();
 $numero = $_SESSION['numero'];
 
+if($numero=="")
+header('Location:../Views/Login.php');
+
 $admin=new Admin();
 $listeAdmin=$admin->getAdmin($numero); 
 
@@ -71,7 +74,7 @@ $listeAdmin=$admin->getAdmin($numero);
             </a>
           </li>
           <li >
-            <a href="./AfficherClients.php">
+          <a href="./AfficherClients.php?search=<?php  echo(''); ?>">
               <i class="now-ui-icons users_single-02"></i>
               <p>Clients</p>
             </a>
@@ -80,6 +83,12 @@ $listeAdmin=$admin->getAdmin($numero);
             <a href="./AfficherAdmins.php">
               <i class="now-ui-icons users_single-02"></i>
               <p>Admins</p>
+            </a>
+          </li>
+          <li >
+          <a href="./AfficherCartes.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li >

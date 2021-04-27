@@ -6,8 +6,10 @@
         protected string $email;
         protected string $adresse;
         protected string $mdp;
+        protected string $typee;
 
-        public function __construct($numero, $nom, $prenom,$email,$adresse,$mdp)
+
+        public function __construct($numero, $nom, $prenom,$email,$adresse,$mdp,$typee)
         
         { 
             $this->numero = $numero;
@@ -16,6 +18,8 @@
             $this->email = $email;
             $this->adresse = $adresse;
             $this->mdp = $mdp;
+            $this->typee = $typee;
+
 
         }
 
@@ -40,6 +44,10 @@
       
         public function getMdp(){
             return $this->mdp ;
+        }
+
+        public function getType(){
+            return $this->typee ;
         }
 
        
@@ -68,6 +76,10 @@
 
         public function setMdp ($mdp){
             $this->mdp = $mdp;
+        }
+
+        public function setType ($typee){
+            $this->typee = $typee;
         }
         
     }

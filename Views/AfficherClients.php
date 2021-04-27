@@ -7,7 +7,7 @@
 
 
   $client=new Client();
-  $listeClient=$client->afficherClients($keyword);
+  $listeClient=$client->afficherClients();
 
   
  
@@ -77,6 +77,12 @@
             <a href="./AfficherAdmins.php">
               <i class="now-ui-icons users_single-02"></i>
               <p>Admins</p>
+            </a>
+          </li>
+          <li >
+          <a href="./AfficherCartes.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li >
@@ -225,23 +231,7 @@
             <div class="card">
               <div class="card-header">
 
-              <form method="POST" action="../Controller/Client.php">
-
-                <div class="input-group no-border">
-                <input type="text"  class="form-control" placeholder="Recherche..." name="search"
-                value=<?PHP echo $keyword; ?>
-                >
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                  <button type="submit" name="searchbutton"   width="30" heigth="10">
-                <img src="../assets/img/loupe.png" style="border:0; text-decoration:none; outline:none"
-                width="30" heigth="10">
-                </button>
-                  </div>
-                </div>
-              </div>
-
-              </form>
+              
 
 
                 <h4 class="card-title"> Clients</h4>

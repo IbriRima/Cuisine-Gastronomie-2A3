@@ -70,7 +70,7 @@
             </a>
           </li>
           <li >
-            <a href="./AfficherClients.php">
+          <a href="./AfficherClients.php?search=<?php  echo(''); ?>">
               <i class="now-ui-icons users_single-02"></i>
               <p>Clients</p>
             </a>
@@ -79,6 +79,12 @@
             <a href="">
               <i class="now-ui-icons users_single-02"></i>
               <p>Admins</p>
+            </a>
+          </li>
+          <li >
+          <a href="./AfficherCartes.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li >

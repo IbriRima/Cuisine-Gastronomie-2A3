@@ -75,7 +75,7 @@
             </a>
           </li>
           <li >
-            <a href="./AfficherClients.php">
+            <a href="./AfficherClients.php?search=<?php  echo(''); ?>">
               <i class="now-ui-icons users_single-02"></i>
               <p>Clients</p>
             </a>
@@ -84,6 +84,12 @@
             <a href="./AfficherAdmins.php">
               <i class="now-ui-icons users_single-02"></i>
               <p>Admins</p>
+            </a>
+          </li>
+          <li >
+          <a href="./AfficherCartes.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li class="active">
@@ -241,7 +247,7 @@
 
             </div> -->
 
-            <canvas id="countries" width="600" height="400"></canvas>
+            <canvas id="users" width="600" height="400"></canvas>
               <script>
                   var pieData = [
                       {
@@ -257,8 +263,8 @@
                     
                   ];
                   // Get the context of the canvas element we want to select
-                  var countries= document.getElementById("countries").getContext("2d");
-                  new Chart(countries).Pie(pieData);
+                  var users= document.getElementById("users").getContext("2d");
+                  new Chart(users).Pie(pieData);
               </script>
 
             <div>
@@ -292,9 +298,9 @@
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
   <!-- Chart JS -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!-- <script src="../assets/js/plugins/chartjs.min.js"></script> -->
   
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example  etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
  
   
