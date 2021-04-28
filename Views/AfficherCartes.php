@@ -1,17 +1,15 @@
 <?PHP
-	include "../controller/Admin.php";
+	include "../controller/CarteFid.php";
+
+  session_start();
+  $keyword = $_SESSION['search'];
 
   
 
+  $carteFid=new CarteFid();
+  $listecarteFid=$carteFid->afficherCartes($keyword);
 
   
-
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $perpage = isset($GET['per-page']) && $_GET['per-page'] <= 50 ? (int)$_GET['per-page'] : 2;
-   
-    $adminpage = new Admin();
-    $listeAdminPage = $adminpage->AfficherAdminsPaginer($page, $perpage);
-     $totalP = $adminpage->calcTotalRows($perpage);
  
 
 ?>
@@ -70,18 +68,18 @@
             </a>
           </li>
           <li >
-          <a href="./AfficherClients.php?search=<?php  echo(''); ?>">
+            <a href="">
               <i class="now-ui-icons users_single-02"></i>
               <p>Clients</p>
             </a>
           </li>
-          <li class="active">
-            <a href="">
+          <li >
+            <a href="./AfficherAdmins.php">
               <i class="now-ui-icons users_single-02"></i>
               <p>Admins</p>
             </a>
           </li>
-          <li >
+          <li class="active">
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
@@ -233,8 +231,26 @@
             <div class="card">
               <div class="card-header">
 
+              <form method="POST" action="../Controller/CarteFid.php">
 
-                <h4 class="card-title">Admins</h4>
+                <div class="input-group no-border">
+                <input type="text"  class="form-control" placeholder="Recherche..." name="search"
+                value=<?PHP echo $keyword; ?>
+                >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                  <button type="submit" name="searchbutton"   width="30" heigth="10">
+                <img src="../assets/img/loupe.png" style="border:0; text-decoration:none; outline:none"
+                width="30" heigth="10">
+                </button>
+                  </div>
+                </div>
+              </div>
+
+              </form>
+
+
+                <h4 class="card-title"> Cartes Fidelités</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -243,12 +259,10 @@
                   <table class="table">
                     <thead class=" text-primary">
                     <tr>
-                    <th class="text-center">Numéro de téléphone </th>
-                    <th class="text-center">Nom</th>
-				<th class="text-center">Prénom</th>
-				<th class="text-center">Email</th>
-				<th class="text-center">Adresse</th>
-        <th class="text-center">Mot de passe</th>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Points</th>
+				<th class="text-center">ID d'utilisateur</th>
+			
 
 				<!-- <th class="text-center">Sexe</th> -->
 			
@@ -262,41 +276,39 @@
                     <?PHP
 				
                 
-                foreach($listeAdminPage as $Client)
+                foreach($listecarteFid as $Carte)
         {
             
 			?>
             
 
 				<tr>
-                <form method="POST" action="../Controller/Admin.php">
+                <form method="POST" action="../Controller/CarteFid.php">
 
                 <td class="text-center">
-          <input type="text" class="form-control" name="numero" id="numero"  
-						value=<?PHP echo $Client['numero']; ?>>
+          <input type="text" class="form-control" name="id" id="id"  
+						value=<?PHP echo $Carte['id']; ?>>
           </td>
 					<td class="text-center">
-          <input type="text" class="form-control" name="nom" id="nom"  
-						value=<?PHP echo $Client['nom']; ?>>
+          <input type="text" class="form-control" name="points" id="points"  
+						value=<?PHP echo $Carte['points']; ?>>
           </td>
           <td class="text-center">
-          <input type="text" class="form-control" name="prenom" id="prenom"  
-						value=<?PHP echo $Client['prenom']; ?>>
+          <input type="text" class="form-control" name="userid" id="userid"  
+						value=<?PHP echo $Carte['userID']; ?>>
           </td>
-          <td class="text-center">
-          <input type="text" class="form-control" name="email" id="email"  
-						value=<?PHP echo $Client['email']; ?>>
-          </td>
-          <td class="text-center">
-          <input type="text" class="form-control" name="adresse" id="adresse"  
-						value=<?PHP echo $Client['adresse']; ?>>
-          </td>
-          <td class="text-center">
-          <input type="text" class="form-control" name="mdp" id="mdp"  
-						value=<?PHP echo $Client['mdp']; ?>>
-          </td>
+          
               
             
+            <td>
+			
+                <button type="submit" name="edit" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fas fa-edit"></i>                
+                </button>
+
+               
+			
+            </td>
             </form>
 
 
@@ -310,17 +322,7 @@
                     <tbody>              
                   </table>
                   
-                  <?php
-
-// }
-for ($x = 1; $x <= $totalP; $x++) :
-
-?>
-
-    <a href="?page=<?php echo $x; ?>&per-page=<?php echo $perpage; ?>"><?php echo $x; ?></a>
-
-<?php endfor; ?>
-
+                 
 
                 </div>
               </div>
@@ -350,16 +352,5 @@ for ($x = 1; $x <= $totalP; $x++) :
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
 
 </body>
-
-<div id="google_translate_element"></div>
-	<script>
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-            {pageLanguage: 'en'},
-            'google_translate_element'
-        );
-    }
-</script>
-<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </html>

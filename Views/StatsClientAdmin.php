@@ -88,7 +88,7 @@
           </li>
           <li >
           <a href="./AfficherCartes.php">
-              <i class="now-ui-icons users_single-02"></i>
+          <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
             </a>
           </li>

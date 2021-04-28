@@ -1,8 +1,8 @@
 <?PHP
 	include "../controller/Client.php";
 
-  session_start();
-  $keyword = $_SESSION['search'];
+  // session_start();
+  // $keyword = $_SESSION['search'];
 
 
 
@@ -81,7 +81,7 @@
           </li>
           <li >
           <a href="./AfficherCartes.php">
-              <i class="now-ui-icons users_single-02"></i>
+          <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
             </a>
           </li>
