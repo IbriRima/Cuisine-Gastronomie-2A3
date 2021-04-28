@@ -87,13 +87,6 @@
 
 
 
-
-
-
-
-
-
-
    function recupererOffre($id){
 			$sql="SELECT * from offres where id_offres= $id";
 			$pdo = getConnexion();
@@ -108,6 +101,22 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
+
+
+        public function countOffres()
+        {
+            $pdo = getConnexion();
+
+            $stmt=$pdo->prepare("SELECT COUNT(*) FROM Offres");
+            $stmt->execute();
+
+            $row=$stmt->fetchColumn();
+
+            return $row;
+
+        }
+
+
 		
 
     /* 

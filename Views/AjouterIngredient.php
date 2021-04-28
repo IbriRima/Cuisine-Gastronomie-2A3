@@ -46,6 +46,7 @@
 
 <head>
 
+
   <meta charset="utf-8" />
   
   <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
@@ -66,6 +67,8 @@
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
  
 </head>
+
+
 
 <body class="">
   <div class="wrapper ">
@@ -113,14 +116,14 @@
           </li>
 
           <li class="active ">
-            <a href="AjouterIngredient">
+            <a href="AjouterIngredient.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
           <li>
-            <a href="AjouterOffres">
+            <a href="AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
@@ -247,16 +250,26 @@
       <script type="text/javascript">
     function controleSaisie() {
        if (document.formulaire.Nom_produit.value == "") {
-        alert("Veuillez saisir votre nom de produit !");
+        document.getElementById("labelID").innerHTML="Veuillez saisir votre nom de produit!";
+       // alert("Veuillez saisir votre nom de produit !");
       }
       if (document.formulaire.Quantité_dans_le_stock.value == "") {
-        alert("Veuillez saisir la quantité dans le stock !");
+       // alert("Veuillez saisir la quantité dans le stock !");
+        document.getElementById("labelID1").innerHTML="Veuillez saisir la quantité dans le stock!";
+        return false;
+
       }
-      if (document.formulaire.Prix_de_vente.value == "") {
-        alert("Veuillez saisir prix de vente !");
+      else if (document.formulaire.Prix_de_vente.value == "") {
+       // alert("Veuillez saisir prix de vente !");
+        document.getElementById("labelID2").innerHTML="Veuillez saisir le prix de vente!";
+        return false;
+
       }
-      if (document.formulaire.nom_image.value == "") {
-        alert("Veuillez saisir le nom de l'image !");
+     else  if (document.formulaire.nom_image.value == "") {
+        //alert("Veuillez saisir le nom de l'image !");
+        document.getElementById("labelID3").innerHTML="Veuillez saisir le nom de l'image!";
+        return false;
+
       }
     } 
   </script> 
@@ -294,6 +307,8 @@
                   <div class="form-group">
                     <label for="Nom_produit"> Nom produit</label>
                     <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="Nom produit">
+                    <label id="labelID" name="labelID" style="color:#eb1212">  </label>
+
 
                   </div>
                 </div>
@@ -312,6 +327,8 @@
                   <div class="form-group">
                     <label for="Quantité_dans_le_stock">  Quantité dans le stock</label>
                     <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="Quantité dans le stock" >
+                    <label id="labelID1" name="labelID1" style="color:#eb1212">  </label>
+
  
                   </div>
                 </div>
@@ -330,6 +347,8 @@
                   <div class="form-group">
                     <label for="Prix_de_vente">  Prix_de_vente</label>
                     <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="Prix de vente" >
+                    <label id="labelID2" name="labelID2" style="color:#eb1212">  </label>
+
  
                   </div>
                 </div>
@@ -347,6 +366,8 @@
                   <div class="form-group">
                     <label for="nom_image"> nom de l'image a saisir (.jpg) </label>
                     <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="nom de l'image doit etre .jpg">
+                    <label id="labelID3" name="labelID3" style="color:#eb1212">  </label>
+
 
                   </div>
                 </div>
@@ -364,8 +385,15 @@
         
 
 
-      <input type="submit" value="Ajouter" name = "submit">
+      <input  type="submit" value="Ajouter" id= "ajouter" name = "submit">
       <input type="reset" value="Annuler" name = "annuler">
+
+      <script>
+document.getElementById("ajouter").addEventListener("click", function() {
+  alert("product added successfully");
+});
+</script>
+
 
 
 
@@ -532,6 +560,9 @@
          ****************************************/
         $('#zero_config').DataTable();
     </script>
+<script>
+document.write(Date());
+</script>
 
 
 </body>

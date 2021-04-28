@@ -106,6 +106,21 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
+
+
+        public function countProduit()
+        {
+            $pdo = getConnexion();
+
+            $stmt=$pdo->prepare("SELECT COUNT(*) FROM Produit");
+            $stmt->execute();
+
+            $row=$stmt->fetchColumn();
+
+            return $row;
+
+        }
+
 		
 
 /*

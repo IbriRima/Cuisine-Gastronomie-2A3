@@ -234,7 +234,10 @@
 							<h2><?PHP echo $Produit['Nom_produit']; ?></h2>
 
 							<span class="pricing"><?PHP echo $Produit['Prix_de_vente']; echo "$"  ?></span>
-							<strong class="item-price"><del><?PHP echo $Produit['Prix_de_vente']; echo "$"  ?></del> $28.00</strong>
+
+
+							<!-- jQuery -->
+	<!--<strong class="item-price"><del><?PHP echo $Produit['Prix_de_vente']; echo "$"  ?></del> 5.00$</strong> -->
 
 				        	<p>Quantité restante dans le stock: </p>
 		                	<p><?PHP echo $Produit['Quantité_dans_le_stock']; echo "kg" ?></p>

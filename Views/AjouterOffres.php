@@ -184,6 +184,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
 
+
           <!-- RECHERCHE  -->
           
            <!--  <form action="Recherche.php" method="POST">
@@ -316,8 +317,16 @@
 
 
 
-      <input type="submit" value="Ajouter" name = "submit">
+      <input type="submit" value="Ajouter" id="ajouter" name = "submit">
       <input type="reset" value="Annuler" name = "annuler">
+
+      <script>
+document.getElementById("ajouter").addEventListener("click", function() {
+  alert("promotion added successfully");
+});
+</script>
+
+
 
 
 

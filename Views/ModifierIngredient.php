@@ -102,7 +102,7 @@
           </li>
 
           <li class="active ">
-            <a href="ModifierIngredients.php">
+            <a href="AjouterIngredients.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
@@ -196,7 +196,7 @@
                       
                       <label for="Id_produit"> Identifiant </label>
 
-<input  type="number" name="Id_produit" id="Id_produit" class="form-control" value = "<?php echo $id; ?>" >
+<input  type="number" name="Id_produit" id="Id_produit" class="form-control" value = <?php echo  (int)$_POST["Id_produit"] ; ?> >
                   
                     </div>
                   </div>
@@ -211,7 +211,7 @@
                       <div class="form-group">
                   
                         <label for="Nom_produit"> nom de produit</label>
-                        <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="changer le nom "  >
+                        <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="changer le nom " value = <?php echo  $_POST["Nom_produit"] ; ?> >
                     
 
                     </div>
@@ -228,7 +228,7 @@
                       <div class="form-group">
                   
                         <label for="Quantité_dans_le_stock"> Quantité_dans_le_stock</label>
-                        <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="changer la quantité dans le stock"   >
+                        <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="changer la quantité dans le stock" value = <?php echo  $_POST["Quantité_dans_le_stock"] ; ?>  >
                     
 
                     </div>
@@ -247,7 +247,7 @@
                       <div class="form-group">
                   
                         <label for="Prix_de_vente"> Prix de vente</label>
-                        <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="changer le prix de vente"   > 
+                        <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="changer le prix de vente" value = <?php echo  $_POST["Prix_de_vente"] ; ?>  > 
                     
 
                     </div>
@@ -263,7 +263,7 @@
                       <div class="form-group">
                   
                         <label for="nom_image"> nom de l'image</label>
-                        <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image "   >
+                        <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image " value = <?php echo  $_POST["nom_image"] ; ?>   >
                     
 
                     </div>
