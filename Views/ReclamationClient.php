@@ -5,7 +5,7 @@
 	include "../Controller/ReclamationC.php";
 
 	include "../Controller/TypeReclamationC.php";
-$id="1";
+$id="3";
 
 	$ReclamationC=new ReclamationC();
 	$listeReclamationClient =$ReclamationC->getReclamationById_Client($id) ;
@@ -25,6 +25,7 @@ $id="1";
 	<script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
 
 	<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PointBIO</title>
@@ -254,11 +255,38 @@ $id="1";
 				</div>
 			</div>
 	
-	
-	
-			
 
 	</form>
+
+
+
+	<div class="box">
+      <div class="top">
+        <h2>Bienvenue </h2>
+      </div>
+      <div class="mid">
+    
+      
+          <p id="chatLog"> </p>
+      
+      </div>
+      <div class="input">
+        <input type="text" id="userBox" onkeydown="if(event.keyCode == 13){ talk()}" placeholder=".....">
+      </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="../assets/js/script.js"></script>
+
+
+
+
+
+
+
+
+
 
 
 	<div id="fh5co-about" data-section="about">
