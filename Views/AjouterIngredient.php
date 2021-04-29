@@ -65,6 +65,7 @@
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
  
 </head>
 
@@ -396,8 +397,6 @@ document.getElementById("ajouter").addEventListener("click", function() {
 
 
 
-
-
       </div>
     </div>
   </div>
@@ -417,7 +416,7 @@ document.getElementById("ajouter").addEventListener("click", function() {
 
 
 
-                <table class="table">
+                <table id="example" class="table">
                     <thead class=" text-primary">
                     <tr>
 				<th class="text-center">Identifiant</th>
@@ -496,6 +495,8 @@ document.getElementById("ajouter").addEventListener("click", function() {
 	<div class="imprimer">
         <input id="impression" name="impression" class="btn btn-primary" type="submit" onclick="imprimer_page()" value="Imprimer la Page" />
       </div>
+      <a align="right" href="statsQuantite.php"><img src="../assets/img/stats.jpg" alt="stats" style="width:42px;height:42px;"></a>
+
  
        <script type="text/javascript">
             function imprimer_page(){
@@ -554,14 +555,15 @@ document.getElementById("ajouter").addEventListener("click", function() {
   
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
-  <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        $('#zero_config').DataTable();
-    </script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"> </script>
+            <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"> </script>
+
+
 <script>
-document.write(Date());
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+
 </script>
 
 
