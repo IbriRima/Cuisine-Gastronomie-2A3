@@ -59,11 +59,19 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./AfficherClient.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Client</p>
             </a>
           </li>
+
+          <li >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
+            </a>
+          </li>
+          
           <li>
             <a href="">
               <i class="now-ui-icons ui-1_calendar-60"></i>

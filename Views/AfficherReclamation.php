@@ -28,6 +28,19 @@ array_push($arrayI,$Reclamation['Note']);
 array_push($arrayV,$Reclamation['Nombre']);
 
 }
+
+
+$arrayTI=array("");
+$arrayTV=array("");
+$listeType =$ReclamationC->getType();  
+foreach($listeType as $Reclamation)
+{ 
+array_push($arrayTI,$Reclamation['Type']);
+array_push($arrayTV,$Reclamation['NT']);
+
+
+}
+
 ?>
 
 
@@ -81,10 +94,16 @@ array_push($arrayV,$Reclamation['Nombre']);
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+          <li >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
@@ -422,6 +441,78 @@ gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
           
 </script>
      
+
+
+
+
+
+<div class="row" id="stat" >
+          <h4> Statistiques des réclamations selon le type  </h4>
+          </div>
+          <div class="row">
+          <h4> </h4>
+          </div>
+        <div style="width:60%;hieght:20%;text-align:center">
+         
+            <canvas  id="chartjs_bar3"></canvas> 
+        </div>    
+
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script type="text/javascript">
+
+      var gt = document.getElementById("chartjs_bar3").getContext('2d');
+      gradientFill = gt.createLinearGradient(0, 170, 20, 50);
+    gradientFill.addColorStop(0, "rgba(127, 182, 245, 0)");
+    gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
+
+                var myChart = new Chart(gt, {
+                    type: 'bar',
+                    data: {
+                        labels:<?php echo json_encode($arrayTI); ?>,
+                        datasets: [{
+          
+         backgroundColor: gradientFill,
+          borderColor: "rgba(255, 128,68, 0.9)",
+     
+     
+          pointBorderWidth: 2,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 1,
+          pointRadius: 4,
+          fill: true,
+          borderWidth: 1,
+          label: "Type de réclamation",
+          data: <?php echo json_encode($arrayTV); ?>
+        }]
+                       
+                    
+                    },
+                    options: {
+                           legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: '#71748d',
+                            fontFamily: 'Circular Std Book',
+                            fontSize: 16,
+                        }
+                    },
+ 
+ 
+                }
+                });
+
+                
+    </script>
+
+
+
+
+
+
+
+
         </div>
 
 

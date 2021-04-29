@@ -217,5 +217,22 @@
         }
 }
 
+
+
+
+public function getType() 
+    {
+        try {
+            $pdo = getConnexion();
+            $query = $pdo->prepare(
+                'SELECT Type, COUNT(*) as "NT" FROM reclamation GROUP BY Type'
+            );
+            $query->execute();
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+}
+
     }
     ?>

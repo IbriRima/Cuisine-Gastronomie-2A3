@@ -72,7 +72,7 @@
         <ul class="nav">
 
 
-         
+      
          
           <li class="active ">
             <a href="./AjouterTypeReclamation.php">
@@ -86,10 +86,17 @@
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+
+          <li >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
