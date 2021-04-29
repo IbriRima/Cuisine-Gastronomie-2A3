@@ -612,23 +612,30 @@
   <script type="text/javascript">
     function controleSaisie() {
       if (document.formulaire.ID.value == "") {
-        alert("Veuillez saisir votre Numéro de télèphone SVP !");
+        document.getElementById('labelID').innerHTML="Veuillez saisir votre Numéro de télèphone!";
+        return false;
       }
       if (document.formulaire.Nom.value == "") {
-        alert("Veuillez saisir votre Nom SVP !");
+       document.getElementById('labelNom').innerHTML="Veuillez saisir votre Nom SVP!";
+        return false;
       }
        if (document.formulaire.Prénom.value == "") {
-        alert("Veuillez saisir votre Prénom SVP !");
+         document.getElementById('labelPrénom').innerHTML="Veuillez saisir votre Prénom SVP!";
+        return false;
       }
       if (document.formulaire.email.value.indexOf('@') == -1) {
-        alert("Votre email doit avoir l'adresse @");
+         document.getElementById('labelemail').innerHTML="Tapez votre email SVP! (votre email doit contenir '@')";
+        return false;
       }
       if (document.formulaire.message.value == "") {
-        alert("Veuillez saisir votre message !");
+        document.getElementById('labelMessage').innerHTML="Veuillez saisir votre message!"; 
+        return false;
       }
       if (document.formulaire.datetemps.value == "") {
-        alert("Veuillez saisir la date et le temps de réservation !");
+        document.getElementById('labeldatetemps').innerHTML="Veuillez saisir la date et le temps de réservation!";
+        return false;
       }
+      return true;
     } 
   </script>
 
@@ -662,26 +669,32 @@
 						<div class="form-group ">
 							<label for="name" class="sr-only">ID(télèphone)</label>
 							<input id="name" name="ID" class="form-control" placeholder="ID(télèphone) :" type="tel">
+							<label id="labelID" name="labelID" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							<label for="name" class="sr-only">Nom</label>
 							<input id="name" name="Nom" class="form-control" placeholder="Nom :" type="text">
+							<label id="labelNom" name="labelNom" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							<label for="name" class="sr-only">Prénom</label>
 							<input id="name" name="Prénom" class="form-control" placeholder="Prénom :" type="text">
+							<label id="labelPrénom" name="labelPrénom" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							<label for="email" class="sr-only">email</label>
 							<input id="email" name="email" class="form-control" placeholder="E-mail :" type="email">
+							<label id="labelemail" name="labelemail" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							<label for="name" class="sr-only">Message</label>
 							<textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message :"></textarea>
+							<label id="labelMessage" name="labelMessage" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							<label for="name" class="sr-only">Date</label>
 							<input id="date" name="datetemps" class="form-control" placeholder="Date &amp; Time" type="text">
+							<label id="labeldatetemps" name="labeldatetemps" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							<input class="btn btn-primary" name="Réserver" value="Réserver" type="submit">

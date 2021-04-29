@@ -13,59 +13,62 @@
                 $e->getMessage();
             }
         }
+       
+          public function countCategoriesTable()
+        {   
+            $pdo = getConnexion();
 
-   /*     public function getReclamationById_Client($id) 
-        {
-            try {
-                $pdo = getConnexion();
-                $query = $pdo->prepare(
-                    'SELECT * FROM Reclamation WHERE Id_client= :id'
-                );
-                $query->execute([
-                    'id' => $id
-                ]);
-                return $query->fetchAll();
-            } catch (PDOException $e) {
-                $e->getMessage();
-            }
-    }
-*/
+            $stmt=$pdo->prepare("SELECT COUNT(*) FROM categories");
+            $stmt->execute();
 
-        public function addReclamation($Reclamation) {
-            try {
-                $pdo = getConnexion();
-                $query = $pdo->prepare(
-                    'INSERT INTO Reclamation (Description,Proposition,Note,Type,Etat_traitement,Id_client) 
-                VALUES (:Description,:Proposition,:Note,:Type,:Etat_traitement, :Id_client)'
-                );
-                $query->execute([
-                    'Description' => $Reclamation->getDescription(),
-                    'Proposition' => $Reclamation->getProposition(),
-                    'Note' => $Reclamation->getNote(),
-                    'Type' => $Reclamation->getType(),
-                    'Etat_traitement' => $Reclamation->getEtat_traitement(),
-                    'Id_client' => $Reclamation->getId_client()
-                ]);
-            } catch (PDOException $e) {
-                $e->getMessage();
-            }
+            $row=$stmt->fetchColumn();
+
+            return $row;
+
+
         }
 
-        public function updateReclamation($Reclamation, $id) {
+ 
+ function updateCategoriesTable() {
             try {
+                echo ("update1");
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'UPDATE Reclamation SET Description = :Description, Proposition = :Proposition, Note = :Note, Type= :Type, Etat_traitement=:Etat_traitement WHERE id_Recl = :id'
+                    'UPDATE categories SET ID = :ID, NB_places = :NB_places, Forme = :Forme, Espace = :Espace'   
                 );
+                echo ("update2");
                 $query->execute([
-                    'Description' => $Reclamation->getDescription(),       
-                    'Proposition' => $Reclamation->getProposition(),
-                    'Note' => $Reclamation->getNote(),
-                    'Type' => $Reclamation->getType(),
-                    'Etat_traitement' => $Reclamation->getEtat_traitement(),
-                    'id' => $id
+                    'ID' => $_POST['ID'],
+                    'NB_places' => $_POST['NB_Places'],
+                    'Forme' => $_POST['Forme'],
+                    'Espace' => $_POST['Espace'],
+                    
                 ]);
                 echo $query->rowCount() . " records UPDATED successfully";
+                header('Location:../Views/afficherCategoriesTable.php');
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        
+        }
+
+    public function addCategoriesTable() {
+            try {
+                echo('addcategoriesTable');
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'INSERT INTO categories (ID,NB_places,Forme,Espace) 
+                    VALUES (:ID,:NB_places,:Forme,:Espace)'
+                );
+                echo('addcategoriesTable2');
+                $query->execute([
+                   'ID' => $_POST['ID'],
+                    'NB_places' => $_POST['NB_Places'],
+                    'Forme' => $_POST['Forme'],
+                    'Espace' => $_POST['Espace']   
+           
+                ]);
+               header('Location:../Views/CategorieTable.php');
             } catch (PDOException $e) {
                 $e->getMessage();
             }
@@ -85,22 +88,7 @@
             }
         }
 
- /*       public function rechercherReclamation($id) 
-        {            
-            $sql = "SELECT * from Reclamation where id_Recl=:id"; 
-            $db = getConnexion();
-            try {
-                $query = $db->prepare($sql);
-                $query->execute([
-                    'id' => $Reclamation->getIdRecl(),
-                ]); 
-                $result = $query->fetchAll(); 
-                return $result;
-            }
-            catch (PDOException $e) {
-                $e->getMessage();
-            }
-        }
-        */
+
+       
     }
     

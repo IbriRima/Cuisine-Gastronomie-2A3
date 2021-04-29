@@ -1,17 +1,11 @@
-
-
 <?PHP
-
+require_once '../config.php';
 	include "../Controller/CategoriesTableC.php";
 $id="123";
 
 	$CategoriesTableC=new CategoriesTableC();
-	//$listeCategoriesTable =$CategoriesTableC->getCategoriesTableCByID($ID) 
+	
 ?>
-
-
-
-
 
 <!DOCTYPE html>
  <html class="no-js"> 
@@ -57,15 +51,10 @@ $id="123";
 
 	<!-- Modernizr JS -->
 	<script src="../assets/js/modernizr-2.6.2.min.js"></script>
-
-
 	</head>
 
 
 	<body>
-
-	
-
 	<div id="fh5co-container">
 		
 		
@@ -75,8 +64,6 @@ $id="123";
 					<div class="fh5co-menu-1">
 					<a href="#" data-nav-section="about"></a>
 						<a href="#" data-nav-section="Produits"></a>
-						<a href="#">Vos réclamations</a>
-					
 					</div>
 					<div class="fh5co-logo">
 						<a href="index.html">Point BIO</a>
@@ -92,30 +79,30 @@ $id="123";
 				
 			</div>
 		</div>
-
-
-
 	</div>
 	
  <script type="text/javascript">
     function controleSaisie() {
       if (document.formulaire.ID.value == "") {
-        alert("Veuillez saisir votre Numéro de télèphone SVP !");
+         document.getElementById('labelID').innerHTML="Veuillez saisir votre numéro de télèphone!";
+        return false;
       }
       if (document.formulaire.NB_Places.value == "") {
-        alert("Veuillez saisir le nombre de places SVP !");
+        document.getElementById('labelNB_Places').innerHTML="Veuillez saisir le nombre de places!";
+        return false;
       }
        if (document.formulaire.Forme.value == "") {
-        alert("Veuillez saisir la forme de table SVP !");
+        document.getElementById('labelForme').innerHTML="Veuillez choisir la forme de table";
+        return false;
       }
       
       if (document.formulaire.Espace.value == "") {
-        alert("Veuillez saisir l'espace de réservation !");
+        document.getElementById('labelEspace').innerHTML="Veuillez choisir l'espace de réservation";
+        return false;
       }
-     
+     return true;
     } 
-  </script>
-
+  </script> 
 
 
 
@@ -129,43 +116,46 @@ $id="123";
 					</div>
 				</div>
 		
-					<div class="col-md-6 to-animate-2" OnSubmit="return controleSaisie()">
+					<div class="col-md-6 to-animate-2" >
 						<h3>Catégories table</h3>
 
 				         <div class="form-group ">
 							<label for="name" class="sr-only">ID</label>
-							<input  name="ID" id="name" class="form-control" placeholder="ID :" type="tel">
+							<input  name="ID" id="ID" class="form-control" placeholder="ID :" type="tel">
+							<label id="labelID" name="labelID" style="color:#eb1212">  </label>
 						</div>
-
+							<!--<label id="labelnumero" name="labelnumero" style="color:#eb1212">  </label> -->
 						<div class="form-group ">
 							<label for="name" class="sr-only">NB_Places</label>
-							<input  name="NB_Places" id="name" class="form-control" placeholder="NB_Places :" type="number">
+							<input  name="NB_Places" id="NB_Places" class="form-control" placeholder="NB_Places :" type="number">
+							<label id="labelNB_Places" name="labelNB_places" style="color:#eb1212">  </label>
 						</div>
 
-			
+							
 						<div class="form-group ">
 							<label for="name" class="sr-only">Forme</label>
-							<select  name="Forme" id="name"  class="form-control" >
-							<option>Choisissez la forme de table</option>
+							<input type="text" name="Forme" id="Forme" class="form-control" list="Flist" placeholder="Choisissez la forme de table">
+							<datalist id="Flist">
 							  <option>Ronde</option>
 							  <option>Carré</option>
 							  <option>Rectangulaire</option>
-                              </select>
+                           	</datalist>
+                              <label id="labelForme" name="labelFrome" style="color:#eb1212">  </label>
 						</div>
 				
 						<div class="form-group ">
 							<label for="name" class="sr-only">Espace</label>
-							<select  name="Espace" id="name"  class="form-control" >
-							<option>Choisissez l'espace de réservation</option>
+							<input type="text" name="Espace" class="form-control" id="Espace" list="ESlist" placeholder="Choisissez l'espace de réservation">
+							<datalist id="ESlist">
 							  <option>Espace fumeur</option>
-							  <option>Espace non fumeur</option>
-                              </select>
+							  <option>Espace non fumeur</option> 
+							</datalist>
+                              <label id="labelEspace" name="labelEspace" style="color:#eb1212">  </label>
 						</div>
 							
 					
 
 						<div class="form-group ">
-						
 						
 							<input class="btn btn-primary" type="submit" name="Ajouter" value="Ajouter" >
 							<input class="btn btn-primary" type="reset" value="Annuler" name = "annuler">
@@ -182,95 +172,9 @@ $id="123";
 
 	<div id="fh5co-about" data-section="about">
 			<div class="fh5co-2col fh5co-bg to-animate-2" style="background-image: url(../assets/img/u.jpg)"></div>
-			<div class="fh5co-2col fh5co-text">
-				<h2 class="heading to-animate">Vos Réclamations</h2>
-				
-			
-	
-
-				<table class="table">
-                    <thead class=" text-primary">
-                    <tr>
-                    <th class="text-center">ID</th>
-				<th class="text-center">NB_places</th>
-				<th class="text-center">Forme</th>
-				<th class="text-center">Espace</th>
-				<th class="text-center">Supprimer</th>
-				<th class="text-center">Modifier</th>
-			
-	
-			</tr>
-          
-                    </thead>
-     
-                    <tbody>
-                    <?PHP
-				foreach($listeCategoriesTable  as $CategoriesTable)
-        {
-			?>
-				<tr>
-					<td class="text-center"><?PHP echo $CategoriesTable['ID']; ?></td>
-					<td class="text-center"><?PHP echo $CategoriesTable['NB_places']; ?></td>
-					<td class="text-center"><?PHP echo $CategoriesTable['Forme']; ?></td>
-                    <td class="text-center"><?PHP echo $CategoriesTable["Espace"] ?></td>
-					
-   
-					<!--<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td> -->
-
-					<td>
-					<form method="POST" action="SupprimerCategoriesTable.php">
-                    <input  type="image" src="../assets/img/delete1.png"  type="submit" width="25" heigth="8"/>
-                    <input   type="hidden" value=<?PHP echo $Reclamation['ID']; ?> name="ID" id="ID">
-                    </form>
-					</td>
-
-					<td>
-                    <form method="POST" action="ModifierReclamation.php">
-					<input  type="image" src="../assets/img/update1.png"  type="submit" width="25" heigth="8"/>
-                 
-                    </form>
-					</td>
-
-				</tr>
-			<?PHP
-				}
-			?>
-
-                    <tbody>              
-                  </table>
-				  </div>
-		</div>
-
-		<div id="fh5co-contact" data-section="reservation">
-			<div class="container">
-				<div class="row text-center fh5co-heading row-padded">
-					<div class="col-md-8 col-md-offset-2">
-						
-					</div>
-				</div>
-				</div>
-				</div>
-
-				  <div id="fh5co-footer">
-		<div class="container">
-			<div class="row row-padded">
-				<div class="col-md-12 text-center">
-					<p class="to-animate">PointBIO <br> Designed by <a href="" target="_blank">InnovationTeam</a> 
-					</p>
-					<p class="text-center to-animate"><a href="#" class="js-gotop">Go To Top</a></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<ul class="fh5co-social">
-						<li class="to-animate-2"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="to-animate-2"><a href="#"><i class="icon-twitter"></i></a></li>
-						<li class="to-animate-2"><a href="#"><i class="icon-instagram"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+			<!--<div class="fh5co-2col fh5co-text"> -->
 	</div>
+				
 
 
 
@@ -290,6 +194,7 @@ $id="123";
 	<script src="../assets/js/jquery.waypoints.min.js"></script>
 	<!-- Stellar Parallax -->
 	<script src="../assets/js/jquery.stellar.min.js"></script>
+	<script type = "text/javascript"  src="../assets/js/reservation.js"></script>
 
 	<!-- Flexslider -->
 	<script src="../assets/js/jquery.flexslider-min.js"></script>

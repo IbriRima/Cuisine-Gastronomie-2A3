@@ -6,8 +6,8 @@
 if(isset($_POST['Ajouter']))
     {
         
-        $categoriesTable=new CategoriesTable();
-        $categoriesTable->addCategoriesTable();
+       $categoriesTable=new CategoriesTable();
+       $categoriesTable->addCategoriesTable();
        
     }
 
@@ -34,7 +34,7 @@ class CategoriesTable{
                     'Message' =>  'jawhar',
                     'datetemps' =>  'jawhar'*/
                 ]);
-                header('Location:../Views/CategorieTable.php');
+               header('Location:../Views/CategorieTable.php');
             } catch (PDOException $e) {
                 $e->getMessage();
             }

@@ -8,11 +8,12 @@
 	include "../controller/ReservationC.php";
 
 
+$keyword="";
 $ReservationC=new ReservationC();
-$listeReservation =$ReservationC->afficherReservation();
-?>
+$listeReservation =$ReservationC->afficherReservation($keyword);
 
-<?php
+
+
 require_once '../config.php';
 if(isset($_POST['Enregistrer']))
     {
@@ -40,7 +41,7 @@ class Reservation{
                     
                 ]);
                 echo $query->rowCount() . " records UPDATED successfully";
-                header('Location:../Views/afficheReservation.php');
+                header('Location:../Views/Rechercher.php');
             } catch (PDOException $e) {
                 $e->getMessage();
             }
@@ -286,7 +287,7 @@ class Reservation{
           				<div class="form-group ">
 							<input class="btn btn-primary"  name="Enregistrer" value="Enregistrer" type="submit">
 							<input class="btn btn-primary" value="Annuler" type="reset">
-						</div
+						</div>
 			
 					</form>
 </div>

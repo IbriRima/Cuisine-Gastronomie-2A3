@@ -246,9 +246,6 @@ class CategoriesTable{
                 <div class="table-responsive">
 
 
-                 <!-- <table class="table"> -->
-
-
 	<div class="form-group ">
 		            <?PHP
 				foreach($listeCategoriesTable as $CategoriesTable)
@@ -274,8 +271,6 @@ class CategoriesTable{
                 </select>
 </div>
 
-						<!--	<input id="name" name="Forme" class="form-control" value="<?PHP echo $CategoriesTable["Forme"] ?>" placeholder="Forme :" type="text">
-						</div> -->
 						<div class="form-group ">
 							
 							<input id="name" name="Espace" class="form-control" value="<?PHP echo $CategoriesTable["Espace"] ?>" placeholder="Espace :" type="text">
@@ -285,15 +280,6 @@ class CategoriesTable{
           <input class="btn btn-primary" type="reset" value="Annuler" >
         </div>
 						
-             		<!--<form method="POST" action="ModiferReservation.php"> -->
-          			<!--	<div class="form-group ">
-						<!--	<input class="btn btn-primary"  name="Enregistrer" value="Enregistrer" type="submit"> 
-							<button type="submit" name="Edit" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fas fa-user-edit"></i>                
-                </button>
-						</div> -->
-
-			
 					</form>
 </div>
 

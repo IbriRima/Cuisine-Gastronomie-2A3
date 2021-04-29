@@ -6,6 +6,6 @@
 	if (isset($_POST["ID"]))
 		{
 			$ReservationC->deleteReservation($_POST["ID"]);
-			header('Location:AfficheReservation.php');
+			header('Location:Rechercher.php');
 		}
 ?>

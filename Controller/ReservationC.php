@@ -1,7 +1,58 @@
 <?php
     require_once '../config.php';
+    if(isset($_POST['searchbutton']))
+    {
+        $reservation=new ReservationC();
+        $reservation->Search();
+    }
+
     class ReservationC {
-        public function afficherReservation() {
+         public function Search() {
+            
+            session_start();
+                $_SESSION['search'] = $_POST['search'];
+                header('Location:../Views/Rechercher.php'); 
+        }
+        public function afficherReservation($keyword) {
+            
+
+            if($keyword=="")
+            {
+                                
+                try {
+                    $pdo = getConnexion();
+                    $query = $pdo->prepare(
+                        'SELECT * FROM reserve '
+                    );
+                    $query->execute([
+                    ]);
+                    return $query->fetchAll();
+                } catch (PDOException $e) {
+                    $e->getMessage();
+                }
+            }
+            else
+            {
+                               
+                try {
+                    $pdo = getConnexion();
+                    $query = $pdo->prepare(
+                        'SELECT * FROM reserve  WHERE ID=:keyword'
+                    );
+                    $query->execute([
+                        'keyword' => $keyword,
+
+                    ]);
+                    return $query->fetchAll();
+
+                } catch (PDOException $e) {
+                    $e->getMessage();
+                }
+
+            }
+           
+        }
+      /*  public function afficherReservation() {
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
@@ -13,13 +64,13 @@
                 $e->getMessage();
             }
         }
-
-     /*   public function getReclamationById_Client($id) 
+*/
+        public function getReservationByID($id) 
         {
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                   'SELECT * FROM Reclamation WHERE Id_client= :id'
+                   'SELECT * FROM reserve WHERE ID= :id'
                 );
                 $query->execute([
                     'id' => $id
@@ -28,7 +79,7 @@
             } catch (PDOException $e) {
                 $e->getMessage();
             }
-    } */
+    } 
 
 
         public function addReservation($reserve) {
@@ -86,14 +137,14 @@
             }
         }
 
-      /*  public function rechercherReclamation($id) 
+       public function rechercherReservation($id) 
         {            
-            $sql = "SELECT * from Reclamation where id_Recl=:id"; 
+            $sql = "SELECT * from reserve where ID=:id"; 
             $db = getConnexion();
             try {
                 $query = $db->prepare($sql);
                 $query->execute([
-                    'id' => $Reclamation->getIdRecl(),
+                    'id' => $Reservation->getID(),
                 ]); 
                 $result = $query->fetchAll(); 
                 return $result;
@@ -101,6 +152,19 @@
             catch (PDOException $e) {
                 $e->getMessage();
             }
-        } */
+        } 
         
-    } 
+    
+     public function countReservation()
+        {
+            $pdo = getConnexion();
+
+            $stmt=$pdo->prepare("SELECT COUNT(*) FROM reserve");
+            $stmt->execute();
+
+            $row=$stmt->fetchColumn();
+
+            return $row;
+
+        }
+  }

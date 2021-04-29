@@ -61,7 +61,7 @@ $listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
             </a>
           </li>
           <li>
-            <a href="./AfficheReservation.php">
+            <a href="./Rechercher.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
@@ -232,21 +232,19 @@ $listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
 					<td class="text-center"><?PHP echo $CategoriesTable['Forme']; ?></td>
           <td class="text-center"><?PHP echo $CategoriesTable['Espace'] ?></td>
 					
-              <td>
+          <td>
 					<form method="POST" action="SupprimerCategoriesTable.php">
             <input  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10"/>
             <input type="hidden" value=<?PHP echo $CategoriesTable['ID']; ?> name="ID" id="ID">
-          <!--  <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement"> -->
-            </form>
-					</td>
+          </form>
+				 </td>
      
 
-           <td>
+         <td>
           <form method="POST" action="AfficheModifTable.php">
             <input  type="image" src="../assets/img/update.png" name="Modifier" type="submit" width="30" heigth="10"/>
             <input type="hidden" value=<?PHP echo $CategoriesTable['ID']; ?> name="ID" id="ID">
-        <!--    <input type="hidden" value=<?PHP echo $Reservation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement"> -->
-            </form>
+         </form>
           </td>
 
 

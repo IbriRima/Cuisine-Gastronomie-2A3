@@ -1,11 +1,12 @@
 <?PHP
-	//include "../controller/TypeReclamationC.php";
-	include "../controller/ReservationC.php";
-
+include "../controller/ReservationC.php";
+session_start();
+$keyword = $_SESSION['search'];
 
 $ReservationC=new ReservationC();
-$listeReservation =$ReservationC->afficherReservation();
+$listeReservation =$ReservationC->afficherReservation($keyword);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -61,7 +62,7 @@ $listeReservation =$ReservationC->afficherReservation();
             </a>
           </li>
           <li class="active ">
-            <a href="./AfficheReservation.php">
+            <a href="./Rechercher.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
@@ -145,16 +146,24 @@ $listeReservation =$ReservationC->afficherReservation();
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
+                  
+
+                    <form action="Rechercher.php" method="POST">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="search" name="recherche" id="recherche"  class="form-control" placeholder="Chercher...">
+
+
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <i class="now-ui-icons ui-1_zoom-bold"></i>
                   </div>
                 </div>
               </div>
-            </form>
+
+</form>
+           
+
+
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -199,6 +208,24 @@ $listeReservation =$ReservationC->afficherReservation();
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
+                  <form method="POST" action="../Controller/ReservationC.php">
+
+                <div class="input-group no-border">
+                <input type="text"  class="form-control" placeholder="Recherche..." name="search"
+                value=<?PHP echo $keyword; ?>
+                >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                  <button type="submit" name="searchbutton"   width="30" heigth="10">
+                <img src="../assets/img/loupe.png" style="border:0; text-decoration:none; outline:none"
+                width="30" heigth="10">
+                </button>
+                  </div>
+                </div>
+              </div>
+
+              </form>
+
                 <h4 class="card-title"> Liste des réservations</h4>
               </div>
               <div class="card-body">
@@ -210,45 +237,27 @@ $listeReservation =$ReservationC->afficherReservation();
                     <thead class=" text-primary">
                     <tr>
 
-
-
-                   <!--   <input id="name" name="ID" class="form-control" placeholder="ID(télèphone) :" type="tel">
-                      <input id="name" name="Nom" class="form-control" placeholder="Nom :" type="text">
-                      <input id="name" name="Prénom" class="form-control" placeholder="Prénom :" type="text">
-                      <input id="email" name="email" class="form-control" placeholder="E-mail :" type="email">
-                      <input id="name" name="Message" class="form-control" placeholder="Message :" type="text">
-                      <input id="date" name="datetemps" class="form-control" placeholder="Date &amp; Time" type="text">
-                    -->
-
-
-
-
                       <th class="text-center">ID</th>
                     <th class="text-center">Nom</th>
-				<th class="text-center">Prénom</th>
+        <th class="text-center">Prénom</th>
 
-				<th class="text-center">E-mail</th>
-				<th class="text-center">Message</th>
-				<th class="text-center">Date de réservation</th>
-				
-				<th class="text-center">Supprimer</th>
-				<th class="text-center">Modifier</th> 
-		<!--	<th> <input type="button" value="Modifier"> </th>
-            <th> <input type="button" value="Supprimer"> </th> -->
-
+        <th class="text-center">E-mail</th>
+        <th class="text-center">Message</th>
+        <th class="text-center">Date de réservation</th>
         
-	
-			</tr>
+        <th class="text-center">Supprimer</th>
+        <th class="text-center">Modifier</th> 
+      </tr>
           
                     </thead>
      
                     <tbody>
                     <?PHP
-				foreach($listeReservation as $Reservation)
+        foreach($listeReservation as $Reservation)
         {
-			?>
+      ?>
        
-		<tr>
+    <tr>
           <td class="text-center"><?PHP echo $Reservation["ID"] ?></td>
           <td class="text-center"><?PHP echo $Reservation['Nom']; ?></td>
           <td class="text-center"><?PHP echo $Reservation['Prenom']; ?></td>
@@ -260,40 +269,32 @@ $listeReservation =$ReservationC->afficherReservation();
           <form method="POST" action="SupprimerReservation.php">
             <input  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10"/>
             <input type="hidden" value=<?PHP echo $Reservation['ID']; ?> name="ID" id="ID">
-          <!--  <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement"> -->
-            </form>
-          </td>
+           </form>
+              </td>
      
 
            <td>
           <form method="POST" action="ModifRes.php">
             <input  type="image" src="../assets/img/update.png" name="Modifier" type="submit" width="30" heigth="10"/>
             <input type="hidden" value=<?PHP echo $Reservation['ID']; ?> name="ID" id="ID">
-        <!--    <input type="hidden" value=<?PHP echo $Reservation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement"> -->
-            </form>
-          </td>
+          </form>
+           </td>
 
 
         </tr>
 
-			<?PHP
-				}
-			?>
+      <?PHP
+        }
+      ?>
 
-                    <tbody>              
+
+                    <tbody> 
+
                   </table>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-
-
-
-    
-
 
     </div>
   </div>
@@ -308,6 +309,50 @@ $listeReservation =$ReservationC->afficherReservation();
   
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+
+
+  <!-- 
+  content of this area will be the content of your PDF file 
+  -->
+  <div id="HTMLtoPDF">
+
+  
+
+  </div>
+
+  <!-- here we call the function that makes PDF -->
+  <!--  <a href="#" onclick="HTMLtoPDF()">Download PDF</a> -->
+
+  <!-- these js files are used for making PDF -->
+  <script src="js/jspdf.js"></script>
+  <script src="js/jquery-2.1.3.js"></script>
+   <script src="js/pdfFromHTML.js"></script>
+  
+
+    <form action="stats.php" name="formulaire" method="POST">
+    <div class="form-group ">
+         <input class="btn btn-primary" name="Statistiques" value="Statistiques" type="submit">
+    </div>
+    </form>
+  
+
+   <form action="imprimer.php" name="formulaire" method="POST">
+    <div class="form-group ">
+         <input class="btn btn-primary" name="Imprimer" value="Imprimer" type="submit">
+    </div>
+    </form>
+
+<br><br><br>
+                  
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div
+
+
 
 </body>
 
