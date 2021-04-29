@@ -4,7 +4,7 @@
 
     $error = "";
 
-
+ 
      
     if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]))
      {
@@ -36,6 +36,8 @@
 
 <head>
   <meta charset="utf-8" />
+  <script type = "text/javascript"  src="plat.js"></script>  
+
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -54,12 +56,14 @@
 
 <body class="user-profile">
 
+
 <div class="wrapper ">
     <div class="sidebar" data-color="yellow">
 
       <div class="logo">
         
       </div>
+     
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
  
@@ -94,9 +98,71 @@
       </div>
     </div>
  
- 
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="#pablo">Table List</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <form method="POST" action="Recherche.php">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search..." name="recherche" id="recherche" >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="statistique_plat.php">
+                  <i class="now-ui-icons media-2_sound-wave"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Stats</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="now-ui-icons location_world"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="now-ui-icons users_single-02"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Account</span>
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
    
-      <form action="AjouterPlat.php" method="POST"> 
+      <form action="AjouterPlat.php" method="POST" id="form"> 
         
       <div class="panel-header panel-header-sm"></div>
       <div class="content">
@@ -105,14 +171,27 @@
             <div class="card">
  
  
- 
+         
+
             <div class="card-header">
                 <h5 class="title"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Ajouter un plat        </h5>
               </div>
 
 
               <div class="card-body">
-           
+              <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label for="Nbr_Clri_plat">  nombre de calorie par plat</label>
+                        <input  type="number" name="Nbr_Clri_plat" id="Nbr_Clri_plat" class="form-control" placeholder="calorie/portion">
+                      </div>
+                    </div>
+                    </div>
+                    <div class="controle" id="verifnbrclri">
+      </div>
                 <div class="row">
                  
                     <div class="col-md-3 px-1">
@@ -122,11 +201,12 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="Nom_Plat"> nom de plat</label>
-                        <input  type="text" name="Nom_Plat" id="Nom_Plat" class="form-control" placeholder="nom de plat">
+                        <input  type="text" name="Nom_Plat" id="Nom_Plat" class="form-control" placeholder="nom de plat" >
                       </div>
                     </div>
                   </div>
-
+                  <div class="controle" id="verifnomplat">
+      </div>
 
 
                   <div class="row">    
@@ -136,11 +216,24 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="Type_plat">  le type de plat </label>
-                        <input  type="text" name="Type_plat" id="Type_plat" class="form-control" placeholder="type de plat">
+                        <select  name="Type_plat" id="Type_plat"  class="form-control" >
+                        <option>Choisissez un type de plat</option>
+
+              <option>Entree-chaud</option>
+              <option>Entree-froid</option>
+              <option>Plat-principale</option>
+              <option>Dessert</option>
+              <option>Apéritifs</option>
+  </select>
+              
+
+
                       </div>
                     </div>
                     </div>
-
+                    
+                    <div class="controle" id="veriftypeplat">
+      </div>
                     <div class="row">    
                   <div class="col-md-3 px-1">
                       <div class="form-group"></div>
@@ -152,20 +245,12 @@
                       </div>
                     </div>
                     </div>
+                    <div class="controle" id="verifprixplat"> 
 
-
-                    <div class="row">    
-                  <div class="col-md-3 px-1">
-                      <div class="form-group"></div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label for="Nbr_Clri_plat">  nombre de calorie par plat</label>
-                        <input  type="number" name="Nbr_Clri_plat" id="Nbr_Clri_plat" class="form-control" placeholder="calorie/portion">
-                      </div>
-                    </div>
+                    
                     </div>
 
+       
                     <div class="row">    
                   <div class="col-md-3 px-1">
                       <div class="form-group"></div>
@@ -177,11 +262,12 @@
                       </div>
                     </div>
                     </div>
-
+                    <div class="controle" id="verifpdsportion">
+      </div>
                   <div class="row">
                   
                     <div class="col-md-12 pl" style="text-align:center">
-                    <input  type="submit"   value=" Ajouter" name = "submit">
+                    <input  type="submit"   value=" Ajouter" name = "submit" onclick = "verifplat();">
                     <input type="reset" value="Annuler" name = "annuler">
                     </div>
                     </div>
@@ -220,9 +306,9 @@
         <th class="text-center">nombre de calorie par plat</th>
 				<th class="text-center">poids d'une portion</th>
 
-			<!--	<th class="text-center">Supprimer</th>
+				<th class="text-center">Supprimer</th>
 				<th class="text-center">Modifier</th>  
-        -->
+        
 			</tr>
                     </thead>
      
@@ -241,7 +327,26 @@
 					<td class="text-center"><?PHP echo $plat['Nbr_Clri_plat']; ?></td>
           <td class="text-center"><?PHP echo $plat['Pds_Portion_plat']; ?></td>
 
+          <td>
+					<form method="POST" action="SupprimerPlat.php">
+            <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $plat['Id_plat']; ?> name="Id_plat" id="Id_plat">
+            </form>
+					</td>
 
+
+          <td>
+          <form method="POST" action="ModifierPlat.php" >
+          <input class="left" type="image" src="../assets/img/update.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $plat['Id_plat']; ?> name="Id_plat" id="Id_plat">
+            <input type="hidden" value=<?PHP echo $plat['Nom_Plat']; ?> name="Nom_Plat" id="Nom_Plat">
+            <input type="hidden" value=<?PHP echo $plat['Type_plat']; ?> name="Type_plat" id="Type_plat">
+            <input type="hidden" value=<?PHP echo $plat['Prix_plat']; ?> name="Prix_plat" id="Prix_plat">
+            <input type="hidden" value=<?PHP echo $plat['Nbr_Clri_plat']; ?> name="Nbr_Clri_plat" id="Nbr_Clri_plat">
+            <input type="hidden" value=<?PHP echo $plat['Pds_Portion_plat']; ?> name="Pds_Portion_plat" id="Pds_Portion_plat">
+
+            </form>
+					</td>
 
 				</tr>
 			<?PHP
@@ -259,7 +364,6 @@
 
   
   
-
 
 
 

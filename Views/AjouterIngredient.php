@@ -191,11 +191,10 @@
 				<th class="text-center">nom d'ingredient'</th>
         <th class="text-center">type d'ingredient'</th>
 				<th class="text-center">prix d'ingredient</th>
-     
-
-			<!--	<th class="text-center">Supprimer</th>
+        <th class="text-center">Supprimer</th>
 				<th class="text-center">Modifier</th>  
-        -->
+
+			
 			</tr>
                     </thead>
      
@@ -213,7 +212,25 @@
           <td class="text-center"><?PHP echo $ingredient['Prix_Igd']; ?></td>
 					
 
+          <td>
+					<form method="POST" action="SupprimerIngredient.php">
+            <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $ingredient["Id_Igd"] ?> name="Id_Igd" id="Id_Igd">
+            </form>
+					</td>
 
+
+          <td>
+          <form method="POST" action="ModifierIngredient.php" >
+          <input class="left" type="image" src="../assets/img/update.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $ingredient['Id_Igd']; ?> name="Id_Igd" id="Id_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Nom_Igd']; ?> name="Nom_Igd" id="Nom_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Type_Igd']; ?> name="Type_Igd" id="Type_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Prix_Igd']; ?> name="Prix_Igd" id="Prix_Igd">
+            
+
+            </form>
+					</td>
 				</tr>
 			<?PHP
 				}

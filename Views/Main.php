@@ -1,3 +1,18 @@
+<?php
+    require_once '../Controller/platC.php';
+    require_once '../Model/plat.php';
+	require_once '../Controller/ingredientC.php';
+    require_once '../Model/ingredient.php';
+      $platC = new platC();
+      $listeplat =$platC->afficherplat();
+      
+	  $ingredientC = new ingredientC() ;
+      $listeingredient =$ingredientC->afficherIgd();
+     
+
+?>
+
+
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -9,9 +24,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PointBIO</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -22,10 +34,8 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
-
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
-
+	<link rel="shortcut icon" href="../assets/img/favicon.png">
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
 	
 	<!-- Animate.css -->
@@ -40,31 +50,38 @@
 	<link rel="stylesheet" href="../assets//css/flexslider.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="../assets//css/bootstrap.css">
-
 	<link rel="stylesheet" href="../assets//css/style.css">
-
-
 	<!-- Modernizr JS -->
 	<script src="../assets/js/modernizr-2.6.2.min.js"></script>
-
-
+	
 	</head>
-
-
 	<body>
-
+	<script src="dark.js"></script>
+      <script>
+      new Darkmode({
+        bottom: '32px',
+        right: '32px',
+        time: '0.5s',
+        label: '🌓'
+      }).showWidget();
+    </script>
 	<div id="fh5co-container">
+	<div >
+			<a  href="ReclamationClient.php" >Se connecter</a>
+	</div >
 		<div id="fh5co-home" class="js-fullheight" data-section="home">
-
 			<div class="flexslider">
 				
 				<div class="fh5co-overlay"></div>
+				
 				<div class="fh5co-text">
+		
 					<div class="container">
 						<div class="row">
 							<h1 class="to-animate">PointBIO</h1>
-							<h2 class="to-animate" id="slogan">We don't change anything <span>but</span> it changes EVERYTHING</a></h2>
+							<h2 class="to-animate" id="slogan">On ne change RIEN <span>et</span> ça change TOUT</a></h2>
 						</div>
+					
 					</div>
 				</div>
 			  	<ul class="slides">
@@ -72,7 +89,6 @@
 			   	<li style="background-image: url(../assets/img/slide_2.jpg);" data-stellar-background-ratio="0.5"></li>
 			   	<li style="background-image: url(../assets/img/slide_3.jpg);" data-stellar-background-ratio="0.5"></li>
 			  	</ul>
-
 			</div>
 			
 		</div>
@@ -82,8 +98,9 @@
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
 					
-						<a href="#" data-nav-section="about">About</a>
-						<a href="#" data-nav-section="features">Features</a>
+						<a href="#" data-nav-section="about">A propos de nous</a>
+						<a href="#" data-nav-section="Produits">Nos Produits frais</a>
+						<a href="#" data-nav-section="Produits">Nos Promotions</a>
 					
 					</div>
 					<div class="fh5co-logo">
@@ -91,14 +108,15 @@
 					</div>
 					<div class="fh5co-menu-2">
 						<a href="#" data-nav-section="menu">Menu</a>
-						<a href="#" data-nav-section="events">Events</a>
-						<a href="#" data-nav-section="reservation">Reservation</a>
+					
+						<a href="#" data-nav-section="reservation">Réserver une table</a>
+						
 					</div>
 				</div>
 				
 			</div>
 		</div>
-		<button><a href="AjouterTypeReclamation.php">Administrateur</a></button>
+	<a href="AjouterTypeReclamation.php">Administrateur</a>
 		<div id="fh5co-about" data-section="about">
 			<div class="fh5co-2col fh5co-bg to-animate-2" style="background-image: url(../assets/img/res_img_1.jpg)"></div>
 			<div class="fh5co-2col fh5co-text">
@@ -107,11 +125,9 @@
 				<p class="text-center to-animate"><a href="#" class="btn btn-primary btn-outline">Get in touch</a></p>
 			</div>
 		</div>
-
 		<div id="fh5co-sayings">
 			<div class="container">
 				<div class="row to-animate">
-
 					<div class="flexslider">
 						<ul class="slides">
 							
@@ -143,16 +159,79 @@
 							
 						</ul>
 					</div>
-
 				</div>
 			</div>
-		</div>
-
-		<div id="fh5co-featured" data-section="features">
+	
+		<div id="fh5co-featured"  data-section="Produits">
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
-						<h2 class="heading to-animate">Featured Dishes</h2>
+						<h2 class="heading to-animate">Nos Produits frais</h2>
+						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="fh5co-grid">
+						
+						<div class="fh5co-v-half to-animate-2">
+							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_1.jpg)"></div>
+							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
+								<h2>Fresh Mushrooms</h2>
+								<span class="pricing">$7.50</span>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							</div>
+						</div>
+					
+						<div class="fh5co-v-half">
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_2.jpg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-left">
+									<h2>Grilled Chiken Salad</h2>
+									<span class="pricing">$12.00</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_8.jpg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-right">
+									<h2>Cheese and Garlic Toast</h2>
+									<span class="pricing">$4.50</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+						</div>
+						<div class="fh5co-v-half">
+							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_7.jpg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-right">
+									<h2>Organic Egg</h2>
+									<span class="pricing">$4.99</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_6.jpg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-left">
+									<h2>Salad with Crispy Chicken</h2>
+									<span class="pricing">$8.50</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+						</div>
+						<div class="fh5co-v-half to-animate-2">
+							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_3.jpg)"></div>
+							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
+								<h2>Tomato Soup with Chicken</h2>
+								<span class="pricing">$12.99</span>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+<div class="container" >
+				<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="heading to-animate">Nos promotions</h2>
 						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 					</div>
 				</div>
@@ -184,7 +263,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="fh5co-v-half">
 							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
 								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_7.jpg)"></div>
@@ -211,291 +289,90 @@
 								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
-		</div>
-
-
-
+	</div>
+</div>
 		<div id="fh5co-menus" data-section="menu">
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
-						<h2 class="heading to-animate">Food Menu</h2>
+						<h2 class="heading to-animate">Notre Menu</h2>
 						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 					</div>
 				</div>
 				<div class="row row-padded">
 					<div class="col-md-6">
 						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-drinks">Drinks</h2>
+							<h2 class="fh5co-drinks">plats</h2>
+				<?PHP
+				foreach($listeplat as $plat)
+        {
+			?>
+				
 							<ul>
-								<li>
+								
+							<li>
 									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_5.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
+										
 										<div>
-											<h3>Pineapple Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
+											<h3><?PHP echo $plat['Nom_Plat']; ?></h3>
+											<p>le type de plat <?PHP echo $plat['Nom_Plat']; ?> est <?PHP echo $plat['Type_plat']; ?> a comme nombre de calorie <?PHP echo $plat['Nbr_Clri_plat']; ?> pour une portion de poids <?PHP echo $plat['Pds_Portion_plat']; ?> </p>
 										</div>
 									</div>
 									<div class="fh5co-food-pricing">
-										$17.50
+									<?PHP echo $plat['Prix_plat']; ?> 
 									</div>
 								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_6.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Green Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$7.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_7.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Soft Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_5.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Carlo Rosee Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
+							<?php } ?>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-dishes">Steak</h2>
+							<h2 class="fh5co-dishes">Food</h2>
 							<ul>
-								<li>
+							<?PHP
+				foreach($listeingredient as $ingredient)
+        {
+			?>
+				
+							<ul>
+								
+							<li>
 									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_3.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
+										
 										<div>
-											<h3>Beef Steak</h3>
-											<p>Far far away, behind the word mountains.</p>
+											<h3><?PHP echo $ingredient['Nom_Igd']; ?></h3>
+											<p>le type de plat <?PHP echo $ingredient['Nom_Igd']; ?> est <?PHP echo $ingredient['Type_Igd']; ?>  </p>
 										</div>
 									</div>
 									<div class="fh5co-food-pricing">
-										$17.50
+									<?PHP echo $ingredient['Prix_Igd']; ?>
 									</div>
 								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_4.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Tomato with Chicken</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$7.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_2.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Sausages from Italy</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_8.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Beef Grilled</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
+							<?php } ?>
+								
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-drinks">Drinks</h2>
-							<ul>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_5.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Pineapple Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$17.50
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_6.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Green Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$7.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_7.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Soft Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_5.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Carlo Rosee Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-dishes">Steak</h2>
-							<ul>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_3.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Beef Steak</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$17.50
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_4.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Tomato with Chicken</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$7.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_2.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Sausages from Italy</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="../assets/img/res_img_8.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Beef Grilled</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										$12.99
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
+					
+					
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
-						<p><a href="#" class="btn btn-primary btn-outline">More Food Menu</a></p>
+						<p><a href="./afficherPlatFront.php" class="btn btn-primary btn-outline" >voir tous le menu</a></p>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<div id="fh5co-events" data-section="events" style="background-image: url(../assets/img/slide_2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="fh5co-overlay"></div>
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2 to-animate">
-						<h2 class="heading">Upcoming Events</h2>
+						<h2 class="heading"> </h2>
 						<p class="sub-heading">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 					</div>
 				</div>
@@ -528,7 +405,6 @@
 			</div>
 		</div>
 		
-
 		<form action="AjouterReclamation.php" method="POST">
 	
 		<div id="fh5co-contact" data-section="reservation">
@@ -575,8 +451,6 @@
 							<label for="date" class="sr-only">Date</label>
 							<input id="date" class="form-control" placeholder="Date &amp; Time" type="text">
 						</div>
-
-
 							
 			
 						<div class="form-group ">
@@ -587,18 +461,14 @@
 			</div>
 		</div>
 	</form>
-
-
-
 		
 		
 	</div>
-
 	<div id="fh5co-footer">
 		<div class="container">
 			<div class="row row-padded">
 				<div class="col-md-12 text-center">
-					<p class="to-animate">&copy; 2016 Foodee Free HTML5 Template. <br> Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> Demo img: <a href="http://pexels.com/" target="_blank">Pexels</a> <br> Tasty Icons Free <a href="http://handdrawngoods.com/store/tasty-icons-free-food-icons/" target="_blank">handdrawngoods</a>
+					<p class="to-animate">PointBIO <br> Designed by <a href="" target="_blank">InnovationTeam</a> 
 					</p>
 					<p class="text-center to-animate"><a href="#" class="js-gotop">Go To Top</a></p>
 				</div>
@@ -614,8 +484,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	
 	
 	
@@ -633,7 +501,6 @@
 	<script src="../assets/js/jquery.waypoints.min.js"></script>
 	<!-- Stellar Parallax -->
 	<script src="../assets/js/jquery.stellar.min.js"></script>
-
 	<!-- Flexslider -->
 	<script src="../assets/js/jquery.flexslider-min.js"></script>
 	<script>
@@ -643,7 +510,5 @@
 	</script>
 	<!-- Main JS -->
 	<script src="../assets/js/main.js"></script>
-
 	</body>
 </html>
-

@@ -1,11 +1,19 @@
-<?PHP
-	include "../controller/platC.php";
-	include "../controller/ingredientC.php";
-  $platC=new platC();
-$listeplat =$platC->afficherplat();
+<?php
+    require_once '../Controller/platC.php';
+    require_once '../Model/plat.php';
 
-$ingredientC=new ingredientC();
-$listeingredient =$ingredientC->afficherIgd();
+    $error = "";
+
+    $platC = new platC();
+        $type=$_POST['recherche'];
+        $listeplat = $platC->rechercherplat($type);
+  
+     
+   
+     
+      
+    
+
 ?>
 
 
@@ -13,9 +21,12 @@ $listeingredient =$ingredientC->afficherIgd();
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8" />
+  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+ 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     PointBIO
@@ -40,10 +51,7 @@ $listeingredient =$ingredientC->afficherIgd();
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
-
-         
-         
-          <li>
+        <li class="active ">
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Plat</p>
@@ -52,13 +60,17 @@ $listeingredient =$ingredientC->afficherIgd();
           <li >
           <a href="./AjouterIngredient.php">
               <i class="now-ui-icons files_single-copy-04"></i>
-              <p>ingredient</p>
+              <p>Ingredient</p>
             </a>
           </li>
-          <li class="active ">
+         
+         
+       
+
+          <li >
             <a href="./tables.php">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
+              <p>Liste des tables</p>
             </a>
           </li>
          
@@ -70,8 +82,11 @@ $listeingredient =$ingredientC->afficherIgd();
             </a>
           </li>
         </ul>
+
+        
       </div>
     </div>
+
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -83,25 +98,42 @@ $listeingredient =$ingredientC->afficherIgd();
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
+
+
             </div>
-            <a class="navbar-brand" href="#pablo">Table List</a>
+            <a class="navbar-brand" href="#pablo"></a>
           </div>
+
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
+
+
+          <!-- RECHERCHE  -->
+          
+            <form action="Recherche.php" method="POST">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
+
+
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <i class="now-ui-icons ui-1_zoom-bold"></i>
                   </div>
                 </div>
               </div>
-            </form>
+
+</form>
+
+
+
+
+
+
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -118,10 +150,8 @@ $listeingredient =$ingredientC->afficherIgd();
                     <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
+                 
                 </div>
               </li>
               <li class="nav-item">
@@ -136,6 +166,7 @@ $listeingredient =$ingredientC->afficherIgd();
           </div>
         </div>
       </nav>
+      
       <!-- End Navbar -->
 
 
@@ -146,7 +177,8 @@ $listeingredient =$ingredientC->afficherIgd();
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Table des plats</h4>
+                <h4 class="card-title"> Liste plat de type <?PHP echo $type; ?></h4>
+                <div class="controle" id="verifEtat"> </div>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -154,18 +186,19 @@ $listeingredient =$ingredientC->afficherIgd();
 
 
                   <table class="table">
-                    <thead class=" text-primary">
+                  <thead class=" text-primary">
                     <tr>
-                    <th class="text-center">  &nbsp;&nbsp;Identifiant de plat</th>
+				<th class="text-center">  &nbsp;&nbsp;Identifiant de plat</th>
 				<th class="text-center">nom de plat</th>
         <th class="text-center">type de plat</th>
 				<th class="text-center">prix de plat</th>
         <th class="text-center">nombre de calorie par plat</th>
 				<th class="text-center">poids d'une portion</th>
-			
-	
+
+				<th class="text-center">Supprimer</th>
+				<th class="text-center">Modifier</th>  
+        
 			</tr>
-          
                     </thead>
      
                     <tbody>
@@ -174,13 +207,34 @@ $listeingredient =$ingredientC->afficherIgd();
         {
 			?>
 				<tr>
-        <td class="text-center"><?PHP echo $plat["Id_plat"] ?></td>
+					<td class="text-center"><?PHP echo $plat["Id_plat"] ?></td>
 					<td class="text-center"><?PHP echo $plat['Nom_Plat']; ?></td>
 					<td class="text-center"><?PHP echo $plat['Type_plat']; ?></td>
           <td class="text-center"><?PHP echo $plat['Prix_plat']; ?></td>
 					<td class="text-center"><?PHP echo $plat['Nbr_Clri_plat']; ?></td>
           <td class="text-center"><?PHP echo $plat['Pds_Portion_plat']; ?></td>
-     
+
+          <td>
+					<form method="POST" action="SupprimerPlat.php">
+            <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $plat['Id_plat']; ?> name="Id_plat" id="Id_plat">
+            </form>
+					</td>
+
+
+          <td>
+          <form method="POST" action="ModifierPlat.php" >
+          <input class="left" type="image" src="../assets/img/update.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $plat['Id_plat']; ?> name="Id_plat" id="Id_plat">
+            <input type="hidden" value=<?PHP echo $plat['Nom_Plat']; ?> name="Nom_Plat" id="Nom_Plat">
+            <input type="hidden" value=<?PHP echo $plat['Type_plat']; ?> name="Type_plat" id="Type_plat">
+            <input type="hidden" value=<?PHP echo $plat['Prix_plat']; ?> name="Prix_plat" id="Prix_plat">
+            <input type="hidden" value=<?PHP echo $plat['Nbr_Clri_plat']; ?> name="Nbr_Clri_plat" id="Nbr_Clri_plat">
+            <input type="hidden" value=<?PHP echo $plat['Pds_Portion_plat']; ?> name="Pds_Portion_plat" id="Pds_Portion_plat">
+
+            </form>
+					</td>
+
 				</tr>
 			<?PHP
 				}
@@ -198,62 +252,9 @@ $listeingredient =$ingredientC->afficherIgd();
 
 
 
-          <div class="col-md-12">
-            <div class="card ">
-              <div class="card-header">
-                <h4 class="card-title"> Table des ingredients</h4>
-              
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-
-                    <thead class="text-center">
-                    <th class="text-center">  &nbsp;&nbsp;Identifiant d'ingredient</th>
-				<th class="text-center">nom d'ingredient'</th>
-        <th class="text-center">type d'ingredient'</th>
-				<th class="text-center">prix d'ingredient</th>
-     
-                 
-                    </thead>
-
-
-
-
-
-
-                    <tbody>
-                    
-                    <?PHP
-				foreach($listeingredient as $ingredient)
-        {
-			?>
-				<tr>
-        <td class="text-center"><?PHP echo $ingredient["Id_Igd"] ?></td>
-					<td class="text-center"><?PHP echo $ingredient['Nom_Igd']; ?></td>
-					<td class="text-center"><?PHP echo $ingredient['Type_Igd']; ?></td>
-          <td class="text-center"><?PHP echo $ingredient['Prix_Igd']; ?></td>
     
-          
-				</tr>
-			<?PHP
-				}
-			?>
-
-                    </tbody>
-                  </table>
 
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-     
     </div>
   </div>
   <!--   Core JS Files   -->

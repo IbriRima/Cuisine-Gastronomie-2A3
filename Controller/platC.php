@@ -71,15 +71,28 @@
                 $e->getMessage();
             }
         }
-
-        public function rechercherplat($id) 
+        function recupererPlat($id){
+			$sql="SELECT * from plat where Id_plat= $id";
+			$pdo = getConnexion();
+			try{
+				$query=$pdo->prepare($sql);
+				$query->execute();
+				
+				$plat = $query->fetch(PDO::FETCH_OBJ);
+				return $plat;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
+        public function rechercherplat($type) 
         {            
-            $sql = "SELECT * from plat where Id_plat=:id"; 
+            $sql = "SELECT * from plat where Type_plat=:type"; 
             $db = getConnexion();
             try {
                 $query = $db->prepare($sql);
                 $query->execute([
-                    'id' => $plat->getIdplat(),
+                    'type' => $type
                 ]); 
                 $result = $query->fetchAll(); 
                 return $result;
@@ -88,5 +101,20 @@
                 $e->getMessage();
             }
         }
+
+
+        public function stattype() 
+    {
+        try {
+            $pdo = getConnexion();
+            $query = $pdo->prepare(
+                'SELECT Type_plat, COUNT(*) as "Nombre" FROM plat GROUP BY Type_plat'
+            );
+            $query->execute();
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+}
         
     }

@@ -84,5 +84,19 @@
                 $e->getMessage();
             }
         }
+        function recupererIgd($id){
+			$sql="SELECT * from ingredient where Id_Igd=$id";
+			$pdo = getConnexion();
+			try{
+				$query=$pdo->prepare($sql);
+				$query->execute();
+				
+				$ingredient = $query->fetch(PDO::FETCH_OBJ);
+				return $ingredient;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
         
     }
