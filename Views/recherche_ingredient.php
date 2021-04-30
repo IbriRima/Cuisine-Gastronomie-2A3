@@ -1,39 +1,21 @@
 <?php
-     require_once '../Controller/TypeReclamationC.php';
-	 require_once '../Model/TypeReclamation.php';
+    require_once '../Controller/ingredientC.php';
+    require_once '../Model/ingredient.php';
 
     $error = "";
 
-
-     
-    if (isset($_POST["libelle"])&& isset($_POST["duree"]) )
-     {
-      if (
-        !empty($_POST["libelle"]) && 
-        !empty($_POST["duree"]) 
-    )
-    {
-
-      $Libelle=$_POST['libelle'];
-      $Duree=(int)$_POST['duree'];
+    $ingredientC = new ingredientC();
+        $type=$_POST['recherche'];
+        $listeingredient = $ingredientC->rechercherIgd($type);
+  
      
    
-  $TypeReclamation = new TypeReclamation($Libelle,$Duree);
-  $TypeReclamationC = new TypeReclamationC();
-  $TypeReclamationC->addTypeReclamation($TypeReclamation);
-    }
-    else
-    $error = "Missing information";
-    }
-
-
-
-        $TypeReclamationC = new TypeReclamationC();
-      $listeTypeReclamation =$TypeReclamationC->afficherTypeReclamation();
+     
       
     
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +24,6 @@
 
   <meta charset="utf-8" />
   
-  <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
-  <script type = "text/javascript"  src="../assets/js/test.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
  
@@ -71,10 +51,7 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
-
-      
-         
-          <li class="active ">
+        <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -102,7 +79,7 @@
           </li>
 
 
-          <li >
+          <li  >
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
@@ -135,7 +112,7 @@
               <p>offres</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
@@ -197,13 +174,54 @@
 
           <!-- RECHERCHE  -->
           
-            
+            <form action="Recherche.php" method="POST">
+              <div class="input-group no-border">
+                <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
+
+
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+
+</form>
 
 
 
 
 
-          
+
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="now-ui-icons media-2_sound-wave"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Stats</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="now-ui-icons location_world"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
+                 
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="now-ui-icons users_single-02"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Account</span>
+                  </p>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
@@ -213,89 +231,12 @@
 
       <div class="panel-header panel-header-sm">
       </div>
- 
       <div class="content">
-
-      <form action="AjouterTypeReclamation.php" method="POST" id="form"> 
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title"> Liste des types de réclamations</h4>
-        <div class="controle" id="verifEtat"> </div>
-      </div>
-      <div class="card-body">
-
-
-       
-        
-  
-              <div class="form-group"></div>
-          
-            
-        
-            
-            <div class="row">    
-              <div class="col-md-3 px-1">
-                  <div class="form-group"></div>
-                </div>
-                <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label for="libelle"> Libellé</label>
-                    <input  type="text" name="libelle" id="libelle" class="form-control" placeholder="Libellé">
-
-                  </div>
-                </div>
-                </div>
-                <div class="controle" id="verifLibelle">
-      </div>
-
-
-  
-
-      <div class="row">    
-              <div class="col-md-3 px-1">
-                  <div class="form-group"></div>
-                </div>
-                <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label for="duree">  Durée maximale pour le traitement</label>
-                    <input  type="number" name="duree" id="duree" class="form-control" placeholder="Durée en jours" value='0'>
- 
-                  </div>
-                </div>
-                </div>
-
-
-                <div class="controle" id="verifDuree">
-      </div>
-   
-
-   
-        
-            
-        
-
-
-            <input type="submit" value="Ajouter" name = "submit" onclick = "AjoutType();">
-      <input type="reset" value="Annuler" name = "annuler">
-
-
-
-
-      </div>
-    </div>
-  </div>
-</div>
-
-</form>
-
         <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Liste des types de réclamations</h4>
+                <h4 class="card-title"> Liste ingredient de type <?PHP echo $type; ?></h4>
                 <div class="controle" id="verifEtat"> </div>
               </div>
               <div class="card-body">
@@ -303,46 +244,52 @@
 
 
 
-                <table class="table">
-                    <thead class=" text-primary">
+                  <table class="table">
+                  <thead class=" text-primary">
                     <tr>
-				<th class="text-center">Identifiant</th>
-				<th class="text-center">Libellé</th>
-				<th class="text-center">Durée maximale de traitement de la réclamation</th>
-			
+                    <th class="text-center">  &nbsp;&nbsp;Identifiant d'ingredient</th>
+				<th class="text-center">nom d'ingredient'</th>
+        <th class="text-center">type d'ingredient'</th>
+				<th class="text-center">prix d'ingredient</th>
+
+
 				<th class="text-center">Supprimer</th>
-				<th class="text-center">Modifier</th>
+				<th class="text-center">Modifier</th>  
+        
 			</tr>
                     </thead>
      
-                  
-                  
                     <tbody>
                     <?PHP
-				foreach($listeTypeReclamation as $TypeReclamation)
+				foreach($listeingredient as $ingredient)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $TypeReclamation["Id_type"] ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Libelle']; ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Duree_traitement_max']; ?></td>
+					<td class="text-center"><?PHP echo $ingredient["Id_Igd"] ?></td>
+					<td class="text-center"><?PHP echo $ingredient['Nom_Igd']; ?></td>
+					<td class="text-center"><?PHP echo $ingredient['Type_Igd']; ?></td>
+          <td class="text-center"><?PHP echo $ingredient['Prix_Igd']; ?></td>
+					
+
           <td>
-					<form method="POST" action="SupprimerTypeReclamation.php">
+					<form method="POST" action="SupprimerIngredient.php">
             <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Id_type']; ?> name="Id_type" id="Id_type">
+            <input type="hidden" value=<?PHP echo $ingredient["Id_Igd"] ?> name="Id_Igd" id="Id_Igd">
             </form>
 					</td>
 
 
           <td>
-          <form method="POST" action="ModifierTypeReclamation.php" >
-          <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Id_type']; ?> name="Id_type" id="Id_type">
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Libelle']; ?> name="Libelle" id="Libelle">
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Duree_traitement_max']; ?> name="duree" id="duree">
+          <form method="POST" action="ModifierIngredient.php" >
+          <input class="left" type="image" src="../assets/img/update.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $ingredient['Id_Igd']; ?> name="Id_Igd" id="Id_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Nom_Igd']; ?> name="Nom_Igd" id="Nom_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Type_Igd']; ?> name="Type_Igd" id="Type_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Prix_Igd']; ?> name="Prix_Igd" id="Prix_Igd">
+            
+
             </form>
 					</td>
-
 
 				</tr>
 			<?PHP
@@ -355,19 +302,17 @@
               </div>
             </div>
           </div>
+
+
+
+
+
+
+    
+
+
     </div>
-
-
-
-   
-
-
-
-
-</div>
-
-
-
+  </div>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

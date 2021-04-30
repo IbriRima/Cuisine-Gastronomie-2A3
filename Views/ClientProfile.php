@@ -41,7 +41,7 @@ $listeClient=$client->getClient($numero);
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
-
+	<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
 
@@ -127,8 +127,7 @@ $listeClient=$client->getClient($numero);
 
 
 	</div>
-		
-	
+
 	
 
 	<div class="main-panel1" id="main-panel">
@@ -136,9 +135,17 @@ $listeClient=$client->getClient($numero);
 	
       <div class="panel-header1 panel-header-sm">
       </div>
-	  <a href="./ReclamationClient.php" >Vos réclamations</a>
-      <div class="content">
 
+
+
+
+	  
+
+
+
+
+      <div class="content">
+	
 	  
         	<div class="row">
           		<div class="col-md-8">
@@ -228,7 +235,17 @@ $listeClient=$client->getClient($numero);
 			 <?PHP
 				}
 			?> 
+<div class="row">
 
+<div class="reclamation">  
+
+<label for="reclamation"></label>
+<a  href="./ReclamationClient.php" >Mes réclamation</a>
+
+
+
+</div>
+</div>
 			  
 			  </div>
             </div>
@@ -245,7 +262,6 @@ $listeClient=$client->getClient($numero);
 	
 	</div>
 
-	
 	
 	
     <!-- container-scroller -->

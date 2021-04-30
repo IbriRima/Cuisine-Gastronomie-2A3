@@ -1,17 +1,13 @@
 <?PHP
-	include "../controller/ReclamationC.php";
+	include "../controller/ProduitC.php";
 
 
-    $Id_client=$_POST["recherche"]; 
+    $Id_produit=$_POST["recherche"]; 
 
  
-    $ReclamationC=new ReclamationC();
-    $listeReclamationClient =$ReclamationC->getReclamationById_Client($Id_client) ;
+    $ProduitC=new ProduitC();
+    $listeProduit =$ProduitC->getIdproduit($Id_produit) ;
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +15,7 @@
 <head>
 
   <meta charset="utf-8" />
+  
   <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
   <script type = "text/javascript"  src="../assets/js/test.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -45,21 +42,21 @@
       <div class="logo">
         
       </div>
-     
-
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
-      
          
-          <li >
+         
+             
+         
+        <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
             </a>
           </li>
-          <li class="active " >
+          <li >
           <a href="./AfficherReclamation.php">
               <i class="now-ui-icons ui-1_email-85"></i>
               <p>réclamation</p>
@@ -81,40 +78,40 @@
           </li>
 
 
-          <li >
+          <li  >
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./AfficheModifTable.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
           </li>
 
-          <li>
-            <a href="./Ajouterproduit.php">
+          <li class="active">
+            <a href="./Ajouterproduit">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
-          <li>
+          <li >
             <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
-          <li>
+          <li >
             <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
@@ -146,9 +143,8 @@
 
         
       </div>
-
     </div>
-
+   
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -175,9 +171,11 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
 
+
+
           <!-- RECHERCHE  -->
           
-            <form action="Recherche.php" method="POST">
+             <form action="recherche.php" method="POST">
               <div class="input-group no-border">
                 <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
 
@@ -213,7 +211,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
-                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
+                  <a class="dropdown-item" name="TypeRech">Identifiant produit</a>
                   <a class="dropdown-item"  name="TypeRech">Type</a>
                   <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
                 </div>
@@ -229,80 +227,260 @@
             </ul>
           </div>
         </div>
-      </nav>
+      </nav>   
       
       <!-- End Navbar -->
-
+      <script type="text/javascript">
+    function controleSaisie() {
+       if (document.formulaire.Nom_produit.value == "") {
+        alert("Veuillez saisir votre nom de produit !");
+      }
+      if (document.formulaire.Quantité_dans_le_stock.value == "") {
+        alert("Veuillez saisir la quantité dans le stock !");
+      }
+      if (document.formulaire.Prix_de_vente.value == "") {
+        alert("Veuillez saisir prix de vente !");
+      }
+      if (document.formulaire.nom_image.value == "") {
+        alert("Veuillez saisir le nom de l'image !");
+      }
+    } 
+  </script> 
 
       <div class="panel-header panel-header-sm">
       </div>
+ 
       <div class="content">
+
+      <form name="formulaire" action="AjouterIngredient.php" method="POST" id="form"  OnSubmit="return controleSaisie()"> 
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+      <h5> <p style="color:orange">liste des Produits</p> </h5>
+        <div class="controle" id="verifEtat"> </div>
+      </div>
+      <div class="card-body">
+
+
+       
+        
+  
+              <div class="form-group"></div>
+          
+            
+        
+            
+            <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="Nom_produit"> Nom produit</label>
+                    <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="Nom produit">
+
+                  </div>
+                </div>
+                </div>
+                <div class="controle" id="verifNom_produit">
+      </div>
+
+
+  
+
+      <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="Quantité_dans_le_stock">  Quantité dans le stock</label>
+                    <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="Quantité dans le stock" >
+ 
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="controle" id="verifQuantité_dans_le_stock">
+      </div>
+
+
+      <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="Prix_de_vente">  Prix_de_vente</label>
+                    <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="Prix de vente" >
+ 
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="controle" id="verifPrix_de_vente">
+      </div>
+
+      <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="nom_image"> nom de l'image a saisir (.jpg) </label>
+                    <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="nom de l'image doit etre .jpg">
+
+                  </div>
+                </div>
+                </div>
+                <div class="controle" id="verifnom_image">
+      </div>
+
+   
+
+   
+
+   
+        
+            
+        
+
+
+      <input type="submit" value="Ajouter" name = "submit">
+      <input type="reset" value="Annuler" name = "annuler">
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+
         <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Liste des réclamations du client <?PHP echo $Id_client; ?></h4>
-                <div class="controle" id="verifEtat"> </div>
+                <h4 class="card-title"> Liste Produits</h4>
+                <div class="controle" > </div>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
 
 
 
-                  <table class="table">
+                <table class="table">
                     <thead class=" text-primary">
                     <tr>
-                    <th class="text-center">Identifiant</th>
-				<th class="text-center">Description</th>
-				<th class="text-center">Proposition</th>
-				<th class="text-center">Note</th>
-				<th class="text-center">Type</th>
-		
-        <th class="text-center">Etat de traitement</th>
+				<th class="text-center">Identifiant</th>
+				<th class="text-center">Nom produit</th>
+				<th class="text-center">quantite dans le stock</th>
+        <th class="text-center">prix de vente</th>
+        <th class="text-center">nom de l'image</th>
 
-				<th class="text-center">Supprimer
-       
-       </th>
-				<th class="text-center">Modifier</th>
+
 			
-	
+				<th class="text-center">Supprimer</th>
+				<th class="text-center">Modifier</th>
 			</tr>
-          
                     </thead>
      
+                  
+                  
                     <tbody>
                     <?PHP
-				foreach($listeReclamationClient as $Reclamation)
+				foreach($listeProduit as $Produit)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $Reclamation["Id_Recl"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Description']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Proposition']; ?></td>
-          <td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Type']; ?></td>
-   
-					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
-              <td>
-					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin">
-            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" onclick="DeleteAdmin();"/>
-            <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
-            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
-            </form>
-					</td>
-     
+					<td class="text-center"><?PHP echo $Produit["Id_produit"] ?></td>
+					<td class="text-center"><?PHP echo $Produit['Nom_produit']; ?></td>
+					<td class="text-center"><?PHP echo $Produit['Quantité_dans_le_stock']; ?></td>
+          <td class="text-center"><?PHP echo $Produit['Prix_de_vente']; ?></td>
+          <td class="text-center"><?PHP echo $Produit['nom_image']; ?></td>
+
+
           <td>
-					<form method="POST" action="ModifierReclAdmin.php" >
-            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
-            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
+					<form method="POST" action="SupprimerIngredient.php">
+            <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $Produit['Id_produit']; ?> name="Id_produit" id="Id_produit">
             </form>
 					</td>
+
+
+          <td>
+          <form method="POST" action="ModifierIngredient.php" >
+          <input class="left" type="image" src="../assets/img/update1.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $Produit['Id_produit']; ?> name="Id_produit" id="Id_produit">
+            <input type="hidden" value=<?PHP echo $Produit['Nom_produit']; ?> name="Nom_produit" id="Nom_produit">
+            <input type="hidden" value=<?PHP echo $Produit['Quantité_dans_le_stock']; ?> name="Quantité_dans_le_stock" id="Quantité_dans_le_stock">
+            <input type="hidden" value=<?PHP echo $Produit['Prix_de_vente']; ?> name="Prix_de_vente" id="Prix_de_vente">
+            <input type="hidden" value=<?PHP echo $Produit['nom_image']; ?> name="nom_image" id="nom_image">
+
+
+            </form>
+					</td>
+
 
 				</tr>
 			<?PHP
 				}
 			?>
+
+
+										<!-- 
+	content of this area will be the content of your PDF file 
+	-->
+	<div id="HTMLtoPDF">
+
+	
+
+	</div>
+
+	<!-- here we call the function that makes PDF -->
+	<a href="#" onclick="HTMLtoPDF()">Download PDF</a>
+
+	<!-- these js files are used for making PDF -->
+	<script src="js/jspdf.js"></script>
+	<script src="js/jquery-2.1.3.js"></script>
+	<script src="js/pdfFromHTML.js"></script>
+	
+	<div class="imprimer">
+        <input id="impression" name="impression" class="btn btn-primary" type="submit" onclick="imprimer_page()" value="Imprimer la Page" />
+      </div>
+ 
+       <script type="text/javascript">
+            function imprimer_page(){
+            window.print();
+             }
+        </script>
+
+<br><br><br>
+									
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+
 
                     <tbody>              
                   </table>
@@ -310,17 +488,19 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
-    
-
-
     </div>
-  </div>
+
+
+
+   
+
+
+
+
+</div>
+
+
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

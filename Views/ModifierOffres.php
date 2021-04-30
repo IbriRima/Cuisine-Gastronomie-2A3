@@ -1,23 +1,22 @@
 <?php
- require_once '../Controller/platC.php';
- require_once '../Model/plat.php';
+  require_once '../Controller/OffresC.php';
+  require_once '../Model/offres.php';
 
- $platC = new platC();
-	$error = "";
-
-    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]))
-
+  $OffresC = new OffresC() ;
+  $error = "";
+  
+  if (isset($_POST["Valeur"])&& isset($_POST["id_produit"]))
          {
             if (
-                !empty($_POST["Nom_Plat"]) && 
-                !empty($_POST["Type_plat"]) &&
-                !empty($_POST["Prix_plat"]) && 
-                !empty($_POST["Nbr_Clri_plat"]) &&
-                !empty($_POST["Pds_Portion_plat"])
-            )  {
-                $plat = new plat($_POST["Nom_Plat"],$_POST["Type_plat"],$_POST["Prix_plat"],$_POST["Nbr_Clri_plat"],$_POST["Pds_Portion_plat"] );
+                !empty($_POST["Valeur"]) &&
+                !empty($_POST["id_produit"]) 
+
+               
+            )
+              {
+                $offres = new offres($_POST["Valeur"],$_POST["id_produit"]);
                   
-          $platC->updateplat($plat,$_POST["Id_plat"]);
+          $OffresC->updateOffres($offres,$_POST["Id_offres"]);
               }
               else
                   $error = "Missing information";
@@ -25,6 +24,10 @@
 	
 
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,23 +53,15 @@
 <div id="error">
             <?php echo $error; ?>
         </div>
-			
-
-	<?php
-			if (isset($_POST["Id_plat"])){
-        $id=$_POST["Id_plat"];
+				<?php
+			if (isset($_POST["Id_offres"])){
+        $Valeur=(int)$_POST["Valeur"];
        
-        $Nom_Plat=$_POST["Nom_Plat"];
-        
-        $Type_plat=$_POST["Type_plat"];
-        $Prix_plat=$_POST["Prix_plat"];
-        $Nbr_Clri_plat=$_POST["Nbr_Clri_plat"];
-        $Pds_Portion_plat=$_POST["Pds_Portion_plat"];
-
-				$plat= $platC->recupererPlat($_POST["Id_plat"]);
-    
+        $Id_prod=(int)$_POST["id_produit"];
+       
+				$offre= $OffresC->recupererOffre($_POST["Id_offres"]);
+      
 		?>
-
 <div class="wrapper ">
 
   <div class="sidebar" data-color="yellow">
@@ -75,13 +70,15 @@
       
     </div>
 
-    <div class="sidebar-wrapper" id="sidebar-wrapper">
+<div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
-      
          
-          <li >
+         
+             
+         
+        <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -116,40 +113,40 @@
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./AfficheModifTable.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
           </li>
 
           <li>
-            <a href="./Ajouterproduit.php">
+            <a href="./Ajouterproduit">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
-          <li>
+          <li class="active">
             <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
-          <li>
+          <li >
             <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
-          <li class="active">
+          <li>
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
@@ -175,10 +172,6 @@
         
       </div>
     </div>
- 
- 
-
-     
 
     <div class="main-panel" id="main-panel">
 
@@ -191,7 +184,7 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier le  Plat d'identifiant <?php echo $_POST["Id_plat"]?> </h5>
+                <h5 class="title">Modifier une offre</h5>
               </div>
               <div class="card-body">
             
@@ -215,7 +208,7 @@
 
      
 
-                <form action="ModifierPlat.php" method="POST" id="formA"> 
+                <form action="ModifierOffres.php" method="POST" id="formA"> 
 
             
    <div class="row">
@@ -226,45 +219,14 @@
                       <div class="form-group">
               
                       
-                     
-                          <input  type="number" name="Id_plat" id="Id_plat" class="form-control" value = "<?php echo $id; ?>" hidden >
+                      <label for="Id_offres"> Identifiant </label>
+
+<input  type="number" name="Id_offres" id="Id_offres" class="form-control" placeholder="entrez l'id de l'offre" value = "<?php echo $_POST["Id_offres"]; ?>" >
                   
                     </div>
                   </div>
                 </div>
 
-                  <div class="row">    
-                  <div class="col-md-3 px-1">
-                      <div class="form-group"></div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                  
-                        <label for="Nom_Plat"> nom de plat</label>
-                        <input  type="text" name="Nom_Plat" id="Nom_Plat" class="form-control" placeholder="nom de plat" value = "<?php echo $Nom_Plat; ?>"  >
-                    
-
-                    </div>
-                    </div>
-          
-                  </div>
-                  <div class="row">    
-                  <div class="col-md-3 px-1">
-                      <div class="form-group"></div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                  
-                        <label for="Type_plat"> type de plat</label>
-                        <input  type="text" name="Type_plat" id="Type_plat" class="form-control" placeholder="type de plat" value = "<?php echo $Type_plat; ?>"  >
-                    
-
-                    </div>
-                    </div>
-          
-                  </div>
-
-
 
                   <div class="row">    
                   <div class="col-md-3 px-1">
@@ -273,74 +235,30 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                   
-                        <label for="Prix_plat"> Prix de plat</label>
-                        <input  type="text" name="Prix_plat" id="Prix_plat" class="form-control" placeholder="Prix de plat" value = "<?php echo $Prix_plat; ?>"  >
+                        <label for="Valeur"> changer le Valeur de l'offre</label>
+                        <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="changer le valeur de l'offre"    value = <?php echo  (int)$_POST["Valeur"]; ?>>
                     
 
                     </div>
-                    </div>
-          
-                  </div>
-
-
-
-
-
-
-                  <div class="row">    
-                  <div class="col-md-3 px-1">
-                      <div class="form-group"></div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
+                    <div class="form-group">
                   
-                        <label for="Nbr_Clri_plat"> nombre de calorie par plat</label>
-                        <input  type="text" name="Nbr_Clri_plat" id="Nbr_Clri_plat" class="form-control" placeholder="clri/plat" value = "<?php echo $Nbr_Clri_plat; ?>"  >
-                    
+                  <label for="id_produit"> changer l'identifiant du produit</label>
+                  <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="changer l'identifiant du produit"   value = <?php echo  (int)$_POST["id_produit"] ; ?> >
+              
 
-                    </div>
-                    </div>
-          
-                  </div>
-
-
-
-
-
-
-
-
-
-
-                  <div class="row">    
-                  <div class="col-md-3 px-1">
-                      <div class="form-group"></div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                  
-                        <label for="Pds_Portion_plat"> Poid de portion par plat</label>
-                        <input  type="text" name="Pds_Portion_plat" id="Pds_Portion_plat" class="form-control" placeholder="pds/portion" value = "<?php echo $Pds_Portion_plat; ?>"  >
-                    
-
-                    </div>
+              </div>
                     </div>
           
                   </div>
-
-
-
-
-
 
 
 
 
              
-                  <div class="controle" id="verifDureeAd"> </div>
+                  <div class="controle" id="verifValeur"> </div>
                 
          
-          <input type="submit" value="Enregistrer" name = "submit"  >
+                  <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
           <input type="reset" value="Annuler" name = "annuler">
  
         </form> 
@@ -364,11 +282,12 @@
     </div>
   </div>
 </div>
- 
-    <?php
-		}
-		?>
-          
+  
+<?php
+    
+  }
+
+  ?>    
 
 
   

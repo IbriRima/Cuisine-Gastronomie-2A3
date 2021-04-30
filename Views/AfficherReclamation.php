@@ -131,14 +131,14 @@ array_push($arrayTV,$Reclamation['NT']);
           </li>
 
           <li>
-            <a href="">
+            <a href="./Ajouterproduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterIngredient.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
