@@ -350,9 +350,9 @@ $listeReservation =$ReservationC->afficherReservation($keyword);
                         </div>
                     </div>
                 </div>
-            </div
+            </div>
 
-
+</tbody>
 
 </body>
 

@@ -33,7 +33,8 @@ $listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
  
 </head>
 <body>
-<!--<img src="../assets/img/favicon.png" height="80" width="100">-->
+<img src="../assets/img/favicon.png" height="80" width="80"><h5>PointBIO</h5>
+<br>
 <img src="../assets/img/u.jpg" height="500" width="1300">
 <p>
 </p>

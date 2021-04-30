@@ -105,7 +105,7 @@ class Reservation{
             </a>
           </li>
           <li class="active ">
-            <a href="./AfficheReservation.php">
+            <a href="./Rechercher.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>

@@ -1,11 +1,26 @@
 <?PHP
-	include "../controller/TypeReclamationC.php";
-	include "../controller/ReclamationC.php";
-  $TypeReclamationC=new TypeReclamationC();
-$listeTypeReclamation =$TypeReclamationC->afficherTypeReclamation();
+//include "../controller/ReservationC.php";
+include "../controller/CategoriesTableC.php";
 
-$ReclamationC=new ReclamationC();
-$listeReclamation =$ReclamationC->afficherReclamation();
+$ReservationC=new ReservationC();
+$listeReservation =$ReservationC->afficherReservation();
+
+$CategoriesTableC=new CategoriesTableC();
+$listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
+  class ReservationC {
+        public function afficherReservation() {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM reserve'
+                );
+                $query->execute();
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+        }
 ?>
 
 
@@ -62,14 +77,14 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./Rechercher.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./afficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
@@ -193,7 +208,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Table de types de réclamation</h4>
+                  <h4 class="card-title"> Liste des réservations</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -203,26 +218,33 @@ $listeReclamation =$ReclamationC->afficherReclamation();
                   <table class="table">
                     <thead class=" text-primary">
                     <tr>
-				<th class="text-center">Identifiant</th>
-				<th class="text-center">Libellé</th>
-				<th class="text-center">Durée maximale de traitement de la réclamation</th>
-			
-	
-			</tr>
+
+                      <th class="text-center">ID</th>
+                    <th class="text-center">Nom</th>
+        <th class="text-center">Prénom</th>
+
+        <th class="text-center">E-mail</th>
+        <th class="text-center">Message</th>
+        <th class="text-center">Date de réservation</th>
+        
+      </tr>
           
                     </thead>
      
                     <tbody>
                     <?PHP
-				foreach($listeTypeReclamation as $TypeReclamation)
+        foreach($listeReservation as $Reservation)
         {
-			?>
-				<tr>
-					<td class="text-center"><?PHP echo $TypeReclamation["Id_type"] ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Libelle']; ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Duree_traitement_max']; ?></td>
-     
-				</tr>
+      ?>
+       
+    <tr>
+          <td class="text-center"><?PHP echo $Reservation["ID"] ?></td>
+          <td class="text-center"><?PHP echo $Reservation['Nom']; ?></td>
+          <td class="text-center"><?PHP echo $Reservation['Prenom']; ?></td>
+          <td class="text-center"><?PHP echo $Reservation['Email'] ?></td>
+          <td class="text-center"><?PHP echo $Reservation['Message'] ?></td>
+          <td class="text-center"><?PHP echo $Reservation['datetemps'] ?></td>
+          
 			<?PHP
 				}
 			?>
@@ -239,57 +261,44 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 
 
 
+          <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
           <div class="col-md-12">
-            <div class="card card-plain">
+            <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Table de réclamation</h4>
-              
+                <h4 class="card-title"> Liste des Categories Table</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
+
+
+
                   <table class="table">
-
-                    <thead class="text-center">
-                      <th>
-                        Identifiant
-                      </th>
-                      <th class="text-center">
-                        Description
-                      </th>
-                      <th class="text-center">
-                        Proposition
-                      </th>
-                      <th class="text-center">
-                        Note
-                      </th>
-                      <th class="text-center">
-                        Type
-                      </th>
-                      <th class="text-center">
-                        Etat de traitement
-                      </th>
-                 
+                    <thead class=" text-primary">
+                    <tr>
+                    <th class="text-center">ID</th>
+        <th class="text-center">NB_places</th>
+        <th class="text-center">Forme</th>
+        <th class="text-center">Espace</th>
+     
+  
+      </tr>
+          
                     </thead>
-
-
-
-
-
-
+     
                     <tbody>
-                    
                     <?PHP
-				foreach($listeReclamation as $Reclamation)
+        foreach($listeCategoriesTable as $CategoriesTable)
         {
-			?>
-				<tr>
-					<td class="text-center"><?PHP echo $Reclamation["Id_Recl"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Description']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Proposition']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Type']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
-    
+      ?>
+        <tr>
+          <td class="text-center"><?PHP echo $CategoriesTable["ID"] ?></td>
+          <td class="text-center"><?PHP echo $CategoriesTable["NB_places"]; ?></td>
+          <td class="text-center"><?PHP echo $CategoriesTable['Forme']; ?></td>
+          <td class="text-center"><?PHP echo $CategoriesTable['Espace'] ?></td>
+          
           
 				</tr>
 			<?PHP
