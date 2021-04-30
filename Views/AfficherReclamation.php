@@ -332,11 +332,7 @@ array_push($arrayTV,$Reclamation['NT']);
 
 
 
-          <form action="ExcelReclamation.php" method="POST">
-          <input class="right_btn" type="image" src="../assets/img/excel.png"  type="submit" width="30" heigth="10" />
-          <input type="hidden" value=<?php echo json_encode($arrayTI); ?> name="Indice" id="Indice">
-            <input type="hidden" value=<?php echo json_encode($arrayTV); ?>name="Valeur" id="Valeur">
-      </form>
+        
          
           <div class="row" id="stat" >
           <h4> Statistiques des réclamations selon l'état de traitement  </h4>
@@ -440,7 +436,7 @@ gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
     pointRadius: 4,
     fill: true,
     borderWidth: 1,
-    label: "Etat de traitement",
+    label: "Note",
    
     data: <?php echo json_encode($arrayV); ?>
   }]
@@ -466,6 +462,12 @@ gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
 </script>
      
 
+
+<form action="ExcelReclamationNote.php" method="POST">
+          <input class="left" type="image" src="../assets/img/excel.png"  type="submit" width="30" heigth="10" />
+          <input type="hidden" value=<?php echo json_encode($arrayTI); ?> name="Indice" id="Indice">
+            <input type="hidden" value=<?php echo json_encode($arrayTV); ?>name="Valeur" id="Valeur">
+      </form>
 
 
 
@@ -533,7 +535,11 @@ gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
 
 
 
-
+<form action="ExcelReclamationType.php" method="POST">
+          <input class="left" type="image" src="../assets/img/excel.png"  type="submit" width="30" heigth="10" />
+          <input type="hidden" value=<?php echo json_encode($arrayTI); ?> name="Indice" id="Indice">
+            <input type="hidden" value=<?php echo json_encode($arrayTV); ?>name="Valeur" id="Valeur">
+      </form>
 
 
 
