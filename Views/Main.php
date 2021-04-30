@@ -119,7 +119,6 @@
 					
 						<a href="#" data-nav-section="about">A propos de nous</a>
 						<a href="#" data-nav-section="Produits">Nos Produits frais</a>
-						<a href="#" data-nav-section="Produits">Nos Promotions</a>
 					
 					</div>
 					<div class="fh5co-logo">
@@ -213,9 +212,10 @@
 					</div>
 				</div>
 				
+				
 	
 
-						<?PHP
+				<?PHP
 				foreach($listeProduit as $Produit)
         {
 			
@@ -233,8 +233,7 @@
 							<span class="pricing"><?PHP echo $Produit['Prix_de_vente']; echo "$"  ?></span>
 
 
-							<!-- jQuery -->
-	<strong class="item-price"><del><?PHP echo $Produit['Prix_de_vente']; echo "$"  ?></del> 
+
 	
 	
 	
@@ -246,7 +245,18 @@
 			?> 
 
 
-<?PHP echo $Offres['Valeur']; echo "$"  ?>
+<?PHP 
+if($Offres['id_produit']===$Produit['Id_produit'])
+{
+	?> 
+	<strong class="item-price"><del>	<?PHP echo $Produit['Prix_de_vente']; echo "$" ?>  </del> 
+
+	<?PHP
+	echo $Offres['Valeur']; echo "$" ;
+}
+else echo"";
+ ?>
+
 
 
 <?PHP
@@ -256,6 +266,7 @@
                         </strong> 
 
 				        	<p>Quantité restante dans le stock: </p>
+
 		                	<p><?PHP echo $Produit['Quantité_dans_le_stock']; echo "kg" ?></p>
 
 
@@ -295,9 +306,6 @@
 
 							
 			
-						<div class="form-group ">
-							<input class="btn btn-primary" value="Send Message" type="submit">
-						</div>
 						</div>
 				</div>
 			</div>

@@ -102,7 +102,7 @@
           </li>
 
           <li class="active ">
-            <a href="AjouterIngredients.php">
+            <a href="AjouterProduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>

@@ -7,7 +7,7 @@
 	
 if (isset($_POST["Id_produit"])){
 	$ProduitC->deleteProduit($_POST["Id_produit"]);
-	header('Location:AjouterIngredient.php');
+	header('Location:AjouterProduit.php');
 }
 
 

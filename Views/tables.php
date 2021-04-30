@@ -1,11 +1,23 @@
-<?PHP
-/*	include "../controller/TypeReclamationC.php";
-	include "../controller/ReclamationC.php";
-  $TypeReclamationC=new TypeReclamationC();
-$listeTypeReclamation =$TypeReclamationC->afficherTypeReclamation();
+<?php
+     require_once '../Controller/ProduitC.php';
+	 require_once '../Model/Produit.php';
+	 require_once '../Controller/OffresC.php';
+	 require_once '../Model/offres.php';
 
-$ReclamationC=new ReclamationC();
-$listeReclamation =$ReclamationC->afficherReclamation();*/
+
+    $error = "";
+
+
+
+
+        $ProduitC = new ProduitC();
+      $listeProduit =$ProduitC->afficherProduit();
+	  $OffresC = new OffresC();
+      $listeOffres =$OffresC->afficherOffres();
+
+      
+    
+
 ?>
 
 
@@ -146,7 +158,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();*/
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Table de types de réclamation</h4>
+                <h4 class="card-title"> Table de produits</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -156,9 +168,13 @@ $listeReclamation =$ReclamationC->afficherReclamation();*/
                   <table class="table">
                     <thead class=" text-primary">
                     <tr>
-				<th class="text-center">Identifiant</th>
-				<th class="text-center">Libellé</th>
-				<th class="text-center">Durée maximale de traitement de la réclamation</th>
+				<th class="text-center">identifiant produit</th>
+				<th class="text-center">nom produit</th>
+				<th class="text-center">quantite dans le stock</th>
+        <th class="text-center">prix de vente</th>
+        <th class="text-center">nom de l'image de produit</th>
+
+
 			
 	
 			</tr>
@@ -167,13 +183,17 @@ $listeReclamation =$ReclamationC->afficherReclamation();*/
      
                     <tbody>
                     <?PHP
-				foreach($listeTypeReclamation as $TypeReclamation)
+				foreach($listeProduit as $Produits)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $TypeReclamation["Id_type"] ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Libelle']; ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Duree_traitement_max']; ?></td>
+					<td class="text-center"><?PHP echo $Produits["Id_produit"] ?></td>
+					<td class="text-center"><?PHP echo $Produits['Nom_produit']; ?></td>
+					<td class="text-center"><?PHP echo $Produits['Quantité_dans_le_stock']; ?></td>
+          <td class="text-center"><?PHP echo $Produits['Prix_de_vente']; ?></td>
+          <td class="text-center"><?PHP echo $Produits['nom_image']; ?></td>
+
+
      
 				</tr>
 			<?PHP
@@ -195,7 +215,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();*/
           <div class="col-md-12">
             <div class="card card-plain">
               <div class="card-header">
-                <h4 class="card-title"> Table de réclamation</h4>
+                <h4 class="card-title"> Table des offres</h4>
               
               </div>
               <div class="card-body">
@@ -204,23 +224,16 @@ $listeReclamation =$ReclamationC->afficherReclamation();*/
 
                     <thead class="text-center">
                       <th>
-                        Identifiant
+                        Identifiant offres
                       </th>
                       <th class="text-center">
-                        Description
+                        nouveau prix
                       </th>
+
                       <th class="text-center">
-                        Proposition
+                        identifiant produit
                       </th>
-                      <th class="text-center">
-                        Note
-                      </th>
-                      <th class="text-center">
-                        Type
-                      </th>
-                      <th class="text-center">
-                        Etat de traitement
-                      </th>
+
                  
                     </thead>
 
@@ -232,17 +245,13 @@ $listeReclamation =$ReclamationC->afficherReclamation();*/
                     <tbody>
                     
                     <?PHP
-				foreach($listeReclamation as $Reclamation)
+				foreach($listeOffres as $Offres)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $Reclamation["Id_Recl"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Description']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Proposition']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Type']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
-    
+					<td class="text-center"><?PHP echo $Offres["Id_offres"] ?></td>
+					<td class="text-center"><?PHP echo $Offres['Valeur']; ?></td>
+					<td class="text-center"><?PHP echo $Offres['id_produit']; ?></td>
           
 				</tr>
 			<?PHP

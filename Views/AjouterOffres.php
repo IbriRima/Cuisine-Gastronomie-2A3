@@ -114,7 +114,7 @@
           </li>
 
           <li >
-            <a href="AjouterIngredient.php">
+            <a href="AjouterProduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
@@ -418,6 +418,12 @@ document.getElementById("ajouter").addEventListener("click", function() {
 
 
    
+    <?php
+ echo nl2br( "date :  " . date("Y-m-d\n"));
+echo "time :  " . date("h:i:sa");
+
+
+?>
 
 
 
@@ -449,7 +455,7 @@ document.getElementById("ajouter").addEventListener("click", function() {
 
 </script>
 
-  
+
 
 </body>
 
