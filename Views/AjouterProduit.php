@@ -389,11 +389,6 @@
       <input  type="submit" value="Ajouter" id= "ajouter" name = "submit">
       <input type="reset" value="Annuler" name = "annuler">
 
-      <script>
-document.getElementById("ajouter").addEventListener("click", function() {
-  alert("product added successfully");
-});
-</script>
 
 
 
