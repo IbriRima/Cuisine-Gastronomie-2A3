@@ -34,7 +34,7 @@ $Client=new Client();
 	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="../assets/img/favicon.png">
 
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
 	
@@ -63,9 +63,9 @@ $Client=new Client();
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../assets/css/shared/style.css">
+    <link rel="stylesheet" href="../assets//css/shared/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../assets/img/favicon.ico" />
+    <link rel="shortcut icon" href="../assets/img/favicon.png" />
 
 
 	<!-- Modernizr JS -->
@@ -86,18 +86,15 @@ $Client=new Client();
 			<div class="fh5co-main-nav">
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
-					<a href="#" data-nav-section="about"></a>
-						<a href="#" data-nav-section="Produits"></a>
-						<a href="#"data-nav-section="reclamation" >Vos réclamations</a>
+				
 					
 					</div>
 					<div class="fh5co-logo">
-						<a href="Main.php">Point BIO</a>
+							<a href="http://localhost/Reclamations/Views/Main.php">Point BIO</a>
 					</div>
 					<div class="fh5co-menu-2">
 						
 					
-						<a href="#" data-nav-section="reservation">Réserver une table</a>
 					
 				
 					</div>
@@ -110,10 +107,9 @@ $Client=new Client();
 
 	</div>
 		
-	
 
 
-	<div class="container-scroller">
+	<div class="container-scroller" >
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
           <div class="row w-100">

@@ -22,10 +22,16 @@ $datax= array_keys($array);
 $arrayI=array("");
 $arrayV=array("");
 $listeNote =$ReclamationC->getNote();  
+
 foreach($listeNote as $Reclamation)
 { 
 array_push($arrayI,$Reclamation['Note']);
 array_push($arrayV,$Reclamation['Nombre']);
+
+
+
+
+
 
 }
 
@@ -80,15 +86,15 @@ array_push($arrayTV,$Reclamation['NT']);
         <ul class="nav">
 
 
+      
          
-         
-          <li>
+          <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
             </a>
           </li>
-          <li class="active ">
+          <li class="active " >
           <a href="./AfficherReclamation.php">
               <i class="now-ui-icons ui-1_email-85"></i>
               <p>réclamation</p>
@@ -100,7 +106,17 @@ array_push($arrayTV,$Reclamation['NT']);
               <p>Clients</p>
             </a>
           </li>
+
+
           <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li  >
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
@@ -121,27 +137,27 @@ array_push($arrayTV,$Reclamation['NT']);
           </li>
 
           <li>
-            <a href="">
+            <a href="./Ajouterproduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
             </a>
@@ -195,7 +211,7 @@ array_push($arrayTV,$Reclamation['NT']);
 
           <!-- RECHERCHE  -->
           
-            <form action="Recherche.php" method="POST">
+            <form action="Recherche_Reclamation.php" method="POST">
               <div class="input-group no-border">
                 <input type="search" size="50" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher les réclamations par identifiant du client ...">
 
@@ -280,7 +296,7 @@ array_push($arrayTV,$Reclamation['NT']);
           <td class="text-center"><?PHP echo $Reclamation['Id_client']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
               <td>
-					<form method="POST" action="SupprimerReclamation.php" id="Admin"  onsubmit="DeleteAdmin();" >
+					<form method="POST" action="SupprimerReclamation.php" id="Admin" >
           <div class="controle" id="verifDelete"> </div>
               </div>
               <!--   -->
@@ -294,7 +310,7 @@ array_push($arrayTV,$Reclamation['NT']);
 					</td>
      
           <td>
-					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin" onsubmit="Mail();" >
+					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin"  >
             <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10"  />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
@@ -314,6 +330,14 @@ array_push($arrayTV,$Reclamation['NT']);
             </div>
           </div>
 
+
+
+          <form action="ExcelReclamation.php" method="POST">
+          <input class="right_btn" type="image" src="../assets/img/excel.png"  type="submit" width="30" heigth="10" />
+          <input type="hidden" value=<?php echo json_encode($arrayTI); ?> name="Indice" id="Indice">
+            <input type="hidden" value=<?php echo json_encode($arrayTV); ?>name="Valeur" id="Valeur">
+      </form>
+         
           <div class="row" id="stat" >
           <h4> Statistiques des réclamations selon l'état de traitement  </h4>
           </div>

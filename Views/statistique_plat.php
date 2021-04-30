@@ -1,35 +1,20 @@
 <?php
-     require_once '../Controller/TypeReclamationC.php';
-	 require_once '../Model/TypeReclamation.php';
+    require_once '../Controller/platC.php';
+    require_once '../Model/plat.php';
 
-    $error = "";
+ 
 
-
+    $platC = new platC();
      
-    if (isset($_POST["libelle"])&& isset($_POST["duree"]) )
-     {
-      if (
-        !empty($_POST["libelle"]) && 
-        !empty($_POST["duree"]) 
-    )
-    {
+    $arrayI=array("");
+$arrayV=array("");
+$listeplat =$platC->stattype();  
+foreach($listeplat as $plat)
+{ 
+array_push($arrayI,$plat['Type_plat']);
+array_push($arrayV,$plat['Nombre']);
 
-      $Libelle=$_POST['libelle'];
-      $Duree=(int)$_POST['duree'];
-     
-   
-  $TypeReclamation = new TypeReclamation($Libelle,$Duree);
-  $TypeReclamationC = new TypeReclamationC();
-  $TypeReclamationC->addTypeReclamation($TypeReclamation);
-    }
-    else
-    $error = "Missing information";
-    }
-
-
-
-        $TypeReclamationC = new TypeReclamationC();
-      $listeTypeReclamation =$TypeReclamationC->afficherTypeReclamation();
+}
       
     
 
@@ -42,8 +27,6 @@
 
   <meta charset="utf-8" />
   
-  <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
-  <script type = "text/javascript"  src="../assets/js/test.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
  
@@ -74,7 +57,7 @@
 
       
          
-          <li class="active ">
+          <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -142,7 +125,7 @@
             </a>
           </li>
 
-          <li>
+          <li class="active ">
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
@@ -195,15 +178,42 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
 
-          <!-- RECHERCHE  -->
-          
-            
+         
 
 
 
 
 
-          
+
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="now-ui-icons media-2_sound-wave"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Stats</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="now-ui-icons location_world"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
+                 
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="now-ui-icons users_single-02"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Account</span>
+                  </p>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
@@ -213,161 +223,77 @@
 
       <div class="panel-header panel-header-sm">
       </div>
- 
-      <div class="content">
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <div class="row" id="stat" >
+          <h4>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Statistiques des plats selon leur type  </h4>
+          </div>
+          <div class="row">
+          <h4> </h4>
+          </div>
+        <div style="width:60%;hieght:20%;text-align:center">
+         
+            <canvas  id="chartjs_bar"></canvas> 
+        </div>    
 
-      <form action="AjouterTypeReclamation.php" method="POST" id="form"> 
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script type="text/javascript">
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title"> Liste des types de réclamations</h4>
-        <div class="controle" id="verifEtat"> </div>
-      </div>
-      <div class="card-body">
+      var ctx = document.getElementById("chartjs_bar").getContext('2d');
+      gradientFill = ctx.createLinearGradient(0, 170, 50, 50);
+    gradientFill.addColorStop(0, "rgba(127, 182, 245, 0)");
+    gradientFill.addColorStop(1,"rgba(92, 212, 31, 100)");
 
-
-       
-        
-  
-              <div class="form-group"></div>
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:<?php echo json_encode($arrayI); ?>,
+                        datasets: [{
           
-            
-        
-            
-            <div class="row">    
-              <div class="col-md-3 px-1">
-                  <div class="form-group"></div>
-                </div>
-                <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label for="libelle"> Libellé</label>
-                    <input  type="text" name="libelle" id="libelle" class="form-control" placeholder="Libellé">
-
-                  </div>
-                </div>
-                </div>
-                <div class="controle" id="verifLibelle">
-      </div>
-
-
-  
-
-      <div class="row">    
-              <div class="col-md-3 px-1">
-                  <div class="form-group"></div>
-                </div>
-                <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label for="duree">  Durée maximale pour le traitement</label>
-                    <input  type="number" name="duree" id="duree" class="form-control" placeholder="Durée en jours" value='0'>
+         backgroundColor: gradientFill,
+          borderColor: "rgba(92, 212, 31, 100)",
+     
+     
+          pointBorderWidth: 2,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 1,
+          pointRadius: 4,
+          fill: true,
+          borderWidth: 1,
+          label: "type plat",
+          data: <?php echo json_encode($arrayV); ?>
+        }]
+                       
+                    
+                    },
+                    options: {
+                           legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: '#71748d',
+                            fontFamily: 'Circular Std Book',
+                            fontSize: 16,
+                        }
+                    },
  
-                  </div>
-                </div>
-                </div>
+ 
+                }
+                });
 
-
-                <div class="controle" id="verifDuree">
-      </div>
-   
-
-   
-        
-            
-        
-
-
-            <input type="submit" value="Ajouter" name = "submit" onclick = "AjoutType();">
-      <input type="reset" value="Annuler" name = "annuler">
+                
+    </script>
 
 
 
 
-      </div>
+
+
+    
+
+
     </div>
   </div>
-</div>
-
-</form>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> Liste des types de réclamations</h4>
-                <div class="controle" id="verifEtat"> </div>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-
-
-
-                <table class="table">
-                    <thead class=" text-primary">
-                    <tr>
-				<th class="text-center">Identifiant</th>
-				<th class="text-center">Libellé</th>
-				<th class="text-center">Durée maximale de traitement de la réclamation</th>
-			
-				<th class="text-center">Supprimer</th>
-				<th class="text-center">Modifier</th>
-			</tr>
-                    </thead>
-     
-                  
-                  
-                    <tbody>
-                    <?PHP
-				foreach($listeTypeReclamation as $TypeReclamation)
-        {
-			?>
-				<tr>
-					<td class="text-center"><?PHP echo $TypeReclamation["Id_type"] ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Libelle']; ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Duree_traitement_max']; ?></td>
-          <td>
-					<form method="POST" action="SupprimerTypeReclamation.php">
-            <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Id_type']; ?> name="Id_type" id="Id_type">
-            </form>
-					</td>
-
-
-          <td>
-          <form method="POST" action="ModifierTypeReclamation.php" >
-          <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Id_type']; ?> name="Id_type" id="Id_type">
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Libelle']; ?> name="Libelle" id="Libelle">
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Duree_traitement_max']; ?> name="duree" id="duree">
-            </form>
-					</td>
-
-
-				</tr>
-			<?PHP
-				}
-			?>
-
-                    <tbody>              
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-    </div>
-
-
-
-   
-
-
-
-
-</div>
-
-
-
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

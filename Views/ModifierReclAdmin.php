@@ -2,7 +2,7 @@
 <?php
 	include "../Controller/ReclamationC.php";
 	include "../Model/Reclamation.php";
-	include "../Controller/ClientC.php";
+	include "../Controller/Client.php";
 	$ReclamationC = new ReclamationC();
    
             if (
@@ -21,20 +21,22 @@
 if ($_POST['Etat_traitement']=="Traitee")
 {
 	$Etat="Non traitee";
+    
+    header('Location:AfficherReclamation.php'); 
 }
 else if ($_POST['Etat_traitement']=="Non")
-{
+{   
 	$Etat="Traitee";
     $id=$_POST['Id_client'];
     $idR=$_POST['Id_Recl'];
-    $ClientC=new ClientC();
-    $listeClient =$ClientC->getClient($id) ;
+    $Client=new Client();
+    $listeClient =$Client->getClient($id) ;
     
-    foreach($listeClient as $Client)
+    foreach($listeClient as $user)
         
     {
-       $email= $Client["email"] ;
-     
+       $email= $user["email"] ;
+ 
     
     }
     ini_set('SMTP','smtp.topnet.tn');
@@ -50,6 +52,12 @@ else if ($_POST['Etat_traitement']=="Non")
    
     }
 
+    	   
+			echo '<script type="text/javascript">';
+			echo 'alert("L email d alerte a bien été envoyé au client")';
+			echo '</script>';
+			echo ("<script>location.href='./AfficherReclamation.php'</script>");
+
 }
          
 $ReclamationC->updateEtatReclamation($Etat,(int)$_POST["Id_Recl"]);     
@@ -58,7 +66,6 @@ $ReclamationC->updateEtatReclamation($Etat,(int)$_POST["Id_Recl"]);
               else
               $error = "Missing information";
 
-              header('Location:AfficherReclamation.php'); 
 		
         }
       

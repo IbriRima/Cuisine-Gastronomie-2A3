@@ -1,15 +1,17 @@
 <?PHP
-	include "../controller/Client.php";
-
-  // session_start();
-  // $keyword = $_SESSION['search'];
-
-
-
-  $client=new Client();
-  $listeClient=$client->afficherClients();
+	include "../Controller/Admin.php";
 
   
+
+
+  
+
+  $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+  $perpage = isset($GET['per-page']) && $_GET['per-page'] <= 50 ? (int)$_GET['per-page'] : 2;
+ 
+  $adminpage = new Admin();
+  $listeAdminPage = $adminpage->AfficherAdminsPaginer($page, $perpage);
+   $totalP = $adminpage->calcTotalRows($perpage);
  
 
 ?>
@@ -43,105 +45,9 @@
       <div class="logo">
         
       </div>
-      <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <ul class="nav">
-
+     
 
       
-         
-          <li >
-            <a href="./AjouterTypeReclamation.php">
-              <i class="now-ui-icons files_single-copy-04"></i>
-              <p>Type de Reclamation</p>
-            </a>
-          </li>
-          <li >
-          <a href="./AfficherReclamation.php">
-              <i class="now-ui-icons ui-1_email-85"></i>
-              <p>réclamation</p>
-            </a>
-          </li>
-          <li class="active ">
-            <a href="./AfficherClients.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Clients</p>
-            </a>
-          </li>
-
-
-          <li >
-            <a href="./AdminProfile.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Admin</p>
-            </a>
-          </li>
-
-
-          <li >
-          <a href="./AfficherCartes.php">
-          <i class="now-ui-icons business_money-coins"></i>
-              <p>Cartes Fidelités</p>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <i class="now-ui-icons ui-1_calendar-60"></i>
-              <p>Réservation de table</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <i class="now-ui-icons design_app"></i>
-              <p>Type de table</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="./Ajouterproduit.php">
-              <i class="now-ui-icons shopping_box"></i>
-              <p>Produits</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="./AjouterOffres.php">
-              <i class="now-ui-icons business_money-coins"></i>
-              <p>offres</p>
-            </a>
-          </li>
-          <li>
-            <a href="AjouterIngredient.php">
-              <i class="now-ui-icons files_paper"></i>
-              <p>Ingrédients</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="./AjouterPlat.php">
-              <i class="now-ui-icons emoticons_satisfied"></i>
-              <p>Plats</p>
-            </a>
-          </li>
-
-          <li >
-            <a href="./tables.php">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Liste des tables</p>
-            </a>
-          </li>
-         
-  
-          <li >
-            <a href="./Main.php">
-              <i class="now-ui-icons gestures_tap-01"></i>
-              <p>www.PointBio.com</p>
-            </a>
-          </li>
-        </ul>
-
-        
-      </div>
     </div>
 
     <div class="main-panel" id="main-panel">
@@ -223,10 +129,8 @@
             <div class="card">
               <div class="card-header">
 
-              
 
-
-                <h4 class="card-title"> Clients</h4>
+                <h4 class="card-title">Admins</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -254,7 +158,7 @@
                     <?PHP
 				
                 
-                foreach($listeClient as $Client)
+                foreach($listeAdminPage as $Client)
         {
             
 			?>
@@ -289,17 +193,6 @@
           </td>
               
             
-            <td>
-			
-                <button type="submit" name="admin" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fas fa-user-secret"></i>                
-                </button>
-
-                <!-- <button type="submit" name="emailbutton" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                <i class="fas fa-envelope"></i>                
-                </button> -->
-			
-            </td>
             </form>
 
 
@@ -313,7 +206,17 @@
                     <tbody>              
                   </table>
                   
-                 
+                  <?php
+
+// }
+for ($x = 1; $x <= $totalP; $x++) :
+
+?>
+
+    <a href="?page=<?php echo $x; ?>&per-page=<?php echo $perpage; ?>"><?php echo $x; ?></a>
+
+<?php endfor; ?>
+
 
                 </div>
               </div>
@@ -343,5 +246,16 @@
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
 
 </body>
+
+<div id="google_translate_element"></div>
+	<script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+            {pageLanguage: 'en'},
+            'google_translate_element'
+        );
+    }
+</script>
+<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </html>

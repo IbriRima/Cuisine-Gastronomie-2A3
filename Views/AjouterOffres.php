@@ -1,35 +1,40 @@
 <?php
-     require_once '../Controller/TypeReclamationC.php';
-	 require_once '../Model/TypeReclamation.php';
+     require_once '../Controller/OffresC.php';
+	 require_once '../Model/offres.php';
 
     $error = "";
 
 
      
-    if (isset($_POST["libelle"])&& isset($_POST["duree"]) )
+    if (isset($_POST["Valeur"])&& isset($_POST["id_produit"]))
      {
       if (
-        !empty($_POST["libelle"]) && 
-        !empty($_POST["duree"]) 
+        !empty($_POST["Valeur"])&& 
+        !empty($_POST["id_produit"]) 
+
     )
     {
 
-      $Libelle=$_POST['libelle'];
-      $Duree=(int)$_POST['duree'];
-     
+      $Valeur=(int)$_POST['Valeur'];
+      $id_produit=(int)$_POST['id_produit'];
+
+      $offres = new offres($Valeur,$id_produit);
+      $OffresC = new OffresC();
+      $OffresC->addOffres($offres);
+     // echo "hh $id_produit";
+
+    
    
-  $TypeReclamation = new TypeReclamation($Libelle,$Duree);
-  $TypeReclamationC = new TypeReclamationC();
-  $TypeReclamationC->addTypeReclamation($TypeReclamation);
     }
     else
     $error = "Missing information";
+
     }
 
 
 
-        $TypeReclamationC = new TypeReclamationC();
-      $listeTypeReclamation =$TypeReclamationC->afficherTypeReclamation();
+      $OffresC = new OffresC();
+      $listeOffres =$OffresC->afficherOffres();
       
     
 
@@ -58,6 +63,8 @@
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
  
 </head>
 
@@ -72,9 +79,9 @@
         <ul class="nav">
 
 
-      
          
-          <li class="active ">
+         
+        <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -102,21 +109,21 @@
           </li>
 
 
-          <li >
+          <li  >
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./AfficheModifTable.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
@@ -129,14 +136,14 @@
             </a>
           </li>
 
-          <li>
+          <li class="active">
             <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
-          <li>
-            <a href="AjouterIngredient.php">
+          <li >
+            <a href="./AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
@@ -195,18 +202,62 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
 
+
           <!-- RECHERCHE  -->
           
-            
+           <!--  <form action="Recherche.php" method="POST">
+              <div class="input-group no-border">
+                <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
+
+
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+
+</form>
 
 
 
 
 
-          
+
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="now-ui-icons media-2_sound-wave"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Stats</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="now-ui-icons location_world"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
+                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
+                  <a class="dropdown-item"  name="TypeRech">Type</a>
+                  <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="now-ui-icons users_single-02"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Account</span>
+                  </p>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </nav>
+      </nav>   -->
       
       <!-- End Navbar -->
 
@@ -216,13 +267,13 @@
  
       <div class="content">
 
-      <form action="AjouterTypeReclamation.php" method="POST" id="form"> 
+      <form action="AjouterOffres.php" method="POST" id="form"> 
 
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Liste des types de réclamations</h4>
+      <h5> <p style="color:orange">liste des offres</p> </h5>
         <div class="controle" id="verifEtat"> </div>
       </div>
       <div class="card-body">
@@ -232,54 +283,68 @@
         
   
               <div class="form-group"></div>
-          
-            
-        
-            
-            <div class="row">    
+
+              <div class="row">    
               <div class="col-md-3 px-1">
                   <div class="form-group"></div>
                 </div>
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
-                    <label for="libelle"> Libellé</label>
-                    <input  type="text" name="libelle" id="libelle" class="form-control" placeholder="Libellé">
-
-                  </div>
-                </div>
-                </div>
-                <div class="controle" id="verifLibelle">
-      </div>
-
-
-  
-
-      <div class="row">    
-              <div class="col-md-3 px-1">
-                  <div class="form-group"></div>
-                </div>
-                <div class="col-md-4 pl-1">
-                  <div class="form-group">
-                    <label for="duree">  Durée maximale pour le traitement</label>
-                    <input  type="number" name="duree" id="duree" class="form-control" placeholder="Durée en jours" value='0'>
+                    <label for="id_produit">  identifiant produit</label>
+                    <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="identifiant produit" >
  
                   </div>
                 </div>
                 </div>
 
 
-                <div class="controle" id="verifDuree">
+
+                <div class="controle" id="verifValeur">
+      </div>
+    
+            
+        
+            
+      <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="Valeur">  Nouveau prix</label>
+                    <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="nouveau prix" value='0'>
+ 
+                  </div>
+                </div>
+                </div>
+
+
+
+                <div class="controle" id="verifValeur">
       </div>
    
 
-   
-        
-            
-        
 
 
-            <input type="submit" value="Ajouter" name = "submit" onclick = "AjoutType();">
+
+
+
+
+
+
+
+
+
+      <input type="submit" value="Ajouter" id="ajouter" name = "submit">
       <input type="reset" value="Annuler" name = "annuler">
+
+      <script>
+document.getElementById("ajouter").addEventListener("click", function() {
+  alert("promotion added successfully");
+});
+</script>
+
+
 
 
 
@@ -295,23 +360,25 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Liste des types de réclamations</h4>
-                <div class="controle" id="verifEtat"> </div>
+                <h4 class="card-title"> Liste Offres</h4>
+                <div class="controle" > </div>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
 
 
 
-                <table class="table">
+                <table id="example1" class="table">
                     <thead class=" text-primary">
                     <tr>
-				<th class="text-center">Identifiant</th>
-				<th class="text-center">Libellé</th>
-				<th class="text-center">Durée maximale de traitement de la réclamation</th>
+				<th class="text-center">Identifiant offre</th>
+				<th class="text-center">Valeur</th>
+
 			
+				<th class="text-center">id produit</th>
 				<th class="text-center">Supprimer</th>
-				<th class="text-center">Modifier</th>
+                <th class="text-center">Modifier</th>
+
 			</tr>
                     </thead>
      
@@ -319,27 +386,34 @@
                   
                     <tbody>
                     <?PHP
-				foreach($listeTypeReclamation as $TypeReclamation)
+				foreach($listeOffres as $Offre)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $TypeReclamation["Id_type"] ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Libelle']; ?></td>
-					<td class="text-center"><?PHP echo $TypeReclamation['Duree_traitement_max']; ?></td>
+					<td class="text-center"><?PHP echo $Offre['Id_offres'] ?></td>
+					<td class="text-center"><?PHP echo $Offre['Valeur']; ?></td>
+                    <td class="text-center"><?PHP echo $Offre['id_produit']; ?></td>
+                    
+
+
+
+
           <td>
-					<form method="POST" action="SupprimerTypeReclamation.php">
+					<form method="POST" action="SupprimerOffres.php">
             <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Id_type']; ?> name="Id_type" id="Id_type">
+            <input type="hidden" value=<?PHP echo $Offre['Id_offres']; ?> name="Id_offres" id="Id_offres">
             </form>
 					</td>
 
 
           <td>
-          <form method="POST" action="ModifierTypeReclamation.php" >
-          <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Id_type']; ?> name="Id_type" id="Id_type">
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Libelle']; ?> name="Libelle" id="Libelle">
-            <input type="hidden" value=<?PHP echo $TypeReclamation['Duree_traitement_max']; ?> name="duree" id="duree">
+          <form method="POST" action="ModifierOffres.php" >
+          <input class="left" type="image" src="../assets/img/update1.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $Offre['Id_offres']; ?> name="Id_offres" id="Id_offres">
+            <input type="hidden" value=<?PHP echo $Offre['Valeur']; ?> name="Valeur" id="Valeur">
+            <input type="hidden" value=<?PHP echo $Offre['id_produit']; ?> name="id_produit" id="id_produit">
+
+
             </form>
 					</td>
 
@@ -379,6 +453,19 @@
   
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"> </script>
+            <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"> </script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#example1').DataTable();
+} );
+
+</script>
+
+  
 
 </body>
 

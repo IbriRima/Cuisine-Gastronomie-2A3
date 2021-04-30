@@ -1,34 +1,31 @@
 <?php
-	include "../Controller/TypeReclamationC.php";
-	include_once '../Model/TypeReclamation.php';
+  require_once '../Controller/ProduitC.php';
+  require_once '../Model/Produit.php';
 
-	$TypeReclamationC = new TypeReclamationC();
-	$error = "";
+  $ProduitC = new ProduitC() ;
+  $error = "";
 
-   
+  if (isset($_POST["Nom_produit"])&& isset($_POST["Quantité_dans_le_stock"])&& isset($_POST["Prix_de_vente"])&& isset($_POST["nom_image"]))
+         {
             if (
-             
-              isset($_POST['duree']) 
-          ){
-          if (
+                !empty($_POST["Nom_produit"]) && 
+                !empty($_POST["Quantité_dans_le_stock"]) &&
+                !empty($_POST["Prix_de_vente"]) &&
+                !empty($_POST["nom_image"]) 
                
-                  !empty($_POST['duree']) 
-              ) {
-   
-                  $Duree= (int)$_POST['duree'];
-   
+            )
+              {
+                $Produit = new Produit($_POST["Nom_produit"],$_POST["Quantité_dans_le_stock"],$_POST["Prix_de_vente"] ,$_POST["nom_image"]);
                   
-          $TypeReclamationC->updateTypeReclamation($Duree,(int)$_POST["Id_type"]);
-         
-       
+          $ProduitC->updateProduit($Produit,$_POST["Id_produit"]);
               }
               else
                   $error = "Missing information";
-                  echo"$error ";
         }
- 
+	
 
 ?>
+
 
 
 
@@ -58,17 +55,6 @@
             <?php echo $error; ?>
         </div>
 			
-
-	<?php
-			if (isset($_POST["Id_type"])){
-        $id=$_POST["Id_type"];
-       
-        $duree=$_POST["duree"];
-       
-				$TypeReclamation= $TypeReclamationC->recupererTypeReclamation($_POST["Id_type"]);
-      
-		?>
-
 <div class="wrapper ">
 
   <div class="sidebar" data-color="yellow">
@@ -83,7 +69,9 @@
 
          
          
-          <li class="active ">
+             
+         
+        <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -95,34 +83,50 @@
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li  >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./AfficheModifTable.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
           </li>
 
-          <li>
-            <a href="./Ajouterproduit.php">
+          <li class="active">
+            <a href="./Ajouterproduit">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
-          <li>
+          <li >
             <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
@@ -173,8 +177,8 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier le type de réclamation d'identifiant <?php echo $id; ?></h5>
-         
+                <h5 class="title">Modifier un Produit</h5>
+              </div>
               <div class="card-body">
             
     
@@ -197,7 +201,7 @@
 
      
 
-                <form action="ModifierTypeReclamation.php" method="POST" id="formA"> 
+                <form action="ModifierIngredient.php" method="POST" id="formA"> 
 
             
    <div class="row">
@@ -208,13 +212,31 @@
                       <div class="form-group">
               
                       
-                      
+                      <label for="Id_produit"> Identifiant </label>
 
-<input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" hidden>
+<input  type="number" name="Id_produit" id="Id_produit" class="form-control" value = <?php echo  (int)$_POST["Id_produit"] ; ?> >
                   
                     </div>
                   </div>
                 </div>
+
+
+                <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="Nom_produit"> nom de produit</label>
+                        <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="changer le nom " value = <?php echo  $_POST["Nom_produit"] ; ?> >
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
+
 
                   <div class="row">    
                   <div class="col-md-3 px-1">
@@ -223,27 +245,58 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                   
-                        <label for="duree"> Durée maximale pour le traitement</label>
-                        <input  type="number" name="duree" id="duree" class="form-control" placeholder="Duree maximale en jours" value = "<?php echo $duree; ?>"  >
+                        <label for="Quantité_dans_le_stock"> Quantité_dans_le_stock</label>
+                        <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="changer la quantité dans le stock" value = <?php echo  $_POST["Quantité_dans_le_stock"] ; ?>  >
                     
 
                     </div>
                     </div>
           
                   </div>
-                
-     
 
 
+
+
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="Prix_de_vente"> Prix de vente</label>
+                        <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="changer le prix de vente" value = <?php echo  $_POST["Prix_de_vente"] ; ?>  > 
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
+
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="nom_image"> nom de l'image</label>
+                        <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image " value = <?php echo  $_POST["nom_image"] ; ?>   >
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
+
+
+             
                   <div class="controle" id="verifDureeAd"> </div>
                 
          
           <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
-  
           <input type="reset" value="Annuler" name = "annuler">
-   
-       
-        
+ 
         </form> 
 
           </div>
@@ -266,11 +319,6 @@
   </div>
 </div>
  
-    <?php
-    
-		}
-  
-		?>
           
 
 

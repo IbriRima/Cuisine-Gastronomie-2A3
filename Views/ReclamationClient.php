@@ -5,7 +5,11 @@
 	include "../Controller/ReclamationC.php";
 
 	include "../Controller/TypeReclamationC.php";
-$id="3";
+
+	include "../Controller/Client.php";
+	session_start();
+	$id = $_SESSION['numero'];
+
 
 	$ReclamationC=new ReclamationC();
 	$listeReclamationClient =$ReclamationC->getReclamationById_Client($id) ;
@@ -74,6 +78,14 @@ $id="3";
 
 
 	<body>
+
+	<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
 
 
 	<div id="fh5co-container">
@@ -164,7 +176,7 @@ $id="3";
 						<div class="form-group ">
 					
 							<label for="Id_client" class="sr-only">Votre identifiant</label>
-							<input  name="Id_client" id="Id_client" class="form-control" placeholder="Identifiant" type="text">
+							<input  name="Id_client" id="Id_client" class="form-control" placeholder="Identifiant" type="text" value="<?php echo $id ?>">
 						
 						</div>
 

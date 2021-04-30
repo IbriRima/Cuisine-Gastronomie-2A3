@@ -1,34 +1,30 @@
 <?php
-	include "../Controller/TypeReclamationC.php";
-	include_once '../Model/TypeReclamation.php';
+  require_once '../Controller/OffresC.php';
+  require_once '../Model/offres.php';
 
-	$TypeReclamationC = new TypeReclamationC();
-	$error = "";
-
-   
+  $OffresC = new OffresC() ;
+  $error = "";
+  
+  if (isset($_POST["Valeur"])&& isset($_POST["id_produit"]))
+         {
             if (
-             
-              isset($_POST['duree']) 
-          ){
-          if (
+                !empty($_POST["Valeur"]) &&
+                !empty($_POST["id_produit"]) 
+
                
-                  !empty($_POST['duree']) 
-              ) {
-   
-                  $Duree= (int)$_POST['duree'];
-   
+            )
+              {
+                $offres = new offres($_POST["Valeur"],$_POST["id_produit"]);
                   
-          $TypeReclamationC->updateTypeReclamation($Duree,(int)$_POST["Id_type"]);
-         
-       
+          $OffresC->updateOffres($offres,$_POST["Id_offres"]);
               }
               else
                   $error = "Missing information";
-                  echo"$error ";
         }
- 
+	
 
 ?>
+
 
 
 
@@ -57,18 +53,15 @@
 <div id="error">
             <?php echo $error; ?>
         </div>
-			
-
-	<?php
-			if (isset($_POST["Id_type"])){
-        $id=$_POST["Id_type"];
+				<?php
+			if (isset($_POST["Id_offres"])){
+        $Valeur=(int)$_POST["Valeur"];
        
-        $duree=$_POST["duree"];
+        $Id_prod=(int)$_POST["id_produit"];
        
-				$TypeReclamation= $TypeReclamationC->recupererTypeReclamation($_POST["Id_type"]);
+				$offre= $OffresC->recupererOffre($_POST["Id_offres"]);
       
 		?>
-
 <div class="wrapper ">
 
   <div class="sidebar" data-color="yellow">
@@ -83,7 +76,9 @@
 
          
          
-          <li class="active ">
+             
+         
+        <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -95,34 +90,50 @@
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li  >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./AfficheModifTable.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
           </li>
 
           <li>
-            <a href="./Ajouterproduit.php">
+            <a href="./Ajouterproduit">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
-          <li>
+          <li class="active">
             <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
@@ -173,8 +184,8 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier le type de réclamation d'identifiant <?php echo $id; ?></h5>
-         
+                <h5 class="title">Modifier une offre</h5>
+              </div>
               <div class="card-body">
             
     
@@ -197,7 +208,7 @@
 
      
 
-                <form action="ModifierTypeReclamation.php" method="POST" id="formA"> 
+                <form action="ModifierOffres.php" method="POST" id="formA"> 
 
             
    <div class="row">
@@ -208,13 +219,14 @@
                       <div class="form-group">
               
                       
-                      
+                      <label for="Id_offres"> Identifiant </label>
 
-<input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" hidden>
+<input  type="number" name="Id_offres" id="Id_offres" class="form-control" placeholder="entrez l'id de l'offre" value = "<?php echo $_POST["Id_offres"]; ?>" >
                   
                     </div>
                   </div>
                 </div>
+
 
                   <div class="row">    
                   <div class="col-md-3 px-1">
@@ -223,27 +235,32 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                   
-                        <label for="duree"> Durée maximale pour le traitement</label>
-                        <input  type="number" name="duree" id="duree" class="form-control" placeholder="Duree maximale en jours" value = "<?php echo $duree; ?>"  >
+                        <label for="Valeur"> changer le Valeur de l'offre</label>
+                        <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="changer le valeur de l'offre"    value = <?php echo  (int)$_POST["Valeur"]; ?>>
                     
 
                     </div>
+                    <div class="form-group">
+                  
+                  <label for="id_produit"> changer l'identifiant du produit</label>
+                  <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="changer l'identifiant du produit"   value = <?php echo  (int)$_POST["id_produit"] ; ?> >
+              
+
+              </div>
                     </div>
           
                   </div>
-                
-     
 
 
-                  <div class="controle" id="verifDureeAd"> </div>
+
+
+             
+                  <div class="controle" id="verifValeur"> </div>
                 
          
-          <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
-  
+                  <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
           <input type="reset" value="Annuler" name = "annuler">
-   
-       
-        
+ 
         </form> 
 
           </div>
@@ -265,13 +282,12 @@
     </div>
   </div>
 </div>
- 
-    <?php
-    
-		}
   
-		?>
-          
+<?php
+    
+  }
+
+  ?>    
 
 
   

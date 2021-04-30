@@ -1,16 +1,20 @@
-<?PHP
-	include "../controller/ReclamationC.php";
+<?php
+    require_once '../Controller/ingredientC.php';
+    require_once '../Model/ingredient.php';
 
+    $error = "";
 
-    $Id_client=$_POST["recherche"]; 
+    $ingredientC = new ingredientC();
+        $type=$_POST['recherche'];
+        $listeingredient = $ingredientC->rechercherIgd($type);
+  
+     
+   
+     
+      
+    
 
- 
-    $ReclamationC=new ReclamationC();
-    $listeReclamationClient =$ReclamationC->getReclamationById_Client($Id_client) ;
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -19,8 +23,7 @@
 <head>
 
   <meta charset="utf-8" />
-  <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
-  <script type = "text/javascript"  src="../assets/js/test.js"></script>  
+  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
  
@@ -48,25 +51,38 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
-
-         
-         
-          <li>
+        <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
             </a>
           </li>
-          <li class="active ">
+          <li >
           <a href="./AfficherReclamation.php">
               <i class="now-ui-icons ui-1_email-85"></i>
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li  >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
@@ -84,27 +100,27 @@
           </li>
 
           <li>
-            <a href="">
+            <a href="./Ajouterproduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li class="active ">
+            <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
             </a>
@@ -194,9 +210,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
-                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
-                  <a class="dropdown-item"  name="TypeRech">Type</a>
-                  <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
+                 
                 </div>
               </li>
               <li class="nav-item">
@@ -222,7 +236,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Liste des réclamations du client <?PHP echo $Id_client; ?></h4>
+                <h4 class="card-title"> Liste ingredient de type <?PHP echo $type; ?></h4>
                 <div class="controle" id="verifEtat"> </div>
               </div>
               <div class="card-body">
@@ -231,52 +245,49 @@
 
 
                   <table class="table">
-                    <thead class=" text-primary">
+                  <thead class=" text-primary">
                     <tr>
-                    <th class="text-center">Identifiant</th>
-				<th class="text-center">Description</th>
-				<th class="text-center">Proposition</th>
-				<th class="text-center">Note</th>
-				<th class="text-center">Type</th>
-		
-        <th class="text-center">Etat de traitement</th>
+                    <th class="text-center">  &nbsp;&nbsp;Identifiant d'ingredient</th>
+				<th class="text-center">nom d'ingredient'</th>
+        <th class="text-center">type d'ingredient'</th>
+				<th class="text-center">prix d'ingredient</th>
 
-				<th class="text-center">Supprimer
-       
-       </th>
-				<th class="text-center">Modifier</th>
-			
-	
+
+				<th class="text-center">Supprimer</th>
+				<th class="text-center">Modifier</th>  
+        
 			</tr>
-          
                     </thead>
      
                     <tbody>
                     <?PHP
-				foreach($listeReclamationClient as $Reclamation)
+				foreach($listeingredient as $ingredient)
         {
 			?>
 				<tr>
-					<td class="text-center"><?PHP echo $Reclamation["Id_Recl"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Description']; ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Proposition']; ?></td>
-          <td class="text-center"><?PHP echo $Reclamation["Note"] ?></td>
-					<td class="text-center"><?PHP echo $Reclamation['Type']; ?></td>
-   
-					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
-              <td>
-					<form method="POST" action="SupprimerReclamation.php" id="formDAdmin">
-            <input class="left" type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" onclick="DeleteAdmin();"/>
-            <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
-            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
+					<td class="text-center"><?PHP echo $ingredient["Id_Igd"] ?></td>
+					<td class="text-center"><?PHP echo $ingredient['Nom_Igd']; ?></td>
+					<td class="text-center"><?PHP echo $ingredient['Type_Igd']; ?></td>
+          <td class="text-center"><?PHP echo $ingredient['Prix_Igd']; ?></td>
+					
+
+          <td>
+					<form method="POST" action="SupprimerIngredient.php">
+            <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $ingredient["Id_Igd"] ?> name="Id_Igd" id="Id_Igd">
             </form>
 					</td>
-     
+
+
           <td>
-					<form method="POST" action="ModifierReclAdmin.php" >
-            <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10" />
-            <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
-            <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
+          <form method="POST" action="ModifierIngredient.php" >
+          <input class="left" type="image" src="../assets/img/update.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $ingredient['Id_Igd']; ?> name="Id_Igd" id="Id_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Nom_Igd']; ?> name="Nom_Igd" id="Nom_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Type_Igd']; ?> name="Type_Igd" id="Type_Igd">
+            <input type="hidden" value=<?PHP echo $ingredient['Prix_Igd']; ?> name="Prix_Igd" id="Prix_Igd">
+            
+
             </form>
 					</td>
 

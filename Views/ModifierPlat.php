@@ -1,37 +1,30 @@
 <?php
-	include "../Controller/TypeReclamationC.php";
-	include_once '../Model/TypeReclamation.php';
+ require_once '../Controller/platC.php';
+ require_once '../Model/plat.php';
 
-	$TypeReclamationC = new TypeReclamationC();
+ $platC = new platC();
 	$error = "";
 
-   
+    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]))
+
+         {
             if (
-             
-              isset($_POST['duree']) 
-          ){
-          if (
-               
-                  !empty($_POST['duree']) 
-              ) {
-   
-                  $Duree= (int)$_POST['duree'];
-   
+                !empty($_POST["Nom_Plat"]) && 
+                !empty($_POST["Type_plat"]) &&
+                !empty($_POST["Prix_plat"]) && 
+                !empty($_POST["Nbr_Clri_plat"]) &&
+                !empty($_POST["Pds_Portion_plat"])
+            )  {
+                $plat = new plat($_POST["Nom_Plat"],$_POST["Type_plat"],$_POST["Prix_plat"],$_POST["Nbr_Clri_plat"],$_POST["Pds_Portion_plat"] );
                   
-          $TypeReclamationC->updateTypeReclamation($Duree,(int)$_POST["Id_type"]);
-         
-       
+          $platC->updateplat($plat,$_POST["Id_plat"]);
               }
               else
                   $error = "Missing information";
-                  echo"$error ";
         }
- 
+	
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,13 +53,18 @@
 			
 
 	<?php
-			if (isset($_POST["Id_type"])){
-        $id=$_POST["Id_type"];
+			if (isset($_POST["Id_plat"])){
+        $id=$_POST["Id_plat"];
        
-        $duree=$_POST["duree"];
-       
-				$TypeReclamation= $TypeReclamationC->recupererTypeReclamation($_POST["Id_type"]);
-      
+        $Nom_Plat=$_POST["Nom_Plat"];
+        
+        $Type_plat=$_POST["Type_plat"];
+        $Prix_plat=$_POST["Prix_plat"];
+        $Nbr_Clri_plat=$_POST["Nbr_Clri_plat"];
+        $Pds_Portion_plat=$_POST["Pds_Portion_plat"];
+
+				$plat= $platC->recupererPlat($_POST["Id_plat"]);
+    
 		?>
 
 <div class="wrapper ">
@@ -77,13 +75,13 @@
       
     </div>
 
-<div class="sidebar-wrapper" id="sidebar-wrapper">
+    <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
+      
          
-         
-          <li class="active ">
+          <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -95,10 +93,26 @@
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li  >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
@@ -128,14 +142,14 @@
               <p>offres</p>
             </a>
           </li>
-          <li >
+          <li>
             <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
-          <li>
+          <li class="active">
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
@@ -161,6 +175,10 @@
         
       </div>
     </div>
+ 
+ 
+
+     
 
     <div class="main-panel" id="main-panel">
 
@@ -173,8 +191,8 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier le type de réclamation d'identifiant <?php echo $id; ?></h5>
-         
+                <h5 class="title">Modifier le  Plat d'identifiant <?php echo $_POST["Id_plat"]?> </h5>
+              </div>
               <div class="card-body">
             
     
@@ -197,7 +215,7 @@
 
      
 
-                <form action="ModifierTypeReclamation.php" method="POST" id="formA"> 
+                <form action="ModifierPlat.php" method="POST" id="formA"> 
 
             
    <div class="row">
@@ -208,9 +226,8 @@
                       <div class="form-group">
               
                       
-                      
-
-<input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" hidden>
+                     
+                          <input  type="number" name="Id_plat" id="Id_plat" class="form-control" value = "<?php echo $id; ?>" hidden >
                   
                     </div>
                   </div>
@@ -223,27 +240,109 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                   
-                        <label for="duree"> Durée maximale pour le traitement</label>
-                        <input  type="number" name="duree" id="duree" class="form-control" placeholder="Duree maximale en jours" value = "<?php echo $duree; ?>"  >
+                        <label for="Nom_Plat"> nom de plat</label>
+                        <input  type="text" name="Nom_Plat" id="Nom_Plat" class="form-control" placeholder="nom de plat" value = "<?php echo $Nom_Plat; ?>"  >
                     
 
                     </div>
                     </div>
           
                   </div>
-                
-     
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="Type_plat"> type de plat</label>
+                        <input  type="text" name="Type_plat" id="Type_plat" class="form-control" placeholder="type de plat" value = "<?php echo $Type_plat; ?>"  >
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
 
 
+
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="Prix_plat"> Prix de plat</label>
+                        <input  type="text" name="Prix_plat" id="Prix_plat" class="form-control" placeholder="Prix de plat" value = "<?php echo $Prix_plat; ?>"  >
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
+
+
+
+
+
+
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="Nbr_Clri_plat"> nombre de calorie par plat</label>
+                        <input  type="text" name="Nbr_Clri_plat" id="Nbr_Clri_plat" class="form-control" placeholder="clri/plat" value = "<?php echo $Nbr_Clri_plat; ?>"  >
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
+
+
+
+
+
+
+
+
+
+
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="Pds_Portion_plat"> Poid de portion par plat</label>
+                        <input  type="text" name="Pds_Portion_plat" id="Pds_Portion_plat" class="form-control" placeholder="pds/portion" value = "<?php echo $Pds_Portion_plat; ?>"  >
+                    
+
+                    </div>
+                    </div>
+          
+                  </div>
+
+
+
+
+
+
+
+
+
+             
                   <div class="controle" id="verifDureeAd"> </div>
                 
          
-          <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
-  
+          <input type="submit" value="Enregistrer" name = "submit"  >
           <input type="reset" value="Annuler" name = "annuler">
-   
-       
-        
+ 
         </form> 
 
           </div>
@@ -267,9 +366,7 @@
 </div>
  
     <?php
-    
 		}
-  
 		?>
           
 

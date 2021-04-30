@@ -99,7 +99,7 @@
     + Progressbar-js
     + Pws-tabs
     + Quill Editor
-    + Rating
+    + reclamation
     + Select2
     + Summernote Editor
     + SweetAlert
@@ -131,6 +131,76 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+
+ .reclamation {
+  position: absolute;
+  top: 35%;
+  left:130%; 
+  transform: translate(-50%, -50%) ;
+  display:block;
+  color: rgb(35, 121, 1);
+  font-size: 20px;
+  text-align: center;
+}
+
+
+.reclamation label
+{
+
+display: block;
+cursor: pointer;
+width: 40px;
+
+
+}
+.reclamation label:before
+
+{
+
+content: '\f071';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 90px;
+position: relative;
+
+display: block;
+color: #fb6e14;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+
+.reclamation label:after
+
+{
+
+content: '\f071';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 90px;
+position: absolute;
+display: block;
+opacity:0 ;
+color: rgb(197, 7, 7);
+
+top: 0;
+
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+.reclamation label:hover::after,
+.reclamation label:hover ~ label::after,
+.reclamation input:checked ~ label::after
+{
+opacity: 1;
+
+}
+
+
+
+
+
+
+ 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 :root {
   --blue: #00aeef;
@@ -9757,10 +9827,10 @@ ul {
 .auth {
   min-height: 100vh; }
   .auth.auth-bg-1 {
-    background: url("../../assets/img/food9.jpg");
+    background: url("../assets/img/food7.jpg");
     background-size: cover; }
   .auth.register-bg-1 {
-    background: url("../../assets/img/food8.jpg") center center no-repeat;
+    background: url("../assets/img/food6.jpg") center center no-repeat;
     background-size: cover; }
   .auth.theme-one .auto-form-wrapper {
     background: #fff;

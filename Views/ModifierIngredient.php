@@ -1,42 +1,33 @@
 <?php
-	include "../Controller/TypeReclamationC.php";
-	include_once '../Model/TypeReclamation.php';
+  require_once '../Controller/ingredientC.php';
+  require_once '../Model/ingredient.php';
 
-	$TypeReclamationC = new TypeReclamationC();
-	$error = "";
+  $ingredientC = new ingredientC() ;
+  $error = "";
 
-   
+  if (isset($_POST["Nom_Igd"])&& isset($_POST["Type_Igd"])&& isset($_POST["Prix_Igd"]))
+         {
             if (
-             
-              isset($_POST['duree']) 
-          ){
-          if (
+                !empty($_POST["Nom_Igd"]) && 
+                !empty($_POST["Type_Igd"]) &&
+                !empty($_POST["Prix_Igd"]) 
                
-                  !empty($_POST['duree']) 
-              ) {
-   
-                  $Duree= (int)$_POST['duree'];
-   
+            )
+              {
+                $ingredient = new ingredient($_POST["Nom_Igd"],$_POST["Type_Igd"],$_POST["Prix_Igd"] );
                   
-          $TypeReclamationC->updateTypeReclamation($Duree,(int)$_POST["Id_type"]);
-         
-       
+          $ingredientC->updateIgd($ingredient,$_POST["Id_Igd"]);
               }
               else
                   $error = "Missing information";
-                  echo"$error ";
         }
- 
+	
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -60,13 +51,17 @@
 			
 
 	<?php
-			if (isset($_POST["Id_type"])){
-        $id=$_POST["Id_type"];
+			if (isset($_POST["Id_Igd"])){
+        $id=$_POST["Id_Igd"];
        
-        $duree=$_POST["duree"];
+        $Type_Igd=$_POST["Type_Igd"];
+        
+        $Nom_Igd=$_POST["Nom_Igd"];
+        $Prix_Igd=$_POST["Prix_Igd"];
        
-				$TypeReclamation= $TypeReclamationC->recupererTypeReclamation($_POST["Id_type"]);
-      
+
+				$ingredient= $ingredientC->recupererIgd($_POST["Id_Igd"]);
+    
 		?>
 
 <div class="wrapper ">
@@ -77,13 +72,13 @@
       
     </div>
 
-<div class="sidebar-wrapper" id="sidebar-wrapper">
+    <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
+      
          
-         
-          <li class="active ">
+          <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -95,10 +90,26 @@
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li  >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
@@ -128,14 +139,14 @@
               <p>offres</p>
             </a>
           </li>
-          <li >
+          <li class="active ">
             <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
-          <li>
+          <li >
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
@@ -160,7 +171,13 @@
 
         
       </div>
+
+
     </div>
+ 
+ 
+
+     
 
     <div class="main-panel" id="main-panel">
 
@@ -173,8 +190,8 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier le type de réclamation d'identifiant <?php echo $id; ?></h5>
-         
+                <h5 class="title">Modifier l'ingredient d'identifiant <?php echo $_POST["Id_Igd"]?> </h5>
+              </div>
               <div class="card-body">
             
     
@@ -197,7 +214,7 @@
 
      
 
-                <form action="ModifierTypeReclamation.php" method="POST" id="formA"> 
+                <form action="ModifierIngredient.php" method="POST" id="formA"> 
 
             
    <div class="row">
@@ -208,9 +225,8 @@
                       <div class="form-group">
               
                       
-                      
-
-<input  type="number" name="Id_type" id="Id_type" class="form-control" value = "<?php echo $id; ?>" hidden>
+                     
+<input  type="number" name="Id_Igd" id="Id_Igd" class="form-control" value = "<?php echo $id; ?>" hidden >
                   
                     </div>
                   </div>
@@ -223,27 +239,77 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                   
-                        <label for="duree"> Durée maximale pour le traitement</label>
-                        <input  type="number" name="duree" id="duree" class="form-control" placeholder="Duree maximale en jours" value = "<?php echo $duree; ?>"  >
+                      <label for="Nom_Igd"> nom de l'ingredient</label>
+                        <input  type="text" name="Nom_Igd" id="Nom_Igd" class="form-control" placeholder="nom l'ingredient" value = "<?php echo $Nom_Igd; ?>" > 
                     
 
                     </div>
                     </div>
           
                   </div>
-                
-     
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                      <label for="Type_Igd">  le type de l'ingredient </label>
+                        <input  type="text" name="Type_Igd" id="Type_Igd" class="form-control" placeholder="type de l'ingredient" value = "<?php echo $Type_Igd; ?>">
+
+                    </div>
+                    </div>
+          
+                  </div>
 
 
-                  <div class="controle" id="verifDureeAd"> </div>
+
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                      <label for="Prix_Igd">  le prix d'une portion de l'ingredient </label>
+                        <input  type="number" name="Prix_Igd" id="Prix_Igd" class="form-control" placeholder="prix/portion" value = "<?php echo $Prix_Igd; ?>">
+                      
+
+                    </div>
+                    </div>
+          
+                  </div>
+
+
+
+
+
+
+                  
+
+
+
+
+
+
+
+
+
+                 
+
+
+
+
+
+
+
+
+             
                 
          
-          <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
-  
+          <input type="submit" value="Enregistrer" name = "submit" >
           <input type="reset" value="Annuler" name = "annuler">
-   
-       
-        
+ 
         </form> 
 
           </div>
@@ -267,9 +333,7 @@
 </div>
  
     <?php
-    
 		}
-  
 		?>
           
 

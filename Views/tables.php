@@ -1,6 +1,15 @@
 <?PHP
 	include "../controller/TypeReclamationC.php";
 	include "../controller/ReclamationC.php";
+  include "../controller/platC.php";
+	include "../controller/ingredientC.php";
+  $platC=new platC();
+$listeplat =$platC->afficherplat();
+
+$ingredientC=new ingredientC();
+$listeingredient =$ingredientC->afficherIgd();
+
+
   $TypeReclamationC=new TypeReclamationC();
 $listeTypeReclamation =$TypeReclamationC->afficherTypeReclamation();
 
@@ -40,13 +49,14 @@ $listeReclamation =$ReclamationC->afficherReclamation();
       <div class="logo">
         
       </div>
+     
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
+      
          
-         
-        <li>
+          <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -54,24 +64,32 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           </li>
           <li >
           <a href="./AfficherReclamation.php">
-              <i class="now-ui-icons ui-1_email-85  "></i>
+              <i class="now-ui-icons ui-1_email-85"></i>
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="./AfficherClient.php">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Client</p>
+              <p>Clients</p>
             </a>
           </li>
 
+
           <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li  >
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
             </a>
           </li>
-          
           <li>
             <a href="">
               <i class="now-ui-icons ui-1_calendar-60"></i>
@@ -87,27 +105,27 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           </li>
 
           <li>
-            <a href="">
+            <a href="./Ajouterproduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="./AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
             </a>
@@ -128,7 +146,13 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             </a>
           </li>
         </ul>
+
+        
       </div>
+
+
+
+
     </div>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
@@ -319,10 +343,123 @@ $listeReclamation =$ReclamationC->afficherReclamation();
               </div>
             </div>
           </div>
+
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Table des plats</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+
+
+
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+                    <th class="text-center">  &nbsp;&nbsp;Identifiant de plat</th>
+				<th class="text-center">nom de plat</th>
+        <th class="text-center">type de plat</th>
+				<th class="text-center">prix de plat</th>
+        <th class="text-center">nombre de calorie par plat</th>
+				<th class="text-center">poids d'une portion</th>
+			
+	
+			</tr>
+          
+                    </thead>
+     
+                    <tbody>
+                    <?PHP
+				foreach($listeplat as $plat)
+        {
+			?>
+				<tr>
+        <td class="text-center"><?PHP echo $plat["Id_plat"] ?></td>
+					<td class="text-center"><?PHP echo $plat['Nom_Plat']; ?></td>
+					<td class="text-center"><?PHP echo $plat['Type_plat']; ?></td>
+          <td class="text-center"><?PHP echo $plat['Prix_plat']; ?></td>
+					<td class="text-center"><?PHP echo $plat['Nbr_Clri_plat']; ?></td>
+          <td class="text-center"><?PHP echo $plat['Pds_Portion_plat']; ?></td>
+     
+				</tr>
+			<?PHP
+				}
+			?>
+
+                    <tbody>              
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header">
+                <h4 class="card-title"> Table des ingredients</h4>
+              
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+
+                    <thead class="text-center">
+                    <th class="text-center">  &nbsp;&nbsp;Identifiant d'ingredient</th>
+				<th class="text-center">nom d'ingredient'</th>
+        <th class="text-center">type d'ingredient'</th>
+				<th class="text-center">prix d'ingredient</th>
+     
+                 
+                    </thead>
+
+
+
+
+
+
+                    <tbody>
+                    
+                    <?PHP
+				foreach($listeingredient as $ingredient)
+        {
+			?>
+				<tr>
+        <td class="text-center"><?PHP echo $ingredient["Id_Igd"] ?></td>
+					<td class="text-center"><?PHP echo $ingredient['Nom_Igd']; ?></td>
+					<td class="text-center"><?PHP echo $ingredient['Type_Igd']; ?></td>
+          <td class="text-center"><?PHP echo $ingredient['Prix_Igd']; ?></td>
+    
+          
+				</tr>
+			<?PHP
+				}
+			?>
+
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
         </div>
       </div>
-
-
 
 
     </div>
