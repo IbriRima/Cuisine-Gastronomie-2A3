@@ -26,6 +26,7 @@ form.addEventListener("submit", function(evenement) {
         div_Nom_Plat.innerHTML = "Vous devez entrer le nom de plat!";
         document.getElementById("Nom_Plat").focus();
     }
+    
     else div_Nom_Plat.innerHTML="";
 
 

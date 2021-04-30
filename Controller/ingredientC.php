@@ -68,14 +68,14 @@
             }
         }
 
-        public function rechercherIgd($id) 
+        public function rechercherIgd($type) 
         {            
-            $sql = "SELECT * from ingredient where Id_Igd=:id"; 
+            $sql = "SELECT * from ingredient where Type_Igd=:type"; 
             $db = getConnexion();
             try {
                 $query = $db->prepare($sql);
                 $query->execute([
-                    'id' => $ingredient->getIdIgd(),
+                    'type' => $type
                 ]); 
                 $result = $query->fetchAll(); 
                 return $result;
