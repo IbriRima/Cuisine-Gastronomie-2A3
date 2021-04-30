@@ -138,7 +138,7 @@ array_push($arrayTV,$Reclamation['NT']);
           </li>
 
           <li>
-            <a href="./AjouterIngredient.php">
+            <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>

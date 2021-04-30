@@ -2,7 +2,7 @@
 <?php
 	include "../Controller/ReclamationC.php";
 	include "../Model/Reclamation.php";
-	include "../Controller/ClientC.php";
+	include "../Controller/Client.php";
 	$ReclamationC = new ReclamationC();
    
             if (
@@ -27,13 +27,14 @@ else if ($_POST['Etat_traitement']=="Non")
 	$Etat="Traitee";
     $id=$_POST['Id_client'];
     $idR=$_POST['Id_Recl'];
-    $ClientC=new ClientC();
-    $listeClient =$ClientC->getClient($id) ;
+    $Client=new Client();
+    $listeClient =$Client->getClient($id) ;
     
-    foreach($listeClient as $Client)
+    foreach($listeClient as $user)
         
     {
-       $email= $Client["email"] ;
+       $email= $user["email"] ;
+    echo"$email";
      
     
     }
