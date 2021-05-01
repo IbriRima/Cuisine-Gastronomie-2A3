@@ -9,6 +9,9 @@
   box-shadow: 5px 5px 20px #000;
   border-radius: 20px;
 }
+
+
+
 .top{
   width: 100%;
   height: 50px;
@@ -214,7 +217,70 @@ opacity: 1;
 
 /*Recla*/
 
+/*login*/
 
+
+
+.login {
+  position: absolute;
+  top: 19%;
+  left:250%; 
+  transform: translate(-50%, -50%) ;
+  display: flex;
+  color: rgb(35, 121, 1);
+}
+
+
+.login label
+{
+
+display: block;
+cursor: pointer;
+width: 20px;
+
+
+}
+.login label:before
+
+{
+
+content: '\f005';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 20px;
+position: relative;
+
+display: block;
+color: #fb6e14;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+
+.login label:after
+
+{
+
+content: '\f005';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 20px;
+position: absolute;
+display: block;
+opacity:0 ;
+color: rgb(12, 12, 10);
+top: 0;
+
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+.login label:hover::after,
+.login label:hover ~ label::after,
+.login input:checked ~ label::after
+{
+opacity: 1;
+
+}
+
+/*login*/
 
 
 
@@ -237,6 +303,14 @@ opacity: 1;
 
 
 .left { float:left; margin:0 10px 0 40px; }
+.right { 
+  
+  float:right; 
+  margin-top: -140px;
+  margin-bottom: 0px;
+  margin-right: 30px;
+  margin-left: 180px;
+}
 body {
   font-family: "Merriweather", serif;
   font-size: 15px;

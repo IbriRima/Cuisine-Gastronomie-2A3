@@ -14,8 +14,12 @@
 		else 
 		{
 	
-			header('Location:AfficherReclamation.php');
-          
+		
+			   
+			echo '<script type="text/javascript">';
+			echo 'alert("Vous pouvez supprimer seulement les réclamations traitée")';
+			echo '</script>';
+			echo ("<script>location.href='./AfficherReclamation.php'</script>");
 		
 		}
 	

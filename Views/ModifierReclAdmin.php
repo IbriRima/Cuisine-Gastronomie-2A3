@@ -21,9 +21,11 @@
 if ($_POST['Etat_traitement']=="Traitee")
 {
 	$Etat="Non traitee";
+    
+    header('Location:AfficherReclamation.php'); 
 }
 else if ($_POST['Etat_traitement']=="Non")
-{
+{   
 	$Etat="Traitee";
     $id=$_POST['Id_client'];
     $idR=$_POST['Id_Recl'];
@@ -34,8 +36,7 @@ else if ($_POST['Etat_traitement']=="Non")
         
     {
        $email= $user["email"] ;
-    echo"$email";
-     
+ 
     
     }
     ini_set('SMTP','smtp.topnet.tn');
@@ -51,6 +52,12 @@ else if ($_POST['Etat_traitement']=="Non")
    
     }
 
+    	   
+			echo '<script type="text/javascript">';
+			echo 'alert("L email d alerte a bien été envoyé au client")';
+			echo '</script>';
+			echo ("<script>location.href='./AfficherReclamation.php'</script>");
+
 }
          
 $ReclamationC->updateEtatReclamation($Etat,(int)$_POST["Id_Recl"]);     
@@ -59,7 +66,6 @@ $ReclamationC->updateEtatReclamation($Etat,(int)$_POST["Id_Recl"]);
               else
               $error = "Missing information";
 
-              header('Location:AfficherReclamation.php'); 
 		
         }
       

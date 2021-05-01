@@ -1,22 +1,23 @@
 <?php
-  require_once '../Controller/ingredientC.php';
-  require_once '../Model/ingredient.php';
+  require_once '../Controller/ProduitC.php';
+  require_once '../Model/Produit.php';
 
-  $ingredientC = new ingredientC() ;
+  $ProduitC = new ProduitC() ;
   $error = "";
 
-  if (isset($_POST["Nom_Igd"])&& isset($_POST["Type_Igd"])&& isset($_POST["Prix_Igd"]))
+  if (isset($_POST["Nom_produit"])&& isset($_POST["Quantité_dans_le_stock"])&& isset($_POST["Prix_de_vente"])&& isset($_POST["nom_image"]))
          {
             if (
-                !empty($_POST["Nom_Igd"]) && 
-                !empty($_POST["Type_Igd"]) &&
-                !empty($_POST["Prix_Igd"]) 
+                !empty($_POST["Nom_produit"]) && 
+                !empty($_POST["Quantité_dans_le_stock"]) &&
+                !empty($_POST["Prix_de_vente"]) &&
+                !empty($_POST["nom_image"]) 
                
             )
               {
-                $ingredient = new ingredient($_POST["Nom_Igd"],$_POST["Type_Igd"],$_POST["Prix_Igd"] );
+                $Produit = new Produit($_POST["Nom_produit"],$_POST["Quantité_dans_le_stock"],$_POST["Prix_de_vente"] ,$_POST["nom_image"]);
                   
-          $ingredientC->updateIgd($ingredient,$_POST["Id_Igd"]);
+          $ProduitC->updateProduit($Produit,$_POST["Id_produit"]);
               }
               else
                   $error = "Missing information";
@@ -24,10 +25,15 @@
 	
 
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -49,21 +55,6 @@
             <?php echo $error; ?>
         </div>
 			
-
-	<?php
-			if (isset($_POST["Id_Igd"])){
-        $id=$_POST["Id_Igd"];
-       
-        $Type_Igd=$_POST["Type_Igd"];
-        
-        $Nom_Igd=$_POST["Nom_Igd"];
-        $Prix_Igd=$_POST["Prix_Igd"];
-       
-
-				$ingredient= $ingredientC->recupererIgd($_POST["Id_Igd"]);
-    
-		?>
-
 <div class="wrapper ">
 
   <div class="sidebar" data-color="yellow">
@@ -71,7 +62,6 @@
     <div class="logo">
       
     </div>
-
     <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
@@ -106,7 +96,7 @@
           </li>
 
 
-          <li  >
+          <li >
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
@@ -146,7 +136,7 @@
             </a>
           </li>
 
-          <li >
+          <li>
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
@@ -171,13 +161,7 @@
 
         
       </div>
-
-
     </div>
- 
- 
-
-     
 
     <div class="main-panel" id="main-panel">
 
@@ -190,7 +174,7 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Modifier l'ingredient d'identifiant <?php echo $_POST["Id_Igd"]?> </h5>
+                <h5 class="title">Modifier un Produit</h5>
               </div>
               <div class="card-body">
             
@@ -225,43 +209,30 @@
                       <div class="form-group">
               
                       
-                     
-<input  type="number" name="Id_Igd" id="Id_Igd" class="form-control" value = "<?php echo $id; ?>" hidden >
+                      <label for="Id_produit"> Identifiant </label>
+
+<input  type="number" name="Id_produit" id="Id_produit" class="form-control" value = <?php echo  (int)$_POST["Id_produit"] ; ?> >
                   
                     </div>
                   </div>
                 </div>
 
-                  <div class="row">    
+
+                <div class="row">    
                   <div class="col-md-3 px-1">
                       <div class="form-group"></div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                   
-                      <label for="Nom_Igd"> nom de l'ingredient</label>
-                        <input  type="text" name="Nom_Igd" id="Nom_Igd" class="form-control" placeholder="nom l'ingredient" value = "<?php echo $Nom_Igd; ?>" > 
+                        <label for="Nom_produit"> nom de produit</label>
+                        <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="changer le nom " value = <?php echo  $_POST["Nom_produit"] ; ?> >
                     
 
                     </div>
                     </div>
           
                   </div>
-                  <div class="row">    
-                  <div class="col-md-3 px-1">
-                      <div class="form-group"></div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                  
-                      <label for="Type_Igd">  le type de l'ingredient </label>
-                        <input  type="text" name="Type_Igd" id="Type_Igd" class="form-control" placeholder="type de l'ingredient" value = "<?php echo $Type_Igd; ?>">
-
-                    </div>
-                    </div>
-          
-                  </div>
-
 
 
                   <div class="row">    
@@ -271,9 +242,9 @@
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                   
-                      <label for="Prix_Igd">  le prix d'une portion de l'ingredient </label>
-                        <input  type="number" name="Prix_Igd" id="Prix_Igd" class="form-control" placeholder="prix/portion" value = "<?php echo $Prix_Igd; ?>">
-                      
+                        <label for="Quantité_dans_le_stock"> Quantité_dans_le_stock</label>
+                        <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="changer la quantité dans le stock" value = <?php echo  $_POST["Quantité_dans_le_stock"] ; ?>  >
+                    
 
                     </div>
                     </div>
@@ -283,31 +254,44 @@
 
 
 
-
-
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
                   
+                        <label for="Prix_de_vente"> Prix de vente</label>
+                        <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="changer le prix de vente" value = <?php echo  $_POST["Prix_de_vente"] ; ?>  > 
+                    
 
+                    </div>
+                    </div>
+          
+                  </div>
 
+                  <div class="row">    
+                  <div class="col-md-3 px-1">
+                      <div class="form-group"></div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                  
+                        <label for="nom_image"> nom de l'image</label>
+                        <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image " value = <?php echo  $_POST["nom_image"] ; ?>   >
+                    
 
-
-
-
-
-
-
-                 
-
-
-
-
-
-
+                    </div>
+                    </div>
+          
+                  </div>
 
 
              
+                  <div class="controle" id="verifDureeAd"> </div>
                 
          
-          <input type="submit" value="Enregistrer" name = "submit" >
+          <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
           <input type="reset" value="Annuler" name = "annuler">
  
         </form> 
@@ -332,9 +316,6 @@
   </div>
 </div>
  
-    <?php
-		}
-		?>
           
 
 

@@ -4,6 +4,26 @@ require_once '../Controller/platC.php';
     require_once '../Model/plat.php';
 	require_once '../Controller/ingredientC.php';
     require_once '../Model/ingredient.php';
+	
+     require_once '../Controller/ProduitC.php';
+	 require_once '../Model/Produit.php';
+	 require_once '../Controller/OffresC.php';
+	 require_once '../Model/offres.php';
+
+
+    $error = "";
+
+
+
+
+        $ProduitC = new ProduitC();
+      $listeProduit =$ProduitC->afficherProduit();
+	  $OffresC = new OffresC();
+      $listeOffres =$OffresC->afficherOffres();
+
+      
+    
+
       $platC = new platC();
       $listeplat =$platC->afficherplat();
       
@@ -24,7 +44,7 @@ require_once '../Controller/platC.php';
 	<title>PointBIO</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+	<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -69,11 +89,12 @@ require_once '../Controller/platC.php';
 	<body>
 
 
+
 	
 	<div id="fh5co-container">
-	<div >
-			<a  href="ReclamationClient.php" >Se connecter</a>
-	</div >
+
+
+
 
 		<div id="fh5co-home" class="js-fullheight" data-section="home">
 
@@ -82,16 +103,20 @@ require_once '../Controller/platC.php';
 				<div class="fh5co-overlay"></div>
 				
 				<div class="fh5co-text">
-		
+				<input class="right" type="image" src="../assets/img/login.png" type="button"  width="70" heigth="70" onclick="location.href='Login.php'" >
 					<div class="container">
 						<div class="row">
+					
 							<h1 class="to-animate">PointBIO</h1>
 							<h2 class="to-animate" id="slogan">On ne change RIEN <span>et</span> ça change TOUT</a></h2>
+						
 						</div>
 					
 					</div>
 				</div>
+				
 			  	<ul class="slides">
+					  
 			   	<li style="background-image: url(../assets/img/slide_1.jpg);" data-stellar-background-ratio="0.5"></li>
 			   	<li style="background-image: url(../assets/img/slide_2.jpg);" data-stellar-background-ratio="0.5"></li>
 			   	<li style="background-image: url(../assets/img/slide_3.jpg);" data-stellar-background-ratio="0.5"></li>
@@ -100,15 +125,16 @@ require_once '../Controller/platC.php';
 			</div>
 			
 		</div>
-		
+	
 		<div class="js-sticky">
 			<div class="fh5co-main-nav">
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
 					
+ 
 						<a href="#" data-nav-section="about">A propos de nous</a>
 						<a href="#" data-nav-section="Produits">Nos Produits frais</a>
-						<a href="#" data-nav-section="Produits">Nos Promotions</a>
+					
 					
 					</div>
 					<div class="fh5co-logo">
@@ -119,12 +145,17 @@ require_once '../Controller/platC.php';
 					
 						<a href="#" data-nav-section="reservation">Réserver une table</a>
 						
+
+
+
 					</div>
 				</div>
 				
 			</div>
 		</div>
-	<a href="AjouterTypeReclamation.php">Administrateur</a>
+
+			<a href="AjouterTypeReclamation.php">Administrateur</a>
+	
 		<div id="fh5co-about" data-section="about">
 			<div class="fh5co-2col fh5co-bg to-animate-2" style="background-image: url(../assets/img/res_img_1.jpg)"></div>
 			<div class="fh5co-2col fh5co-text">
@@ -172,156 +203,135 @@ require_once '../Controller/platC.php';
 
 				</div>
 			</div>
-	
-		<div id="fh5co-featured"  data-section="Produits">
+
+			
+	<!--Produit-->
+			<div id="fh5co-featured"  data-section="Produits">
 			<div class="container">
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
 						<h2 class="heading to-animate">Nos Produits frais</h2>
-						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<p class="sub-heading to-animate">Découvrez notre large gamme de produits frais de qualité livrés directement chez vous. Pour vos courses du quotidien, partez à la découverte de notre assortiment de fruits et légumes frais de saison. Vous trouverez aussi une sélection de viandes, fromages et produits laitiers, sans oublier le pain, des oeufs et tout ce qu'il faut pour cuisiner des produits frais.
+
+</p>
+
+<iframe width="750" height="450" src="https://www.youtube.com/embed/56dGtmLs8Q8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 					</div>
 				</div>
-				<div class="row">
-					<div class="fh5co-grid">
-						
-						<div class="fh5co-v-half to-animate-2">
-							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_1.jpg)"></div>
-							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
-								<h2>Fresh Mushrooms</h2>
-								<span class="pricing">$7.50</span>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							</div>
-						</div>
+	
+	
 
+
+
+
+
+
+				<?PHP
+				foreach($listeProduit as $Produit)
+        {
+			
+			?> 
+
+
+					<div class="fh5co-grid">
+
+									<div class="fh5co-v-half to-animate-2">
+							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/<?PHP echo $Produit['nom_image']; ?>)"></div>
+							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
+							<p>nom du produit : </p>
+							<h2><?PHP echo $Produit['Nom_produit']; ?></h2>
+
+							<span class="pricing"><?PHP echo $Produit['Prix_de_vente']; echo "$"  ?></span>
+
+
+
+	
+	
+	
+	
+	<?PHP
+				foreach($listeOffres as $Offres)
+        {
+			
+			?> 
+
+
+<?PHP 
+if($Offres['id_produit']===$Produit['Id_produit'])
+{
+	?> 
+	<strong class="item-price"><del>	<?PHP echo $Produit['Prix_de_vente']; echo "$" ?>  </del> 
+
+	<?PHP
+	echo $Offres['Valeur']; echo "$" ;
+}
+else echo"";
+ ?>
+
+
+
+<?PHP
+				}
+			?>
+
+                        </strong> 
+
+				        	<p>Quantité restante dans le stock: </p>
+
+		                	<p><?PHP echo $Produit['Quantité_dans_le_stock']; echo "kg" ?></p>
+
+
+
+
+							</div>
+
+							</div>
+
+
+							</div>
+
+
+
+			<?PHP
+				}
+			?>
+
+			
 
 					
 
-						<div class="fh5co-v-half">
-							<div class="fh5co-h-row-2 to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_2.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-left">
-									<h2>Grilled Chiken Salad</h2>
-									<span class="pricing">$12.00</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_8.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-right">
-									<h2>Cheese and Garlic Toast</h2>
-									<span class="pricing">$4.50</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="fh5co-v-half">
-							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_7.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-right">
-									<h2>Organic Egg</h2>
-									<span class="pricing">$4.99</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-							<div class="fh5co-h-row-2 to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_6.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-left">
-									<h2>Salad with Crispy Chicken</h2>
-									<span class="pricing">$8.50</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-						</div>
-						<div class="fh5co-v-half to-animate-2">
-							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_3.jpg)"></div>
-							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
-								<h2>Tomato Soup with Chicken</h2>
-								<span class="pricing">$12.99</span>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							</div>
-						</div>
-
+					
+					
 					</div>
 				</div>
 
 
-<div class="container" >
-				<div class="row text-center fh5co-heading row-padded">
-					<div class="col-md-8 col-md-offset-2">
-						<h2 class="heading to-animate">Nos promotions</h2>
-						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-					</div>
+				
+
+
+
+
+
+
+	
+
+							
+			
+						</div>
 				</div>
-				<div class="row">
-					<div class="fh5co-grid">
-						<div class="fh5co-v-half to-animate-2">
-							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_1.jpg)"></div>
-							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
-								<h2>Fresh Mushrooms</h2>
-								<span class="pricing">$7.50</span>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							</div>
-						</div>
-						<div class="fh5co-v-half">
-							<div class="fh5co-h-row-2 to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_2.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-left">
-									<h2>Grilled Chiken Salad</h2>
-									<span class="pricing">$12.00</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_8.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-right">
-									<h2>Cheese and Garlic Toast</h2>
-									<span class="pricing">$4.50</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="fh5co-v-half">
-							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_7.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-right">
-									<h2>Organic Egg</h2>
-									<span class="pricing">$4.99</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-							<div class="fh5co-h-row-2 to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_6.jpg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-left">
-									<h2>Salad with Crispy Chicken</h2>
-									<span class="pricing">$8.50</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-						</div>
-						<div class="fh5co-v-half to-animate-2">
-							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(../assets/img/res_img_3.jpg)"></div>
-							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
-								<h2>Tomato Soup with Chicken</h2>
-								<span class="pricing">$12.99</span>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
 			</div>
+		</div>
+	</form>
 
 
+
+		
+		
 	</div>
 
-</div>
-
-
-
-
+	<!--Produi-->
 <!--Menu-->
 	
 

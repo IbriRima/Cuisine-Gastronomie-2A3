@@ -1,14 +1,15 @@
 <?PHP
-	include "../Controller/ingredientC.php";
+	include "../Controller/ProduitC.php";
 
-    $ingredientC = new ingredientC();
+    $ProduitC = new ProduitC();
 
 
 	
-if (isset($_POST["Id_Igd"])){
-	$ingredientC->deleteIgd($_POST["Id_Igd"]);
-	//header('Location:AjouterTypeReclamation.php');
+if (isset($_POST["Id_produit"])){
+	$ProduitC->deleteProduit($_POST["Id_produit"]);
+	header('Location:AjouterProduit.php');
 }
 
 
 ?>
+

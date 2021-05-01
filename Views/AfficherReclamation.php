@@ -22,10 +22,16 @@ $datax= array_keys($array);
 $arrayI=array("");
 $arrayV=array("");
 $listeNote =$ReclamationC->getNote();  
+
 foreach($listeNote as $Reclamation)
 { 
 array_push($arrayI,$Reclamation['Note']);
 array_push($arrayV,$Reclamation['Nombre']);
+
+
+
+
+
 
 }
 
@@ -290,7 +296,7 @@ array_push($arrayTV,$Reclamation['NT']);
           <td class="text-center"><?PHP echo $Reclamation['Id_client']; ?></td>
 					<td class="text-center"><?PHP echo $Reclamation['Etat_traitement']; ?></td>
               <td>
-					<form method="POST" action="SupprimerReclamation.php" id="Admin"  onsubmit="DeleteAdmin();" >
+					<form method="POST" action="SupprimerReclamation.php" id="Admin" >
           <div class="controle" id="verifDelete"> </div>
               </div>
               <!--   -->
@@ -304,7 +310,7 @@ array_push($arrayTV,$Reclamation['NT']);
 					</td>
      
           <td>
-					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin" onsubmit="Mail();" >
+					<form method="POST" action="ModifierReclAdmin.php" id="formMAdmin"  >
             <input class="left" type="image" src="../assets/img/update3.png"  type="submit" width="30" heigth="10"  />
             <input type="hidden" value=<?PHP echo $Reclamation['Id_Recl']; ?> name="Id_Recl" id="Id_Recl">
             <input type="hidden" value=<?PHP echo $Reclamation['Etat_traitement']; ?> name="Etat_traitement" id="Etat_traitement">
@@ -324,6 +330,10 @@ array_push($arrayTV,$Reclamation['NT']);
             </div>
           </div>
 
+
+
+        
+         
           <div class="row" id="stat" >
           <h4> Statistiques des réclamations selon l'état de traitement  </h4>
           </div>
@@ -426,7 +436,7 @@ gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
     pointRadius: 4,
     fill: true,
     borderWidth: 1,
-    label: "Etat de traitement",
+    label: "Note",
    
     data: <?php echo json_encode($arrayV); ?>
   }]
@@ -452,6 +462,12 @@ gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
 </script>
      
 
+
+<form action="ExcelReclamationNote.php" method="POST">
+          <input class="left" type="image" src="../assets/img/excel.png"  type="submit" width="30" heigth="10" />
+          <input type="hidden" value=<?php echo json_encode($arrayTI); ?> name="Indice" id="Indice">
+            <input type="hidden" value=<?php echo json_encode($arrayTV); ?>name="Valeur" id="Valeur">
+      </form>
 
 
 
@@ -519,7 +535,11 @@ gradientFill.addColorStop(1,"rgba(255, 128,68, 0.9)");
 
 
 
-
+<form action="ExcelReclamationType.php" method="POST">
+          <input class="left" type="image" src="../assets/img/excel.png"  type="submit" width="30" heigth="10" />
+          <input type="hidden" value=<?php echo json_encode($arrayTI); ?> name="Indice" id="Indice">
+            <input type="hidden" value=<?php echo json_encode($arrayTV); ?>name="Valeur" id="Valeur">
+      </form>
 
 
 

@@ -198,43 +198,11 @@ form.addEventListener("submit", function Test (evenement) {
 
 }
 
-function DeleteAdmin()
-{   
-
-
-      
-test=document.querySelector(".Etat");
-
-
-    if (test.value== 'Non')
-    {
-     console.log(test.value);
-     alert("Vous pouvez supprimer Seulement les réclamations Traitées !");
-       
-    }
-
-}
-
-
-
-function Mail()
-{  
-
-    test=document.querySelector(".Etat");
-
-
-    if (test.value== 'Non')
-    {
-     console.log(test.value);
-     alert("L'email d'alerte a bien été envoyé au client");
-       
-    }
 
 
 
 
 
-}
 
 function Save()
 {
