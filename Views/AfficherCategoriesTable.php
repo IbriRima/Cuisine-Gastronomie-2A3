@@ -1,35 +1,20 @@
-<?php
-    require_once '../Controller/platC.php';
-    require_once '../Model/plat.php';
+<?PHP
+//include "../controller/TypeReclamationC.php";
+	include "../controller/CategoriesTableC.php";
 
- 
 
-    $platC = new platC();
-     
-    $arrayI=array("");
-$arrayV=array("");
-$listeplat =$platC->stattype();  
-foreach($listeplat as $plat)
-{ 
-array_push($arrayI,$plat['Type_plat']);
-array_push($arrayV,$plat['Nombre']);
-
-}
-      
-    
-
+$CategoriesTableC=new CategoriesTableC();
+$listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8" />
-  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
- 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     PointBIO
@@ -51,12 +36,11 @@ array_push($arrayV,$plat['Nombre']);
       <div class="logo">
         
       </div>
-    
-<div class="sidebar-wrapper" id="sidebar-wrapper">
+      <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
-         
+      
          
           <li >
             <a href="./AjouterTypeReclamation.php">
@@ -70,21 +54,37 @@ array_push($arrayV,$plat['Nombre']);
               <p>réclamation</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Profil</p>
+              <p>Clients</p>
+            </a>
+          </li>
+
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+
+
+          <li >
+          <a href="./AfficherCartes.php">
+          <i class="now-ui-icons business_money-coins"></i>
+              <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
-            <a href="Rechercher_Table.php">
+          <a href="./Rechercher_Table.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
-          <li>
-          <a href="./AfficherCategoriesTable.php">
+          <li class="active">
+            <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
@@ -103,14 +103,14 @@ array_push($arrayV,$plat['Nombre']);
               <p>offres</p>
             </a>
           </li>
-          <li >
-            <a href="AjouterIngredient.php">
+          <li>
+            <a href="./AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
-          <li class="active">
+          <li>
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
@@ -161,15 +161,16 @@ array_push($arrayV,$plat['Nombre']);
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-
-
-         
-
-
-
-
-
-
+            <form>
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -186,8 +187,10 @@ array_push($arrayV,$plat['Nombre']);
                     <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
-                 
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -202,72 +205,76 @@ array_push($arrayV,$plat['Nombre']);
           </div>
         </div>
       </nav>
-      
       <!-- End Navbar -->
 
 
       <div class="panel-header panel-header-sm">
       </div>
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <div class="row" id="stat" >
-          <h4>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Statistiques des plats selon leur type  </h4>
-          </div>
-          <div class="row">
-          <h4> </h4>
-          </div>
-        <div style="width:60%;hieght:20%;text-align:center">
-         
-            <canvas  id="chartjs_bar"></canvas> 
-        </div>    
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Liste des Categories Table</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
 
-  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<script type="text/javascript">
 
-      var ctx = document.getElementById("chartjs_bar").getContext('2d');
-      gradientFill = ctx.createLinearGradient(0, 170, 50, 50);
-    gradientFill.addColorStop(0, "rgba(127, 182, 245, 0)");
-    gradientFill.addColorStop(1,"rgba(92, 212, 31, 100)");
 
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels:<?php echo json_encode($arrayI); ?>,
-                        datasets: [{
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+                    <th class="text-center">ID</th>
+				<th class="text-center">NB_places</th>
+				<th class="text-center">Forme</th>
+				<th class="text-center">Espace</th>
+				<th class="text-center">Supprimer</th>
+				<th class="text-center">Modifier</th>
+			
+	
+			</tr>
           
-         backgroundColor: gradientFill,
-          borderColor: "rgba(92, 212, 31, 100)",
+                    </thead>
      
+                    <tbody>
+                    <?PHP
+				foreach($listeCategoriesTable as $CategoriesTable)
+        {
+			?>
+				<tr>
+					<td class="text-center"><?PHP echo $CategoriesTable["ID"] ?></td>
+					<td class="text-center"><?PHP echo $CategoriesTable["NB_places"]; ?></td>
+					<td class="text-center"><?PHP echo $CategoriesTable['Forme']; ?></td>
+          <td class="text-center"><?PHP echo $CategoriesTable['Espace'] ?></td>
+					
+          <td>
+					<form method="POST" action="SupprimerCategoriesTable.php">
+            <input  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10"/>
+            <input type="hidden" value=<?PHP echo $CategoriesTable['ID']; ?> name="ID" id="ID">
+          </form>
+				 </td>
      
-          pointBorderWidth: 2,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 1,
-          pointRadius: 4,
-          fill: true,
-          borderWidth: 1,
-          label: "type plat",
-          data: <?php echo json_encode($arrayV); ?>
-        }]
-                       
-                    
-                    },
-                    options: {
-                           legend: {
-                        display: true,
-                        position: 'bottom',
-                        labels: {
-                            fontColor: '#71748d',
-                            fontFamily: 'Circular Std Book',
-                            fontSize: 16,
-                        }
-                    },
- 
- 
-                }
-                });
 
-                
-    </script>
+         <td>
+          <form method="POST" action="AfficheModifTable.php">
+            <input  type="image" src="../assets/img/update.png" name="Modifier" type="submit" width="30" heigth="10"/>
+            <input type="hidden" value=<?PHP echo $CategoriesTable['ID']; ?> name="ID" id="ID">
+         </form>
+          </td>
+
+
+				</tr>
+			<?PHP
+				}
+			?>
+
+                    <tbody>              
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 

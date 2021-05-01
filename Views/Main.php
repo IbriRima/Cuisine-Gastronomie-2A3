@@ -456,7 +456,39 @@ else echo"";
 		</div>
 		
 
-		<form action="AjouterReclamation.php" method="POST">
+		<script type="text/javascript">
+    function controleSaisie() {
+      if (document.formulaire.ID.value == "") {
+        document.getElementById('labelID').innerHTML="Veuillez saisir votre Numéro de télèphone!";
+        return false;
+      }
+      if (document.formulaire.Nom.value == "") {
+       document.getElementById('labelNom').innerHTML="Veuillez saisir votre Nom SVP!";
+        return false;
+      }
+       if (document.formulaire.Prénom.value == "") {
+         document.getElementById('labelPrénom').innerHTML="Veuillez saisir votre Prénom SVP!";
+        return false;
+      }
+      if (document.formulaire.email.value.indexOf('@') == -1) {
+         document.getElementById('labelemail').innerHTML="Tapez votre email SVP! (votre email doit contenir '@')";
+        return false;
+      }
+      if (document.formulaire.message.value == "") {
+        document.getElementById('labelMessage').innerHTML="Veuillez saisir votre message!"; 
+        return false;
+      }
+      if (document.formulaire.datetemps.value == "") {
+        document.getElementById('labeldatetemps').innerHTML="Veuillez saisir la date et le temps de réservation!";
+        return false;
+      }
+      return true;
+    } 
+  </script>
+
+
+
+		<form action="AjouterReservation.php" name="formulaire" method="POST"  OnSubmit="return controleSaisie()">
 	
 		<div id="fh5co-contact" data-section="reservation">
 			<div class="container">
@@ -479,41 +511,48 @@ else echo"";
 							<li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>
 						</ul>
 					</div>
-					<div class="col-md-6 to-animate-2">
+					<div class="col-md-6 to-animate-2" OnSubmit="return controleSaisie()">
 						<h3>Reservation Form</h3>
 						<div class="form-group ">
+							<label for="name" class="sr-only">ID(télèphone)</label>
+							<input id="name" name="ID" class="form-control" placeholder="ID(télèphone) :" type="tel">
+							<label id="labelID" name="labelID" style="color:#eb1212">  </label>
+						</div>
+						<div class="form-group ">
 							<label for="name" class="sr-only">Nom</label>
-							<input id="name" class="form-control" placeholder="Name" type="text">
+							<input id="name" name="Nom" class="form-control" placeholder="Nom :" type="text">
+							<label id="labelNom" name="labelNom" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
-							<label for="email" class="sr-only">Email</label>
-							<input id="email" class="form-control" placeholder="Email" type="email">
-						</div>
-						<div class="form-group">
-							<label for="occation" class="sr-only">Occation</label>
-							<select class="form-control" id="occation">
-								<option>Choisissez un type</option>
-							  <option>Wedding Ceremony</option>
-							  <option>Birthday</option>
-							  <option>Others</option>
-							</select>
+							<label for="name" class="sr-only">Prénom</label>
+							<input id="name" name="Prénom" class="form-control" placeholder="Prénom :" type="text">
+							<label id="labelPrénom" name="labelPrénom" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
-							<label for="date" class="sr-only">Date</label>
-							<input id="date" class="form-control" placeholder="Date &amp; Time" type="text">
+							<label for="email" class="sr-only">email</label>
+							<input id="email" name="email" class="form-control" placeholder="E-mail :" type="email">
+							<label id="labelemail" name="labelemail" style="color:#eb1212">  </label>
 						</div>
-
-
-							
-			
 						<div class="form-group ">
-							<input class="btn btn-primary" value="Send Message" type="submit">
+							<label for="name" class="sr-only">Message</label>
+							<textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message :"></textarea>
+							<label id="labelMessage" name="labelMessage" style="color:#eb1212">  </label>
+						</div>
+						<div class="form-group ">
+							<label for="name" class="sr-only">Date</label>
+							<input id="date" name="datetemps" class="form-control" placeholder="Date &amp; Time" type="text">
+							<label id="labeldatetemps" name="labeldatetemps" style="color:#eb1212">  </label>
+						</div>
+						<div class="form-group ">
+							<input class="btn btn-primary" name="Réserver" value="Réserver" type="submit">
 						</div>
 						</div>
 				</div>
 			</div>
 		</div>
 	</form>
+
+
 
 
 

@@ -27,7 +27,7 @@
                  $_POST['Type'],
                  "Non traitee",
                   (int)$_POST['Note'],
-                "1" 
+                "4" 
                 
 
           );

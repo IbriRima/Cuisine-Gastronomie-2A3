@@ -42,13 +42,14 @@
       <div class="logo">
         
       </div>
-      <div class="sidebar-wrapper" id="sidebar-wrapper">
+    
+<div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
          
          
-          <li >
+          <li class="active ">
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -67,41 +68,41 @@
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="Rechercher_Table.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+          <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
           </li>
 
-          <li class="active ">
-            <a href="AjouterIngredient">
+          <li class="active">
+            <a href="./Ajouterproduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
           <li>
-            <a href="AjouterOffres">
+            <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
-          <li>
-            <a href="">
+          <li >
+            <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
           <li>
-            <a href="">
+            <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
             </a>

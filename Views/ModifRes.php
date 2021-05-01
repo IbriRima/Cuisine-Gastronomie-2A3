@@ -1,35 +1,64 @@
-<?php
-    require_once '../Controller/platC.php';
-    require_once '../Model/plat.php';
+<?PHP
 
- 
+	//include "../controller/TypeReclamationC.php";
+	//include "../controller/ReservationC.php";
+	//require_once '../config.php'
+	//include "../views/ModifierReservation.php";
 
-    $platC = new platC();
-     
-    $arrayI=array("");
-$arrayV=array("");
-$listeplat =$platC->stattype();  
-foreach($listeplat as $plat)
-{ 
-array_push($arrayI,$plat['Type_plat']);
-array_push($arrayV,$plat['Nombre']);
+	include "../controller/ReservationC.php";
 
-}
-      
-    
 
+$keyword="";
+$ReservationC=new ReservationC();
+$listeReservation =$ReservationC->afficherReservation($keyword);
+
+
+
+require_once '../config.php';
+if(isset($_POST['Enregistrer']))
+    {
+        
+        $reservation=new Reservation();
+        $reservation->updateReservation();
+       
+    }
+class Reservation{ 
+ function updateReservation() {
+            try {
+                echo ("update3");
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE reserve SET ID = :ID, Nom = :Nom, Prenom = :Prenom, Email = :Email, Message = :Message, datetemps = :datetemps'  
+                );
+                echo ("update4");
+                $query->execute([
+                    'ID' => $_POST['ID'],
+                    'Nom' => $_POST['Nom'],
+                    'Prenom' => $_POST['Prénom'],
+                    'Email' => $_POST['email'],
+                    'Message' => $_POST['Message'],
+                    'datetemps' => $_POST['datetemps'],
+                    
+                ]);
+                echo $query->rowCount() . " records UPDATED successfully";
+                header('Location:../Views/Rechercher.php');
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        } 
+        }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8" />
-  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
- 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     PointBIO
@@ -51,14 +80,15 @@ array_push($arrayV,$plat['Nombre']);
       <div class="logo">
         
       </div>
-    
-<div class="sidebar-wrapper" id="sidebar-wrapper">
+     
+
+      <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
          
          
-          <li >
+          <li>
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -76,7 +106,7 @@ array_push($arrayV,$plat['Nombre']);
               <p>Profil</p>
             </a>
           </li>
-          <li>
+          <li class="active">
             <a href="Rechercher_Table.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
@@ -110,7 +140,7 @@ array_push($arrayV,$plat['Nombre']);
             </a>
           </li>
 
-          <li class="active">
+          <li>
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
@@ -161,15 +191,16 @@ array_push($arrayV,$plat['Nombre']);
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-
-
-         
-
-
-
-
-
-
+            <form>
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -186,8 +217,10 @@ array_push($arrayV,$plat['Nombre']);
                     <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
-                 
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -202,85 +235,71 @@ array_push($arrayV,$plat['Nombre']);
           </div>
         </div>
       </nav>
-      
       <!-- End Navbar -->
 
 
       <div class="panel-header panel-header-sm">
       </div>
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <div class="row" id="stat" >
-          <h4>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Statistiques des plats selon leur type  </h4>
-          </div>
-          <div class="row">
-          <h4> </h4>
-          </div>
-        <div style="width:60%;hieght:20%;text-align:center">
-         
-            <canvas  id="chartjs_bar"></canvas> 
-        </div>    
-
-  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<script type="text/javascript">
-
-      var ctx = document.getElementById("chartjs_bar").getContext('2d');
-      gradientFill = ctx.createLinearGradient(0, 170, 50, 50);
-    gradientFill.addColorStop(0, "rgba(127, 182, 245, 0)");
-    gradientFill.addColorStop(1,"rgba(92, 212, 31, 100)");
-
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels:<?php echo json_encode($arrayI); ?>,
-                        datasets: [{
-          
-         backgroundColor: gradientFill,
-          borderColor: "rgba(92, 212, 31, 100)",
-     
-     
-          pointBorderWidth: 2,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 1,
-          pointRadius: 4,
-          fill: true,
-          borderWidth: 1,
-          label: "type plat",
-          data: <?php echo json_encode($arrayV); ?>
-        }]
-                       
-                    
-                    },
-                    options: {
-                           legend: {
-                        display: true,
-                        position: 'bottom',
-                        labels: {
-                            fontColor: '#71748d',
-                            fontFamily: 'Circular Std Book',
-                            fontSize: 16,
-                        }
-                    },
- 
- 
-                }
-                });
-
-                
-    </script>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Modifier une réservation</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
 
 
+                 <!-- <table class="table"> -->
 
 
+	<div class="form-group ">
+		            <?PHP
+				foreach($listeReservation as $Reservation)
+        {
+			?>
+							<form method="POST" OnSubmit="updateReservation()">
+							<label for="name" class="sr-only">ID(télèphone)</label>
+							<input id="name" name="ID" class="form-control" placeholder="ID(télèphone) :" value="<?PHP echo $Reservation["ID"] ?>"type="tel">
+						</div>
+						<div class="form-group ">
+							<label for="name" class="sr-only">Nom</label>
+							<input id="name" name="Nom" class="form-control" value="<?PHP echo $Reservation["Nom"] ?>"placeholder="Nom :" type="text">
+						</div>
+						<div class="form-group ">
+							<label for="name" class="sr-only">Prénom</label>
+							<input id="name" name="Prénom" class="form-control" value="<?PHP echo $Reservation["Prenom"] ?>" placeholder="Prénom :" type="text">
+						</div>
+						<div class="form-group ">
+							<label for="email" class="sr-only">email</label>
+							<input id="email" name="email" class="form-control" value="<?PHP echo $Reservation["Email"] ?>" placeholder="E-mail :" type="email">
+						</div>
+						<div class="form-group ">
+							<label for="name" class="sr-only">Message</label>
+							<input id="name" name="Message" class="form-control" value="<?PHP echo $Reservation["Message"] ?>" placeholder="Message :" type="text">
+						</div> 
+
+						
+						<div class="form-group ">
+							<label for="name" class="sr-only">Date</label>
+							<input id="date" name="datetemps" class="form-control" value="<?PHP echo $Reservation["datetemps"] ?>" placeholder="Date &amp; Time" type="text">
+						</div>
+             		
+          				<div class="form-group ">
+							<input class="btn btn-primary"  name="Enregistrer" value="Enregistrer" type="submit">
+							<input class="btn btn-primary" value="Annuler" type="reset">
+						</div>
+			
+					</form>
+</div>
 
 
-    
+<?PHP
+				}
+?>
 
-
-    </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
+ <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -294,3 +313,25 @@ array_push($arrayV,$plat['Nombre']);
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
