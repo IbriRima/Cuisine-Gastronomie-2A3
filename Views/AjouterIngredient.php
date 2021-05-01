@@ -59,7 +59,7 @@
         
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <ul class="nav">
+      <ul class="nav">
 
 
       
@@ -76,21 +76,27 @@
               <p>réclamation</p>
             </a>
           </li>
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Profil</p>
+            </a>
+          </li>
+
+          <li >
+            <a href="./AfficherAdmins.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admins</p>
+            </a>
+          </li>
+
           <li >
             <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
               <p>Clients</p>
             </a>
           </li>
-
-
-          <li >
-            <a href="./AdminProfile.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Admin</p>
-            </a>
-          </li>
-
 
           <li >
           <a href="./AfficherCartes.php">
@@ -99,14 +105,14 @@
             </a>
           </li>
           <li>
-            <a href="Rechercher_Table.php">
+          <a href="./Rechercher_Table.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-          <a href="./AfficherCategoriesTable.php">
+            <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
@@ -125,8 +131,8 @@
               <p>offres</p>
             </a>
           </li>
-          <li class="active ">
-            <a href="AjouterIngredient.php">
+          <li class="active">
+            <a href="./AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>

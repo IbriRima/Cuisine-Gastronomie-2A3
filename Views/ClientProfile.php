@@ -157,6 +157,7 @@ $listeClient=$client->getClient($numero);
               
 
 			  <form action="../Controller/Client.php" 
+			  onsubmit = "return Verif();"
 			  method="POST">
 
 			   <?PHP
@@ -168,8 +169,10 @@ $listeClient=$client->getClient($numero);
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Nom</label>
-                        <input type="text" name="nom" class="form-control" id="nom" onchange="VerifNom();" 
+                        <input type="text" name="nom" class="form-control" id="nom"  
                         placeholder="Nom" value=<?PHP echo $Vals['nom']; ?> >
+						<label id="labelnom" name="labelnom" style="color:#eb1212">  </label>
+
                       </div>
                     </div>
 
@@ -177,7 +180,9 @@ $listeClient=$client->getClient($numero);
                       <div class="form-group">
                         <label>Prénom</label>
                         <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom" 
-                        onchange="VerifPrenom();" value=<?PHP echo $Vals['prenom']; ?>>
+                        value=<?PHP echo $Vals['prenom']; ?>>
+						<label id="labelprenom" name="labelprenom" style="color:#eb1212">  </label>
+
                       </div>
                     </div>
 
@@ -188,16 +193,20 @@ $listeClient=$client->getClient($numero);
                       <div class="form-group">
                         <label>Email</label>
                         <input type="text" name="email" class="form-control" placeholder="Email" id="email" 
-                        onchange="VerifEmail();" value=<?PHP echo $Vals['email']; ?> >
+                         value=<?PHP echo $Vals['email']; ?> >
+						<label id="labelemail" name="labelemail" style="color:#eb1212">  </label>
+
                       </div>
                     </div>
 
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Numéro de téléphone</label>
-                        <input type="text" class="form-control"  
+                        <input type="number" class="form-control"  
                         id="numero" name="numero"   value="<?php echo($numero);?>"
 						>	
+						<label id="labelnumero" name="labelnumero" style="color:#eb1212">  </label>
+
                       </div>
                     </div>
 
@@ -208,8 +217,10 @@ $listeClient=$client->getClient($numero);
                       <div class="form-group">
                         <label>Adresse</label>
                         <input type="text" class="form-control" placeholder="Adresse" name="adresse"
-                        id="adresse" onchange="VerifAdresse();" 
+                        id="adresse" on
 						value=<?PHP echo $Vals['adresse']; ?>>
+						<label id="labeladresse" name="labeladresse" style="color:#eb1212">   </label>
+
                       </div>
                     </div>
                   
@@ -304,7 +315,7 @@ $listeClient=$client->getClient($numero);
 	</script>
 	<!-- Main JS -->
 	<script src="../assets/js/main.js"></script>
-	<script src="../profile.js"></script>
+	<script src="../assets/js/profile.js"></script>
 
 
 	</body>

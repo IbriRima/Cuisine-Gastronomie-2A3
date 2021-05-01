@@ -9827,10 +9827,10 @@ ul {
 .auth {
   min-height: 100vh; }
   .auth.auth-bg-1 {
-    background: url("../assets/img/food7.jpg");
+    background: url("../../img/food3.jpg");
     background-size: cover; }
   .auth.register-bg-1 {
-    background: url("../assets/img/food6.jpg") center center no-repeat;
+    background: url("../../img/food9.jpg") center center no-repeat;
     background-size: cover; }
   .auth.theme-one .auto-form-wrapper {
     background: #fff;

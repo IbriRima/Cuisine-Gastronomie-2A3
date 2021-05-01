@@ -65,101 +65,107 @@
       </div>
      
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <ul class="nav">
+      <ul class="nav">
 
 
       
          
-          <li >
-            <a href="./AjouterTypeReclamation.php">
-              <i class="now-ui-icons files_single-copy-04"></i>
-              <p>Type de Reclamation</p>
-            </a>
-          </li>
-          <li >
-          <a href="./AfficherReclamation.php">
-              <i class="now-ui-icons ui-1_email-85"></i>
-              <p>réclamation</p>
-            </a>
-          </li>
-          <li >
-            <a href="./AfficherClients.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Clients</p>
-            </a>
-          </li>
+<li >
+  <a href="./AjouterTypeReclamation.php">
+    <i class="now-ui-icons files_single-copy-04"></i>
+    <p>Type de Reclamation</p>
+  </a>
+</li>
+<li >
+<a href="./AfficherReclamation.php">
+    <i class="now-ui-icons ui-1_email-85"></i>
+    <p>réclamation</p>
+  </a>
+</li>
+
+<li >
+  <a href="./AdminProfile.php">
+    <i class="now-ui-icons users_single-02"></i>
+    <p>Profil</p>
+  </a>
+</li>
+
+<li >
+  <a href="./AfficherAdmins.php">
+    <i class="now-ui-icons users_single-02"></i>
+    <p>Admins</p>
+  </a>
+</li>
+
+<li >
+  <a href="./AfficherClients.php">
+    <i class="now-ui-icons users_single-02"></i>
+    <p>Clients</p>
+  </a>
+</li>
+
+<li >
+<a href="./AfficherCartes.php">
+<i class="now-ui-icons business_money-coins"></i>
+    <p>Cartes Fidelités</p>
+  </a>
+</li>
+<li>
+<a href="./Rechercher_Table.php">
+    <i class="now-ui-icons ui-1_calendar-60"></i>
+    <p>Réservation de table</p>
+  </a>
+</li>
+
+<li>
+  <a href="./AfficherCategoriesTable.php">
+    <i class="now-ui-icons design_app"></i>
+    <p>Type de table</p>
+  </a>
+</li>
+
+<li>
+  <a href="./Ajouterproduit.php">
+    <i class="now-ui-icons shopping_box"></i>
+    <p>Produits</p>
+  </a>
+</li>
+
+<li>
+  <a href="./AjouterOffres.php">
+    <i class="now-ui-icons business_money-coins"></i>
+    <p>offres</p>
+  </a>
+</li>
+<li>
+  <a href="./AjouterIngredient.php">
+    <i class="now-ui-icons files_paper"></i>
+    <p>Ingrédients</p>
+  </a>
+</li>
+
+<li class="active">
+  <a href="./AjouterPlat.php">
+    <i class="now-ui-icons emoticons_satisfied"></i>
+    <p>Plats</p>
+  </a>
+</li>
+
+<li >
+  <a href="./tables.php">
+    <i class="now-ui-icons design_bullet-list-67"></i>
+    <p>Liste des tables</p>
+  </a>
+</li>
 
 
-          <li >
-            <a href="./AdminProfile.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Admin</p>
-            </a>
-          </li>
-
-
-          <li >
-          <a href="./AfficherCartes.php">
-          <i class="now-ui-icons business_money-coins"></i>
-              <p>Cartes Fidelités</p>
-            </a>
-          </li>
-          <li>
-            <a href="Rechercher_Table.php">
-              <i class="now-ui-icons ui-1_calendar-60"></i>
-              <p>Réservation de table</p>
-            </a>
-          </li>
-
-          <li>
-          <a href="./AfficherCategoriesTable.php">
-              <i class="now-ui-icons design_app"></i>
-              <p>Type de table</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="./Ajouterproduit.php">
-              <i class="now-ui-icons shopping_box"></i>
-              <p>Produits</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="./AjouterOffres.php">
-              <i class="now-ui-icons business_money-coins"></i>
-              <p>offres</p>
-            </a>
-          </li>
-          <li>
-            <a href="AjouterIngredient.php">
-              <i class="now-ui-icons files_paper"></i>
-              <p>Ingrédients</p>
-            </a>
-          </li>
-
-          <li class="active ">
-            <a href="./AjouterPlat.php">
-              <i class="now-ui-icons emoticons_satisfied"></i>
-              <p>Plats</p>
-            </a>
-          </li>
-
-          <li >
-            <a href="./tables.php">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Liste des tables</p>
-            </a>
-          </li>
-         
-  
-          <li >
-            <a href="./Main.php">
-              <i class="now-ui-icons gestures_tap-01"></i>
-              <p>www.PointBio.com</p>
-            </a>
-          </li>
-        </ul>
+<li >
+  <a href="./Main.php">
+    <i class="now-ui-icons gestures_tap-01"></i>
+    <p>www.PointBio.com</p>
+  </a>
+</li>
+</ul>
 
         
       </div>

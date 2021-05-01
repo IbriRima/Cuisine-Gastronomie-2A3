@@ -86,21 +86,27 @@
               <p>réclamation</p>
             </a>
           </li>
+
+          <li >
+            <a href="./AdminProfile.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Profil</p>
+            </a>
+          </li>
+
+          <li >
+            <a href="./AfficherAdmins.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Admins</p>
+            </a>
+          </li>
+
           <li >
             <a href="./AfficherClients.php">
               <i class="now-ui-icons users_single-02"></i>
               <p>Clients</p>
             </a>
           </li>
-
-
-          <li >
-            <a href="./AdminProfile.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Admin</p>
-            </a>
-          </li>
-
 
           <li >
           <a href="./AfficherCartes.php">
