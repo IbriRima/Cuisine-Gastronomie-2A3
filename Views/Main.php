@@ -1,8 +1,8 @@
 <?php
-    require_once '../Controller/platC.php';
-    require_once '../Model/plat.php';
-	require_once '../Controller/ingredientC.php';
-    require_once '../Model/ingredient.php';
+    include "../Controller/platC.php";
+    include "../Model/plat.php";
+	include "../Controller/ingredientC.php";
+    include "../Model/ingredient.php";
       $platC = new platC();
       $listeplat =$platC->afficherplat();
       
@@ -305,18 +305,27 @@
 				<div class="row row-padded">
 					<div class="col-md-6">
 						<div class="fh5co-food-menu to-animate-2">
+					
 							<h2 class="fh5co-drinks">plats</h2>
+							<ul>
 				<?PHP
+				$i=0;
 				foreach($listeplat as $plat)
-        {
+        { $i++;
+			if($i<4)
+			{
 			?>
 				
-							<ul>
-								
+							
+							
 							<li>
+							
 									<div class="fh5co-food-desc">
-										
+									<figure>
+											<img src="../assets/img/<?PHP echo $plat['imageP'];?>" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
 										<div>
+										
 											<h3><?PHP echo $plat['Nom_Plat']; ?></h3>
 											<p>le type de plat <?PHP echo $plat['Nom_Plat']; ?> est <?PHP echo $plat['Type_plat']; ?> a comme nombre de calorie <?PHP echo $plat['Nbr_Clri_plat']; ?> pour une portion de poids <?PHP echo $plat['Pds_Portion_plat']; ?> </p>
 										</div>
@@ -325,7 +334,8 @@
 									<?PHP echo $plat['Prix_plat']; ?> 
 									</div>
 								</li>
-							<?php } ?>
+							<?php } 
+							}?>
 							</ul>
 						</div>
 					</div>
@@ -334,8 +344,11 @@
 							<h2 class="fh5co-dishes">Food</h2>
 							<ul>
 							<?PHP
+							$j=0;
 				foreach($listeingredient as $ingredient)
-        {
+        { $j++;
+			if($j<4)
+			{
 			?>
 				
 							<ul>
@@ -352,7 +365,7 @@
 									<?PHP echo $ingredient['Prix_Igd']; ?>
 									</div>
 								</li>
-							<?php } ?>
+							<?php }} ?>
 								
 							</ul>
 						</div>

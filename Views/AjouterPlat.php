@@ -6,7 +6,7 @@
 
  
      
-    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]))
+    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]) && isset($_POST["imageP"]))
      {
 
        {
@@ -15,8 +15,9 @@
         $Prix_plat=$_POST['Prix_plat'];
         $Pds_Portion_plat=$_POST["Pds_Portion_plat"];
         $Nbr_Clri_plat=$_POST["Nbr_Clri_plat"];
+        $imageP=$_POST["imageP"];
        
-		$plat = new plat($Nom_Plat,$Type_plat , $Prix_plat,$Nbr_Clri_plat,$Pds_Portion_plat);
+		$plat = new plat($Nom_Plat,$Type_plat , $Prix_plat,$Nbr_Clri_plat,$Pds_Portion_plat,$imageP);
 		$platC = new platC();
 		$platC->addplat($plat);
       }
@@ -264,6 +265,22 @@
                     </div>
                     <div class="controle" id="verifpdsportion">
       </div>
+      <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="imageP"> nom de l'image a saisir </label>
+                  
+                  
+
+
+                  </div>
+                </div>
+                <input   type="file" name="imageP" id="nom_image"  accept="image/png, image/jpeg">
+                </div>
+                
                   <div class="row">
                   
                     <div class="col-md-12 pl" style="text-align:center">
@@ -305,10 +322,11 @@
 				<th class="text-center">prix de plat</th>
         <th class="text-center">nombre de calorie par plat</th>
 				<th class="text-center">poids d'une portion</th>
-
+        <th class="text-center">image</th>
 				<th class="text-center">Supprimer</th>
 				<th class="text-center">Modifier</th>  
-        
+        <th class="text-center">composer</th>
+
 			</tr>
                     </thead>
      
@@ -326,7 +344,8 @@
           <td class="text-center"><?PHP echo $plat['Prix_plat']; ?></td>
 					<td class="text-center"><?PHP echo $plat['Nbr_Clri_plat']; ?></td>
           <td class="text-center"><?PHP echo $plat['Pds_Portion_plat']; ?></td>
-
+          
+         <td> <img src="../assets/img/<?PHP echo $plat['imageP'];?>" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co"></td>
           <td>
 					<form method="POST" action="SupprimerPlat.php">
             <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
@@ -347,7 +366,12 @@
 
             </form>
 					</td>
-
+          <td>
+					<form method="POST" action="ajouterplating.php">
+            <input class="left"  type="image" src="../assets/img/cooking.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $plat['Id_plat']; ?> name="Id_Plat" id="Id_Plat">
+            </form>
+					</td>
 				</tr>
 			<?PHP
 				}

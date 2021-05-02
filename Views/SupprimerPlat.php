@@ -7,7 +7,7 @@
 	
 if (isset($_POST["Id_plat"])){
 	$platC->deleteplat($_POST["Id_plat"]);
-	//header('Location:AjouterTypeReclamation.php');
+	header('Location:AjouterPLat.php');
 }
 
 
