@@ -6,7 +6,7 @@
 
  
      
-    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]))
+    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]) && isset($_POST["imageP"]))
      {
 
        {
@@ -15,8 +15,9 @@
         $Prix_plat=$_POST['Prix_plat'];
         $Pds_Portion_plat=$_POST["Pds_Portion_plat"];
         $Nbr_Clri_plat=$_POST["Nbr_Clri_plat"];
+        $imageP=$_POST["imageP"];
        
-		$plat = new plat($Nom_Plat,$Type_plat , $Prix_plat,$Nbr_Clri_plat,$Pds_Portion_plat);
+		$plat = new plat($Nom_Plat,$Type_plat , $Prix_plat,$Nbr_Clri_plat,$Pds_Portion_plat,$imageP);
 		$platC = new platC();
 		$platC->addplat($plat);
       }
@@ -36,7 +37,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <script type = "text/javascript"  src="../assets/js/plat.js"></script>  
+  <script type = "text/javascript"  src="plat.js"></script>  
 
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -55,7 +56,15 @@
 </head>
 
 <body class="user-profile">
-
+<script src="dark.js"></script>
+      <script>
+      new Darkmode({
+        bottom: '32px',
+        right: '32px',
+        time: '0.5s',
+        label: '🌓'
+      }).showWidget();
+    </script>
 
 <div class="wrapper ">
     <div class="sidebar" data-color="yellow">
@@ -65,12 +74,10 @@
       </div>
      
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-      <ul class="nav">
-
-
-      
-         
-<li >
+        <ul class="nav">
+ 
+     
+        <li >
   <a href="./AjouterTypeReclamation.php">
     <i class="now-ui-icons files_single-copy-04"></i>
     <p>Type de Reclamation</p>
@@ -167,7 +174,6 @@
 </li>
 </ul>
 
-        
       </div>
     </div>
  
@@ -190,7 +196,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form method="POST" action="Recherche_plat.php">
+            <form method="POST" action="Recherche.php">
               <div class="input-group no-border">
                 <input type="text" value="" class="form-control" placeholder="Search..." name="recherche" id="recherche" >
                 <div class="input-group-append">
@@ -337,6 +343,22 @@
                     </div>
                     <div class="controle" id="verifpdsportion">
       </div>
+      <div class="row">    
+              <div class="col-md-3 px-1">
+                  <div class="form-group"></div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label for="imageP"> nom de l'image a saisir </label>
+                  
+                  
+
+
+                  </div>
+                </div>
+                <input   type="file" name="imageP" id="nom_image"  accept="image/png, image/jpeg">
+                </div>
+                
                   <div class="row">
                   
                     <div class="col-md-12 pl" style="text-align:center">
@@ -378,10 +400,11 @@
 				<th class="text-center">prix de plat</th>
         <th class="text-center">nombre de calorie par plat</th>
 				<th class="text-center">poids d'une portion</th>
-
+        <th class="text-center">image</th>
 				<th class="text-center">Supprimer</th>
 				<th class="text-center">Modifier</th>  
-        
+        <th class="text-center">composer</th>
+
 			</tr>
                     </thead>
      
@@ -399,7 +422,8 @@
           <td class="text-center"><?PHP echo $plat['Prix_plat']; ?></td>
 					<td class="text-center"><?PHP echo $plat['Nbr_Clri_plat']; ?></td>
           <td class="text-center"><?PHP echo $plat['Pds_Portion_plat']; ?></td>
-
+          
+         <td> <img src="../assets/img/<?PHP echo $plat['imageP'];?>" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co"></td>
           <td>
 					<form method="POST" action="SupprimerPlat.php">
             <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
@@ -420,7 +444,12 @@
 
             </form>
 					</td>
-
+          <td>
+					<form method="POST" action="ajouterplating.php">
+            <input class="left"  type="image" src="../assets/img/cooking.png"  type="submit" width="30" heigth="10" />
+            <input type="hidden" value=<?PHP echo $plat['Id_plat']; ?> name="Id_Plat" id="Id_Plat">
+            </form>
+					</td>
 				</tr>
 			<?PHP
 				}

@@ -69,6 +69,15 @@
 </head>
 
 <body class="">
+<script src="dark.js"></script>
+      <script>
+      new Darkmode({
+        bottom: '32px',
+        right: '32px',
+        time: '0.5s',
+        label: '🌓'
+      }).showWidget();
+    </script>
   <div class="wrapper ">
     <div class="sidebar" data-color="yellow">
 

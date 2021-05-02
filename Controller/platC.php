@@ -22,8 +22,8 @@
             try { 
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO plat (Nom_Plat, Type_plat, Prix_plat ,Nbr_Clri_plat ,Pds_Portion_plat) 
-                VALUES (:Nom_plat,:Type_plat,:Prix_plat, :Nbr_Clri_plat , :Pds_Portion_plat)'
+                    'INSERT INTO plat (Nom_Plat, Type_plat, Prix_plat ,Nbr_Clri_plat ,Pds_Portion_plat,imageP) 
+                VALUES (:Nom_plat,:Type_plat,:Prix_plat, :Nbr_Clri_plat , :Pds_Portion_plat , :imageP)'
                 );
                 $query->execute([
                     'Nom_plat' => $plat->getNomplat(),
@@ -31,6 +31,7 @@
                     'Prix_plat' => $plat->getprixplat(),
                     'Nbr_Clri_plat'=> $plat->getNbrClriplat(),
                     'Pds_Portion_plat' => $plat->getPdsPortionplat(),
+                    'imageP' => $plat->getimageP(),
 
                     ]);
             } catch (PDOException $e) {
