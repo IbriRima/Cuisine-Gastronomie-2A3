@@ -72,9 +72,16 @@
 			try{
 				$req->execute();
 			}
-			catch (Exception $e){
+			catch (Exception $e)
+            { 
+                header('Location:AjouterTypeReclamation.php');
+                
+                
 				die('Erreur: '.$e->getMessage());
+               
+
 			}
+            
 		}
 
 

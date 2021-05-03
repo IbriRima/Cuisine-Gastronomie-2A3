@@ -264,6 +264,25 @@
            
         }
 
+        public function afficherUtilisateurs() {
+            
+                
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM user '
+                );
+                $query->execute([
+                ]);
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        
+        
+       
+    }
+
        
 
 

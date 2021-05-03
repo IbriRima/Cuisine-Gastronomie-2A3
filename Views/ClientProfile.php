@@ -43,7 +43,7 @@ $listeClient=$client->getClient($numero);
 	<meta name="twitter:card" content="" />
 	<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
 
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
 	
@@ -86,8 +86,7 @@ $listeClient=$client->getClient($numero);
   	<!-- CSS Files -->
   	<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   	<link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
-  	<!-- CSS Just for demo purpose, don't include it in your project -->
-  	<link href="../assets/demo/demo.css" rel="stylesheet" />
+  
 
 
 	</head>
@@ -95,7 +94,6 @@ $listeClient=$client->getClient($numero);
 
 	<body>
 
-	
 
 	<div id="fh5co-container">
 		
@@ -113,12 +111,7 @@ $listeClient=$client->getClient($numero);
 						<a href="Main.php">Point BIO</a>
 					</div>
 					<div class="fh5co-menu-2">
-						
-					
-						<a href="#" data-nav-section="reservation">Réserver une table</a>
-					
-				
-			
+	
 				</div>
 				
 			</div>
@@ -246,6 +239,19 @@ $listeClient=$client->getClient($numero);
 			 <?PHP
 				}
 			?> 
+			
+			<div class="row">
+<div class="point">  
+
+<label for="main"></label>
+<a  href="./Main.php" >Page principale</a>
+
+</div>
+
+</div>
+	
+
+
 <div class="row">
 
 <div class="reclamation">  
@@ -256,7 +262,11 @@ $listeClient=$client->getClient($numero);
 
 
 </div>
+
 </div>
+
+
+
 			  
 			  </div>
             </div>
@@ -273,7 +283,6 @@ $listeClient=$client->getClient($numero);
 	
 	</div>
 
-	
 	
     <!-- container-scroller -->
     <!-- plugins:js -->

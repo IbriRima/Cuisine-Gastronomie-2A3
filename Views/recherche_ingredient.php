@@ -162,7 +162,7 @@
 
           <!-- RECHERCHE  -->
           
-            <form action="Recherche.php" method="POST">
+            <form action="recherche_ingredient.php" method="POST">
               <div class="input-group no-border">
                 <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
 

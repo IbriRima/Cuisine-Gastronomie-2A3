@@ -159,63 +159,7 @@ text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
 opacity: 1;
 
 }
-/* Reclamation*/
 
-
-.reclamation {
-  position: absolute;
-  top: 19%;
-  left:150%; 
-  transform: translate(-50%, -50%) ;
-  display: flex;
-  color: rgb(35, 121, 1);
-}
-
-
-.reclamation label
-{
-display: block;
-cursor: pointer;
-width: 40px;
-}
-.reclamation label:before
-
-{
-content: '\f005';
-font-family:  'Font Awesome\ 5 Free';
-font-weight: 900;
-font-size: 40px;
-position: relative;
-display: block;
-color: #fb1414;
-text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
-}
-
-.reclamation label:after
-
-{
-content: '\f005';
-font-family:  'Font Awesome\ 5 Free';
-font-weight: 900;
-font-size: 40px;
-position: absolute;
-display: block;
-opacity:0 ;
-color: rgb(131, 9, 231);
-top: 0;
-
-transition: .5s;
-text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
-}
-.reclamation label:hover::after,
-.reclamation label:hover ~ label::after,
-.reclamation input:checked ~ label::after
-{
-opacity: 1;
-
-}
-
-/*Recla*/
 
 /*login*/
 
@@ -270,7 +214,7 @@ color: rgb(12, 12, 10);
 top: 0;
 
 transition: .5s;
-text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+text-shadow: 0 2px 5px rgba(0, 0, 0, 0.863) ;
 }
 .login label:hover::after,
 .login label:hover ~ label::after,
@@ -282,7 +226,129 @@ opacity: 1;
 
 /*login*/
 
+/*main*/
 
+
+.point {
+  position: absolute;
+  top: 80%;
+  left:130%; 
+  transform: translate(-50%, -50%) ;
+  display:block;
+  color: rgb(35, 121, 1);
+  font-size: 20px;
+  text-align: center;
+ 
+}
+
+
+.point label
+{
+display: block;
+cursor: pointer;
+width: 40px;
+}
+.point label:before
+
+{
+content: '\f015';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 90px;
+position: relative;
+display: block;
+color: #fb6e14;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+
+.point label:after
+
+{
+content: '\f015';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 90px;
+position: absolute;
+display: block;
+opacity:0 ;
+color: rgba(16, 109, 6, 0.863);
+top: 0;
+
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+.point label:hover::after,
+.point label:hover ~ label::after,
+.point input:checked ~ label::after
+{
+opacity: 1;
+
+}
+
+/*main*/
+
+
+/*retour*/
+
+
+.retour {
+  position: absolute;
+  top: -90%;
+  left:-20%; 
+  transform: translate(-50%, -50%) ;
+  display:flex;
+  color: rgb(35, 121, 1);
+  font-size: 10px;
+ 
+  text-align: left;
+ 
+}
+
+
+.retour label
+{
+display: block;
+cursor: pointer;
+width: 40px;
+}
+.retour label:before
+
+{
+content: '\f015';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 40px;
+position: relative;
+display: block;
+color: #fb6e14;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+
+.retour label:after
+
+{
+content: '\f015';
+font-family:  'Font Awesome\ 5 Free';
+font-weight: 900;
+font-size: 40px;
+position: absolute;
+display: block;
+opacity:0 ;
+color: rgba(0, 0, 0, 0.863);
+top: 0;
+
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
+}
+.retour label:hover::after,
+.retour label:hover ~ label::after,
+.retour input:checked ~ label::after
+{
+opacity: 1;
+
+}
+
+/*retour*/
 
 
 

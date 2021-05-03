@@ -88,7 +88,6 @@ require_once '../Controller/platC.php';
 
 	<body>
 
-
 	<script src="dark.js"></script>
       <script>
       new Darkmode({
@@ -98,6 +97,7 @@ require_once '../Controller/platC.php';
         label: '🌓'
       }).showWidget();
     </script>
+
 	
 	<div id="fh5co-container">
 
@@ -124,10 +124,11 @@ require_once '../Controller/platC.php';
 				</div>
 				
 			  	<ul class="slides">
-					  
+				  <li style="background-image: url(../assets/img/slide_3.jpg);" data-stellar-background-ratio="0.5"></li> 
 			   	<li style="background-image: url(../assets/img/slide_1.jpg);" data-stellar-background-ratio="0.5"></li>
 			   	<li style="background-image: url(../assets/img/slide_2.jpg);" data-stellar-background-ratio="0.5"></li>
-			   	<li style="background-image: url(../assets/img/slide_3.jpg);" data-stellar-background-ratio="0.5"></li>
+				 <li style="background-image: url(../assets/img/food7.jpg);" data-stellar-background-ratio="0.5"></li>
+			   
 			  	</ul>
 
 			</div>
@@ -140,13 +141,13 @@ require_once '../Controller/platC.php';
 					<div class="fh5co-menu-1">
 					
  
-						<a href="#" data-nav-section="about">A propos de nous</a>
+						<a href="#" data-nav-section="about">Nos Valeurs</a>
 						<a href="#" data-nav-section="Produits">Nos Produits frais</a>
 					
 					
 					</div>
 					<div class="fh5co-logo">
-						<a href="index.html">Point BIO</a>
+						<a href="Main.php">Point BIO</a>
 					</div>
 					<div class="fh5co-menu-2">
 						<a href="#" data-nav-section="menu">Menu</a>
@@ -162,14 +163,24 @@ require_once '../Controller/platC.php';
 			</div>
 		</div>
 
-			<a href="AjouterTypeReclamation.php">Administrateur</a>
+			
 	
 		<div id="fh5co-about" data-section="about">
-			<div class="fh5co-2col fh5co-bg to-animate-2" style="background-image: url(../assets/img/res_img_1.jpg)"></div>
+			<div class="fh5co-2col fh5co-bg to-animate-2" style="background-image: url(../assets/img/about2.jpg)"></div>
+			
 			<div class="fh5co-2col fh5co-text">
-				<h2 class="heading to-animate">About Us</h2>
-				<p class="to-animate"><span class="firstcharacter">F</span>ar far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life.</p>
-				<p class="text-center to-animate"><a href="#" class="btn btn-primary btn-outline">Get in touch</a></p>
+				<h2 class="heading to-animate" style="font-size: 40px">Nos Valeurs</h2>
+			<p class="to-animate"><span class="firstcharacter">D</span>eux mots resument ce que nous sommes, ce que nous faisons chaque jour et ce en quoi nous croyons:</p>
+			
+		
+		 	<p class="to-animate" style="display: block;" ><span class="firstcharacter" style="font-size: 20px">Nourrire</span><br>des ingrédients sélectionnés pour leurs qualités nutritionnelles, des recettes complètes et équilibrées élaborées dans nos cuisines.</p>
+		
+			<p class="to-animate" style="display: block;" ><span class="firstcharacter" style="font-size: 20px">Aimer   </span><br>des équipes autonomes et polyvalentes qui aiment ce qu’elles font, du respect et de l’écoute .</p>
+			
+
+		
+		
+				<!--<p class="text-center to-animate"><a href="#" class="btn btn-primary btn-outline">Get in touch</a></p>-->
 			</div>
 		</div>
 
@@ -179,32 +190,33 @@ require_once '../Controller/platC.php';
 
 					<div class="flexslider">
 						<ul class="slides">
-							
-							<li>
+						<li>
 								<blockquote>
-									<p>&ldquo;Cooking is an art, but all art requires knowing something about the techniques and materials&rdquo;</p>
-									<p class="quote-author">&mdash; Nathan Myhrvold</p>
-								</blockquote>
-							</li>
-							<li>
-								<blockquote>
-									<p>&ldquo;Give a man food, and he can eat for a day. Give a man a job, and he can only eat for 30 minutes on break.&rdquo;</p>
-									<p class="quote-author">&mdash; Lev L. Spiro</p>
-								</blockquote>
-							</li>
-							<li>
-								<blockquote>
-									<p>&ldquo;Find something you’re passionate about and keep tremendously interested in it.&rdquo;</p>
-									<p class="quote-author">&mdash; Julia Child</p>
-								</blockquote>
-							</li>
-							<li>
-								<blockquote>
-									<p>&ldquo;Never work before breakfast; if you have to work before breakfast, eat your breakfast first.&rdquo;</p>
-									<p class="quote-author">&mdash; Josh Billings</p>
+									<p>&ldquo;La vraie cuisine est une forme d'art. Un cadeau à partager.&rdquo;</p>
+									<p class="quote-author">&mdash; Oprah Winfrey</p>
 								</blockquote>
 							</li>
 							
+						
+						
+							<li>
+								<blockquote>
+									<p>&ldquo;La bonne cuisine est honnête, sincère et simple.&rdquo;</p>
+									<p class="quote-author">&mdash; Elisabeth David</p>
+								</blockquote>
+							</li>
+							<li>
+								<blockquote>
+									<p>&ldquo;La cuisine est l'art de comprendre le subtil mariage des aliments afin d'engendrer une odeur inoubliable.&rdquo;</p>
+									<p class="quote-author">&mdash; Gilbert Choulet</p>
+								</blockquote>
+							</li>
+							<li>
+								<blockquote>
+									<p>&ldquo;La gastronomie est l'art d'utiliser la nourriture pour créer le bonheur &rdquo;</p>
+									<p class="quote-author">&mdash;Théodore Zeldin</p>
+								</blockquote>
+							</li>
 							
 						</ul>
 					</div>
@@ -348,7 +360,7 @@ else echo"";
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
 						<h2 class="heading to-animate">Notre Menu</h2>
-						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<p class="sub-heading to-animate"></p>
 					</div>
 				</div>
 				<div class="row row-padded">
@@ -430,48 +442,42 @@ else echo"";
 		</div>
 
 
-
-
-
-
 <!--Menu-->
 
 
-		<div id="fh5co-events" data-section="events" style="background-image: url(../assets/img/slide_2.jpg);" data-stellar-background-ratio="0.5">
+		<div id="fh5co-events" data-section="events" style="background-image: url(../assets/img/food12.jpg);" data-stellar-background-ratio="0.5">
 			<div class="fh5co-overlay"></div>
 			<div class="container">
-				<div class="row text-center fh5co-heading row-padded">
-					<div class="col-md-8 col-md-offset-2 to-animate">
-						<h2 class="heading"> </h2>
-						<p class="sub-heading">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-					</div>
-				</div>
+		
+
+
 				<div class="row">
 					<div class="col-md-4">
 						<div class="fh5co-event to-animate-2">
-							<h3>Kitchen Workshops</h3>
-							<span class="fh5co-event-meta">March 19th, 2016</span>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<p><a href="#" class="btn btn-primary btn-outline">Read More</a></p>
+							<h1>Sans Lactose</h1>
+					
 						</div>
 					</div>
+
 					<div class="col-md-4">
 						<div class="fh5co-event to-animate-2">
-							<h3>Music Concerts</h3>
-							<span class="fh5co-event-meta">March 19th, 2016</span>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<p><a href="#" class="btn btn-primary btn-outline">Read More</a></p>
+							<h1>Sans Gluten</h1>
+						
 						</div>
 					</div>
+
 					<div class="col-md-4">
 						<div class="fh5co-event to-animate-2">
-							<h3>Free to Eat Party</h3>
-							<span class="fh5co-event-meta">March 19th, 2016</span>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<p><a href="#" class="btn btn-primary btn-outline">Read More</a></p>
+							<h1> Biologique</h1>
+							
 						</div>
 					</div>
-				</div>
+	         	</div>
+
+
+
+
+
 			</div>
 		</div>
 		

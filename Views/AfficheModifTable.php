@@ -117,14 +117,14 @@ class CategoriesTable{
               <p>Cartes Fidelités</p>
             </a>
           </li>
-          <li class="active">
+          <li >
           <a href="./Rechercher_Table.php">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
-          <li>
+          <li class="active">
             <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>

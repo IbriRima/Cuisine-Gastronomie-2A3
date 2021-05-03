@@ -2,6 +2,7 @@
 	include "../Controller/ReclamationC.php";
 	include_once '../Model/Reclamation.php';
 	include "../Controller/TypeReclamationC.php";
+
 	$ReclamationC = new ReclamationC();
 
 
@@ -27,7 +28,7 @@
                  $_POST['Type'],
                  "Non traitee",
                   (int)$_POST['Note'],
-                "4" 
+                (int)$_POST['Id_client'] 
                 
 
           );
@@ -111,6 +112,8 @@
        $Proposition= $_POST['Proposition'];
        $Description= $_POST['Description'];
        $Type= $_POST['Type'];
+
+	   
        $Note=  (int)$_POST['Note'];
        $id=  (int)$_POST['Id_Recl'];
      
@@ -124,8 +127,8 @@
 			<div class="fh5co-main-nav">
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
-					<link class="text-left">Bienvenue Ibri Rima  </link>
-						<a href="#" data-nav-section="reclamation">Vos réclamations</a>
+					<link class="text-left">Bienvenue   </link>
+					
 					
 					</div>
 					<div class="fh5co-logo">
@@ -134,7 +137,7 @@
 					<div class="fh5co-menu-2">
 						
 					
-						<a href="#" data-nav-section="reservation">Réserver une table</a>
+					
 					
 				
 					</div>
@@ -175,6 +178,12 @@
 							<label for="Id_Recl" class="sr-only">Identifiant</label>
 							<input name="Id_Recl" id="Id_Recl"   placeholder="Id_Recl" type="text"  value = "<?php echo $id; ?>" hidden>
 						</div>
+
+						<div class="form-group ">
+							<label for="Id_client" class="sr-only">Identifiant client</label>
+							<input name="Id_client" id="Id_client"   placeholder="Id_client" type="text"  value = "<?php echo $_POST['Id_client']; ?>" hidden>
+						</div>
+
 					
             <div class="form-group ">
 							<label for="Type" class="sr-only">Type</label>

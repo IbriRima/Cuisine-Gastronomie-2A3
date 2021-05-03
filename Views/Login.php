@@ -79,30 +79,29 @@ $Client=new Client();
 
 	
 
+
 	<div id="fh5co-container">
 		
 		
 		<div class="js-sticky">
 			<div class="fh5co-main-nav">
-				<div class="container-fluid">
-					<div class="fh5co-menu-1">
 				
+					<div class="fh5co-menu-1">
+					<a href="#" data-nav-section="about"></a>
+						<a href="#" data-nav-section="Produits"></a>
+						
 					
 					</div>
 					<div class="fh5co-logo">
-							<a href="http://localhost/Reclamations/Views/Main.php">Point BIO</a>
+						<a href="Main.php">Point BIO</a>
 					</div>
 					<div class="fh5co-menu-2">
-						
-					
-					
-				
-					</div>
+	
 				</div>
 				
 			</div>
 		</div>
-
+		
 
 
 	</div>

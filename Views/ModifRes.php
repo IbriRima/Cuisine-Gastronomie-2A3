@@ -41,7 +41,7 @@ class Reservation{
                     
                 ]);
                 echo $query->rowCount() . " records UPDATED successfully";
-                header('Location:../Views/Rechercher.php');
+                header('Location:../Views/Rechercher_Table.php');
             } catch (PDOException $e) {
                 $e->getMessage();
             }

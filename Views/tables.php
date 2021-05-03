@@ -2,7 +2,40 @@
 	include "../controller/TypeReclamationC.php";
 	include "../controller/ReclamationC.php";
   include "../controller/platC.php";
-	include "../controller/ingredientC.php";
+	include "../controller/ingredientC.php";    
+   require_once '../Controller/ProduitC.php';
+  require_once '../Model/Produit.php';
+  require_once '../Controller/OffresC.php';
+  require_once '../Model/offres.php';
+  include "../controller/CategoriesTableC.php";
+
+$ReservationC=new ReservationC();
+$listeReservation =$ReservationC->afficherReservation();
+
+$CategoriesTableC=new CategoriesTableC();
+$listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
+  class ReservationC {
+        public function afficherReservation() {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM reserve'
+                );
+                $query->execute();
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+        }
+
+
+   $error = "";
+
+       $ProduitC = new ProduitC();
+     $listeProduit =$ProduitC->afficherProduit();
+   $OffresC = new OffresC();
+     $listeOffres =$OffresC->afficherOffres();
   $platC=new platC();
 $listeplat =$platC->afficherplat();
 
@@ -166,13 +199,8 @@ $listeReclamation =$ReclamationC->afficherReclamation();
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
+             
             </div>
-            <a class="navbar-brand" href="#pablo">Table List</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -180,46 +208,12 @@ $listeReclamation =$ReclamationC->afficherReclamation();
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
+       
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
+             
+               
+           
+           
             </ul>
           </div>
         </div>
@@ -407,7 +401,7 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 
 
           <div class="col-md-12">
-            <div class="card ">
+            <div class="card card-plain">
               <div class="card-header">
                 <h4 class="card-title"> Table des ingredients</h4>
               
@@ -459,13 +453,248 @@ $listeReclamation =$ReclamationC->afficherReclamation();
 
 
 
+          <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Table de produits</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
 
 
 
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+				<th class="text-center">identifiant produit</th>
+				<th class="text-center">nom produit</th>
+				<th class="text-center">quantite dans le stock</th>
+        <th class="text-center">prix de vente</th>
+        <th class="text-center">nom de l'image de produit</th>
+
+
+			
+	
+			</tr>
+          
+                    </thead>
+     
+                    <tbody>
+                    <?PHP
+				foreach($listeProduit as $Produits)
+        {
+			?>
+				<tr>
+					<td class="text-center"><?PHP echo $Produits["Id_produit"] ?></td>
+					<td class="text-center"><?PHP echo $Produits['Nom_produit']; ?></td>
+					<td class="text-center"><?PHP echo $Produits['Quantité_dans_le_stock']; ?></td>
+          <td class="text-center"><?PHP echo $Produits['Prix_de_vente']; ?></td>
+          <td class="text-center"><?PHP echo $Produits['nom_image']; ?></td>
+
+
+     
+				</tr>
+			<?PHP
+				}
+			?>
+
+                    <tbody>              
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="col-md-12">
+            <div class="card card-plain">
+              <div class="card-header">
+                <h4 class="card-title"> Table des offres</h4>
+              
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+
+                    <thead class="text-center">
+                      <th>
+                        Identifiant offres
+                      </th>
+                      <th class="text-center">
+                        nouveau prix
+                      </th>
+
+                      <th class="text-center">
+                        identifiant produit
+                      </th>
+
+                 
+                    </thead>
+
+
+
+
+
+
+                    <tbody>
+                    
+                    <?PHP
+				foreach($listeOffres as $Offres)
+        {
+			?>
+				<tr>
+					<td class="text-center"><?PHP echo $Offres["Id_offres"] ?></td>
+					<td class="text-center"><?PHP echo $Offres['Valeur']; ?></td>
+					<td class="text-center"><?PHP echo $Offres['id_produit']; ?></td>
+          
+				</tr>
+			<?PHP
+				}
+			?>
+
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
 
 
         </div>
       </div>
+
+
+<!--Jawhar-->
+<div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Liste des réservations</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+
+
+
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+
+<th class="text-center">ID</th>
+<th class="text-center">Nom</th>
+<th class="text-center">Prénom</th>
+
+<th class="text-center">E-mail</th>
+<th class="text-center">Message</th>
+<th class="text-center">Date de réservation</th>
+
+</tr>
+
+          
+                    </thead>
+     
+                    <tbody>
+                    <?PHP
+		  foreach($listeReservation as $Reservation)
+      {
+    ?>
+     
+  <tr>
+        <td class="text-center"><?PHP echo $Reservation["ID"] ?></td>
+        <td class="text-center"><?PHP echo $Reservation['Nom']; ?></td>
+        <td class="text-center"><?PHP echo $Reservation['Prenom']; ?></td>
+        <td class="text-center"><?PHP echo $Reservation['Email'] ?></td>
+        <td class="text-center"><?PHP echo $Reservation['Message'] ?></td>
+        <td class="text-center"><?PHP echo $Reservation['datetemps'] ?></td>
+
+     
+				</tr>
+			<?PHP
+				}
+			?>
+
+                    <tbody>              
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="col-md-12">
+            <div class="card card-plain">
+              <div class="card-header">
+                <h4 class="card-title">  Liste des Categories de table</h4>
+              
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+
+                    <thead class="text-center">
+                    
+                    <th class="text-center">ID</th>
+        <th class="text-center">NB_places</th>
+        <th class="text-center">Forme</th>
+        <th class="text-center">Espace</th>
+     
+ 
+     
+          
+                 
+                    </thead>
+
+
+
+
+
+
+                    <tbody>
+                    
+                    <?PHP
+			 foreach($listeCategoriesTable as $CategoriesTable)
+       {
+     ?>
+       <tr>
+         <td class="text-center"><?PHP echo $CategoriesTable["ID"] ?></td>
+         <td class="text-center"><?PHP echo $CategoriesTable["NB_places"]; ?></td>
+         <td class="text-center"><?PHP echo $CategoriesTable['Forme']; ?></td>
+         <td class="text-center"><?PHP echo $CategoriesTable['Espace'] ?></td>
+         
+         
+       </tr>
+			<?PHP
+				}
+			?>
+
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Jawhar -->
+
 
 
     </div>

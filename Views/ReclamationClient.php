@@ -11,6 +11,7 @@
 	$id = $_SESSION['numero'];
 
 
+
 	$ReclamationC=new ReclamationC();
 	$listeReclamationClient =$ReclamationC->getReclamationById_Client($id) ;
 	$TypeReclamationC=new TypeReclamationC();
@@ -50,7 +51,7 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="../assets/img/favicon.png">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
 	
 	<!-- Animate.css -->
@@ -89,16 +90,18 @@
 
 
 	<div id="fh5co-container">
-	<div >
-			<a  href="Main.php" >Page d'acceuil</a>
-	</div >
+
+
+	<div>
+	<h2></h2>
+	</div>
 		
 		<div class="js-sticky">
 			<div class="fh5co-main-nav">
 				<div class="container-fluid">
 					<div class="fh5co-menu-1">
 					
-					<link class="text-left">Bienvenue Ibri Rima  </link>
+					
 					
 					<a href="#" ></a>
 						<a href="#" data-nav-section="reclamation">Vos réclamations</a>
@@ -110,7 +113,7 @@
 					<div class="fh5co-menu-2">
 						
 					
-						<a href="#" data-nav-section="reservation">Réserver une table</a>
+			
 					
 				
 					</div>
@@ -254,7 +257,18 @@
              </div>
 			 </div>
 		
+			 <div class="row">
 
+<div class="retour">  
+
+<label for="retour"></label>
+<a  href="./Main.php" ><b>Page principale</b></a>
+
+
+
+</div>
+
+</div>
 						<div class="form-group ">
 			
 							<input class="btn btn-primary" type="submit" value="Ajouter" name = "submit" onclick = "AjoutReclamation();" >
@@ -270,7 +284,7 @@
 
 	</form>
 
-
+	
 
 	<div class="box">
       <div class="top">
@@ -355,6 +369,7 @@
 					<input   type="hidden" value=<?PHP echo $Reclamation['Proposition']; ?> name="Proposition" id="Proposition">
 					<input   type="hidden" value=<?PHP echo $Reclamation['Note']; ?> name="Note" id="Note">
 					<input   type="hidden" value=<?PHP echo $Reclamation['Type']; ?> name="Type" id="Type">
+					<input   type="hidden" value=<?PHP echo $id ?> name="Id_client" id="Id_client">
 			
                  
                     </form>
