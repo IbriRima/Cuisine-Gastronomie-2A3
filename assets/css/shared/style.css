@@ -150,7 +150,7 @@
 
 display: block;
 cursor: pointer;
-width: 40px;
+width: 38px;
 
 
 }
@@ -161,7 +161,7 @@ width: 40px;
 content: '\f071';
 font-family:  'Font Awesome\ 5 Free';
 font-weight: 900;
-font-size: 90px;
+font-size: 80px;
 position: relative;
 
 display: block;
@@ -176,7 +176,7 @@ text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
 content: '\f071';
 font-family:  'Font Awesome\ 5 Free';
 font-weight: 900;
-font-size: 90px;
+font-size: 80px;
 position: absolute;
 display: block;
 opacity:0 ;

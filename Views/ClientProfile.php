@@ -37,16 +37,7 @@ $listeClient=$client->getClient($numero);
 
 
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+  
 	<link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -152,6 +143,8 @@ $listeClient=$client->getClient($numero);
             		<div class="card">
              			 <div class="card-header">
                 			<h5 class="title">Profil</h5>
+							<br>
+							<br>
               			  </div>
               <div class="card-body">
               
@@ -275,19 +268,12 @@ $listeClient=$client->getClient($numero);
 
 
 
+
 			  
 			  </div>
             </div>
        </div>
           
-	  
-
-		
-
-		
-	
-	
-	
 	
 	</div>
 

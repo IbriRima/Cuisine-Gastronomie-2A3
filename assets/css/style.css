@@ -232,7 +232,7 @@ opacity: 1;
 .point {
   position: absolute;
   top: 80%;
-  left:130%; 
+  left:129%; 
   transform: translate(-50%, -50%) ;
   display:block;
   color: rgb(35, 121, 1);
@@ -246,7 +246,7 @@ opacity: 1;
 {
 display: block;
 cursor: pointer;
-width: 40px;
+width: 38px;
 }
 .point label:before
 
@@ -254,7 +254,7 @@ width: 40px;
 content: '\f015';
 font-family:  'Font Awesome\ 5 Free';
 font-weight: 900;
-font-size: 90px;
+font-size: 80px;
 position: relative;
 display: block;
 color: #fb6e14;
@@ -267,7 +267,7 @@ text-shadow: 0 2px 5px rgba(0, 0, 0, .5) ;
 content: '\f015';
 font-family:  'Font Awesome\ 5 Free';
 font-weight: 900;
-font-size: 90px;
+font-size: 80px;
 position: absolute;
 display: block;
 opacity:0 ;
