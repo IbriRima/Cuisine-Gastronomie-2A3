@@ -16,7 +16,7 @@
             !empty($_POST["Description"]) &&
             !empty($_POST["Proposition"])
         ) {
-        $Id_client=(int)$_POST['Id_client'];
+        $Id_client=$_POST['Id_client'];
         $Note=(float)$_POST["Note"];
         $Type=$_POST['Type'];
         $Proposition=$_POST["Proposition"];
