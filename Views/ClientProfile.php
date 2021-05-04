@@ -218,19 +218,32 @@ $listeClient=$client->getClient($numero);
                       </div>
                     </div>
                   
-					<div class="button-container">
-                <button type="submit" name="submit1" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fas fa-user-lock"  ></i>                
-                </button>
-    	</div>
+				
+				
+
+				<div class="button-container">
+                	<button type="submit" name="submit1" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  	<i class="fas fa-user-lock"  ></i>                
+                	</button>
+    			</div>
 		
-		<div class="button-container">
-                <button type="submit" name="submit2" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fas fa-user-edit"></i>                
-                </button>
-    	</div>	
+				<div class="button-container">
+                	<button type="submit" name="submit2" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  	<i class="fas fa-user-edit"></i>                
+                	</button>
+    			</div>	
+
+				<div class="button-container">
+                	<a  href="./Login.php" class="btn btn-neutral btn-icon btn-round btn-lg">
+					<i class="fas fa-sign-out-alt"></i>                
+					</a>
+    			</div>	
+
+				
 				  
-				  </div>
+				
+				
+				</div>
 
                   
 

@@ -137,6 +137,13 @@ $listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
     <p>www.PointBio.com</p>
   </a>
 </li>
+
+<li >
+          <a href="./LoginAdmin.php">
+          <i class="now-ui-icons ui-1_settings-gear-63"></i>            
+          <p> Se déconnecter </p>
+          </a>
+        </li>
 </ul>
 
         

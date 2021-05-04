@@ -29,6 +29,15 @@
          
     }
 
+    if(isset($_POST['sendmail']))
+    {
+         $client=new Client();
+         $client->sendMail();
+         
+    }
+
+
+
     
     
 
@@ -72,7 +81,7 @@
                     'prenom' => $_POST['prenom'],
                     'email' => $_POST['email'],
                     'adresse' => $_POST['adresse'],
-                    'mdp' => $_POST['mdp1'],
+                    'mdp' => password_hash( $_POST['mdp1'],PASSWORD_DEFAULT),
                     'typee' => "client",
                 ]);
 
@@ -91,6 +100,9 @@
                 } catch (PDOException $e) {
                     $e->getMessage();
                 }
+
+                setcookie ("member_login","",time()+ (86400 * 1), "/");
+                setcookie ("member_password","",time()+ (86400 * 1), "/");
 
                 session_start();
                 $_SESSION['numero'] = $_POST['email'];               
@@ -161,22 +173,31 @@
             }
         }
 
+        
        
         public function connect() 
         {            
-            $sql = "SELECT * from user where email=:email and mdp=:mdp and typee=:typee"; 
+            $sql = "SELECT * from user where email=:email and typee=:typee"; 
             $db = getConnexion();
             try {
                 $query = $db->prepare($sql);
                 $query->execute([
                     'email' => $_POST['numero'],
-                    'mdp' => $_POST['mdp'],
-                    'typee' => "client"
+                    // 'mdp' => $_POST['mdp'],
+                    'typee' => "client",
                 ]); 
                 $result = $query->fetchAll(); 
-                
-                if($result) 
+
+                $password=$_POST['mdp'];
+
+            foreach($result as $client)
+            {
+
+                echo($client['mdp']);
+
+                if( password_verify( $password, $client['mdp'] )) 
                  {
+
                     if(!empty($_POST["remember"]))   
                     {  
                         setcookie ("member_login",$_POST["numero"],time()+ (86400 * 1), "/");
@@ -195,12 +216,15 @@
                  }
                  else
                  {
-
                     $error="";
 
-                    header("Location:../Views/Login.php?error=".$error);
+                   header("Location:../Views/Login.php?error=".$error);
             
                  }
+
+            }
+
+
                 }
                 catch (PDOException $e) {
                 $e->getMessage();
@@ -271,6 +295,15 @@
        
     }
 
+
+    public function sendmail()
+    {
+
+                $aqui = $_POST["aqui"];
+                $subject = $_POST["objet"];
+                mail("$aqui" , "$aqui ($subject)" , $_POST["email"] , "From: $aqui");    
+
+    }
        
 
 

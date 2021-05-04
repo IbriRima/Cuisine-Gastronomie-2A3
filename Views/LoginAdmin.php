@@ -139,7 +139,9 @@ $Client=new Client();
                     <label class="label" >Email</label>
                     <div class="input-group">
                       <input type="text" class="form-control" id="numero" placeholder="Email" 
-					  name="numero">
+					  name="numero"
+					  value="<?php if(isset($_COOKIE["member_login2"])) { echo $_COOKIE["member_login2"]; } ?>"
+					  >
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -152,7 +154,11 @@ $Client=new Client();
                   <div class="form-group">
                     <label class="label">Mot de passe</label>
                     <div class="input-group">
-                      <input type="password" id="password" class="form-control" placeholder="*********" name="mdp">
+                      <input type="password" id="password" class="form-control" placeholder="*********" 
+					  name="mdp"
+					  value="<?php if(isset($_COOKIE["member_password2"])) { echo $_COOKIE["member_password2"]; } ?>"
+
+					  >
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -161,6 +167,14 @@ $Client=new Client();
                     </div>
 					<label id="labelmdp" name="labelmdp" style="color:#eb1212">   </label>
                   </div>
+
+				  <div>
+					<input type="checkbox" id="remember" name="remember">
+					<label for="rememberlabel" style="font-size:13px">Rester connecté</label>
+					</div>
+				  
+
+
                   <div class="form-group">
                     <button class="btn btn-primary submit-btn btn-block" id="seconnecter" Type="submit" 
 					name="seconnecter"
@@ -168,7 +182,7 @@ $Client=new Client();
                   </div>
                   <div class="text-block text-center my-3">
                     <span class="text-small font-weight-semibold">Vous n'avez pas de compte?</span>
-                    <a href="../Views/Register.php" class="text-black text-small">S'inscrire</a>
+                    <a href="../Views/RegisterAdmin.php" class="text-black text-small">S'inscrire</a>
                   </div>
                 </form>
               </div>

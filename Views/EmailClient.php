@@ -1,20 +1,14 @@
 <?PHP
-	include "../controller/Admin.php";
+	 include "../controller/Client.php";
 
-  
+    session_start();
+    $email = $_SESSION['email'];
 
-
-  
-
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $perpage = isset($GET['per-page']) && $_GET['per-page'] <= 50 ? (int)$_GET['per-page'] : 2;
-   
-    $adminpage = new Admin();
-    $listeAdminPage = $adminpage->AfficherAdminsPaginer($page, $perpage);
-     $totalP = $adminpage->calcTotalRows($perpage);
+    
  
 
-  $keyword="";
+   
+    
 
 ?>
 
@@ -30,6 +24,11 @@
   <title>
     PointBIO
   </title>
+  
+  <script >
+  src="https://smtpjs.com/v3/smtp.js"
+  
+  </script>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -48,7 +47,6 @@
         
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-        
       <ul class="nav">
 
 
@@ -74,14 +72,14 @@
   </a>
 </li>
 
-<li class="active">
+<li >
   <a href="./AfficherAdmins.php">
     <i class="now-ui-icons users_single-02"></i>
     <p>Admins</p>
   </a>
 </li>
 
-<li >
+<li class="active">
   <a href="./AfficherClients.php">
     <i class="now-ui-icons users_single-02"></i>
     <p>Clients</p>
@@ -89,11 +87,11 @@
 </li>
 
 <li >
-        <a href="./AfficherCartes.php">
-        <i class="now-ui-icons business_money-coins"></i>
-            <p>Cartes Fidelités</p>
-          </a>
-        </li>
+<a href="./AfficherCartes.php">
+<i class="now-ui-icons business_money-coins"></i>
+    <p>Cartes Fidelités</p>
+  </a>
+</li>
 <li>
 <a href="./Rechercher_Table.php">
     <i class="now-ui-icons ui-1_calendar-60"></i>
@@ -156,6 +154,7 @@
           <p> Se déconnecter </p>
           </a>
         </li>
+        
 </ul>
 
         
@@ -196,8 +195,7 @@
                 </div>
               </div> -->
             </form>
-
-            <!-- <ul class="navbar-nav">
+            <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons media-2_sound-wave"></i>
@@ -227,8 +225,7 @@
                   </p>
                 </a>
               </li>
-            </ul> -->
-
+            </ul>
           </div>
         </div>
       </nav>
@@ -243,93 +240,43 @@
             <div class="card">
               <div class="card-header">
 
+              <form action="./EmailClient.php"
+              method="POST"
+              onsubmit=" return sendMail();">
+              
 
-                <h4 class="card-title">Admins</h4>
+
+                <div class="input-group no-border">
+                <input type="text"  class="form-control" placeholder="À" name="aqui" id="aqui"
+                value=<?PHP echo $email; ?>
+                >
+               
               </div>
-              <div class="card-body">
+              <div class="input-group no-border">
+                <input type="text"  class="form-control" placeholder="Objet" id="objet" name="objet">
+              </div>
+
+              <div class="input-group no-border">
+                <input type="text"  class="form-control" name="email" id="email"
+                style="height:200px"
+                >
+              </div>
+
+              <button type="submit" name="sendmail"  href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+              <i class="fas fa-paper-plane"></i>                
+              </button>
+
+              </form>
+
+
+              </div>
+              <!-- <div class="card-body">
                 <div class="table-responsive">
 
 
-                  <table class="table">
-                    <thead class=" text-primary">
-                    <tr>
-                    <th class="text-center">Numéro de téléphone </th>
-                    <th class="text-center">Nom</th>
-				<th class="text-center">Prénom</th>
-				<th class="text-center">Email</th>
-				<th class="text-center">Adresse</th>
-
-				<!-- <th class="text-center">Sexe</th> -->
-			
-	
-			</tr>
-          
-                    </thead>
-     
-                    <tbody>
-                    
-                    <?PHP
-				
-                
-                foreach($listeAdminPage as $Client)
-        {
-            
-			?>
-            
-
-				<tr>
-                <form method="POST" action="../Controller/Admin.php">
-
-                <td class="text-center">
-          <input type="text" class="form-control" name="numero" id="numero"  
-						value=<?PHP echo $Client['numero']; ?>>
-          </td>
-					<td class="text-center">
-          <input type="text" class="form-control" name="nom" id="nom"  
-						value=<?PHP echo $Client['nom']; ?>>
-          </td>
-          <td class="text-center">
-          <input type="text" class="form-control" name="prenom" id="prenom"  
-						value=<?PHP echo $Client['prenom']; ?>>
-          </td>
-          <td class="text-center">
-          <input type="text" class="form-control" name="email" id="email"  
-						value=<?PHP echo $Client['email']; ?>>
-          </td>
-          <td class="text-center">
-          <input type="text" class="form-control" name="adresse" id="adresse"  
-						value=<?PHP echo $Client['adresse']; ?>>
-          </td>
-          
-              
-            
-            </form>
-
-
-				</tr>
-
-
-			<?PHP
-				}
-			?>
-
-                    <tbody>              
-                  </table>
-                  
-                  <?php
-
-// }
-for ($x = 1; $x <= $totalP; $x++) :
-
-?>
-
-    <a href="?page=<?php echo $x; ?>&per-page=<?php echo $perpage; ?>"><?php echo $x; ?></a>
-
-<?php endfor; ?>
-
-
+                 
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -354,18 +301,15 @@ for ($x = 1; $x <= $totalP; $x++) :
   
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+  <script src="../assets/js/EmailClient.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>   
+  <script type="text/javascript">
+  (function() {
+  emailjs.init("user_Mmb6QvMqh7s5uTH14usmg");
+  })();
+    </script> -->
+
 
 </body>
-
-<div id="google_translate_element"></div>
-	<script>
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-            {pageLanguage: 'en'},
-            'google_translate_element'
-        );
-    }
-</script>
-<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </html>
