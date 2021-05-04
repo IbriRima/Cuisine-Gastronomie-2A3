@@ -28,7 +28,7 @@
                  $_POST['Type'],
                  "Non traitee",
                   (int)$_POST['Note'],
-               (int) $_POST['Id_client'] 
+             $_POST['Id_client'] 
                 
 
           );
