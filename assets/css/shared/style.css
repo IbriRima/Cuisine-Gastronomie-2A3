@@ -9829,9 +9829,15 @@ ul {
   .auth.auth-bg-1 {
     background: url("../../img/food3.jpg");
     background-size: cover; }
+  .auth.auth-bg-3 {
+      background: url("../../img/cup.jpg");
+      background-size: cover; }
   .auth.register-bg-1 {
     background: url("../../img/food9.jpg") center center no-repeat;
     background-size: cover; }
+  .auth.register-bg-2 {
+      background: url("../../img/food7.jpg") center center no-repeat;
+      background-size: cover; }
   .auth.theme-one .auto-form-wrapper {
     background: #fff;
     padding: 40px 40px 10px;

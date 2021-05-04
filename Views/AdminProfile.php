@@ -7,7 +7,7 @@ session_start();
 $numero = $_SESSION['numero'];
 
 if($numero=="")
-header('Location:../Views/Login.php');
+header('Location:../Views/LoginAdmin.php');
 
 $admin=new Admin();
 $listeAdmin=$admin->getAdmin($numero); 
@@ -88,7 +88,7 @@ $listeAdmin=$admin->getAdmin($numero);
         </li>
 
         <li >
-        <a href="./AfficherCartes.php">
+        <a href="./AfficherCartes.php?keyword=''">
         <i class="now-ui-icons business_money-coins"></i>
             <p>Cartes Fidelités</p>
           </a>
@@ -168,7 +168,7 @@ $listeAdmin=$admin->getAdmin($numero);
               <div class="card-body">
                 
       <form action="../Controller/Admin.php" 
-      onsubmit = "return Verif();"
+      onsubmit = "return VerifClientProfile();"
 			method="POST">
 
                   <?PHP
@@ -199,23 +199,24 @@ $listeAdmin=$admin->getAdmin($numero);
 
                   </div>
 
-                  <div class="row">
+<input type="hidden" name="email" class="form-control" placeholder="Email" id="email" 
+                         value=<?PHP echo $Vals['email']; ?> >
+                 
+                  <!-- <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="text" name="email" class="form-control" placeholder="Email" id="email" 
-                        value=<?PHP echo $Vals['email']; ?> >
                         <label id="labelemail" name="labelemail" style="color:#eb1212">  </label>
 
                       </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-6 pl-1">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label>Numéro de téléphone</label>
                         <input type="number" class="form-control"  
                         id="numero" name="numero"  
-						value=<?PHP echo($numero) ; ?>	>	
+						value=<?PHP echo $Vals['numero']; ?>	>	
             <label id="labelnumero" name="labelnumero" style="color:#eb1212">  </label>
 				
 						<!-- </label> -->

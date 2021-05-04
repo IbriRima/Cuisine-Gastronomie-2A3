@@ -1,8 +1,14 @@
 <?php
     require_once '../config.php';
 
-    echo('php');
 
+
+    if(isset($_POST['submit']))
+    {
+        $admin=new Admin();
+        $admin->addAdmin();
+       
+    }
 
     if(isset($_POST['submit2']))
     {
@@ -31,6 +37,13 @@
         header('Location:../Views/EmailClient.php');
     }
 
+    if(isset($_POST['seconnecter']))
+    {
+        
+        $admin=new Admin();
+        $admin->connect();
+         
+    }
     
     class Admin {
 
@@ -51,6 +64,53 @@
             return $row;
 
 
+        }
+
+
+        public function addAdmin() {
+
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'INSERT INTO user (numero,nom,prenom,email,adresse,mdp,typee) 
+                    VALUES (:numero,:nom,:prenom,:email,:adresse,:mdp,:typee)'
+                );
+                $query->execute([
+                    'numero' => $_POST['numero'],
+                    'nom' => $_POST['nom'],
+                    'prenom' => $_POST['prenom'],
+                    'email' => $_POST['email'],
+                    'adresse' => $_POST['adresse'],
+                    'mdp' => $_POST['mdp1'],
+                    'typee' => "admin",
+                ]);
+
+                try {
+                    $pdo = getConnexion();
+                    $query = $pdo->prepare(
+                        'INSERT INTO cartefid (points,userID) 
+                        VALUES (:points,:userID)'
+                    );
+                    $query->execute([
+                        'points' => 0,
+                        'userID' => $_POST['email'],
+                    ]);
+                   
+    
+                } catch (PDOException $e) {
+                    $e->getMessage();
+                }
+
+                session_start();
+                $_SESSION['numero'] = $_POST['email'];               
+                 header('Location:../Views/AdminProfile.php');
+
+            } catch (PDOException $e) {
+                $e->getMessage();
+                //header('Location:../Views/RegisterAdmin.php');
+                $error="";
+                header("Location:../Views/Register.php?error=".$error);
+            }  
         }
 
        
@@ -82,7 +142,7 @@
                 $pdo = getConnexion();
             
                 $query = $pdo->prepare(
-                    'SELECT * FROM user WHERE numero= :numero and typee=:typee'
+                    'SELECT * FROM user WHERE email= :numero and typee=:typee'
                 );
                 $query->execute([
                     'numero' => $numero,
@@ -99,12 +159,11 @@
 
         public function updateAdmin() {
             try {
-                echo('update');
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
                     'UPDATE user SET 
                     nom = :nom, prenom = :prenom, adresse = :adresse, 
-                    email= :email WHERE numero = :numero'
+                    numero = :numero WHERE  email= :email'
                 );
                 $query->execute([
                     'nom' => $_POST['nom'],
@@ -124,20 +183,19 @@
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'DELETE FROM cartefid WHERE userID= :numero'
+                    'DELETE FROM cartefid WHERE userID= :email'
                 );
                 $query->execute([
-                    'numero' => $_POST['numero']
+                    'email' => $_POST['email']
                 ]);
-                echo('1');
 
                 try {
                     $pdo = getConnexion();
                     $query = $pdo->prepare(
-                        'DELETE FROM user WHERE numero= :numero'
+                        'DELETE FROM user WHERE email= :email'
                     );
                     $query->execute([
-                        'numero' => $_POST['numero']
+                        'email' => $_POST['email']
                     ]);
                     echo('2');
 
@@ -147,13 +205,65 @@
                 }
 
 
-                header('Location:../Views/Login.php');
+                header('Location:../Views/LoginAdmin.php');
             } catch (PDOException $e) {
                 $e->getMessage();
                 echo($e);
 
             }
         }
+
+
+        public function connect() 
+        {            
+            $sql = "SELECT * from user where email=:email and mdp=:mdp and typee=:typee"; 
+            $db = getConnexion();
+            try {
+                $query = $db->prepare($sql);
+                $query->execute([
+                    'email' => $_POST['numero'],
+                    'mdp' => $_POST['mdp'],
+                    'typee' => "admin"
+                ]); 
+                $result = $query->fetchAll(); 
+                
+                if($result) 
+                 {
+                    session_start();
+                    $_SESSION['numero'] = $_POST['numero'];               
+                    header('Location:../Views/AdminProfile.php'); 
+                  
+                 }
+                 else
+                 {
+
+                    $error="";
+
+                    header("Location:../Views/LoginAdmin.php?error=".$error);
+            
+                 }
+                }
+                catch (PDOException $e) {
+                $e->getMessage();
+                }
+            
+                
+            
+         
+
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         public function AfficherAdminsPaginer($page, $perPage)
         {

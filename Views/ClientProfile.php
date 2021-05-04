@@ -11,6 +11,11 @@ if($numero=="")
 header('Location:../Views/Login.php');
 
 
+if(isset($_GET['p']))
+$p="Email déja existe";
+else $p="";
+
+
 $client=new Client();
 $listeClient=$client->getClient($numero);
 
@@ -28,6 +33,7 @@ $listeClient=$client->getClient($numero);
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PointBIO</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="../assets/js/profile.js"></script>
 
 
 
@@ -87,6 +93,7 @@ $listeClient=$client->getClient($numero);
   	<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   	<link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   
+	<script src="../assets/js/profile.js"></script>
 
 
 	</head>
@@ -150,7 +157,7 @@ $listeClient=$client->getClient($numero);
               
 
 			  <form action="../Controller/Client.php" 
-			  onsubmit = "return Verif();"
+			  onsubmit = " return VerifClientProfile();"
 			  method="POST">
 
 			   <?PHP
@@ -181,22 +188,23 @@ $listeClient=$client->getClient($numero);
 
                   </div>
 
-                  <div class="row">
+				  <input type="hidden" name="email" class="form-control" placeholder="Email" id="email" 
+                         value=<?PHP echo $Vals['email']; ?> >
+						 
+                  <!-- <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="email" class="form-control" placeholder="Email" id="email" 
-                         value=<?PHP echo $Vals['email']; ?> >
-						<label id="labelemail" name="labelemail" style="color:#eb1212">  </label>
+                        
 
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>Numéro de téléphone</label>
                         <input type="number" class="form-control"  
-                        id="numero" name="numero"   value="<?php echo($numero);?>"
+                        id="numero" name="numero"   
+                        value=<?PHP echo $Vals['numero']; ?>
 						>	
 						<label id="labelnumero" name="labelnumero" style="color:#eb1212">  </label>
 
@@ -294,7 +302,6 @@ $listeClient=$client->getClient($numero);
     <script src="../assets/js/shared/misc.js"></script>
     <!-- endinject -->
     <script src="../assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
-    <script src="../login.js"></script>
 
 
 
@@ -325,6 +332,7 @@ $listeClient=$client->getClient($numero);
 	<!-- Main JS -->
 	<script src="../assets/js/main.js"></script>
 	<script src="../assets/js/profile.js"></script>
+
 
 
 	</body>

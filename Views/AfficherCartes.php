@@ -1,10 +1,13 @@
 <?PHP
 	include "../Controller/CarteFid.php";
 
-  session_start();
-  $keyword = $_SESSION['search'];
-
+ 
+    session_start();
+    $keyword = $_SESSION['search']; 
   
+   
+
+ 
 
   $carteFid=new CarteFid();
   $listecarteFid=$carteFid->afficherCartes($keyword);
@@ -257,8 +260,10 @@
                   <table class="table">
                     <thead class=" text-primary">
                     <tr>
+                    <th class="text-center">    </th>
                     <th class="text-center">ID</th>
                     <th class="text-center">Points</th>
+                    <th class="text-center">     </th>
 				<th class="text-center">ID d'utilisateur</th>
 			
 
@@ -283,17 +288,28 @@
 				<tr>
                 <form method="POST" action="../Controller/CarteFid.php">
 
+                
                 <td class="text-center">
-          <input type="text" class="form-control" name="id" id="id"  
+          <input type="hidden" class="form-control" name="id" id="id"  
 						value=<?PHP echo $Carte['id']; ?>>
           </td>
+          <td class="text-center">
+          <input type="text" class="form-control" name="id2" id="id2"  
+						value=<?PHP echo $Carte['id']; ?> disabled>
+          </td>
+
 					<td class="text-center">
           <input type="text" class="form-control" name="points" id="points"  
 						value=<?PHP echo $Carte['points']; ?>>
           </td>
+
           <td class="text-center">
-          <input type="text" class="form-control" name="userid" id="userid"  
+          <input type="hidden" class="form-control" name="userid" id="userid"  
 						value=<?PHP echo $Carte['userID']; ?>>
+          </td>
+          <td class="text-center">
+          <input type="text" class="form-control" name="userid2" id="userid2"  
+						value=<?PHP echo $Carte['userID']; ?> disabled>
           </td>
           
               

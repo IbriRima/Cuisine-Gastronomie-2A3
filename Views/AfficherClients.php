@@ -298,9 +298,9 @@
             
             <td>
 			
-                <button type="submit" name="admin" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                <!-- <button type="submit" name="admin" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
                   <i class="fas fa-user-secret"></i>                
-                </button>
+                </button> -->
 
                 <!-- <button type="submit" name="emailbutton" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
                 <i class="fas fa-envelope"></i>                

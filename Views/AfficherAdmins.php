@@ -14,6 +14,8 @@
      $totalP = $adminpage->calcTotalRows($perpage);
  
 
+  $keyword="";
+
 ?>
 
 
@@ -87,11 +89,11 @@
 </li>
 
 <li >
-<a href="./AfficherCartes.php">
-<i class="now-ui-icons business_money-coins"></i>
-    <p>Cartes Fidelités</p>
-  </a>
-</li>
+        <a href="./AfficherCartes.php">
+        <i class="now-ui-icons business_money-coins"></i>
+            <p>Cartes Fidelités</p>
+          </a>
+        </li>
 <li>
 <a href="./Rechercher_Table.php">
     <i class="now-ui-icons ui-1_calendar-60"></i>

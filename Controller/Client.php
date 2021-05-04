@@ -24,8 +24,8 @@
 
     if(isset($_POST['seconnecter']))
     {
-        $client=new Client();
-        $client->connect();
+         $client=new Client();
+         $client->connect();
          
     }
 
@@ -43,10 +43,10 @@
                 $pdo = getConnexion();
             
                 $query = $pdo->prepare(
-                    'SELECT * FROM user WHERE numero= :numero'
+                    'SELECT * FROM user WHERE email= :email'
                 );
                 $query->execute([
-                    'numero' => $numero,
+                    'email' => $numero,
 
                 ]);
 
@@ -84,7 +84,7 @@
                     );
                     $query->execute([
                         'points' => 0,
-                        'userID' => $_POST['numero'],
+                        'userID' => $_POST['email'],
                     ]);
                    
     
@@ -93,56 +93,59 @@
                 }
 
                 session_start();
-                $_SESSION['numero'] = $_POST['numero'];               
+                $_SESSION['numero'] = $_POST['email'];               
                  header('Location:../Views/ClientProfile.php');
 
             } catch (PDOException $e) {
                 $e->getMessage();
-                header('Location:../Views/Register.php');
+                //header('Location:../Views/Register.php');
+                $error="";
+                header("Location:../Views/Register.php?error=".$error);
             }  
         }
 
         public function updateClient() {
-            try {
-                $pdo = getConnexion();
-                $query = $pdo->prepare(
-                    'UPDATE user SET 
-                    nom = :nom, prenom = :prenom, adresse = :adresse, 
-                    email= :email WHERE numero = :numero'
-                );
-                $query->execute([
-                    'nom' => $_POST['nom'],
-                    'prenom' => $_POST['prenom'],
-                    'email' => $_POST['email'],
-                    'adresse' => $_POST['adresse'],
-                    'numero' => $_POST['numero'],
-                ]);
-                header('Location:../Views/ClientProfile.php');
-            } catch (PDOException $e) {
-                $e->getMessage();
-            }
+
+                    try {
+                        $pdo = getConnexion();
+                        $query = $pdo->prepare(
+                            'UPDATE user SET 
+                            nom = :nom, prenom = :prenom, adresse = :adresse, 
+                            numero = :numero WHERE email= :email'
+                        );
+                        $query->execute([
+                            'nom' => $_POST['nom'],
+                            'prenom' => $_POST['prenom'],
+                            'email' => $_POST['email'],
+                            'adresse' => $_POST['adresse'],
+                            'numero' => $_POST['numero'],
+                        ]);
+                        header('Location:../Views/ClientProfile.php');
+                    } catch (PDOException $e) {
+                        $e->getMessage();
+                    }
+
+           
         }
 
         public function deleteClient() {
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'DELETE FROM cartefid WHERE userID= :numero'
+                    'DELETE FROM cartefid WHERE userID= :email'
                 );
                 $query->execute([
-                    'numero' => $_POST['numero']
+                    'email' => $_POST['email']
                 ]);
-                echo('1');
 
                 try {
                     $pdo = getConnexion();
                     $query = $pdo->prepare(
-                        'DELETE FROM user WHERE numero= :numero'
+                        'DELETE FROM user WHERE email= :email'
                     );
                     $query->execute([
-                        'numero' => $_POST['numero']
+                        'email' => $_POST['email']
                     ]);
-                    echo('2');
 
                 } catch (PDOException $e) {
                     $e->getMessage();
@@ -161,12 +164,12 @@
        
         public function connect() 
         {            
-            $sql = "SELECT * from user where numero=:numero and mdp=:mdp and typee=:typee"; 
+            $sql = "SELECT * from user where email=:email and mdp=:mdp and typee=:typee"; 
             $db = getConnexion();
             try {
                 $query = $db->prepare($sql);
                 $query->execute([
-                    'numero' => $_POST['numero'],
+                    'email' => $_POST['numero'],
                     'mdp' => $_POST['mdp'],
                     'typee' => "client"
                 ]); 
@@ -174,6 +177,17 @@
                 
                 if($result) 
                  {
+                    if(!empty($_POST["remember"]))   
+                    {  
+                        setcookie ("member_login",$_POST["numero"],time()+ (86400 * 1), "/");
+                        setcookie ("member_password",$_POST["mdp"],time()+ (86400 * 1), "/");
+                    } 
+                    else
+                    {
+                        setcookie ("member_login","",time()+(86400 * 1), "/");
+                        setcookie ("member_password","",time() + (86400 * 1), "/");
+                    }
+
                     session_start();
                     $_SESSION['numero'] = $_POST['numero'];               
                     header('Location:../Views/ClientProfile.php'); 
@@ -182,45 +196,19 @@
                  else
                  {
 
-                $sql = "SELECT * from user where numero=:numero and mdp=:mdp and typee=:typee"; 
-                $db = getConnexion();
-                try {
-                $query = $db->prepare($sql);
-                $query->execute([
-                    'numero' => $_POST['numero'],
-                    'mdp' => $_POST['mdp'],
-                    'typee' => "admin"
+                    $error="";
 
-                ]); 
-                $result = $query->fetchAll(); 
-                
-                if($result) 
-                 {
-                    session_start();
-                    $_SESSION['numero'] = $_POST['numero'];               
-                    header('Location:../Views/AdminProfile.php');                            
-                 }
-                 else
-                 {
-                
-                    echo '<script>',
-                    'alert("test");',
-                    '</script>';        
-                    header('Location:../Views/Login.php');
-
-                 }
-                 }
+                    header("Location:../Views/Login.php?error=".$error);
             
+                 }
+                }
                 catch (PDOException $e) {
                 $e->getMessage();
                 }
-                }
+            
                 
             
-            }    
-            catch (PDOException $e) {
-                $e->getMessage();  
-            }
+         
 
             
         }

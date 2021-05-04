@@ -2,17 +2,14 @@
 
 <?PHP
 
-	include "../Controller/Client.php";
+	include "../Controller/Admin.php";
 
-if(isset($_GET['error']))
-{
-  $error="  Email existe déja";
-}
-else $error="";
-
-
-
-	$Client=new Client();
+  if(isset($_GET['error']))
+  {
+    $error="  Email existe déja";
+  }
+  else $error="";
+	//$Client=new Client();
 ?>
 
 
@@ -125,12 +122,12 @@ else $error="";
 
 	<div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
+        <div class="content-wrapper d-flex align-items-center auth register-bg-2 theme-one">
           <div class="row w-100">
             <div class="col-lg-4 mx-auto">
               <!-- <h2 class="text-center mb-4">Register</h2> -->
               <div class="auto-form-wrapper">
-                <form action="../Controller/Client.php" 
+                <form action="../Controller/Admin.php" 
                 onsubmit = "return Verif();"
                 method="POST">
 
@@ -167,7 +164,7 @@ else $error="";
                         </span>
                       </div>
                     </div>
-                    <label id="labelemail" name="labelemail" style="color:#eb1212"> <?php echo($error); ?> </label>
+                    <label id="labelemail" name="labelemail" style="color:#eb1212"> <?php echo($error) ?> </label>
                   </div>
 
                   <div class="form-group">
