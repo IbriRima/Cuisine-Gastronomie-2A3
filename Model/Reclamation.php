@@ -6,7 +6,7 @@
         private string $Type;
         private string $Etat_traitement;
         private float $Note;
-        private string $Id_client;
+        private int $Id_client;
 
         public function __construct($Proposition, $Description, $Type,$Etat_traitement,$Note,$Id_client)
         
