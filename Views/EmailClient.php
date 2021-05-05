@@ -257,9 +257,10 @@
               </div>
 
               <div class="input-group no-border">
-                <input type="text"  class="form-control" name="email" id="email"
+                <textarea   class="form-control" name="email" id="email"
                 style="height:200px"
-                >
+                > </textarea>
+
               </div>
 
               <button type="submit" name="sendmail"  href="#" class="btn btn-neutral btn-icon btn-round btn-lg">

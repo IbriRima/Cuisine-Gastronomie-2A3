@@ -229,6 +229,14 @@
                 ]); 
                 $result = $query->fetchAll(); 
 
+                if(!$result)
+                {
+                    $error="";
+
+                    header("Location:../Views/LoginAdmin.php?error=".$error);
+
+                }
+
                 $password=$_POST['mdp'];
 
                 foreach($result as $admin)

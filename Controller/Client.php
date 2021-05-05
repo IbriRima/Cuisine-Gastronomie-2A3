@@ -36,6 +36,28 @@
          
     }
 
+    if(isset($_POST['sendcode']))
+    {
+         $client=new Client();
+         $client->sendCode();
+         
+    }
+
+    if(isset($_POST['check']))
+    {
+         $client=new Client();
+         $client->check();
+         
+    }
+
+    if(isset($_POST['modifier']))
+    {
+         $client=new Client();
+         $client->updatePassword();
+         
+    }
+
+
 
 
     
@@ -190,6 +212,14 @@
 
                 $password=$_POST['mdp'];
 
+                if(!$result)
+                {
+                    $error="";
+
+                    header("Location:../Views/Login.php?error=".$error);
+
+                }
+
             foreach($result as $client)
             {
 
@@ -223,11 +253,13 @@
                  }
 
             }
-
-
-                }
+            }
                 catch (PDOException $e) {
                 $e->getMessage();
+                echo('famech email');
+                $error="";
+
+                   header("Location:../Views/Login.php?error=".$error);
                 }
             
                 
@@ -299,9 +331,131 @@
     public function sendmail()
     {
 
+            
+
+
                 $aqui = $_POST["aqui"];
                 $subject = $_POST["objet"];
                 mail("$aqui" , "$aqui ($subject)" , $_POST["email"] , "From: $aqui");    
+
+                header('Location:../Views/AfficherClients.php');
+
+
+    }
+
+    public function sendcode()
+    {
+
+        try {
+            $pdo = getConnexion();
+        
+            $query = $pdo->prepare(
+                'SELECT * FROM user WHERE email= :email'
+            );
+            $query->execute([
+                'email' =>  $_POST["email"],
+
+            ]);
+
+            $result= $query->fetchAll();
+
+            if($result)
+            {
+                $code=rand(1000,9999);
+
+                echo($code);
+
+                $aqui = $_POST["email"];
+                $subject = "Mot de passe oublié";
+                $msg ="Le code est $code";
+
+                mail("$aqui" , "$subject" , $msg , "From: $aqui");    
+
+
+                session_start();
+                $_SESSION['email'] = $_POST['email'];       
+                $_SESSION['code'] = $code;               
+        
+                header('Location:../Views/Mdpoublie2.php');
+
+            }
+            else
+            {
+                $error="";
+
+                header("Location:../Views/Mdpoublie1.php?error=".$error);
+
+            }
+
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+
+               
+
+
+    }
+
+
+    public function check()
+    {
+        if($_POST['code']==$_POST['code2'])
+        {
+
+                session_start();
+                $_SESSION['email'] = $_POST['email'];       
+        
+                header('Location:../Views/Mdpoublie3.php');
+
+        }
+        else 
+        {
+            $error="";
+
+            header("Location:../Views/Mdpoublie2.php?error=".$error);
+
+
+        }
+
+
+    }
+
+
+    public function updatePassword()
+    {
+        if($_POST['mdp1']==$_POST['mdp2'])
+        {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE user SET 
+                    mdp = :mdp  WHERE email= :email'
+                );
+                $query->execute([
+                    'email' => $_POST['email'],
+                    'mdp' => password_hash( $_POST['mdp1'],PASSWORD_DEFAULT),
+                ]);
+
+                setcookie ("member_login","",time()+ (86400 * 1), "/");
+                setcookie ("member_password","",time()+ (86400 * 1), "/");
+
+                session_start();
+                $_SESSION['numero'] = $_POST['email'];               
+                header('Location:../Views/ClientProfile.php');
+
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+
+        }
+        else
+        {
+            $error="";
+
+            header("Location:../Views/Mdpoublie3.php?error=".$error);
+
+        }
+
 
     }
        

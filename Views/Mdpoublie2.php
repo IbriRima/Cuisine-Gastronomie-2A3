@@ -5,12 +5,15 @@
 include "../Controller/Client.php";
 
 if(isset($_GET['error']))
-$error="  Email ou mot de passe incorrect";
+$error="  Le code est incorrect";
 else $error="";
 
  
 
- 					
+session_start();
+$code = $_SESSION['code'];		
+$email = $_SESSION['email'];					
+
 
 $Client=new Client();
 ?>
@@ -126,18 +129,16 @@ $Client=new Client();
               <div class="auto-form-wrapper">
                 
 			  <form  action="../Controller/Client.php" 
-                onsubmit = "return VerifLogin();"
                 method="POST">
 
-				<label id="labelerror" name="labelerror" style="color:#eb1212"> <?php echo($error) ?> </label>
+				<label id="codeerror" name="codeerror" style="color:#eb1212"> <?php echo($error) ?> </label>
 
 
                   <div class="form-group">
-                    <label class="label" >Email</label>
+                    <label class="label" >Code</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="numero" placeholder="Email" 
-					  name="numero"
-					  value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>"
+                      <input type="text" class="form-control" id="code" placeholder="Code" 
+					  name="code"
 					  >
                       <div class="input-group-append">
                         <span class="input-group-text">
@@ -148,41 +149,20 @@ $Client=new Client();
 					<label id="labelnumero" name="labelnumero" style="color:#eb1212">  </label>
                   </div>
 
-                  <div class="form-group">
-                    <label class="label">Mot de passe</label>
-                    <div class="input-group">
-                      <input type="password" id="mdp" class="form-control" placeholder="*********" name="mdp"
-					  value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>"
-					  >
-                      <div class="input-group-append">
-                        <span class="input-group-text">
-                          <i class="mdi mdi-check-circle-outline"></i>
-                        </span>
-                      </div>
-                    </div>
-					<label id="labelmdp" name="labelmdp" style="color:#eb1212">   </label>
-                  </div>
-                  
-				  	<div>
-					<input type="checkbox" id="remember" name="remember">
-					<label for="rememberlabel" style="font-size:13px ; padding-right:100px">Rester connecté</label>
-					<a href="../Views/Mdpoublie1.php" style="font-size:13px">     Mot de passe oublié</a>
+                  <input type="hidden" name="email" class="form-control"  id="email" 
+                         value=<?PHP echo $email; ?> >
 
-					</div>
-
-					<div class="text-block text-center my-3">
-                  </div>
+                    <input type="hidden" name="code2" class="form-control"  id="code2" 
+                    value=<?PHP echo $code; ?> >
 				  
 
 				  <div class="form-group">
-                    <button class="btn btn-primary submit-btn btn-block" id="seconnecter" Type="submit" 
-					name="seconnecter"
-                    >Se connecter</button>
+                    <button class="btn btn-primary submit-btn btn-block" id="check" Type="submit" 
+					name="check"
+                    >Vérifier</button>
                   </div>
-                  <div class="text-block text-center my-3">
-                    <span class="text-small font-weight-semibold">Vous n'avez pas de compte?</span>
-                    <a href="../Views/Register.php" class="text-black text-small">S'inscrire</a>
-                  </div>
+
+                 
                 </form>
               </div>
 
