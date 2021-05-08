@@ -126,6 +126,7 @@
                 setcookie ("member_login","",time()+ (86400 * 1), "/");
                 setcookie ("member_password","",time()+ (86400 * 1), "/");
 
+                $GLOBALS['id']=$_POST['email'];
                 session_start();
                 $_SESSION['numero'] = $_POST['email'];               
                  header('Location:../Views/ClientProfile.php');
@@ -239,6 +240,7 @@
                         setcookie ("member_password","",time() + (86400 * 1), "/");
                     }
 
+                    $GLOBALS['id']=$_POST['numero'];
                     session_start();
                     $_SESSION['numero'] = $_POST['numero'];               
                     header('Location:../Views/ClientProfile.php'); 
