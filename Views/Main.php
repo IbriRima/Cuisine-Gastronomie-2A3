@@ -14,6 +14,8 @@ require_once '../Controller/platC.php';
     $error = "";
 
 
+//$Global['id'];
+
 
 
         $ProduitC = new ProduitC();
@@ -111,7 +113,12 @@ require_once '../Controller/platC.php';
 				<div class="fh5co-overlay"></div>
 				
 				<div class="fh5co-text">
+				<!-- if not connected -->
 				<input class="right" type="image" src="../assets/img/login.png" type="button"  width="70" heigth="70" onclick="location.href='Login.php'" >
+				<!-- ifconnected 
+					<input class="right" type="image" src="../assets/img/Compte.png" type="button"  width="70" heigth="70" onclick="location.href='ClientProfile.php'" >
+			input: déconnecter
+				-->
 					<div class="container">
 						<div class="row">
 					
