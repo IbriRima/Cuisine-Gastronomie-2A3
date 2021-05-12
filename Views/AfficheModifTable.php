@@ -261,19 +261,43 @@ class CategoriesTable{
               <div class="card-body">
                 <div class="table-responsive">
 
+ <script type="text/javascript">
 
+    function controleSaisie() {
+      var error=true;
+      if (document.formulaire.ID.value == "") {
+         document.getElementById('labelID').innerHTML="Veuillez saisir votre numéro de télèphone!";
+        error=false ;
+      }
+      if (document.formulaire.NB_Places.value == "") {
+        document.getElementById('labelNB_Places').innerHTML="Veuillez saisir le nombre de places!";
+        error=false ;
+      }
+       if (document.formulaire.Forme.value == "") {
+        document.getElementById('labelForme').innerHTML="Veuillez choisir la forme de table";
+        error=false ;
+      }
+      
+      if (document.formulaire.Espace.value == "") {
+        document.getElementById('labelEspace').innerHTML="Veuillez choisir l'espace de réservation";
+        error=false ;
+      }
+     return error;
+    } 
+  </script> 
 	<div class="form-group ">
 		            <?PHP
 				foreach($listeCategoriesTable as $CategoriesTable)
         {
 			?>
-							<form method="POST" OnSubmit="updateCategoriesTable">
-						<!--	action="ModifierCategoriesTable.php" -->
+							<form method="POST" name="formulaire" OnSubmit="return controleSaisie()">
 							<input id="name" name="ID" class="form-control" placeholder="ID :" value="<?PHP echo $CategoriesTable["ID"] ?>"type="tel" >
+              <label id="labelID" name="labelID" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							
 							<input id="name" name="NB_Places" class="form-control" value="<?PHP echo $CategoriesTable["NB_places"] ?>"placeholder="NB_Places :" type="text">
+              <label id="labelNB_Places" name="labelNB_places" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
 							
@@ -285,11 +309,13 @@ class CategoriesTable{
                 <option>Carré</option>
                 <option>Rectangulaire</option> 
                 </select>
-</div>
+                <label id="labelForme" name="labelFrome" style="color:#eb1212">  </label>
+            </div>
 
 						<div class="form-group ">
 							
 							<input id="name" name="Espace" class="form-control" value="<?PHP echo $CategoriesTable["Espace"] ?>" placeholder="Espace :" type="text">
+              <label id="labelEspace" name="labelEspace" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
           <input class="btn btn-primary" type="submit" value="Enregistrer" name = "Enregistrer">
