@@ -490,33 +490,36 @@ else echo"";
 		
 
 		<script type="text/javascript">
+			
     function controleSaisie() {
+    	var error=true;
       if (document.formulaire.ID.value == "") {
         document.getElementById('labelID').innerHTML="Veuillez saisir votre Numéro de télèphone!";
-        return false;
+         error=false ;
       }
       if (document.formulaire.Nom.value == "") {
        document.getElementById('labelNom').innerHTML="Veuillez saisir votre Nom SVP!";
-        return false;
+         error=false ;
       }
        if (document.formulaire.Prénom.value == "") {
          document.getElementById('labelPrénom').innerHTML="Veuillez saisir votre Prénom SVP!";
-        return false;
+         error=false ;
       }
       if (document.formulaire.email.value.indexOf('@') == -1) {
          document.getElementById('labelemail').innerHTML="Tapez votre email SVP! (votre email doit contenir '@')";
-        return false;
+         error=false ;
       }
       if (document.formulaire.message.value == "") {
         document.getElementById('labelMessage').innerHTML="Veuillez saisir votre message!"; 
-        return false;
+        error=false ;
       }
       if (document.formulaire.datetemps.value == "") {
         document.getElementById('labeldatetemps').innerHTML="Veuillez saisir la date et le temps de réservation!";
-        return false;
+         error=false ;   
       }
-      return true;
+      return error;
     } 
+    
   </script>
 
 
