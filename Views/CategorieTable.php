@@ -82,27 +82,25 @@ $id="123";
 	</div>
 	
  <script type="text/javascript">
-
     function controleSaisie() {
-    	var error=true;
       if (document.formulaire.ID.value == "") {
          document.getElementById('labelID').innerHTML="Veuillez saisir votre numéro de télèphone!";
-        error=false ;
+        return false;
       }
       if (document.formulaire.NB_Places.value == "") {
         document.getElementById('labelNB_Places').innerHTML="Veuillez saisir le nombre de places!";
-        error=false ;
+        return false;
       }
        if (document.formulaire.Forme.value == "") {
         document.getElementById('labelForme').innerHTML="Veuillez choisir la forme de table";
-        error=false ;
+        return false;
       }
       
       if (document.formulaire.Espace.value == "") {
         document.getElementById('labelEspace').innerHTML="Veuillez choisir l'espace de réservation";
-        error=false ;
+        return false;
       }
-     return error;
+     return true;
     } 
   </script> 
 
