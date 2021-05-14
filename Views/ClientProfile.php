@@ -93,6 +93,7 @@ $listeClient=$client->getClient($numero);
 	<body>
 
 
+	
 	<div id="fh5co-container">
 		
 		
@@ -119,8 +120,34 @@ $listeClient=$client->getClient($numero);
 
 	</div>
 
-	
+	<div id="fh5co-events" data-section="reclamation" style="background-image: url(../assets/img/pancakes.jpg);" data-stellar-background-ratio="0.5">
 
+	<div class="container">
+	<h2 class="heading to-animate"></h2>
+	<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2">
+
+		</div>
+		</div>
+		</div>
+
+		<div class="container">
+		<h2 class="heading to-animate"></h2>
+		<h4 class="heading to-animate"></h4>
+       </div>
+	   
+<div class="container">
+<h2 class="heading to-animate"></h2>
+<h4 class="heading to-animate"></h4>
+
+</div>
+
+
+
+
+
+
+			
 	<div class="main-panel1" id="main-panel">
       
 	
@@ -136,7 +163,7 @@ $listeClient=$client->getClient($numero);
 
 
       <div class="content">
-	
+	  <div class="card-body">
 	  
         	<div class="row">
           		<div class="col-md-8">
@@ -146,7 +173,7 @@ $listeClient=$client->getClient($numero);
 							<br>
 							<br>
               			  </div>
-              <div class="card-body">
+       
               
 
 			  <form action="../Controller/Client.php" 
@@ -203,10 +230,7 @@ $listeClient=$client->getClient($numero);
 
                       </div>
                     </div>
-
-                  </div>
-
-                  <div class="row">
+					<div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Adresse</label>
@@ -218,7 +242,10 @@ $listeClient=$client->getClient($numero);
                       </div>
                     </div>
                   
-				
+				</div>
+                  </div>
+
+
 				
 
 				<div class="button-container">
@@ -245,7 +272,7 @@ $listeClient=$client->getClient($numero);
 				  
 				
 				
-				</div>
+			
 
                   
 
@@ -292,7 +319,7 @@ $listeClient=$client->getClient($numero);
 	
 	</div>
 
-	
+	</div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
