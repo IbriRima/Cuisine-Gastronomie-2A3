@@ -144,6 +144,14 @@
     <p>www.PointBio.com</p>
   </a>
 </li>
+
+<li >
+          <a href="./LoginAdmin.php">
+          <i class="now-ui-icons ui-1_settings-gear-63"></i>            
+          <p> Se déconnecter </p>
+          </a>
+        </li>
+        
 </ul>
 
         
@@ -247,7 +255,7 @@
 				<th class="text-center">Prénom</th>
 				<th class="text-center">Email</th>
 				<th class="text-center">Adresse</th>
-        <th class="text-center">Mot de passe</th>
+      
 
 				<!-- <th class="text-center">Sexe</th> -->
 			
@@ -290,10 +298,7 @@
           <input type="text" class="form-control" name="adresse" id="adresse"  
 						value=<?PHP echo $Client['adresse']; ?>>
           </td>
-          <td class="text-center">
-          <input type="text" class="form-control" name="mdp" id="mdp"  
-						value=<?PHP echo $Client['mdp']; ?>>
-          </td>
+          
               
             
             <td>
@@ -302,9 +307,9 @@
                   <i class="fas fa-user-secret"></i>                
                 </button> -->
 
-                <!-- <button type="submit" name="emailbutton" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                <button type="submit" name="emailbutton" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
                 <i class="fas fa-envelope"></i>                
-                </button> -->
+                </button>
 			
             </td>
             </form>

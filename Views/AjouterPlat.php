@@ -56,7 +56,7 @@
 </head>
 
 <body class="user-profile">
-<script src="dark.js"></script>
+<script src="../assets/js/dark.js"></script>
       <script>
       new Darkmode({
         bottom: '32px',
@@ -172,6 +172,13 @@
     <p>www.PointBio.com</p>
   </a>
 </li>
+
+<li >
+          <a href="./LoginAdmin.php">
+          <i class="now-ui-icons ui-1_settings-gear-63"></i>            
+          <p> Se déconnecter </p>
+          </a>
+        </li>
 </ul>
 
       </div>

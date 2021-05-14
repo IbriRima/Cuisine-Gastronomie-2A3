@@ -430,9 +430,9 @@
 	<a href="#" onclick="HTMLtoPDF()">Download PDF</a>
 
 	<!-- these js files are used for making PDF -->
-	<script src="js/jspdf.js"></script>
-	<script src="js/jquery-2.1.3.js"></script>
-	<script src="js/pdfFromHTML.js"></script>
+	<script src="../assets/js/jspdf.js"></script>
+	<script src="../assets/js/jquery-2.1.3.js"></script>
+	<script src="../assets/js/pdfFromHTML.js"></script>
 	
 	<div class="imprimer">
         <input id="impression" name="impression" class="btn btn-primary" type="submit" onclick="imprimer_page()" value="Imprimer la Page" />

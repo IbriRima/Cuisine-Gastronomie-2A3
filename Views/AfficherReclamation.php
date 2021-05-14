@@ -1,6 +1,6 @@
 <?PHP
-	include "../Controller/TypeReclamationC.php";
-	include "../Controller/ReclamationC.php";
+require_once "../Controller/TypeReclamationC.php";
+require_once "../Controller/ReclamationC.php";
 
 
 $ReclamationC=new ReclamationC();
@@ -181,6 +181,12 @@ array_push($arrayTV,$Reclamation['NT']);
               <p>www.PointBio.com</p>
             </a>
           </li>
+          <li >
+          <a href="./LoginAdmin.php">
+          <i class="now-ui-icons ui-1_settings-gear-63"></i>            
+          <p> Se déconnecter </p>
+          </a>
+        </li>
         </ul>
 
         

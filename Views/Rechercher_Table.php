@@ -139,6 +139,13 @@ $listeReservation =$ReservationC->afficherReservation($keyword);
     <p>www.PointBio.com</p>
   </a>
 </li>
+
+<li >
+          <a href="./LoginAdmin.php">
+          <i class="now-ui-icons ui-1_settings-gear-63"></i>            
+          <p> Se déconnecter </p>
+          </a>
+        </li>
 </ul>
 
         
@@ -347,9 +354,9 @@ $listeReservation =$ReservationC->afficherReservation($keyword);
   <!--  <a href="#" onclick="HTMLtoPDF()">Download PDF</a> -->
 
   <!-- these js files are used for making PDF -->
-  <script src="js/jspdf.js"></script>
-  <script src="js/jquery-2.1.3.js"></script>
-   <script src="js/pdfFromHTML.js"></script>
+	<script src="../assets/js/jspdf.js"></script>
+	<script src="../assets/js/jquery-2.1.3.js"></script>
+	<script src="../assets/js/pdfFromHTML.js"></script>
   
 
     <form action="stats.php" name="formulaire" method="POST">

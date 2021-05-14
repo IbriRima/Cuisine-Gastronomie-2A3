@@ -81,7 +81,7 @@
                     'prenom' => $_POST['prenom'],
                     'email' => $_POST['email'],
                     'adresse' => $_POST['adresse'],
-                    'mdp' => $_POST['mdp1'],
+                    'mdp' => password_hash( $_POST['mdp1'],PASSWORD_DEFAULT),
                     'typee' => "admin",
                 ]);
 
@@ -101,6 +101,10 @@
                     $e->getMessage();
                 }
 
+                setcookie ("member_login2","",time()+ (86400 * 1), "/");
+                setcookie ("member_password2","",time()+ (86400 * 1), "/");
+
+                $GLOBALS['id']=$_POST['email'];
                 session_start();
                 $_SESSION['numero'] = $_POST['email'];               
                  header('Location:../Views/AdminProfile.php');
@@ -216,19 +220,45 @@
 
         public function connect() 
         {            
-            $sql = "SELECT * from user where email=:email and mdp=:mdp and typee=:typee"; 
+            $sql = "SELECT * from user where email=:email  and typee=:typee"; 
             $db = getConnexion();
             try {
                 $query = $db->prepare($sql);
                 $query->execute([
                     'email' => $_POST['numero'],
-                    'mdp' => $_POST['mdp'],
                     'typee' => "admin"
                 ]); 
                 $result = $query->fetchAll(); 
-                
-                if($result) 
-                 {
+
+                if(!$result)
+                {
+                    $error="";
+
+                    header("Location:../Views/LoginAdmin.php?error=".$error);
+
+                }
+
+                $password=$_POST['mdp'];
+
+                foreach($result as $admin)
+                {
+
+                    if( password_verify( $password, $admin['mdp'] )) 
+                    {
+
+                    if(!empty($_POST["remember"]))   
+                    {  
+                        setcookie ("member_login2",$_POST["numero"],time()+ (86400 * 1), "/");
+                        setcookie ("member_password2",$_POST["mdp"],time()+ (86400 * 1), "/");
+                    } 
+                    else
+                    {
+                        setcookie ("member_login2","",time()+(86400 * 1), "/");
+                        setcookie ("member_password2","",time() + (86400 * 1), "/");
+                    }
+
+
+                    $GLOBALS['id']=$_POST['numero'];
                     session_start();
                     $_SESSION['numero'] = $_POST['numero'];               
                     header('Location:../Views/AdminProfile.php'); 
@@ -242,15 +272,17 @@
                     header("Location:../Views/LoginAdmin.php?error=".$error);
             
                  }
+               
                 }
+
+            }
+
                 catch (PDOException $e) {
                 $e->getMessage();
                 }
             
                 
-            
-         
-
+        
             
         }
 

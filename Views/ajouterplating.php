@@ -55,7 +55,7 @@
 
 <body class="user-profile">
 
-<script src="dark.js"></script>
+<script src="../assets/js/dark.js"></script>
       <script>
       new Darkmode({
         bottom: '32px',

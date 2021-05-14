@@ -151,7 +151,7 @@ $Client=new Client();
                   <div class="form-group">
                     <label class="label">Mot de passe</label>
                     <div class="input-group">
-                      <input type="password" id="password" class="form-control" placeholder="*********" name="mdp"
+                      <input type="password" id="mdp" class="form-control" placeholder="*********" name="mdp"
 					  value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>"
 					  >
                       <div class="input-group-append">
@@ -165,8 +165,13 @@ $Client=new Client();
                   
 				  	<div>
 					<input type="checkbox" id="remember" name="remember">
-					<label for="rememberlabel" style="font-size:13px">Rester connecté</label>
+					<label for="rememberlabel" style="font-size:13px ; padding-right:100px">Rester connecté</label>
+					<a href="../Views/Mdpoublie1.php" style="font-size:13px">     Mot de passe oublié</a>
+
 					</div>
+
+					<div class="text-block text-center my-3">
+                  </div>
 				  
 
 				  <div class="form-group">

@@ -56,7 +56,7 @@
 	
 	</head>
 	<body>
-	<script src="dark.js"></script>
+	<script src="../assets/js/dark.js"></script>
       <script>
       new Darkmode({
         bottom: '32px',
@@ -156,9 +156,9 @@
 		<div class="container">
 			<div class="row row-padded">
 				<div class="col-md-12 text-center">
-					<p class="to-animate">PointBIO <br> Designed by <a href="" target="_blank">InnovationTeam</a> 
+					<p class="to-animate">PointBIO <br> Conçu par <a href="" target="_blank">L'équipe Innovation</a> 
 					</p>
-					<p class="text-center to-animate"><a href="#" class="js-gotop">Go To Top</a></p>
+					<p class="text-center to-animate"><a href="#" class="js-gotop">Retour au début</a></p>
 				</div>
 			</div>
 			<div class="row">
