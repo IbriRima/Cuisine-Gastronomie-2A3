@@ -76,114 +76,85 @@
         
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-      <ul class="nav">
+        <ul class="nav">
 
 
-      
          
-<li >
-  <a href="./AjouterTypeReclamation.php">
-    <i class="now-ui-icons files_single-copy-04"></i>
-    <p>Type de Reclamation</p>
-  </a>
-</li>
-<li >
-<a href="./AfficherReclamation.php">
-    <i class="now-ui-icons ui-1_email-85"></i>
-    <p>réclamation</p>
-  </a>
-</li>
+         
+          <li >
+            <a href="./AjouterTypeReclamation.php">
+              <i class="now-ui-icons files_single-copy-04"></i>
+              <p>Type de Reclamation</p>
+            </a>
+          </li>
+          <li >
+          <a href="./AfficherReclamation.php">
+              <i class="now-ui-icons ui-1_email-85"></i>
+              <p>réclamation</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Profil</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons ui-1_calendar-60"></i>
+              <p>Réservation de table</p>
+            </a>
+          </li>
 
-<li >
-  <a href="./AdminProfile.php">
-    <i class="now-ui-icons users_single-02"></i>
-    <p>Profil</p>
-  </a>
-</li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons design_app"></i>
+              <p>Type de table</p>
+            </a>
+          </li>
 
-<li >
-  <a href="./AfficherAdmins.php">
-    <i class="now-ui-icons users_single-02"></i>
-    <p>Admins</p>
-  </a>
-</li>
+          <li >
+            <a href="AjouterProduit.php">
+              <i class="now-ui-icons shopping_box"></i>
+              <p>Produits</p>
+            </a>
+          </li>
 
-<li >
-  <a href="./AfficherClients.php">
-    <i class="now-ui-icons users_single-02"></i>
-    <p>Clients</p>
-  </a>
-</li>
+          <li class="active ">
+            <a href="AjouterOffres.php">
+              <i class="now-ui-icons business_money-coins"></i>
+              <p>offres</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons files_paper"></i>
+              <p>Ingrédients</p>
+            </a>
+          </li>
 
-<li >
-<a href="./AfficherCartes.php">
-<i class="now-ui-icons business_money-coins"></i>
-    <p>Cartes Fidelités</p>
-  </a>
-</li>
-<li>
-<a href="./Rechercher_Table.php">
-    <i class="now-ui-icons ui-1_calendar-60"></i>
-    <p>Réservation de table</p>
-  </a>
-</li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons emoticons_satisfied"></i>
+              <p>Plats</p>
+            </a>
+          </li>
 
-<li>
-  <a href="./AfficherCategoriesTable.php">
-    <i class="now-ui-icons design_app"></i>
-    <p>Type de table</p>
-  </a>
-</li>
-
-<li>
-  <a href="./Ajouterproduit.php">
-    <i class="now-ui-icons shopping_box"></i>
-    <p>Produits</p>
-  </a>
-</li>
-
-<li class="active">
-  <a href="./AjouterOffres.php">
-    <i class="now-ui-icons business_money-coins"></i>
-    <p>offres</p>
-  </a>
-</li>
-<li>
-  <a href="./AjouterIngredient.php">
-    <i class="now-ui-icons files_paper"></i>
-    <p>Ingrédients</p>
-  </a>
-</li>
-
-<li>
-  <a href="./AjouterPlat.php">
-    <i class="now-ui-icons emoticons_satisfied"></i>
-    <p>Plats</p>
-  </a>
-</li>
-
-<li >
-  <a href="./tables.php">
-    <i class="now-ui-icons design_bullet-list-67"></i>
-    <p>Liste des tables</p>
-  </a>
-</li>
-
-
-<li >
-  <a href="./Main.php">
-    <i class="now-ui-icons gestures_tap-01"></i>
-    <p>www.PointBio.com</p>
-  </a>
-</li>
-
-<li >
-          <a href="./LoginAdmin.php">
-          <i class="now-ui-icons ui-1_settings-gear-63"></i>            
-          <p> Se déconnecter </p>
-          </a>
-        </li>
-</ul>
+          <li >
+            <a href="./tables.php">
+              <i class="now-ui-icons design_bullet-list-67"></i>
+              <p>Liste des tables</p>
+            </a>
+          </li>
+         
+  
+          <li >
+            <a href="./Main.php">
+              <i class="now-ui-icons gestures_tap-01"></i>
+              <p>www.PointBio.com</p>
+            </a>
+          </li>
+        </ul>
 
         
       </div>
@@ -214,30 +185,8 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
-
-
-          <!-- RECHERCHE  -->
           
-           <!--  <form action="Recherche.php" method="POST">
-              <div class="input-group no-border">
-                <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
-
-
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-
-</form>
-
-
-
-
-
-
-            <ul class="navbar-nav">
+          <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons media-2_sound-wave"></i>
@@ -254,7 +203,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" onclick="test();">
-                  <a class="dropdown-item" name="TypeRech">Identifiant</a>
+                  <a class="dropdown-item" name="TypeRech">Identifiant produit</a>
                   <a class="dropdown-item"  name="TypeRech">Type</a>
                   <a class="dropdown-item"  name="TypeRech">Etat de traitement</a>
                 </div>
@@ -270,22 +219,23 @@
             </ul>
           </div>
         </div>
-      </nav>   -->
+      </nav>   
       
       <!-- End Navbar -->
       <script type="text/javascript">
-    function controleSaisie() {
-       if (document.formulaire.Valeur.value == "") {
-        document.getElementById("labelID").innerHTML="Veuillez saisir le nouveau prix";
+    function controleSaisie1() {
+
+       if (document.formulaire.id_produit.value == "") {
+        document.getElementById("labelIDoffre").innerHTML="Veuillez saisir un identifiant de produit existant";
       }
-      else if (document.formulaire.id_produit.value == "") {
-        document.getElementById("labelID1").innerHTML="Veuillez saisir l'identifiant du produit";
+      else (document.formulaire.Valeur.value == "") {
+        document.getElementById("labelIDoffreprix").innerHTML="Veuillez saisir le nouveau prix ";
         return false;
 
       }
 
       }
-    } 
+     
   </script> 
 
 
@@ -294,7 +244,8 @@
  
       <div class="content">
 
-      <form OnSubmit="return controleSaisie()" action="AjouterOffres.php" method="POST" id="form" > 
+      <form name="formulaire" action="AjouterOffres.php" method="POST" id="form"  OnSubmit="return controleSaisie1()"> 
+
 
 <div class="row">
   <div class="col-md-12">
@@ -319,7 +270,7 @@
                   <div class="form-group">
                     <label for="id_produit">  identifiant produit</label>
                     <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="identifiant produit" >
-                    <label id="labelID" name="labelID" style="color:#eb1212">  </label>
+                    <label id="labelIDoffre" name="labelIDoffre" style="color:#eb1212">  </label>
 
  
                   </div>
@@ -342,7 +293,7 @@
                   <div class="form-group">
                     <label for="Valeur">  Nouveau prix</label>
                     <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="nouveau prix" value='0'>
-                    <label id="labelID1" name="labelID1" style="color:#eb1212">  </label>
+                    <label id="labelIDoffreprix" name="labelIDoffreprix" style="color:#eb1212">  </label>
 
  
                   </div>

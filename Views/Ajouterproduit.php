@@ -79,114 +79,85 @@
         
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-      <ul class="nav">
+        <ul class="nav">
 
 
-      
          
-<li >
-  <a href="./AjouterTypeReclamation.php">
-    <i class="now-ui-icons files_single-copy-04"></i>
-    <p>Type de Reclamation</p>
-  </a>
-</li>
-<li >
-<a href="./AfficherReclamation.php">
-    <i class="now-ui-icons ui-1_email-85"></i>
-    <p>réclamation</p>
-  </a>
-</li>
+         
+          <li >
+            <a href="./AjouterTypeReclamation.php">
+              <i class="now-ui-icons files_single-copy-04"></i>
+              <p>Type de Reclamation</p>
+            </a>
+          </li>
+          <li >
+          <a href="./AfficherReclamation.php">
+              <i class="now-ui-icons ui-1_email-85"></i>
+              <p>réclamation</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Profil</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons ui-1_calendar-60"></i>
+              <p>Réservation de table</p>
+            </a>
+          </li>
 
-<li >
-  <a href="./AdminProfile.php">
-    <i class="now-ui-icons users_single-02"></i>
-    <p>Profil</p>
-  </a>
-</li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons design_app"></i>
+              <p>Type de table</p>
+            </a>
+          </li>
 
-<li >
-  <a href="./AfficherAdmins.php">
-    <i class="now-ui-icons users_single-02"></i>
-    <p>Admins</p>
-  </a>
-</li>
+          <li class="active ">
+            <a href="AjouterProduit.php">
+              <i class="now-ui-icons shopping_box"></i>
+              <p>Produits</p>
+            </a>
+          </li>
 
-<li >
-  <a href="./AfficherClients.php">
-    <i class="now-ui-icons users_single-02"></i>
-    <p>Clients</p>
-  </a>
-</li>
+          <li>
+            <a href="AjouterOffres.php">
+              <i class="now-ui-icons business_money-coins"></i>
+              <p>offres</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons files_paper"></i>
+              <p>Ingrédients</p>
+            </a>
+          </li>
 
-<li >
-<a href="./AfficherCartes.php">
-<i class="now-ui-icons business_money-coins"></i>
-    <p>Cartes Fidelités</p>
-  </a>
-</li>
-<li>
-<a href="./Rechercher_Table.php">
-    <i class="now-ui-icons ui-1_calendar-60"></i>
-    <p>Réservation de table</p>
-  </a>
-</li>
+          <li>
+            <a href="">
+              <i class="now-ui-icons emoticons_satisfied"></i>
+              <p>Plats</p>
+            </a>
+          </li>
 
-<li>
-  <a href="./AfficherCategoriesTable.php">
-    <i class="now-ui-icons design_app"></i>
-    <p>Type de table</p>
-  </a>
-</li>
-
-<li class="active">
-  <a href="./Ajouterproduit.php">
-    <i class="now-ui-icons shopping_box"></i>
-    <p>Produits</p>
-  </a>
-</li>
-
-<li>
-  <a href="./AjouterOffres.php">
-    <i class="now-ui-icons business_money-coins"></i>
-    <p>offres</p>
-  </a>
-</li>
-<li>
-  <a href="./AjouterIngredient.php">
-    <i class="now-ui-icons files_paper"></i>
-    <p>Ingrédients</p>
-  </a>
-</li>
-
-<li>
-  <a href="./AjouterPlat.php">
-    <i class="now-ui-icons emoticons_satisfied"></i>
-    <p>Plats</p>
-  </a>
-</li>
-
-<li >
-  <a href="./tables.php">
-    <i class="now-ui-icons design_bullet-list-67"></i>
-    <p>Liste des tables</p>
-  </a>
-</li>
-
-
-<li >
-  <a href="./Main.php">
-    <i class="now-ui-icons gestures_tap-01"></i>
-    <p>www.PointBio.com</p>
-  </a>
-</li>
-
-<li >
-          <a href="./LoginAdmin.php">
-          <i class="now-ui-icons ui-1_settings-gear-63"></i>            
-          <p> Se déconnecter </p>
-          </a>
-        </li>
-</ul>
+          <li >
+            <a href="./tables.php">
+              <i class="now-ui-icons design_bullet-list-67"></i>
+              <p>Liste des tables</p>
+            </a>
+          </li>
+         
+  
+          <li >
+            <a href="./Main.php">
+              <i class="now-ui-icons gestures_tap-01"></i>
+              <p>www.PointBio.com</p>
+            </a>
+          </li>
+        </ul>
 
         
       </div>
@@ -222,21 +193,6 @@
 
           <!-- RECHERCHE  -->
           
-             <form action="recherche.php" method="POST">
-              <div class="input-group no-border">
-                <input type="search" name="recherche" id="recherche" value="" class="form-control" placeholder="Chercher...">
-
-
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-
-</form>
-
-
 
 
 
@@ -281,22 +237,18 @@
     function controleSaisie() {
        if (document.formulaire.Nom_produit.value == "") {
         document.getElementById("labelID").innerHTML="Veuillez saisir votre nom de produit!";
-       // alert("Veuillez saisir votre nom de produit !");
       }
-      if (document.formulaire.Quantité_dans_le_stock.value == "") {
-       // alert("Veuillez saisir la quantité dans le stock !");
+      else if (document.formulaire.Quantité_dans_le_stock.value == "") {
         document.getElementById("labelID1").innerHTML="Veuillez saisir la quantité dans le stock!";
         return false;
 
       }
       else if (document.formulaire.Prix_de_vente.value == "") {
-       // alert("Veuillez saisir prix de vente !");
         document.getElementById("labelID2").innerHTML="Veuillez saisir le prix de vente!";
         return false;
 
       }
      else  if (document.formulaire.nom_image.value == "") {
-        //alert("Veuillez saisir le nom de l'image !");
         document.getElementById("labelID3").innerHTML="Veuillez saisir le nom de l'image!";
         return false;
 
@@ -519,7 +471,8 @@
       <br></br>
       <a align="right" href="exportexel.php"><img src="../assets/img/excel.png" alt="stats" style="width:60px;height:50px;"></a>
       <br></br>
-      <a align="right" name="impression" id="impression" onclick="imprimer_page()" type="submit" ><img src="../assets/img/print.jpg" alt="stats" style="width:60px;height:50px;"></a>
+    
+ <a align="right" href="imprimertables.php"><img src="../assets/img/print.jpg" alt="stats" style="width:60px;height:50px;"></a>
 
       
 
