@@ -46,9 +46,7 @@
 <head>
 
   <meta charset="utf-8" />
-  
-  <script type = "text/javascript"  src="../assets/js/Reclamation.js"></script>  
-  <script type = "text/javascript"  src="../assets/js/test.js"></script>  
+  <script type = "text/javascript"  src="../assets/js/Offres.js"></script>  
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
  
@@ -222,17 +220,25 @@
       </nav>   
       
       <!-- End Navbar -->
+
+
       <script type="text/javascript">
     function controleSaisie1() {
+      var error=true;
+
 
        if (document.formulaire.id_produit.value == "") {
         document.getElementById("labelIDoffre").innerHTML="Veuillez saisir un identifiant de produit existant";
-      }
-      else (document.formulaire.Valeur.value == "") {
-        document.getElementById("labelIDoffreprix").innerHTML="Veuillez saisir le nouveau prix ";
-        return false;
+        error=false ;
 
       }
+      if (document.formulaire.Valeur.value == "") {
+        document.getElementById("labelIDoffreprix").innerHTML="Veuillez saisir le nouveau prix ";
+        error=false ;   
+
+      }
+      return error;
+
 
       }
      
@@ -292,7 +298,7 @@
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
                     <label for="Valeur">  Nouveau prix</label>
-                    <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="nouveau prix" value='0'>
+                    <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="nouveau prix" >
                     <label id="labelIDoffreprix" name="labelIDoffreprix" style="color:#eb1212">  </label>
 
  
@@ -330,6 +336,7 @@
     </div>
   </div>
 </div>
+
 
 </form>
 

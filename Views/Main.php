@@ -490,35 +490,38 @@ else echo"";
 		
 
 		<script type="text/javascript">
-    function controleSaisie() {
-      if (document.formulaire.ID.value == "") {
-        document.getElementById('labelID').innerHTML="Veuillez saisir votre Numéro de télèphone!";
-        return false;
-      }
-      if (document.formulaire.Nom.value == "") {
-       document.getElementById('labelNom').innerHTML="Veuillez saisir votre Nom SVP!";
-        return false;
-      }
-       if (document.formulaire.Prénom.value == "") {
-         document.getElementById('labelPrénom').innerHTML="Veuillez saisir votre Prénom SVP!";
-        return false;
-      }
-      if (document.formulaire.email.value.indexOf('@') == -1) {
-         document.getElementById('labelemail').innerHTML="Tapez votre email SVP! (votre email doit contenir '@')";
-        return false;
-      }
-      if (document.formulaire.message.value == "") {
-        document.getElementById('labelMessage').innerHTML="Veuillez saisir votre message!"; 
-        return false;
-      }
-      if (document.formulaire.datetemps.value == "") {
-        document.getElementById('labeldatetemps').innerHTML="Veuillez saisir la date et le temps de réservation!";
-        return false;
-      }
-      return true;
-    } 
-  </script>
-
+			
+			function controleSaisie() {
+				var error=true;
+			  if (document.formulaire.ID.value == "") {
+				document.getElementById('labelID').innerHTML="Veuillez saisir votre Numéro de télèphone!";
+				 error=false ;
+			  }
+			  if (document.formulaire.Nom.value == "") {
+			   document.getElementById('labelNom').innerHTML="Veuillez saisir votre Nom SVP!";
+				 error=false ;
+			  }
+			   if (document.formulaire.Prénom.value == "") {
+				 document.getElementById('labelPrénom').innerHTML="Veuillez saisir votre Prénom SVP!";
+				 error=false ;
+			  }
+			  if (document.formulaire.email.value.indexOf('@') == -1) {
+				 document.getElementById('labelemail').innerHTML="Tapez votre email SVP! (votre email doit contenir '@')";
+				 error=false ;
+			  }
+			  if (document.formulaire.message.value == "") {
+				document.getElementById('labelMessage').innerHTML="Veuillez saisir votre message!"; 
+				error=false ;
+			  }
+			  if (document.formulaire.datetemps.value == "") {
+				document.getElementById('labeldatetemps').innerHTML="Veuillez saisir la date et le temps de réservation!";
+				 error=false ;   
+			  }
+			  return error;
+			} 
+			
+		  </script>
+		
 
 
 		<form action="AjouterReservation.php" name="formulaire" method="POST"  OnSubmit="return controleSaisie()">

@@ -172,6 +172,30 @@
 
     <div class="main-panel" id="main-panel">
 
+    <script type="text/javascript">
+    function controleSaisie1() {
+      var error=true;
+
+
+       if (document.formulaire.id_produit.value == "") {
+        document.getElementById("labelIDoffre").innerHTML="Veuillez saisir un identifiant de produit existant";
+        error=false ;
+
+      }
+      if (document.formulaire.Valeur.value == "") {
+        document.getElementById("labelIDoffreprix").innerHTML="Veuillez saisir le nouveau prix ";
+        error=false ;   
+
+      }
+      return error;
+
+
+      }
+     
+  </script> 
+
+
+
   
       <div class="panel-header panel-header-sm">
       </div>
@@ -205,7 +229,8 @@
 
      
 
-                <form action="ModifierOffres.php" method="POST" id="formA"> 
+                <form name="formulaire" action="ModifierOffres.php" method="POST" id="form"  OnSubmit="return controleSaisie1()"> 
+
 
             
    <div class="row">
@@ -234,13 +259,16 @@
                   
                         <label for="Valeur"> changer le Valeur de l'offre</label>
                         <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="changer le valeur de l'offre"    value = <?php echo  (int)$_POST["Valeur"]; ?>>
-                    
+                        <label id="labelIDoffreprix" name="labelIDoffreprix" style="color:#eb1212">  </label>
+
 
                     </div>
                     <div class="form-group">
                   
                   <label for="id_produit"> changer l'identifiant du produit</label>
                   <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="changer l'identifiant du produit"   value = <?php echo  (int)$_POST["id_produit"] ; ?> >
+                  <label id="labelIDoffre" name="labelIDoffre" style="color:#eb1212">  </label>
+
               
 
               </div>
@@ -255,7 +283,7 @@
                   <div class="controle" id="verifValeur"> </div>
                 
          
-                  <input type="submit" value="Enregistrer" name = "submit" onclick = "ModifType();">
+                  <input type="submit" value="Enregistrer" name = "submit">
           <input type="reset" value="Annuler" name = "annuler">
  
         </form> 

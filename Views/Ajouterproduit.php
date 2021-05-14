@@ -235,24 +235,28 @@
       <!-- End Navbar -->
       <script type="text/javascript">
     function controleSaisie() {
+      var error;
        if (document.formulaire.Nom_produit.value == "") {
         document.getElementById("labelID").innerHTML="Veuillez saisir votre nom de produit!";
+        error=false ;
+
       }
-      else if (document.formulaire.Quantité_dans_le_stock.value == "") {
+       if (document.formulaire.Quantité_dans_le_stock.value == "") {
         document.getElementById("labelID1").innerHTML="Veuillez saisir la quantité dans le stock!";
-        return false;
+				error=false ;
 
       }
-      else if (document.formulaire.Prix_de_vente.value == "") {
+       if (document.formulaire.Prix_de_vente.value == "") {
         document.getElementById("labelID2").innerHTML="Veuillez saisir le prix de vente!";
-        return false;
+				error=false ;
 
       }
-     else  if (document.formulaire.nom_image.value == "") {
+       if (document.formulaire.nom_image.value == "") {
         document.getElementById("labelID3").innerHTML="Veuillez saisir le nom de l'image!";
-        return false;
+				error=false ;
 
       }
+      return error;
     } 
   </script> 
 
@@ -424,7 +428,7 @@
 
 
           <td>
-					<form method="POST" action="SupprimerIngredient.php">
+					<form method="POST" action="SupprimerProduit.php">
             <input class="left"  type="image" src="../assets/img/delete.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $Produit['Id_produit']; ?> name="Id_produit" id="Id_produit">
             </form>
@@ -432,7 +436,7 @@
 
 
           <td>
-          <form method="POST" action="ModifierIngredient.php" >
+          <form method="POST" action="ModifierProduit.php" >
           <input class="left" type="image" src="../assets/img/update1.png"  type="submit" width="30" heigth="10" />
             <input type="hidden" value=<?PHP echo $Produit['Id_produit']; ?> name="Id_produit" id="Id_produit">
             <input type="hidden" value=<?PHP echo $Produit['Nom_produit']; ?> name="Nom_produit" id="Nom_produit">

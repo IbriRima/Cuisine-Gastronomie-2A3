@@ -11,9 +11,9 @@
 $keyword="";
 $ReservationC=new ReservationC();
 $listeReservation =$ReservationC->afficherReservation($keyword);
+?>
 
-
-
+<?php
 require_once '../config.php';
 if(isset($_POST['Enregistrer']))
     {
@@ -251,44 +251,77 @@ class Reservation{
                 <div class="table-responsive">
 
 
-                 <!-- <table class="table"> -->
-
+<script type="text/javascript">
+      
+    function controleSaisie() {
+      var error=true;
+      if (document.formulaire.ID.value == "") {
+        document.getElementById('labelID').innerHTML="Veuillez saisir votre Numéro de télèphone!";
+         error=false ;
+      }
+      if (document.formulaire.Nom.value == "") {
+       document.getElementById('labelNom').innerHTML="Veuillez saisir votre Nom SVP!";
+         error=false ;
+      }
+       if (document.formulaire.Prénom.value == "") {
+         document.getElementById('labelPrénom').innerHTML="Veuillez saisir votre Prénom SVP!";
+         error=false ;
+      }
+      if (document.formulaire.email.value.indexOf('@') == -1) {
+         document.getElementById('labelemail').innerHTML="Tapez votre email SVP! (votre email doit contenir '@')";
+         error=false ;
+      }
+      if (document.formulaire.Message.value == "") {
+        document.getElementById('labelMessage').innerHTML="Veuillez saisir votre message!"; 
+        error=false ;
+      }
+      if (document.formulaire.datetemps.value == "") {
+        document.getElementById('labeldatetemps').innerHTML="Veuillez saisir la date et le temps de réservation!";
+         error=false ;   
+      }
+      return error;
+    } 
+    
+  </script>
 
 	<div class="form-group ">
 		            <?PHP
 				foreach($listeReservation as $Reservation)
         {
 			?>
-							<form method="POST" OnSubmit="updateReservation()">
-							<label for="name" class="sr-only">ID(télèphone)</label>
+							<form method="POST" name="formulaire" OnSubmit="return controleSaisie()">
 							<input id="name" name="ID" class="form-control" placeholder="ID(télèphone) :" value="<?PHP echo $Reservation["ID"] ?>"type="tel">
+              <label id="labelID" name="labelID" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
-							<label for="name" class="sr-only">Nom</label>
+							
 							<input id="name" name="Nom" class="form-control" value="<?PHP echo $Reservation["Nom"] ?>"placeholder="Nom :" type="text">
+              <label id="labelNom" name="labelNom" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
-							<label for="name" class="sr-only">Prénom</label>
+							
 							<input id="name" name="Prénom" class="form-control" value="<?PHP echo $Reservation["Prenom"] ?>" placeholder="Prénom :" type="text">
+              <label id="labelPrénom" name="labelPrénom" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
-							<label for="email" class="sr-only">email</label>
+							
 							<input id="email" name="email" class="form-control" value="<?PHP echo $Reservation["Email"] ?>" placeholder="E-mail :" type="email">
+              <label id="labelemail" name="labelemail" style="color:#eb1212">  </label>
 						</div>
 						<div class="form-group ">
-							<label for="name" class="sr-only">Message</label>
+							
 							<input id="name" name="Message" class="form-control" value="<?PHP echo $Reservation["Message"] ?>" placeholder="Message :" type="text">
+              <label id="labelMessage" name="labelMessage" style="color:#eb1212">  </label>
 						</div> 
 
-						
 						<div class="form-group ">
-							<label for="name" class="sr-only">Date</label>
 							<input id="date" name="datetemps" class="form-control" value="<?PHP echo $Reservation["datetemps"] ?>" placeholder="Date &amp; Time" type="text">
+              <label id="labeldatetemps" name="labeldatetemps" style="color:#eb1212">  </label>
 						</div>
              		
-          				<div class="form-group ">
-							<input class="btn btn-primary"  name="Enregistrer" value="Enregistrer" type="submit">
-							<input class="btn btn-primary" value="Annuler" type="reset">
+          	<div class="form-group ">
+		 <input class="btn btn-primary" type="submit" value="Enregistrer" name = "Enregistrer">
+          <input class="btn btn-primary" type="reset" value="Annuler" >
 						</div>
 			
 					</form>

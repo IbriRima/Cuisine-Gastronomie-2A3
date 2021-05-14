@@ -120,7 +120,7 @@
           </li>
 
           <li class="active">
-            <a href="./Ajouterproduit">
+            <a href="./Ajouterproduit.php">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
@@ -165,6 +165,33 @@
         
       </div>
     </div>
+    <script type="text/javascript">
+    function controleSaisie() {
+      var error;
+       if (document.formulaire.Nom_produit.value == "") {
+        document.getElementById("labelID").innerHTML="Veuillez saisir votre nom de produit!";
+        error=false ;
+
+      }
+       if (document.formulaire.Quantité_dans_le_stock.value == "") {
+        document.getElementById("labelID1").innerHTML="Veuillez saisir la quantité dans le stock!";
+				error=false ;
+
+      }
+       if (document.formulaire.Prix_de_vente.value == "") {
+        document.getElementById("labelID2").innerHTML="Veuillez saisir le prix de vente!";
+				error=false ;
+
+      }
+       if (document.formulaire.nom_image.value == "") {
+        document.getElementById("labelID3").innerHTML="Veuillez saisir le nom de l'image!";
+				error=false ;
+
+      }
+      return error;
+    } 
+  </script> 
+
 
     <div class="main-panel" id="main-panel">
 
@@ -201,7 +228,7 @@
 
      
 
-                <form action="ModifierIngredient.php" method="POST" id="formA"> 
+            <form name="formulaire" action="ModifierProduit.php" method="POST" id="form"  OnSubmit="return controleSaisie()"> 
 
             
    <div class="row">
@@ -230,7 +257,8 @@
                   
                         <label for="Nom_produit"> nom de produit</label>
                         <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="changer le nom " value = <?php echo  $_POST["Nom_produit"] ; ?> >
-                    
+                        <label id="labelID" name="labelID" style="color:#eb1212">  </label>
+
 
                     </div>
                     </div>
@@ -247,7 +275,8 @@
                   
                         <label for="Quantité_dans_le_stock"> Quantité_dans_le_stock</label>
                         <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="changer la quantité dans le stock" value = <?php echo  $_POST["Quantité_dans_le_stock"] ; ?>  >
-                    
+                        <label id="labelID1" name="labelID1" style="color:#eb1212">  </label>
+
 
                     </div>
                     </div>
@@ -266,7 +295,8 @@
                   
                         <label for="Prix_de_vente"> Prix de vente</label>
                         <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="changer le prix de vente" value = <?php echo  $_POST["Prix_de_vente"] ; ?>  > 
-                    
+                        <label id="labelID2" name="labelID2" style="color:#eb1212">  </label>
+
 
                     </div>
                     </div>
@@ -282,7 +312,8 @@
                   
                         <label for="nom_image"> nom de l'image</label>
                         <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="changer le nom de l'image " value = <?php echo  $_POST["nom_image"] ; ?>   >
-                    
+                        <label id="labelID3" name="labelID3" style="color:#eb1212">  </label>
+
 
                     </div>
                     </div>
