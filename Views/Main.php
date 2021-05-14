@@ -90,7 +90,7 @@ require_once '../Controller/platC.php';
 
 	<body>
 
-	<script src="dark.js"></script>
+	<script src="../assets/js/dark.js"></script>
       <script>
       new Darkmode({
         bottom: '32px',
@@ -490,36 +490,33 @@ else echo"";
 		
 
 		<script type="text/javascript">
-			
     function controleSaisie() {
-    	var error=true;
       if (document.formulaire.ID.value == "") {
         document.getElementById('labelID').innerHTML="Veuillez saisir votre Numéro de télèphone!";
-         error=false ;
+        return false;
       }
       if (document.formulaire.Nom.value == "") {
        document.getElementById('labelNom').innerHTML="Veuillez saisir votre Nom SVP!";
-         error=false ;
+        return false;
       }
        if (document.formulaire.Prénom.value == "") {
          document.getElementById('labelPrénom').innerHTML="Veuillez saisir votre Prénom SVP!";
-         error=false ;
+        return false;
       }
       if (document.formulaire.email.value.indexOf('@') == -1) {
          document.getElementById('labelemail').innerHTML="Tapez votre email SVP! (votre email doit contenir '@')";
-         error=false ;
+        return false;
       }
       if (document.formulaire.message.value == "") {
         document.getElementById('labelMessage').innerHTML="Veuillez saisir votre message!"; 
-        error=false ;
+        return false;
       }
       if (document.formulaire.datetemps.value == "") {
         document.getElementById('labeldatetemps').innerHTML="Veuillez saisir la date et le temps de réservation!";
-         error=false ;   
+        return false;
       }
-      return error;
+      return true;
     } 
-    
   </script>
 
 
@@ -600,9 +597,9 @@ else echo"";
 		<div class="container">
 			<div class="row row-padded">
 				<div class="col-md-12 text-center">
-					<p class="to-animate">PointBIO <br> Designed by <a href="" target="_blank">InnovationTeam</a> 
+					<p class="to-animate">PointBIO <br> Conçu par <a href="" target="_blank">L'équipe Innovation</a> 
 					</p>
-					<p class="text-center to-animate"><a href="#" class="js-gotop">Go To Top</a></p>
+					<p class="text-center to-animate"><a href="#" class="js-gotop">Retour au début</a></p>
 				</div>
 			</div>
 			<div class="row">
