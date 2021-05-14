@@ -57,6 +57,13 @@
          
     }
 
+    if(isset($_POST['logout']))
+    {
+         $client=new Client();
+         $client->logout();
+         
+    }
+
 
 
 
@@ -126,7 +133,15 @@
                 setcookie ("member_login","",time()+ (86400 * 1), "/");
                 setcookie ("member_password","",time()+ (86400 * 1), "/");
 
-                $GLOBALS['id']=$_POST['email'];
+                setcookie ("id","co",time()+(86400 * 1), "/");
+
+
+                // $id=$_POST['email'];
+                // global $id;
+
+                // $GLOBALS['id']=$_POST['email'];
+
+
                 session_start();
                 $_SESSION['numero'] = $_POST['email'];               
                  header('Location:../Views/ClientProfile.php');
@@ -240,7 +255,15 @@
                         setcookie ("member_password","",time() + (86400 * 1), "/");
                     }
 
-                    $GLOBALS['id']=$_POST['numero'];
+
+                    // $id=$_POST['email'];
+                    // global $id;
+
+                    // $GLOBALS['id']=$_POST['numero'];
+                    
+                    setcookie ("id","co",time()+(86400 * 1), "/");
+
+
                     session_start();
                     $_SESSION['numero'] = $_POST['numero'];               
                     header('Location:../Views/ClientProfile.php'); 
@@ -461,6 +484,14 @@
 
     }
        
+
+    public function logout()
+    {
+        setcookie ("id","",time()+(86400 * 1), "/");
+        header("Location:../Views/Main.php");
+
+
+    }
 
 
 

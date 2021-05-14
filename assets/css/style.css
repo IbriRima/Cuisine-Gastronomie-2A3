@@ -294,7 +294,7 @@ opacity: 1;
 .retour {
   position: absolute;
   top: -90%;
-  left:-20%; 
+  left:6%; 
   transform: translate(-50%, -50%) ;
   display:flex;
   color: rgb(35, 121, 1);
@@ -372,7 +372,7 @@ opacity: 1;
 .right { 
   
   float:right; 
-  margin-top: -140px;
+  margin-top: -90px;
   margin-bottom: 0px;
   margin-right: 30px;
   margin-left: 180px;

@@ -234,10 +234,12 @@ $listeClient=$client->getClient($numero);
     			</div>	
 
 				<div class="button-container">
-                	<a  href="./Login.php" class="btn btn-neutral btn-icon btn-round btn-lg">
+                	<button type="submit" name="logout" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
 					<i class="fas fa-sign-out-alt"></i>                
-					</a>
+                	</button>
     			</div>	
+
+			
 
 				
 				  
@@ -271,7 +273,7 @@ $listeClient=$client->getClient($numero);
 <div class="reclamation">  
 
 <label for="reclamation"></label>
-<a  href="./ReclamationClient.php" >Mes réclamation</a>
+<a  href="./ReclamationClient.php" >Mes réclamations</a>
 
 
 

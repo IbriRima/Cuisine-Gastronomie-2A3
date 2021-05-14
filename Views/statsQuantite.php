@@ -98,7 +98,7 @@
             </a>
           </li>
 
-          <li class="active">
+          <li >
           <a href="./AfficherCategoriesTable.php">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>

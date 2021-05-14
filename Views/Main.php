@@ -10,6 +10,7 @@ require_once '../Controller/platC.php';
 	 require_once '../Controller/OffresC.php';
 	 require_once '../Model/offres.php';
 
+	require_once '../Controller/Client.php';
 
     $error = "";
 
@@ -113,12 +114,20 @@ require_once '../Controller/platC.php';
 				<div class="fh5co-overlay"></div>
 				
 				<div class="fh5co-text">
-				<!-- if not connected -->
-				<input class="right" type="image" src="../assets/img/login.png" type="button"  width="70" heigth="70" onclick="location.href='Login.php'" >
-				<!-- ifconnected 
-					<input class="right" type="image" src="../assets/img/Compte.png" type="button"  width="70" heigth="70" onclick="location.href='ClientProfile.php'" >
-			input: déconnecter
-				-->
+
+				<?php if(isset($_COOKIE["id"])) {  ?>
+				
+				<input class="right" type="image" src="../assets/img/profile.png" type="button"  
+				width="70" heigth="70" onclick="location.href='ClientProfile.php'" >
+
+				<?php } else { ?>
+					
+					<input class="right" type="image" src="../assets/img/login.png" type="button"  
+					width="70" heigth="70" onclick="location.href='Login.php'" 
+				 >
+
+				<?php } ?>
+
 					<div class="container">
 						<div class="row">
 					

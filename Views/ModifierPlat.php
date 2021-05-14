@@ -5,7 +5,7 @@
  $platC = new platC();
 	$error = "";
 
-    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"])&& isset($_POST["imageP"]))
+    if (isset($_POST["Nom_Plat"])&& isset($_POST["Type_plat"])&& isset($_POST["Prix_plat"])&& isset($_POST["Nbr_Clri_plat"])&& isset($_POST["Pds_Portion_plat"]))
 
          {
             if (
@@ -13,10 +13,9 @@
                 !empty($_POST["Type_plat"]) &&
                 !empty($_POST["Prix_plat"]) && 
                 !empty($_POST["Nbr_Clri_plat"]) &&
-                !empty($_POST["Pds_Portion_plat"])&&
-                !empty ($_POST["imageP"])
+                !empty($_POST["Pds_Portion_plat"])
             )  {
-                $plat = new plat($_POST["Nom_Plat"],$_POST["Type_plat"],$_POST["Prix_plat"],$_POST["Nbr_Clri_plat"],$_POST["Pds_Portion_plat"],$_POST["imageP"] );
+                $plat = new plat($_POST["Nom_Plat"],$_POST["Type_plat"],$_POST["Prix_plat"],$_POST["Nbr_Clri_plat"],$_POST["Pds_Portion_plat"] );
                   
           $platC->updateplat($plat,$_POST["Id_plat"]);
               }
@@ -76,91 +75,28 @@
       
     </div>
 
-    <div class="sidebar-wrapper" id="sidebar-wrapper">
+<div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
 
 
-      
          
-          <li >
-            <a href="./AjouterTypeReclamation.php">
-              <i class="now-ui-icons files_single-copy-04"></i>
-              <p>Type de Reclamation</p>
-            </a>
-          </li>
-          <li >
-          <a href="./AfficherReclamation.php">
-              <i class="now-ui-icons ui-1_email-85"></i>
-              <p>réclamation</p>
-            </a>
-          </li>
-          <li >
-            <a href="./AfficherClients.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Clients</p>
-            </a>
-          </li>
-
-
-          <li >
-            <a href="./AdminProfile.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Admin</p>
-            </a>
-          </li>
-
-
-          <li >
-          <a href="./AfficherCartes.php">
-          <i class="now-ui-icons business_money-coins"></i>
-              <p>Cartes Fidelités</p>
-            </a>
-          </li>
-          <li>
-            <a href="Rechercher_Table.php">
-              <i class="now-ui-icons ui-1_calendar-60"></i>
-              <p>Réservation de table</p>
-            </a>
-          </li>
-
-          <li>
-          <a href="./AfficherCategoriesTable.php">
-              <i class="now-ui-icons design_app"></i>
-              <p>Type de table</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="./Ajouterproduit.php">
-              <i class="now-ui-icons shopping_box"></i>
-              <p>Produits</p>
-            </a>
-          </li>
-
-          <li>
-            <a href="./AjouterOffres.php">
-              <i class="now-ui-icons business_money-coins"></i>
-              <p>offres</p>
-            </a>
-          </li>
-          <li>
-            <a href="AjouterIngredient.php">
-              <i class="now-ui-icons files_paper"></i>
-              <p>Ingrédients</p>
-            </a>
-          </li>
-
-          <li class="active">
+         
+        <li class="active ">
             <a href="./AjouterPlat.php">
-              <i class="now-ui-icons emoticons_satisfied"></i>
-              <p>Plats</p>
+              <i class="now-ui-icons files_single-copy-04"></i>
+              <p>Plat</p>
             </a>
           </li>
-
           <li >
+          <a href="./AjouterIngredient.php">
+              <i class="now-ui-icons files_single-copy-04"></i>
+              <p>Ingredient</p>
+            </a>
+          </li>
+          <li>
             <a href="./tables.php">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Liste des tables</p>
+              <p>Table List</p>
             </a>
           </li>
          
@@ -172,8 +108,6 @@
             </a>
           </li>
         </ul>
-
-        
       </div>
     </div>
  

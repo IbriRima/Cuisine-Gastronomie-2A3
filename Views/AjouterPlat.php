@@ -37,7 +37,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <script type = "text/javascript"  src="plat.js"></script>  
+  <script type = "text/javascript"  src="../assets/js/plat.js"></script>  
 
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -203,7 +203,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form method="POST" action="Recherche.php">
+            <form method="POST" action="Recherche_plat.php">
               <div class="input-group no-border">
                 <input type="text" value="" class="form-control" placeholder="Search..." name="recherche" id="recherche" >
                 <div class="input-group-append">

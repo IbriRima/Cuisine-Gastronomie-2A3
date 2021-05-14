@@ -104,7 +104,8 @@
                 setcookie ("member_login2","",time()+ (86400 * 1), "/");
                 setcookie ("member_password2","",time()+ (86400 * 1), "/");
 
-                $GLOBALS['id']=$_POST['email'];
+                // $GLOBALS['id']=$_POST['email'];
+
                 session_start();
                 $_SESSION['numero'] = $_POST['email'];               
                  header('Location:../Views/AdminProfile.php');
@@ -113,7 +114,7 @@
                 $e->getMessage();
                 //header('Location:../Views/RegisterAdmin.php');
                 $error="";
-                header("Location:../Views/Register.php?error=".$error);
+                header("Location:../Views/RegisterAdmin.php?error=".$error);
             }  
         }
 
@@ -258,7 +259,8 @@
                     }
 
 
-                    $GLOBALS['id']=$_POST['numero'];
+                    // $GLOBALS['id']=$_POST['numero'];
+
                     session_start();
                     $_SESSION['numero'] = $_POST['numero'];               
                     header('Location:../Views/AdminProfile.php'); 
