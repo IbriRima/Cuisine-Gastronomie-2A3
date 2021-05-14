@@ -3,6 +3,7 @@
 	include_once '../Model/TypeReclamation.php';
 
 	$TypeReclamationC = new TypeReclamationC();
+
 	$error = "";
 
    
@@ -19,6 +20,7 @@
    
                   
           $TypeReclamationC->updateTypeReclamation($Duree,(int)$_POST["Id_type"]);
+ 
          
        
               }
@@ -26,8 +28,9 @@
                   $error = "Missing information";
                   echo"$error ";
         }
+        else    $error = "Missing information";
  
-
+      
 ?>
 
 
@@ -265,10 +268,12 @@
     </div>
   </div>
 </div>
- 
+
     <?php
-    
+   
 		}
+
+
   
 		?>
           

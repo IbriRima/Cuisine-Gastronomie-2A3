@@ -49,9 +49,8 @@
 		
 				$query->bindValue(':duree',$Duree);
 				$query->execute();
-	
-			
-			
+               
+               
 			
 			} catch (PDOException $e) {
 			
@@ -74,7 +73,11 @@
 			}
 			catch (Exception $e)
             { 
-                header('Location:AjouterTypeReclamation.php');
+                echo '<script type="text/javascript">';
+                echo 'alert("Ce type de réclamation ne peut pas etre supprimé!\nIl y a déjà des réclamations de ce type.")';
+                echo '</script>';
+                echo ("<script>location.href='AjouterTypeReclamation.php'</script>");
+            
                 
                 
 				die('Erreur: '.$e->getMessage());

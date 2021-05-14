@@ -185,12 +185,17 @@ form.addEventListener("submit", function Test (evenement) {
         document.getElementById("duree").focus();
     }
     else  
-    {  
+    {
+      
+        
+      
          test=0;
 
         div_Duree.innerHTML="";
         
-        alert("Vos modifications ont bien été enregistré");  
+        alert("Vos modifications ont bien été enregistrée!");
+        
+
     }   
 
 });
