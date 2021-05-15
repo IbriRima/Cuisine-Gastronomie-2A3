@@ -55,7 +55,7 @@
 
       
          
-          <li >
+          <li class="active ">
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -123,7 +123,7 @@
             </a>
           </li>
 
-          <li class="active ">
+          <li class="active">
             <a href="./AjouterPlat.php">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>

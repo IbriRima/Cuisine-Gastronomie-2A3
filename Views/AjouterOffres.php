@@ -79,9 +79,9 @@
         <ul class="nav">
 
 
+      
          
-         
-        <li >
+          <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -109,21 +109,21 @@
           </li>
 
 
-          <li  >
+          <li >
           <a href="./AfficherCartes.php">
           <i class="now-ui-icons business_money-coins"></i>
               <p>Cartes Fidelités</p>
             </a>
           </li>
           <li>
-            <a href="./AfficheModifTable.php">
+            <a href="">
               <i class="now-ui-icons ui-1_calendar-60"></i>
               <p>Réservation de table</p>
             </a>
           </li>
 
           <li>
-            <a href="./AfficherCategoriesTable.php">
+            <a href="">
               <i class="now-ui-icons design_app"></i>
               <p>Type de table</p>
             </a>
@@ -136,14 +136,14 @@
             </a>
           </li>
 
-          <li class="active">
+          <li class="active ">
             <a href="./AjouterOffres.php">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
-          <li >
-            <a href="./AjouterIngredient.php">
+          <li>
+            <a href="AjouterIngredient.php">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
@@ -260,6 +260,20 @@
       </nav>   -->
       
       <!-- End Navbar -->
+      <script type="text/javascript">
+    function controleSaisie() {
+       if (document.formulaire.Valeur.value == "") {
+        document.getElementById("labelID").innerHTML="Veuillez saisir le nouveau prix";
+      }
+      else if (document.formulaire.id_produit.value == "") {
+        document.getElementById("labelID1").innerHTML="Veuillez saisir l'identifiant du produit";
+        return false;
+
+      }
+
+      }
+    } 
+  </script> 
 
 
       <div class="panel-header panel-header-sm">
@@ -267,7 +281,7 @@
  
       <div class="content">
 
-      <form action="AjouterOffres.php" method="POST" id="form"> 
+      <form OnSubmit="return controleSaisie()" action="AjouterOffres.php" method="POST" id="form" > 
 
 <div class="row">
   <div class="col-md-12">
@@ -292,6 +306,8 @@
                   <div class="form-group">
                     <label for="id_produit">  identifiant produit</label>
                     <input  type="number" name="id_produit" id="id_produit" class="form-control" placeholder="identifiant produit" >
+                    <label id="labelID" name="labelID" style="color:#eb1212">  </label>
+
  
                   </div>
                 </div>
@@ -313,6 +329,8 @@
                   <div class="form-group">
                     <label for="Valeur">  Nouveau prix</label>
                     <input  type="number" name="Valeur" id="Valeur" class="form-control" placeholder="nouveau prix" value='0'>
+                    <label id="labelID1" name="labelID1" style="color:#eb1212">  </label>
+
  
                   </div>
                 </div>
@@ -338,11 +356,6 @@
       <input type="submit" value="Ajouter" id="ajouter" name = "submit">
       <input type="reset" value="Annuler" name = "annuler">
 
-      <script>
-document.getElementById("ajouter").addEventListener("click", function() {
-  alert("promotion added successfully");
-});
-</script>
 
 
 
@@ -434,6 +447,12 @@ document.getElementById("ajouter").addEventListener("click", function() {
 
 
    
+    <?php
+ echo nl2br( "date :  " . date("Y-m-d\n"));
+echo "time :  " . date("h:i:sa");
+
+
+?>
 
 
 
@@ -465,7 +484,7 @@ document.getElementById("ajouter").addEventListener("click", function() {
 
 </script>
 
-  
+
 
 </body>
 

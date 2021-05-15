@@ -1,51 +1,18 @@
-<?php
-     include '../Controller/ProduitC.php';
-	   include '../Model/Produit.php';
-
-    $error = "";
+<?PHP
+	include "../controller/ProduitC.php";
 
 
-     
-    if (isset($_POST["Nom_produit"])&& isset($_POST["Quantité_dans_le_stock"])&& isset($_POST["Prix_de_vente"]) && isset($_POST["nom_image"]) )
-     {
-      if (
-        !empty($_POST["Nom_produit"]) && 
-        !empty($_POST["Quantité_dans_le_stock"]) &&
-        !empty($_POST["Prix_de_vente"]) &&
-        !empty($_POST["nom_image"]) 
+    $Id_produit=$_POST["recherche"]; 
 
-    )
-    {
-
-      $Nom_produit=$_POST['Nom_produit'];
-      $Quantité_dans_le_stock=(int)$_POST['Quantité_dans_le_stock'];
-      $Prix_de_vente=(int)$_POST['Prix_de_vente'];
-      $nom_image=$_POST['nom_image'];
-
-
-  $Produit = new Produit($Nom_produit,$Quantité_dans_le_stock,$Prix_de_vente,$nom_image);
-  $ProduitC = new ProduitC();
-  $ProduitC->addProduit($Produit);
-    }
-    else
-    $error = "Missing information";
-
-    }
-
-
-
-        $ProduitC = new ProduitC();
-      $listeProduit =$ProduitC->afficherProduit();
-      
-    
-
+ 
+    $ProduitC=new ProduitC();
+    $listeProduit =$ProduitC->getIdproduit($Id_produit) ;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
 
   <meta charset="utf-8" />
   
@@ -65,11 +32,8 @@
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
  
 </head>
-
-
 
 <body class="">
   <div class="wrapper ">
@@ -82,9 +46,9 @@
         <ul class="nav">
 
 
-      
          
-          <li>
+         
+          <li >
             <a href="./AjouterTypeReclamation.php">
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Type de Reclamation</p>
@@ -96,26 +60,10 @@
               <p>réclamation</p>
             </a>
           </li>
-          <li >
-            <a href="./AfficherClients.php">
+          <li>
+            <a href="">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Clients</p>
-            </a>
-          </li>
-
-
-          <li >
-            <a href="./AdminProfile.php">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Admin</p>
-            </a>
-          </li>
-
-
-          <li >
-          <a href="./AfficherCartes.php">
-          <i class="now-ui-icons business_money-coins"></i>
-              <p>Cartes Fidelités</p>
+              <p>Profil</p>
             </a>
           </li>
           <li>
@@ -133,27 +81,27 @@
           </li>
 
           <li class="active ">
-            <a href="./Ajouterproduit.php">
+            <a href="AjouterIngredient">
               <i class="now-ui-icons shopping_box"></i>
               <p>Produits</p>
             </a>
           </li>
 
           <li>
-            <a href="./AjouterOffres.php">
+            <a href="AjouterOffres">
               <i class="now-ui-icons business_money-coins"></i>
               <p>offres</p>
             </a>
           </li>
           <li>
-            <a href="AjouterIngredient.php">
+            <a href="">
               <i class="now-ui-icons files_paper"></i>
               <p>Ingrédients</p>
             </a>
           </li>
 
           <li>
-            <a href="./AjouterPlat.php">
+            <a href="">
               <i class="now-ui-icons emoticons_satisfied"></i>
               <p>Plats</p>
             </a>
@@ -267,26 +215,16 @@
       <script type="text/javascript">
     function controleSaisie() {
        if (document.formulaire.Nom_produit.value == "") {
-        document.getElementById("labelID").innerHTML="Veuillez saisir votre nom de produit!";
-       // alert("Veuillez saisir votre nom de produit !");
+        alert("Veuillez saisir votre nom de produit !");
       }
       if (document.formulaire.Quantité_dans_le_stock.value == "") {
-       // alert("Veuillez saisir la quantité dans le stock !");
-        document.getElementById("labelID1").innerHTML="Veuillez saisir la quantité dans le stock!";
-        return false;
-
+        alert("Veuillez saisir la quantité dans le stock !");
       }
-      else if (document.formulaire.Prix_de_vente.value == "") {
-       // alert("Veuillez saisir prix de vente !");
-        document.getElementById("labelID2").innerHTML="Veuillez saisir le prix de vente!";
-        return false;
-
+      if (document.formulaire.Prix_de_vente.value == "") {
+        alert("Veuillez saisir prix de vente !");
       }
-     else  if (document.formulaire.nom_image.value == "") {
-        //alert("Veuillez saisir le nom de l'image !");
-        document.getElementById("labelID3").innerHTML="Veuillez saisir le nom de l'image!";
-        return false;
-
+      if (document.formulaire.nom_image.value == "") {
+        alert("Veuillez saisir le nom de l'image !");
       }
     } 
   </script> 
@@ -296,13 +234,13 @@
  
       <div class="content">
 
-      <form name="formulaire" action="AjouterProduit.php" method="POST" id="form"  OnSubmit="return controleSaisie()"> 
+      <form name="formulaire" action="AjouterIngredient.php" method="POST" id="form"  OnSubmit="return controleSaisie()"> 
 
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-      <h5> <p style="color:orange">Ajouter un produit</p> </h5>
+      <h5> <p style="color:orange">liste des Produits</p> </h5>
         <div class="controle" id="verifEtat"> </div>
       </div>
       <div class="card-body">
@@ -324,8 +262,6 @@
                   <div class="form-group">
                     <label for="Nom_produit"> Nom produit</label>
                     <input  type="text" name="Nom_produit" id="Nom_produit" class="form-control" placeholder="Nom produit">
-                    <label id="labelID" name="labelID" style="color:#eb1212">  </label>
-
 
                   </div>
                 </div>
@@ -344,8 +280,6 @@
                   <div class="form-group">
                     <label for="Quantité_dans_le_stock">  Quantité dans le stock</label>
                     <input  type="number" name="Quantité_dans_le_stock" id="Quantité_dans_le_stock" class="form-control" placeholder="Quantité dans le stock" >
-                    <label id="labelID1" name="labelID1" style="color:#eb1212">  </label>
-
  
                   </div>
                 </div>
@@ -364,8 +298,6 @@
                   <div class="form-group">
                     <label for="Prix_de_vente">  Prix_de_vente</label>
                     <input  type="number" name="Prix_de_vente" id="Prix_de_vente" class="form-control" placeholder="Prix de vente" >
-                    <label id="labelID2" name="labelID2" style="color:#eb1212">  </label>
-
  
                   </div>
                 </div>
@@ -383,8 +315,6 @@
                   <div class="form-group">
                     <label for="nom_image"> nom de l'image a saisir (.jpg) </label>
                     <input  type="text" name="nom_image" id="nom_image" class="form-control" placeholder="nom de l'image doit etre .jpg">
-                    <label id="labelID3" name="labelID3" style="color:#eb1212">  </label>
-
 
                   </div>
                 </div>
@@ -402,7 +332,7 @@
         
 
 
-      <input  type="submit" value="Ajouter" id= "ajouter" name = "submit">
+      <input type="submit" value="Ajouter" name = "submit">
       <input type="reset" value="Annuler" name = "annuler">
 
 
@@ -427,7 +357,7 @@
 
 
 
-                <table id="example" class="table">
+                <table class="table">
                     <thead class=" text-primary">
                     <tr>
 				<th class="text-center">Identifiant</th>
@@ -489,12 +419,14 @@
 										<!-- 
 	content of this area will be the content of your PDF file 
 	-->
-	<div
-  
-  id="HTMLtoPDF">
+	<div id="HTMLtoPDF">
+
+	
 
 	</div>
 
+	<!-- here we call the function that makes PDF -->
+	<a href="#" onclick="HTMLtoPDF()">Download PDF</a>
 
 	<!-- these js files are used for making PDF -->
 	<script src="js/jspdf.js"></script>
@@ -502,15 +434,8 @@
 	<script src="js/pdfFromHTML.js"></script>
 	
 	<div class="imprimer">
-      <a align="right" href="statsQuantite.php"><img src="../assets/img/stats.jpg" alt="stats" style="width:60px;height:50px;"></a>
-      <br></br>
-      <a align="right" href="exportexel.php"><img src="../assets/img/excel.png" alt="stats" style="width:60px;height:50px;"></a>
-      <br></br>
-      <a align="right" name="impression" id="impression" onclick="imprimer_page()" type="submit" ><img src="../assets/img/print.jpg" alt="stats" style="width:60px;height:50px;"></a>
-
-      
-
-
+        <input id="impression" name="impression" class="btn btn-primary" type="submit" onclick="imprimer_page()" value="Imprimer la Page" />
+      </div>
  
        <script type="text/javascript">
             function imprimer_page(){
@@ -569,22 +494,6 @@
   
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
-  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"> </script>
-            <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"> </script>
-
-
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable();
-} );
-
-</script>
-<?php
- echo nl2br( "date :  " . date("Y-m-d\n"));
-echo "time :  " . date("h:i:sa");
-
-?>
-
 
 </body>
 
