@@ -417,7 +417,7 @@ else echo"";
 					</div>
 					<div class="col-md-6">
 						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-dishes">Food</h2>
+							<h2 class="fh5co-dishes">Ingrédients</h2>
 							<ul>
 							<?PHP
 							$j=0;
@@ -549,10 +549,10 @@ else echo"";
 						<ul class="fh5co-contact-info">
 							<li class="fh5co-contact-address ">
 								<i class="icon-home"></i>
-								5555 Love Paradise 56 New Clity 5655, <br>Excel Tower United Kingdom
+								Mourouj 2 hay lakrad kabaria <br>
 							</li>
 							<li><i class="icon-phone"></i> (123) 465-6789</li>
-							<li><i class="icon-envelope"></i>info@freehtml5.co</li>
+							<li><i class="icon-envelope"></i>PointBioEsprit@gmail.com</li>
 							<li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>
 						</ul>
 					</div>

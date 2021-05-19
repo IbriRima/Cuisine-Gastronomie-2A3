@@ -8,9 +8,19 @@
   require_once '../Controller/OffresC.php';
   require_once '../Model/offres.php';
   include "../controller/CategoriesTableC.php";
+  include "../Controller/Admin.php";
+  include "../controller/Client.php";
+  include "../Controller/CarteFid.php";
 
 $ReservationC=new ReservationC();
 $listeReservation =$ReservationC->afficherReservation();
+
+$carteFid=new CarteFid();
+$listecarteFid=$carteFid->afficherCartes("");
+
+$client=new Client();
+$listeClient=$client->afficherClients();
+
 
 $CategoriesTableC=new CategoriesTableC();
 $listeCategoriesTable =$CategoriesTableC->afficherCategoriesTable();
@@ -403,6 +413,9 @@ $listeReclamation =$ReclamationC->afficherReclamation();
           </div>
 
 
+          
+
+
 
 
 
@@ -690,6 +703,178 @@ $listeReclamation =$ReclamationC->afficherReclamation();
                     </tbody>
                   </table>
 
+                  
+
+                  <h4 class="card-title"> Cartes Fidelités</h4>
+              </div>
+              <div class="card-body">
+              <div class="card">
+                <div class="table-responsive">
+
+
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+                    <th class="text-center">    </th>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Points</th>
+                    <th class="text-center">     </th>
+				<th class="text-center">ID d'utilisateur</th>
+			
+
+				<!-- <th class="text-center">Sexe</th> -->
+			
+	
+			</tr>
+          
+                    </thead>
+     
+                    <tbody>
+                    
+                    <?PHP
+				
+                
+                foreach($listecarteFid as $Carte)
+        {
+            
+			?>
+            
+
+				<tr>
+                <form method="POST" action="../Controller/CarteFid.php">
+
+                
+                <td class="text-center">
+          <input type="hidden" class="form-control" name="id" id="id"  
+						value=<?PHP echo $Carte['id']; ?>>
+          </td>
+          <td class="text-center">
+          <input type="text" class="form-control" name="id2" id="id2"  
+						value=<?PHP echo $Carte['id']; ?> disabled>
+          </td>
+
+					<td class="text-center">
+          <input type="text" class="form-control" name="points" id="points"  
+						value=<?PHP echo $Carte['points']; ?>>
+          </td>
+
+          <td class="text-center">
+          <input type="hidden" class="form-control" name="userid" id="userid"  
+						value=<?PHP echo $Carte['userID']; ?>>
+          </td>
+          <td class="text-center">
+          <input type="text" class="form-control" name="userid2" id="userid2"  
+						value=<?PHP echo $Carte['userID']; ?> disabled>
+          </td>
+          
+              
+            
+            <td>
+			
+                
+
+               
+			
+            </td>
+            </form>
+
+
+				</tr>
+
+
+			<?PHP
+				}
+			?>
+
+                    <tbody>              
+                  </table>
+          </div>
+
+
+
+              </div>
+              <h4 class="card-title"> Clients</h4>
+
+              <div class="card-body">
+                <div class="table-responsive">
+
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+                    <th class="text-center">Numéro de téléphone </th>
+                    <th class="text-center">Nom</th>
+				<th class="text-center">Prénom</th>
+				<th class="text-center">Email</th>
+				<th class="text-center">Adresse</th>
+      
+
+				<!-- <th class="text-center">Sexe</th> -->
+			
+	
+			</tr>
+          
+                    </thead>
+     
+                    <tbody>
+                    
+                    <?PHP
+				
+                
+                foreach($listeClient as $Client)
+        {
+            
+			?>
+            
+
+				<tr>
+                <form method="POST" action="../Controller/Admin.php">
+
+                <td class="text-center">
+          <input type="text" class="form-control" name="numero" id="numero"  
+						value=<?PHP echo $Client['numero']; ?>>
+          </td>
+					<td class="text-center">
+          <input type="text" class="form-control" name="nom" id="nom"  
+						value=<?PHP echo $Client['nom']; ?>>
+          </td>
+          <td class="text-center">
+          <input type="text" class="form-control" name="prenom" id="prenom"  
+						value=<?PHP echo $Client['prenom']; ?>>
+          </td>
+          <td class="text-center">
+          <input type="text" class="form-control" name="email" id="email"  
+						value=<?PHP echo $Client['email']; ?>>
+          </td>
+          <td class="text-center">
+          <input type="text" class="form-control" name="adresse" id="adresse"  
+						value=<?PHP echo $Client['adresse']; ?>>
+          </td>
+          
+              
+            
+            <td>
+			
+                <!-- <button type="submit" name="admin" href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fas fa-user-secret"></i>                
+                </button> -->
+
+              
+			
+            </td>
+            </form>
+
+
+				</tr>
+
+
+			<?PHP
+				}
+			?>
+
+                    <tbody>              
+                  </table>
+
+
 
                 </div>
               </div>
@@ -701,6 +886,8 @@ $listeReclamation =$ReclamationC->afficherReclamation();
       </div>
 
       <!-- Jawhar -->
+
+      
 
 
 
