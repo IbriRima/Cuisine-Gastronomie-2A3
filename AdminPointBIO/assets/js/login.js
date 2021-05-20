@@ -9,7 +9,7 @@ function VerifLogin()
 
     if(numero=="")
     {
-        document.getElementById('labelnumero').innerHTML="Tapez votre numéro de téléphone!";
+        document.getElementById('labelnumero').innerHTML="Tapez votre émail!";
         error= false; 
 
     }
